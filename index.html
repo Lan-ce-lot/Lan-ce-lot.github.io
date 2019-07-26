@@ -91,11 +91,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>前缀和即，存在一个数组a,有数组b，b[i]=a[1]+a[2]+…+a[i],从而用O（1）的复杂度求区间和</p>
+<p>而差分就是前缀和的逆运算，对与一个数组d[100],d[i]=a[i]-a[i-1],差分可以通过单点更新来实现区间更新</p>
+<p>因为差分具有一个性质，也就是把序列A的区间[L,R]加上一个常数d，也就是把$A_L，A_{L+1}…A_R$都加上d，其实就是它的差分序列B中，BL+d，BR+1-d，其他位置保持不变即可。利用差分这个性质即可实现快速的序列区间更新。2&lt;=i,j&lt;=n</p>
+<p>下图是二维前缀和原理</p>
+<p>View Code</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/csca/" data-id="cjyjsm8fp00001gtnp65x8q01" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/csca/" data-id="cjyjsqcsv0000hotn5j0e9334" class="article-share-link">Share</a>
       
       
     </footer>
@@ -132,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/asdfasdiufahsdif/" data-id="cjyjsm8fv00011gtni8k6splh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/asdfasdiufahsdif/" data-id="cjyjsqctc0001hotnqihj4hyf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +186,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/hello-world/" data-id="cjyjsm8g000021gtn7z151noe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/hello-world/" data-id="cjyjsqctl0002hotngq2psids" class="article-share-link">Share</a>
       
       
     </footer>
