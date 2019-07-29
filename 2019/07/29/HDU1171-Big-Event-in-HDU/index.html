@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>差分前缀和 | Lancelot&#39;s Blog</title>
+  <title>HDU1171 Big Event in HDU | Lancelot&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前缀和即，存在一个数组a,有数组b，b[i]=a[1]+a[2]+…+a[i],从而用O（1）的复杂度求区间和 而差分就是前缀和的逆运算，对与一个数组d[100],d[i]=a[i]-a[i-1],差分可以通过单点更新来实现区间更新 因为差分具有一个性质，也就是把序列A的区间[L,R]加上一个常数d，也就是把$AL，A{L+1}…A_R$都加上d，其实就是它的差分序列B中，BL+d，BR+1-d，">
+  <meta name="description" content="题目链接思路">
+<meta name="keywords" content="dp,0-1背包,acm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="差分前缀和">
-<meta property="og:url" content="http://yoursite.com/2019/07/26/前缀和&差分/index.html">
+<meta property="og:title" content="HDU1171 Big Event in HDU">
+<meta property="og:url" content="http://yoursite.com/2019/07/29/HDU1171-Big-Event-in-HDU/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Blog">
-<meta property="og:description" content="前缀和即，存在一个数组a,有数组b，b[i]=a[1]+a[2]+…+a[i],从而用O（1）的复杂度求区间和 而差分就是前缀和的逆运算，对与一个数组d[100],d[i]=a[i]-a[i-1],差分可以通过单点更新来实现区间更新 因为差分具有一个性质，也就是把序列A的区间[L,R]加上一个常数d，也就是把$AL，A{L+1}…A_R$都加上d，其实就是它的差分序列B中，BL+d，BR+1-d，">
+<meta property="og:description" content="题目链接思路">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-26T12:57:33.870Z">
+<meta property="og:updated_time" content="2019-07-29T23:32:44.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="差分前缀和">
-<meta name="twitter:description" content="前缀和即，存在一个数组a,有数组b，b[i]=a[1]+a[2]+…+a[i],从而用O（1）的复杂度求区间和 而差分就是前缀和的逆运算，对与一个数组d[100],d[i]=a[i]-a[i-1],差分可以通过单点更新来实现区间更新 因为差分具有一个性质，也就是把序列A的区间[L,R]加上一个常数d，也就是把$AL，A{L+1}…A_R$都加上d，其实就是它的差分序列B中，BL+d，BR+1-d，">
+<meta name="twitter:title" content="HDU1171 Big Event in HDU">
+<meta name="twitter:description" content="题目链接思路">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Blog" type="application/atom+xml">
   
@@ -150,32 +151,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-前缀和&amp;差分" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-HDU1171-Big-Event-in-HDU" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      差分前缀和
+      HDU1171 Big Event in HDU
     </h1>
   
 
         
-        <a href="/2019/07/26/前缀和&差分/" class="archive-article-date">
-  	<time datetime="2019-07-26T07:36:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
+        <a href="/2019/07/29/HDU1171-Big-Event-in-HDU/" class="archive-article-date">
+  	<time datetime="2019-07-29T15:03:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前缀和即，存在一个数组a,有数组b，b[i]=a[1]+a[2]+…+a[i],从而用O（1）的复杂度求区间和</p>
-<p>而差分就是前缀和的逆运算，对与一个数组d[100],d[i]=a[i]-a[i-1],差分可以通过单点更新来实现区间更新</p>
-<p>因为差分具有一个性质，也就是把序列A的区间[L,R]加上一个常数d，也就是把$A<em>L，A</em>{L+1}…A_R$都加上d，其实就是它的差分序列B中，BL+d，BR+1-d，其他位置保持不变即可。利用差分这个性质即可实现快速的序列区间更新。2&lt;=i,j&lt;=n</p>
-<p>下图是二维前缀和原理</p>
-<p>View Code</p>
-
+        <h3 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1171" target="_blank" rel="noopener">题目链接</a></h3><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a><strong>思路</strong><a id="more"></a></h3><ul>
+<li>这道题目看似与dp无关，其实换个思路就是一个01背包。</li>
+<li>这道题可以用0-1背包。将所有设施的价值全部加起来，然后分成2组，要使这2组设施的价值尽可能等，即要求它们2组的价值差要最小。那么我们可以首先将求价值总和的一半儿，然后先算其中一组的价值，此时价值总和的一半就相当于背包的最大容量，然后求不超过背包最大容量的情况下背包所能得到的最大价值，总价值-最大价值就是另一组设施的价值。要注意的是，这里每件物品的重量就是每件物品的价值。还要  记住，每次的背包的N和V都要更新。</li>
+</ul>
+<hr>
+<h3 id="我的代码"><a href="#我的代码" class="headerlink" title="我的代码"></a><strong>我的代码</strong></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> eps=<span class="number">1e-10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;<span class="comment">//int2147483647//ll9e18//unsigned ll 1e19</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">100005</span>;</span><br><span class="line"><span class="keyword">int</span> m[maxn],v[maxn],dp[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,sum_v,sum_m;<span class="comment">//v，m </span></span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n) &amp;&amp; n &gt;= <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    	sum_v = <span class="number">0</span>,sum_m = <span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">int</span> z = <span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">    	&#123;</span><br><span class="line">    		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;v[i],&amp;m[i]);</span><br><span class="line">    		sum_v += v[i] * m[i];</span><br><span class="line">    		sum_m += m[i];</span><br><span class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; m[i];j++)</span><br><span class="line">    		&#123;</span><br><span class="line">    			a[z] = v[i];</span><br><span class="line">    			z++;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; sum_m;i++)</span><br><span class="line">    	&#123;</span><br><span class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> j = sum_v / <span class="number">2</span>;j &gt;= a[i];j--)</span><br><span class="line">    		&#123;</span><br><span class="line">    			dp[j] = max(dp[j],dp[j - a[i]] + a[i]);</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,max(dp[sum_v / <span class="number">2</span>],sum_v - dp[sum_v / <span class="number">2</span>]),min(dp[sum_v / <span class="number">2</span>],sum_v - dp[sum_v / <span class="number">2</span>]));</span><br><span class="line">    &#125; </span><br><span class="line">true<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="大佬代码"><a href="#大佬代码" class="headerlink" title="大佬代码"></a><strong>大佬代码</strong></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> V,N,weight[<span class="number">10002</span>],v[<span class="number">10002</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">int</span> f[<span class="number">100002</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">OnePack</span><span class="params">()</span>  <span class="comment">//0-1背包的主要思想</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=V;j&gt;=weight[i];j--)</span><br><span class="line">            f[j]=max(f[j],f[j-weight[i]]+v[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f[V];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t,a,b,x,y,z;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t)&amp;&amp;t&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        N=V=<span class="number">0</span>;  <span class="comment">//每次背包的N和V都要更新</span></span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(t--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</span><br><span class="line">            N+=b;</span><br><span class="line">            V+=a*b;</span><br><span class="line">            <span class="keyword">while</span>(b--)</span><br><span class="line">            &#123;</span><br><span class="line">                v[i]=a;  <span class="comment">//记录每件物品的价值</span></span><br><span class="line">                weight[i]=a;  <span class="comment">//记录每件物品的重量</span></span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        z=V; </span><br><span class="line">        V/=<span class="number">2</span>;</span><br><span class="line">        x=max(OnePack(),z-OnePack());  <span class="comment">//最大的设施价值放前面</span></span><br><span class="line">        y=min(OnePack(),z-OnePack());</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">" "</span>&lt;&lt;y&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a><a href="https://blog.csdn.net/qq_41181772/article/details/79923762" target="_blank" rel="noopener">参考博客</a></h3><div class="footer">
+   Copyright © 2019 Lancelot
+</div>
       
 
       
@@ -214,6 +221,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">0-1背包</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">acm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -264,7 +290,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/26/前缀和&差分/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/29/HDU1171-Big-Event-in-HDU/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +304,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/27/ciao-amore/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ciao amore
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/26/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/07/28/ll/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">test blog</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -316,7 +333,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目链接"><span class="toc-number">1.</span> <span class="toc-text">题目链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思路"><span class="toc-number">2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的代码"><span class="toc-number">3.</span> <span class="toc-text">我的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大佬代码"><span class="toc-number">4.</span> <span class="toc-text">大佬代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考博客"><span class="toc-number">5.</span> <span class="toc-text">参考博客</span></a></li></ol>
                     </div>
                 </span>
             </div>
