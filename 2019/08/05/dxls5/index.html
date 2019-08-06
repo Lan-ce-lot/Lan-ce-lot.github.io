@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>dxls5 | Lancelot&#39;s Blog</title>
+  <title>多校联赛5补题 | Lancelot&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是网页描述">
+  <meta name="description" content="菜到自闭，还好有你在。。。">
+<meta name="keywords" content="acm,补题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dxls5">
+<meta property="og:title" content="多校联赛5补题">
 <meta property="og:url" content="http://yoursite.com/2019/08/05/dxls5/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Blog">
-<meta property="og:description" content="这是网页描述">
+<meta property="og:description" content="菜到自闭，还好有你在。。。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-05T11:17:47.630Z">
+<meta property="og:updated_time" content="2019-08-05T12:36:39.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dxls5">
-<meta name="twitter:description" content="这是网页描述">
+<meta name="twitter:title" content="多校联赛5补题">
+<meta name="twitter:description" content="菜到自闭，还好有你在。。。">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Blog" type="application/atom+xml">
   
@@ -157,7 +158,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      dxls5
+      多校联赛5补题
     </h1>
   
 
@@ -170,7 +171,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p><del>菜到自闭</del>，还好有你在。。。<a id="more"></a></p>
+<h3 id="1string-matching"><a href="#1string-matching" class="headerlink" title="1string matching"></a>1<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6629" target="_blank" rel="noopener">string matching</a></h3><p>只会暴力Tle</p>
+<h4 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h4><ul>
+<li><p>扩展KMP<br>先是KMP算法<br>kuangbin模板：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* next[] 的含义：x[i-next[i]...i-1]=x[0...next[i]-1]</span></span><br><span class="line"><span class="comment">* next[i] 为满足x[i-z...i-1]=x[0...z-1] 的最大z 值（就是x 的自身匹配）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kmp_pre</span><span class="params">(<span class="keyword">char</span> x[], <span class="keyword">int</span> m, <span class="keyword">int</span> next[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    j = next[<span class="number">0</span>] = −<span class="number">1</span>;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; m)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(−<span class="number">1</span> != j &amp;&amp; x[i] != x[j])j = next[j];</span><br><span class="line">        next[++i] = ++j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*kmpNext[i] 的意思:next'[i]=next[next[...[next[i]]]](直到</span></span><br><span class="line"><span class="comment">next'[i]&lt;0 或者x[next'[i]]!=x[i]),这样的预处理可以快一些*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preKMP</span><span class="params">(<span class="keyword">char</span> x[], <span class="keyword">int</span> m, <span class="keyword">int</span> kmpNext[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    j = kmpNext[<span class="number">0</span>] = −<span class="number">1</span>;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; m)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(−<span class="number">1</span> != j &amp;&amp; x[i] != x[j])j = kmpNext[j];</span><br><span class="line">        <span class="keyword">if</span>(x[++i] == x[++j])kmpNext[i] = kmpNext[j];</span><br><span class="line">        <span class="keyword">else</span> kmpNext[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 返回x 在y 中出现的次数，可以重叠</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> next[<span class="number">10010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP_Count</span><span class="params">(<span class="keyword">char</span> x[], <span class="keyword">int</span> m, <span class="keyword">char</span> y[], <span class="keyword">int</span> n)</span> <span class="comment">//x 是模式串，y 是主串</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//preKMP(x,m,next);</span></span><br><span class="line">    kmp_pre(x, m, next);</span><br><span class="line">    i = j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(−<span class="number">1</span> != j &amp;&amp; y[i] != x[j])j = next[j];</span><br><span class="line">        i++;</span><br><span class="line">        j++;</span><br><span class="line">        <span class="keyword">if</span>(j &gt;= m)</span><br><span class="line">        &#123;</span><br><span class="line">            ans++;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>z-</p>
+</li>
+</ul>
+
       
 
       
@@ -209,6 +219,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">acm</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -273,6 +298,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/08/06/link/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          link
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/08/05/shu/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">shu</div>
@@ -302,7 +336,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1string-matching"><span class="toc-number">1.</span> <span class="toc-text">1string matching</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#知识点："><span class="toc-number">1.1.</span> <span class="toc-text">知识点：</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -439,11 +473,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">acm</a>
+                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
+                <a href="javascript:void(0)" class="js-tag color4">acm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -452,6 +486,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">标签2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">补题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,15 +505,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">补题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">data structure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Graph</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -483,11 +517,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Graph</a>
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
             
             <div class="clearfix"></div>
