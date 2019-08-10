@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>多校联赛6补题 | Lancelot&#39;s Blog</title>
+  <title>heap | Lancelot&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="破天荒过了两题！">
-<meta name="keywords" content="acm,多校联赛,补题">
+  <meta name="description" content="这是网页描述">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多校联赛6补题">
-<meta property="og:url" content="http://yoursite.com/2019/08/07/dxls6/index.html">
+<meta property="og:title" content="heap">
+<meta property="og:url" content="http://yoursite.com/2019/08/10/heap/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Blog">
-<meta property="og:description" content="破天荒过了两题！">
+<meta property="og:description" content="这是网页描述">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-08T06:03:14.194Z">
+<meta property="og:updated_time" content="2019-08-10T01:02:10.045Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多校联赛6补题">
-<meta name="twitter:description" content="破天荒过了两题！">
+<meta name="twitter:title" content="heap">
+<meta name="twitter:description" content="这是网页描述">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Blog" type="application/atom+xml">
   
@@ -151,35 +150,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dxls6" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-heap" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      多校联赛6补题
+      heap
     </h1>
   
 
         
-        <a href="/2019/08/07/dxls6/" class="archive-article-date">
-  	<time datetime="2019-08-07T13:30:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
+        <a href="/2019/08/10/heap/" class="archive-article-date">
+  	<time datetime="2019-08-10T01:02:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>破天荒过了两题！<a id="more"></a></p>
-<h3 id="1TDL"><a href="#1TDL" class="headerlink" title="1TDL"></a>1<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6641" target="_blank" rel="noopener">TDL</a></h3><h4 id="主要是两个细节，"><a href="#主要是两个细节，" class="headerlink" title="主要是两个细节，"></a>主要是两个细节，</h4><blockquote>
-<p>a ^ b=c可以推出a ^ c=b<br>质数密度分布</p>
-</blockquote>
-<p>按位异或的3个特点:<br>(1) 0^0=0,0^1=1  0异或任何数＝任何数<br>(2) 1^0=1,1^1=0  1异或任何数－任何数取反<br>(1^4)=5,(~4)=-5;<br>(3) 任何数异或自己＝把自己置0<br>按位异或的几个常见用途:<br>(1) 使某些特定的位翻转<br>    例如对数10100001的第2位和第3位翻转，则可以将该数与00000110进行按位异或运算。<br>　　　　　  10100001^00000110 = 10100111</p>
-<p>(2) 实现两个值的交换，而不必使用临时变量。<br>    例如交换两个整数a=10100001，b=00000110的值，可通过下列语句实现：<br>　　　　a = a^b； 　　//a=10100111<br>　　　　b = b^a； 　　//b=10100001<br>　　　　a = a^b； 　　//a=00000110<br>移位运算是最有效的计算乘/除乘法的运算之一。</p>
-<p>用一条语句判断一个整数是不是2的整数次方。<br>!（x &amp; (x - 1)）</p>
-<h4 id="标程："><a href="#标程：" class="headerlink" title="标程："></a>标程：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> Case, m, d;</span><br><span class="line">ll k, ans;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a, ll b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b ? gcd(b, a % b) : a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">cal</span><span class="params">(ll n, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i = n + <span class="number">1</span>;; i++)</span><br><span class="line">        <span class="keyword">if</span>(gcd(n, i) == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            m--;</span><br><span class="line">            <span class="keyword">if</span>(!m)</span><br><span class="line">                <span class="keyword">return</span> i - n;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;Case);</span><br><span class="line">    <span class="keyword">while</span>(Case--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld%d"</span>, &amp;k, &amp;m);</span><br><span class="line">        ans = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(d = <span class="number">1</span>; d &lt; <span class="number">700</span>; d++)</span><br><span class="line">            <span class="keyword">if</span>(cal(k ^ d, m) == d)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(ans == <span class="number">-1</span>)</span><br><span class="line">                    ans = k ^ d;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(ans &gt; (k ^ d))</span><br><span class="line">                    ans = k ^ d;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2Snowy-Smile"><a href="#2Snowy-Smile" class="headerlink" title="2Snowy Smile"></a>2<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6638" target="_blank" rel="noopener">Snowy Smile</a></h3><h4 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h4><h3 id><a href="#" class="headerlink" title="#"></a>#</h3>
+        
       
 
       
@@ -218,25 +209,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">acm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -287,7 +259,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/07/dxls6/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/10/heap/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -301,18 +273,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/09/shu/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          树
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/06/link/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">linked list</div>
+    <a href="/2019/08/09/shu/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">树</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -339,7 +302,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1TDL"><span class="toc-number">1.</span> <span class="toc-text">1TDL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主要是两个细节，"><span class="toc-number">1.1.</span> <span class="toc-text">主要是两个细节，</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#标程："><span class="toc-number">1.2.</span> <span class="toc-text">标程：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2Snowy-Smile"><span class="toc-number">2.</span> <span class="toc-text">2Snowy Smile</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#离散化"><span class="toc-number">2.1.</span> <span class="toc-text">离散化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">#</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
