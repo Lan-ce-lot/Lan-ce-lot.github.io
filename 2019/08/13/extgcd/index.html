@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>extgcd | Lancelot&#39;s Blog</title>
+  <title>扩展欧几里德算法 | Lancelot&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是网页描述">
+  <meta name="description" content="gcd的辗转相除法">
+<meta name="keywords" content="数论,扩展欧几里德算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="extgcd">
+<meta property="og:title" content="扩展欧几里德算法">
 <meta property="og:url" content="http://yoursite.com/2019/08/13/extgcd/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Blog">
-<meta property="og:description" content="这是网页描述">
+<meta property="og:description" content="gcd的辗转相除法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-13T03:04:59.644Z">
+<meta property="og:updated_time" content="2019-08-13T10:59:24.714Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="extgcd">
-<meta name="twitter:description" content="这是网页描述">
+<meta name="twitter:title" content="扩展欧几里德算法">
+<meta name="twitter:description" content="gcd的辗转相除法">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Blog" type="application/atom+xml">
   
@@ -157,7 +158,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      extgcd
+      扩展欧几里德算法
     </h1>
   
 
@@ -170,7 +171,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="gcd的辗转相除法"><a href="#gcd的辗转相除法" class="headerlink" title="gcd的辗转相除法"></a>gcd的辗转相除法<a id="more"></a></h3><p>实现：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a, ll b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">true<span class="keyword">return</span> b == <span class="number">0</span> ? a : gcd(b, a % b); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者直接使用<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line">__gcd();</span><br></pre></td></tr></table></figure></p>
+<p>辗转相除法复杂度在$O(\log \max(a, b))$</p>
+<h3 id="扩展欧几里德算法"><a href="#扩展欧几里德算法" class="headerlink" title="扩展欧几里德算法"></a>扩展欧几里德算法</h3><ul>
+<li>先了解同余方程$a\times x≡b(\mod m)$,该方程等价于$a\times x=b+m\times k$<br>可化为$a\times x+b\times y=c$的形式<br>先看”求整数x，y使$a\times x+b\times y=1$”，显然gcd(a,b)=1,才能保证有解。事实上，一定存在(x,y)使$a\times x+b\times y=gcd(x,y)$</li>
+<li>模板<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">extgcd</span><span class="params">(ll a, ll b, ll &amp;x, ll &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll d = a;</span><br><span class="line">    <span class="keyword">if</span> (b != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        d = extgcd(b, a % b, y, x);</span><br><span class="line">        y -= (a / b) * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="青蛙的约会"><a href="#青蛙的约会" class="headerlink" title="青蛙的约会"></a><a href="http://poj.org/problem?id=1061" target="_blank" rel="noopener">青蛙的约会</a></h3><p>细想其实是道思维+extgcd的模板题<br>设t为跳跃次数<br>$(n-m)\times t≡x-y(\mod L)$<br>所以$(n-m)\times t+ k\times L=x-y$<br>令$n - m = a,L = b,x - y = c$<br>则化为$ax + by = c$<br>又已知$ax_0+by_0=gcd(a,b)$中$x_0$是一个解<br>式子两边同乘$\frac{c}{g}$<br>得到$a\frac{cx_0}{g}+b\frac{cy_0}{g}=c$<br>$x=\frac{cx_0}{g}$就是ax+by=c的一个解</p>
+<blockquote>
+<p>k是一个随机整数；gcd是gcd(a,b)；则有公式<br>$x=\frac{cx_0}{g}x_0 + (b/gcd)k$</p>
+<p>$y=\frac{cx_0}{g}y_0 - (a /gcd)k$</p>
+</blockquote>
+<p>把(b/gcd)k通过取余除去即可得到最小解，这里注意正负<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = x * c / gcd;</span><br><span class="line"><span class="keyword">int</span> t = b / gcd;</span><br><span class="line">x = (x % t + t) % t;</span><br><span class="line"><span class="comment">//这一步+t%t是为了防止x为负数</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, x);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>AC代码<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"> &gt; FileName:</span></span><br><span class="line"><span class="comment"> &gt; Author:      Lance</span></span><br><span class="line"><span class="comment"> &gt; Mail:        lancelot_hcs@qq.com</span></span><br><span class="line"><span class="comment"> &gt; Date:        9102.1.8</span></span><br><span class="line"><span class="comment"> &gt; Description:</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> eps = <span class="number">1e-10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;<span class="comment">//int2147483647//ll9e18//unsigned ll 1e19</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1005</span>;</span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll x = <span class="number">0</span>,f = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>)</span><br><span class="line">            f = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">extgcd</span><span class="params">(ll a, ll b, ll &amp;x, ll &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll d = a;</span><br><span class="line">    <span class="keyword">if</span> (b != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        d = extgcd(b, a % b, y, x);</span><br><span class="line">        y -= (a / b) * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line">ll a, b, c, x, y;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll m, n, gcd, L;</span><br><span class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld%lld%lld"</span>, &amp;x, &amp;y, &amp;m, &amp;n, &amp;L))</span><br><span class="line">    &#123;</span><br><span class="line">        a = m - n;</span><br><span class="line">        b = L;</span><br><span class="line">        c = y - x;</span><br><span class="line">        <span class="keyword">if</span> (a &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a = -a;</span><br><span class="line">            c = -c;</span><br><span class="line">        &#125;</span><br><span class="line">        gcd = extgcd(a, b, x, y);</span><br><span class="line">        <span class="keyword">if</span> (c % gcd != <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">"Impossible"</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            x = x * c / gcd;</span><br><span class="line">            <span class="keyword">int</span> t = b / gcd;</span><br><span class="line">            x = (x % t + t) % t;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="参考大佬博客"><a href="#参考大佬博客" class="headerlink" title="参考大佬博客"></a><a href="https://www.cnblogs.com/flashhu/p/9149119.html" target="_blank" rel="noopener">参考大佬博客</a></h3>
       
 
       
@@ -209,6 +228,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">扩展欧几里德算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -273,9 +307,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/08/14/dxls8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          dxls8
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/08/12/dxls7/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">dxls7</div>
+      <div class="article-nav-title">多校联赛7补题</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -302,7 +345,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#gcd的辗转相除法"><span class="toc-number">1.</span> <span class="toc-text">gcd的辗转相除法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展欧几里德算法"><span class="toc-number">2.</span> <span class="toc-text">扩展欧几里德算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#青蛙的约会"><span class="toc-number">3.</span> <span class="toc-text">青蛙的约会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考大佬博客"><span class="toc-number">4.</span> <span class="toc-text">参考大佬博客</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -435,11 +478,31 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">dp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">acm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">template</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">标签2</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">补题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,39 +518,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">dp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">acm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">补题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">data structure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">linked list</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Graph</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,11 +526,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+                <a href="javascript:void(0)" class="js-tag color3">数论</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">扩展欧几里德算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">linked list</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Graph</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">公式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
             
             <div class="clearfix"></div>
