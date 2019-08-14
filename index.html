@@ -245,7 +245,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/14/dxls8/">dxls8</a>
+      <a class="article-title" href="/2019/08/14/dxls8/">多校联赛8补题</a>
     </h1>
   
 
@@ -258,6 +258,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p><del>受不了,两百多行的if else的魔鬼。。</del>
         
       
 
@@ -266,6 +267,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">acm</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -398,13 +418,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1Kejin-Player"><a href="#1Kejin-Player" class="headerlink" title="1Kejin Player"></a>1<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6656" target="_blank" rel="noopener">Kejin Player</a></h4><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>$dp[i]=dp[i-1]+p_i\times w_i+(1-p_i)\times (w_i+dp[i]-dp[x])$<br>p:概率<br>w:花费<br>x:回到的关卡<br>化简:$dp[i]=(dp[i-1]+w_i-dp[x])/p_i$<br>$p_i=\frac{p}{q}$</p>
-<blockquote>
-<p>小费马定理：在p是素数的情况下，对任意的整数都有$x^p\equiv x(\mod p)$<br>其中若x无法被p整除，我们有$x^p\equiv 1(\mod p)$。利用这条性质，在p是素数的情况下，很容易求出一个数的逆元。<br>把上面的式子变形得到$a^{-1} \equiv a^{p-2} (\mod p)$，因此可以通过快速幂运算求逆元</p>
-</blockquote>
-<p>//p, q, x, a；$p_i=\frac{p}{q} $，x下降对应等级，a花费<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;p, &amp;q, &amp;x, &amp;a);</span><br><span class="line">LL tmp = (sum[i - <span class="number">1</span>] - sum[x - <span class="number">1</span>] + modd) % modd;</span><br><span class="line">sum[i] = (tmp + a) % modd * q % modd * quieck_pow(p, modd - <span class="number">2</span>) % modd;</span><br><span class="line">sum[i] = (sum[i] - tmp + modd) % modd;</span><br><span class="line">sum[i] = (sum[i - <span class="number">1</span>] + sum[i]) % modd;</span><br></pre></td></tr></table></figure></p>
-<h5 id="标程"><a href="#标程" class="headerlink" title="标程"></a>标程</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> modd = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">1e6</span> +<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> sum[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">quieck_pow</span><span class="params">(LL a, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &amp; <span class="number">1</span>)</span><br><span class="line">            ans = ans * a % modd;</span><br><span class="line">        a = a * a % modd;</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>  ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cas, n, Q, L, R, p, q, a, x;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;cas);</span><br><span class="line">    <span class="keyword">while</span> (cas--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;Q);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;p, &amp;q, &amp;x, &amp;a);</span><br><span class="line">            LL tmp = (sum[i - <span class="number">1</span>] - sum[x - <span class="number">1</span>] + modd) % modd;</span><br><span class="line">            sum[i] = (tmp + a) % modd * q % modd * quieck_pow(p, modd - <span class="number">2</span>) % modd;</span><br><span class="line">            sum[i] = (sum[i] - tmp + modd) % modd;</span><br><span class="line">            sum[i] = (sum[i - <span class="number">1</span>] + sum[i]) % modd;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (Q--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;L, &amp;R);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, (sum[R - <span class="number">1</span>] - sum[L - <span class="number">1</span>] + modd) % modd);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2A-B-C"><a href="#2A-B-C" class="headerlink" title="2A + B = C"></a>2<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6646" target="_blank" rel="noopener">A + B = C</a></h4><h4 id="3Final-Exam"><a href="#3Final-Exam" class="headerlink" title="3Final Exam"></a>3<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6651" target="_blank" rel="noopener">Final Exam</a></h4>
+        <p>暴零不多说<br>
+        
       
 
       
@@ -421,11 +436,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
         		</li>
       		
 		</ul>
@@ -485,8 +500,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>带权路径长度(WPL):设二叉树有n个叶子结点，每个叶子结点带<br>有权值Wk，从根结点到每个叶子结点的长度为lk，则每个叶子结点的带权路径长度之和就是：WPL = </p>
-
+        <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>带权路径长度(WPL)
+        
       
 
       
@@ -735,11 +750,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
         		</li>
       		
 		</ul>
@@ -895,11 +910,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
         		</li>
       		
 		</ul>
@@ -960,6 +975,10 @@
       	</div>
     </div>
   </div>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_page_pv">
+   访问本站小可爱数<span id="busuanzi_value_page_pv"></span>人次
+</span>
 </footer>
     </div>
     <script>
@@ -1061,27 +1080,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">acm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">template</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">标签2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">补题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1094,6 +1093,26 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">补题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">template</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">标签2</a>
               </li>
              
               <li class="article-tag-list-item">

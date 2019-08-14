@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>多校联赛7补题 | Lancelot&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1Kejin Player思路$dp[i]=dp[i-1]+p_i\times w_i+(1-p_i)\times (w_i+dp[i]-dp[x])$p:概率w:花费x:回到的关卡化简:$dp[i]=(dp[i-1]+w_i-dp[x])/p_i$$p_i=\frac{p}{q}$  小费马定理：在p是素数的情况下，对任意的整数都有$x^p\equiv x(\mod p)$其中若x无法被p整除，">
-<meta name="keywords" content="acm,多校联赛,补题">
+  <meta name="description" content="暴零不多说">
+<meta name="keywords" content="acm,补题,多校联赛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多校联赛7补题">
 <meta property="og:url" content="http://yoursite.com/2019/08/12/dxls7/index.html">
 <meta property="og:site_name" content="Lancelot&#39;s Blog">
-<meta property="og:description" content="1Kejin Player思路$dp[i]=dp[i-1]+p_i\times w_i+(1-p_i)\times (w_i+dp[i]-dp[x])$p:概率w:花费x:回到的关卡化简:$dp[i]=(dp[i-1]+w_i-dp[x])/p_i$$p_i=\frac{p}{q}$  小费马定理：在p是素数的情况下，对任意的整数都有$x^p\equiv x(\mod p)$其中若x无法被p整除，">
+<meta property="og:description" content="暴零不多说">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-14T02:20:07.415Z">
+<meta property="og:updated_time" content="2019-08-14T08:22:30.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多校联赛7补题">
-<meta name="twitter:description" content="1Kejin Player思路$dp[i]=dp[i-1]+p_i\times w_i+(1-p_i)\times (w_i+dp[i]-dp[x])$p:概率w:花费x:回到的关卡化简:$dp[i]=(dp[i-1]+w_i-dp[x])/p_i$$p_i=\frac{p}{q}$  小费马定理：在p是素数的情况下，对任意的整数都有$x^p\equiv x(\mod p)$其中若x无法被p整除，">
+<meta name="twitter:description" content="暴零不多说">
   
     <link rel="alternative" href="/atom.xml" title="Lancelot&#39;s Blog" type="application/atom+xml">
   
@@ -171,7 +171,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1Kejin-Player"><a href="#1Kejin-Player" class="headerlink" title="1Kejin Player"></a>1<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6656" target="_blank" rel="noopener">Kejin Player</a></h4><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>$dp[i]=dp[i-1]+p_i\times w_i+(1-p_i)\times (w_i+dp[i]-dp[x])$<br>p:概率<br>w:花费<br>x:回到的关卡<br>化简:$dp[i]=(dp[i-1]+w_i-dp[x])/p_i$<br>$p_i=\frac{p}{q}$</p>
+        <p>暴零不多说<br><a id="more"></a></p>
+<h4 id="1Kejin-Player"><a href="#1Kejin-Player" class="headerlink" title="1Kejin Player"></a>1<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6656" target="_blank" rel="noopener">Kejin Player</a></h4><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>$dp[i]=dp[i-1]+p_i\times w_i+(1-p_i)\times (w_i+dp[i]-dp[x])$<br>p:概率<br>w:花费<br>x:回到的关卡<br>化简:$dp[i]=(dp[i-1]+w_i-dp[x])/p_i$<br>$p_i=\frac{p}{q}$，故求p的逆元即可</p>
 <blockquote>
 <p>小费马定理：在p是素数的情况下，对任意的整数都有$x^p\equiv x(\mod p)$<br>其中若x无法被p整除，我们有$x^p\equiv 1(\mod p)$。利用这条性质，在p是素数的情况下，很容易求出一个数的逆元。<br>把上面的式子变形得到$a^{-1} \equiv a^{p-2} (\mod p)$，因此可以通过快速幂运算求逆元</p>
 </blockquote>
@@ -225,11 +226,11 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">补题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">多校联赛</a>
         		</li>
       		
 		</ul>
@@ -373,6 +374,10 @@
       	</div>
     </div>
   </div>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_page_pv">
+   访问本站小可爱数<span id="busuanzi_value_page_pv"></span>人次
+</span>
 </footer>
     </div>
     <script>
@@ -474,27 +479,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">acm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">template</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">标签2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">补题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,6 +492,26 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">music</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">0-1背包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">补题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">多校联赛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">template</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">标签2</a>
               </li>
              
               <li class="article-tag-list-item">
