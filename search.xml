@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[stl]]></title>
+    <title><![CDATA[STL]]></title>
     <url>%2F2019%2F08%2F22%2Fstl%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[最近看多了大佬的题解代码，才体会到…™一堆stl容器，stl函数我闻所未闻，唉，”余处幽篁兮终不见天，路艰难兮独后来”使用开个文章来记录自己遇见的stl骚套路。 容器1 unordered_set首先要include这个unordered_set头文件。 unordered_set可以把它想象成一个集合，它提供了几个函数让我们可以增删查：unordered_set::insertunordered_set::findunordered_set::erase 这个unorder暗示着，这两个头文件中类的底层实现——Hash。 也是因为如此，你才可以在声明这些unordered模版类的时候，传入一个自定义的哈希函数，准确的说是哈希函数子（hash function object）。 unordered_set是一个集合，有的时候我们需要一个字典，就是保存一系列key/value对，并且可以按key来查询。比如我们要保存很多同学的成绩，每位同学有一个学号，也有一个分数，我们想按学号迅速查到成绩。这时候我们就可以用unordered_map(映射)。 2 multisetc++语言中，multiset是库中一个非常有用的类型，它可以看成一个序列，插入一个数，删除一个数都能够在O(logn)的时间内完成，而且他能时刻保证序列中的数是有序的，而且序列中可以存在重复的数。 使用set或multiset之前，必须加入头文件Set、multiset都是集合类，差别在与set中不允许有重复元素，multiset中允许有重复元素。 map是标准的关联式容器，一个map是一个键值对序列，即(key,value)对。它提供基于key的快速检索能力。map中key值是唯一的。集合中的元素按一定的顺序排列。元素插入过程是按排序规则插入，所以不能指定插入位置。map的具体实现采用红黑树变体的平衡二叉树的数据结构。在插入操作和删除操作上比vector快。map可以直接存取key所对应的value，支持[]操作符，如map[key]=value。multimap与map的区别：map支持唯一键值，每个键只能出现一次；而multimap中相同键可以出现多次。multimap不支持[]操作符。 函数其他参考以下博客及资料 C++ STL 之 unordered_set 使用（包括unordersd_map） &gt;]]></content>
+      <tags>
+        <tag>C++</tag>
+        <tag>STL</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[dxls10]]></title>
@@ -37,7 +41,7 @@
   <entry>
     <title><![CDATA[dxls9]]></title>
     <url>%2F2019%2F08%2F19%2Fdxls9%2F</url>
-    <content type="text"><![CDATA[1006 Rikka with Coin题解： 首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬币最多一个， 分最多三个， 分最多一个的情况，不会陷入重复甩锅的死循环。 关键：贪心思想1002 Rikka with Cake]]></content>
+    <content type="text"><![CDATA[Rikka with Coin题解： 首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬币最多一个， 分最多三个， 分最多一个的情况，不会陷入重复甩锅的死循环。 关键：贪心思想 ac代码:1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#include&lt;bits/stdc++.h&gt;using namespace std;#define maxn 110typedef long long ll;ll a[maxn];ll n, num1 = 0, num2 = 0, num3 = 0;ll check()&#123; bool flag; ll ret = 0; for(int p = 1; p &lt;= n; p++) &#123; flag = false; ll res = 1000000000; for(int i = 0; i &lt;= num1; i++) &#123; for(int j = 0; j &lt;= num2; j++) &#123; for(int k = 0; k &lt;= num3; k++) &#123; ll ans = i * 10 + j * 20 + k * 50; if(ans &gt; a[p]) continue; if((a[p] - ans) % 100 == 0) &#123; flag = true; res = min(res, (a[p] - ans) / 100); &#125; &#125; &#125; &#125; if(flag) ret = max(ret, res); else break; &#125; if(!flag) return -1; return ret;&#125;int main()&#123; int t; scanf("%d", &amp;t); while(t--) &#123; scanf("%lld", &amp;n); for(int i = 1; i &lt;= n; i++) scanf("%lld", &amp;a[i]); ll num = 100000000000; bool flag = false; for(int i = 0; i &lt;= 1; i++) &#123; for(int j = 0; j &lt;= 3; j++) &#123; for(int k = 0; k &lt;= 1; k++) &#123; num1 = i; num2 = j; num3 = k; if(check() == -1) continue; else &#123; flag = true; num = min(num, num1 + num2 + num3 + check());//check()为100 &#125; &#125; &#125; &#125; if(flag) printf("%lld\n", num); else printf("-1\n"); &#125; return 0;&#125; 1002 Rikka with Cake]]></content>
       <tags>
         <tag>acm</tag>
         <tag>补题</tag>
@@ -47,7 +51,7 @@
   <entry>
     <title><![CDATA[多校联赛8补题]]></title>
     <url>%2F2019%2F08%2F14%2Fdxls8%2F</url>
-    <content type="text"><![CDATA[受不了,两百多行的if else的魔鬼。。输入%c%s后面记住打空格 1Quailty and CCPC26665Calabash and Landlord想到了两种方法，第一种是枚举，第二种是离散化+搜索 这个题可以先离散化坐标，然后再把两个正方形的边存一下，然后在6x6的图里面跑一边DFS，能跑到的地方就标记成一个数字。 这样就可以把每个地方都染上颜色了。这里最重要的就是判断不能越过边界就是正方形的边。 参考大佬博客 36659Acesrc and Good Numbers]]></content>
+    <content type="text"><![CDATA[受不了,两百多行的if else的魔鬼。。输入%c%s前面记住打空格屏蔽空白符的 1Quailty and CCPC26665Calabash and Landlord想到了两种方法，第一种是枚举，第二种是离散化+搜索 这个题可以先离散化坐标，然后再把两个正方形的边存一下，然后在6x6的图里面跑一边DFS，能跑到的地方就标记成一个数字。 这样就可以把每个地方都染上颜色了。这里最重要的就是判断不能越过边界就是正方形的边。 参考大佬博客 36659Acesrc and Good Numbers]]></content>
       <tags>
         <tag>acm</tag>
         <tag>补题</tag>
@@ -205,7 +209,7 @@
   <entry>
     <title><![CDATA[test blog]]></title>
     <url>%2F2019%2F07%2F28%2Fll%2F</url>
-    <content type="text"><![CDATA[二级标题三级标题 这是文章如何显示摘要 &ensp;1 &emsp;2 3 4 f(n)=\begin{cases} n/2, & \text{如果$ x2 $} \end{cases}$\sqrt{x^{2}}$ $\overbrace{a+b+c+d}^{2.0}$ $x+y=z$ f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2\sum^{j-1}_{k=0}{\widehat{\gamma}_{kj} z_k}链接baidup超链接名http://example.com/&#x61;&#100;&#100;&#x72;&#x65;&#115;&#115;&#64;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d; 图片 值班人员 星期一 星期二 星期三 李强 张明 王平 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;const int nmax=1000+5;int a[nmax][2];int dp[nmax]; int main() &#123;trueint n,t,k;truecin&gt;&gt;t;truewhile(t--)&#123;truetruecin&gt;&gt;n&gt;&gt;k;truetruefor(int i=0;i&lt;n;i++)&#123; cin&gt;&gt;a[i][1]; truetrue&#125;truetrueint ans=0;truetruefor(int z=0;z&lt;k;z++)truetrue&#123;truetruetrueint tmp,f;truetruedp[0]=a[0][1];truetruefor(int i=1;i&lt;n;i++)&#123;truetruetruedp[i]=a[i][1];//dp[i]不能初始化为0;truetruetruefor(int j=0;j&lt;i;j++)&#123;truetruetruetrueif(a[j][1]&lt;=a[i][1])&#123;// if(dp[i]&lt;dp[j]+a[i][1])// &#123;// a[i][0]=1;// // &#125;truetruetruetruetruedp[i]=max(dp[i],dp[j]+a[i][1]);truetruetruetruetruetruetruetruetrue&#125;truetruetrue&#125;truetruetruetruetrue&#125;truetrueint zz=0;truetruetruefor(int i=0;i&lt;n;i++)truetruetrue&#123;truetruetruetrueif(a[i][0]==0)truetruetruetrue&#123;truetruetruetruetruea[zz][0]=0;truetruetruetruetruea[zz++][1]=a[i][1];truetruetruetruetruetruetruetruetrue&#125;truetruetruetruetruetruetrue&#125;truetruetruen=zz;truetrueans+=*max_element(dp,dp+n);truetrue&#125;truetruecout&lt;&lt;ans&lt;&lt;endl;true&#125;truereturn 0;&#125; 代码 dm © 2019 Lancelot]]></content>
+    <content type="text"><![CDATA[二级标题三级标题 这是文章如何显示摘要 &ensp;1 &emsp;2 3 4 f(n)=\begin{cases} n/2, & \text{如果$ x2 $} \end{cases}$\sqrt{x^{2}}$ $\overbrace{a+b+c+d}^{2.0}$ $x+y=z$ f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2\sum^{j-1}_{k=0}{\widehat{\gamma}_{kj} z_k}链接baidup超链接名http://example.com/&#x61;&#100;&#100;&#x72;&#101;&#115;&#115;&#x40;&#101;&#x78;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#111;&#x6d; 图片 值班人员 星期一 星期二 星期三 李强 张明 王平 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;const int nmax=1000+5;int a[nmax][2];int dp[nmax]; int main() &#123;trueint n,t,k;truecin&gt;&gt;t;truewhile(t--)&#123;truetruecin&gt;&gt;n&gt;&gt;k;truetruefor(int i=0;i&lt;n;i++)&#123; cin&gt;&gt;a[i][1]; truetrue&#125;truetrueint ans=0;truetruefor(int z=0;z&lt;k;z++)truetrue&#123;truetruetrueint tmp,f;truetruedp[0]=a[0][1];truetruefor(int i=1;i&lt;n;i++)&#123;truetruetruedp[i]=a[i][1];//dp[i]不能初始化为0;truetruetruefor(int j=0;j&lt;i;j++)&#123;truetruetruetrueif(a[j][1]&lt;=a[i][1])&#123;// if(dp[i]&lt;dp[j]+a[i][1])// &#123;// a[i][0]=1;// // &#125;truetruetruetruetruedp[i]=max(dp[i],dp[j]+a[i][1]);truetruetruetruetruetruetruetruetrue&#125;truetruetrue&#125;truetruetruetruetrue&#125;truetrueint zz=0;truetruetruefor(int i=0;i&lt;n;i++)truetruetrue&#123;truetruetruetrueif(a[i][0]==0)truetruetruetrue&#123;truetruetruetruetruea[zz][0]=0;truetruetruetruetruea[zz++][1]=a[i][1];truetruetruetruetruetruetruetruetrue&#125;truetruetruetruetruetruetrue&#125;truetruetruen=zz;truetrueans+=*max_element(dp,dp+n);truetrue&#125;truetruecout&lt;&lt;ans&lt;&lt;endl;true&#125;truereturn 0;&#125; 代码 dm © 2019 Lancelot]]></content>
       <tags>
         <tag>test</tag>
       </tags>

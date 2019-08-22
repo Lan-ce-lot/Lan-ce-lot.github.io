@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="1006    Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬">
+<meta name="description" content="Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬币最多一个， 分">
 <meta name="keywords" content="acm,补题,多校联赛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dxls9">
 <meta property="og:url" content="http://lan-ce-lot.github.io/2019/08/19/dxls9/index.html">
 <meta property="og:site_name" content="Lance">
-<meta property="og:description" content="1006    Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬">
+<meta property="og:description" content="Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬币最多一个， 分">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T12:37:50.576Z">
+<meta property="og:updated_time" content="2019-08-22T02:40:46.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dxls9">
-<meta name="twitter:description" content="1006    Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬">
+<meta name="twitter:description" content="Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬币最多一个， 分">
 
 
 
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  183
+                  415
                 </span>
               
 
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -397,11 +397,13 @@
       
 
       
-        <p>1006    Rikka with Coin<br>题解：</p>
+        <h3 id="Rikka-with-Coin"><a href="#Rikka-with-Coin" class="headerlink" title="Rikka with Coin"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6685" target="_blank" rel="noopener">Rikka with Coin</a></h3><p>题解：</p>
 <blockquote>
 <p>首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。<br>20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。<br>50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。<br>对于任何一种情况，重复使用上述规则一定会达到一个 分硬币最多一个， 分最多三个， 分最<br>多一个的情况，不会陷入重复甩锅的死循环。</p>
 </blockquote>
-<p>关键：<br>贪心思想<br>1002    Rikka with Cake</p>
+<p>关键：<br>贪心思想</p>
+<p>ac代码:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 110</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll a[maxn];</span><br><span class="line">ll n, num1 = <span class="number">0</span>, num2 = <span class="number">0</span>, num3 = <span class="number">0</span>;</span><br><span class="line"><span class="function">ll <span class="title">check</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> flag;</span><br><span class="line">    ll ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> p = <span class="number">1</span>; p &lt;= n; p++)</span><br><span class="line">    &#123;</span><br><span class="line">        flag = <span class="literal">false</span>;</span><br><span class="line">        ll res = <span class="number">1000000000</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= num1; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= num2; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= num3; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    ll ans = i * <span class="number">10</span> + j * <span class="number">20</span> + k * <span class="number">50</span>;</span><br><span class="line">                    <span class="keyword">if</span>(ans &gt; a[p])</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">if</span>((a[p] - ans) % <span class="number">100</span> == <span class="number">0</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                        res = min(res, (a[p] - ans) / <span class="number">100</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)</span><br><span class="line">            ret = max(ret, res);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!flag)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">        ll num = <span class="number">100000000000</span>;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">1</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">3</span>; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">1</span>; k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    num1 = i;</span><br><span class="line">                    num2 = j;</span><br><span class="line">                    num3 = k;</span><br><span class="line">                    <span class="keyword">if</span>(check() == <span class="number">-1</span>)</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                        num = min(num, num1 + num2 + num3 + check());<span class="comment">//check()为100</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, num);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1002    Rikka with Cake</p>
 
       
     </div>
@@ -562,8 +564,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -593,7 +604,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -678,6 +689,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rikka-with-Coin"><span class="nav-text">Rikka with Coin</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -705,7 +732,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22k</span>
+    <span title="Site words total count">22.8k</span>
   
 </div>
 
@@ -717,18 +744,23 @@
 
 
 
+<!-- 新增访客统计代码 -->
+
+<div class="busuanzi-count">
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="site-uv">
+      <i class="fa fa-eye"></i>
+      本站总访问量 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+</div>
+<!-- 新增访客统计代码 END-->
+
         
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
 
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
   
 </div>
 
