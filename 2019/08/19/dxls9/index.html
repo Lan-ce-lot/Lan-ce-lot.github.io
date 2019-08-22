@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="acm,补题,多校联赛,">
 
 
 
@@ -81,14 +81,18 @@
 
 
 
+<meta name="description" content="1006    Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬">
+<meta name="keywords" content="acm,补题,多校联赛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dxls9">
 <meta property="og:url" content="http://lan-ce-lot.github.io/2019/08/19/dxls9/index.html">
 <meta property="og:site_name" content="Lance">
+<meta property="og:description" content="1006    Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-19T05:53:12.225Z">
+<meta property="og:updated_time" content="2019-08-21T12:37:50.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dxls9">
+<meta name="twitter:description" content="1006    Rikka with Coin题解：  首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。对于任何一种情况，重复使用上述规则一定会达到一个 分硬">
 
 
 
@@ -356,7 +360,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  183
                 </span>
               
 
@@ -393,7 +397,12 @@
       
 
       
-        
+        <p>1006    Rikka with Coin<br>题解：</p>
+<blockquote>
+<p>首先 10 分的硬币最多只会用一个，如果用了两个，直接替换成一个 10 分一个 20 分一定不亏。<br>20 分的硬币最多只会用三个，如果用了四个，直接替换成一个 10 分两个 20 分一个 50 分一定不亏。<br>50分的硬币最多只会用一个，如果用了两个，直接替换成一个 50 分和一个一元一定不亏。<br>对于任何一种情况，重复使用上述规则一定会达到一个 分硬币最多一个， 分最多三个， 分最<br>多一个的情况，不会陷入重复甩锅的死循环。</p>
+</blockquote>
+<p>关键：<br>贪心思想<br>1002    Rikka with Cake</p>
+
       
     </div>
     
@@ -454,6 +463,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/acm/" rel="tag"># acm</a>
+          
+            <a href="/tags/补题/" rel="tag"># 补题</a>
+          
+            <a href="/tags/多校联赛/" rel="tag"># 多校联赛</a>
+          
+        </div>
       
 
       
@@ -561,7 +580,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -674,7 +693,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Lancelot</span>
 
@@ -686,7 +705,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.8k</span>
+    <span title="Site words total count">22k</span>
   
 </div>
 
@@ -762,9 +781,10 @@
   
 
 
+
+
   
-
-
+  
 
 
 
@@ -806,7 +826,12 @@
 
   
   
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
