@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="awsl">
+<meta name="description" content="最后一场乐，awsl">
 <meta name="keywords" content="acm,补题,多校联赛">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dxls10">
+<meta property="og:title" content="多校联赛10补题">
 <meta property="og:url" content="http://lan-ce-lot.github.io/2019/08/21/dxls10/index.html">
 <meta property="og:site_name" content="Lance">
-<meta property="og:description" content="awsl">
+<meta property="og:description" content="最后一场乐，awsl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-22T08:02:07.791Z">
+<meta property="og:updated_time" content="2019-08-22T14:23:09.247Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dxls10">
-<meta name="twitter:description" content="awsl">
+<meta name="twitter:title" content="多校联赛10补题">
+<meta name="twitter:description" content="最后一场乐，awsl">
 
 
 
@@ -135,7 +135,7 @@
 
 
 
-  <title>dxls10 | Lance</title>
+  <title>多校联赛10补题 | Lance</title>
   
 
 
@@ -323,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">dxls10</h1>
+          <h1 class="post-title" itemprop="name headline">多校联赛10补题</h1>
         
 
         <div class="post-meta">
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2
+                  227
                 </span>
               
 
@@ -404,8 +404,15 @@
       
 
       
-        <p><table><tr><td bgcolor="orange"><font face="STCAIYUN">awsl</font></td></tr></table><br><a id="more"></a></p>
-<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3>
+        <p><table><tr><td bgcolor="Tomato"><font face="STCAIYUN">最后一场乐，awsl</font></td></tr></table><br><a id="more"></a><br>2019-08-21</p>
+<h3 id="1Valentine’s-Day"><a href="#1Valentine’s-Day" class="headerlink" title="1Valentine’s Day"></a>1<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6693" target="_blank" rel="noopener">Valentine’s Day</a></h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>这题讲道理应该是数学推理找规律，不过有大佬说是贪心。其实都差不多，先发现如果最大值大于等于0.5就直接输出，若小于0.5，就是sort排个序，从大到小开始迭代找最大值。</p>
+<h4 id="AC代码-来自我的大佬队友HJS"><a href="#AC代码-来自我的大佬队友HJS" class="headerlink" title="AC代码(来自我的大佬队友HJS)"></a>AC代码(来自我的大佬队友HJS)</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">double</span> max_1, temp, temp2, cnt = <span class="number">1.000000</span>, max_2;</span><br><span class="line"><span class="keyword">double</span> num[<span class="number">10005</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T, n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;num[i]);</span><br><span class="line">        sort(num, num + n);</span><br><span class="line">        max_2 = num[n - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(max_2 &lt; <span class="number">0.500000</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            max_1 = num[n - <span class="number">1</span>];</span><br><span class="line">            temp2 = cnt;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                temp2 *= (cnt - num[i + <span class="number">1</span>]);</span><br><span class="line">                max_1 *= (cnt - num[i]);</span><br><span class="line">                max_1 += num[i] * temp2;</span><br><span class="line">                max_2 = max(max_1, max_2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%.12lf\n"</span>, max_2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2Welcome-Party"><a href="#2Welcome-Party" class="headerlink" title="2Welcome Party"></a>2<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6695" target="_blank" rel="noopener">Welcome Party</a></h3><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="3Make-Rounddog-Happy"><a href="#3Make-Rounddog-Happy" class="headerlink" title="3Make Rounddog Happy"></a>3<a href="http://acm.hdu.edu.cn/showproblem.php?pid=6701" target="_blank" rel="noopener">Make Rounddog Happy</a></h3><h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><h4 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="本文参考"><a href="#本文参考" class="headerlink" title="本文参考"></a>本文参考</h3><blockquote>
+<p><a href="https://hjs2027864933.github.io/" target="_blank" rel="noopener">HJS大佬</a></p>
+</blockquote>
+
       
     </div>
     
@@ -454,7 +461,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://lan-ce-lot.github.io/2019/08/21/dxls10/" title="dxls10">http://lan-ce-lot.github.io/2019/08/21/dxls10/</a>
+    <a href="http://lan-ce-lot.github.io/2019/08/21/dxls10/" title="多校联赛10补题">http://lan-ce-lot.github.io/2019/08/21/dxls10/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -501,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/19/dxls4/" rel="next" title="dxls4">
-                <i class="fa fa-chevron-left"></i> dxls4
+              <a href="/2019/08/19/dxls4/" rel="next" title="多校联赛4补题">
+                <i class="fa fa-chevron-left"></i> 多校联赛4补题
               </a>
             
           </div>
@@ -592,7 +599,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -605,7 +612,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -699,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-text">1</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1Valentine’s-Day"><span class="nav-text">1Valentine’s Day</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-来自我的大佬队友HJS"><span class="nav-text">AC代码(来自我的大佬队友HJS)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2Welcome-Party"><span class="nav-text">2Welcome Party</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-1"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码"><span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3Make-Rounddog-Happy"><span class="nav-text">3Make Rounddog Happy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-2"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-1"><span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本文参考"><span class="nav-text">本文参考</span></a></li></ol></div>
             
 
           </div>
@@ -740,7 +747,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.8k</span>
+    <span title="Site words total count">23.2k</span>
   
 </div>
 
