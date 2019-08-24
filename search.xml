@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ccpcwls]]></title>
+    <url>%2F2019%2F08%2F24%2Fccpcwls%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[STL]]></title>
     <url>%2F2019%2F08%2F22%2Fstl%2F</url>
-    <content type="text"><![CDATA[最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,"余处幽篁兮终不见天,路艰难兮独后来" 使用开个文章来记录自己遇见的stl骚套路。 容器1 unordered_set首先要include这个unordered_set头文件。 unordered_set可以把它想象成一个集合，它提供了几个函数让我们可以增删查：unordered_set::insertunordered_set::findunordered_set::erase 这个unorder暗示着，这两个头文件中类的底层实现——Hash。 也是因为如此，你才可以在声明这些unordered模版类的时候，传入一个自定义的哈希函数，准确的说是哈希函数子（hash function object）。 unordered_set是一个集合，有的时候我们需要一个字典，就是保存一系列key/value对，并且可以按key来查询。比如我们要保存很多同学的成绩，每位同学有一个学号，也有一个分数，我们想按学号迅速查到成绩。这时候我们就可以用unordered_map(映射)。 2 multisetc++语言中，multiset是库中一个非常有用的类型，它可以看成一个序列，插入一个数，删除一个数都能够在O(logn)的时间内完成，而且他能时刻保证序列中的数是有序的，而且序列中可以存在重复的数。 使用set或multiset之前，必须加入头文件Set、multiset都是集合类，差别在与set中不允许有重复元素，multiset中允许有重复元素。 map是标准的关联式容器，一个map是一个键值对序列，即(key,value)对。它提供基于key的快速检索能力。map中key值是唯一的。集合中的元素按一定的顺序排列。元素插入过程是按排序规则插入，所以不能指定插入位置。map的具体实现采用红黑树变体的平衡二叉树的数据结构。在插入操作和删除操作上比vector快。map可以直接存取key所对应的value，支持[]操作符，如map[key]=value。multimap与map的区别：map支持唯一键值，每个键只能出现一次；而multimap中相同键可以出现多次。multimap不支持[]操作符。 函数其他参考以下博客及资料 C++ STL 之 unordered_set 使用（包括unordersd_map） &gt;]]></content>
+    <content type="text"><![CDATA[最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,"余处幽篁兮终不见天,路艰难兮独后来" 使用开个文章来记录自己遇见的stl骚套路。 容器1 unordered_set首先要include这个unordered_set头文件。 unordered_set可以把它想象成一个集合，它提供了几个函数让我们可以增删查：unordered_set::insertunordered_set::findunordered_set::erase 这个unorder暗示着，这两个头文件中类的底层实现——Hash。 也是因为如此，你才可以在声明这些unordered模版类的时候，传入一个自定义的哈希函数，准确的说是哈希函数子（hash function object）。 unordered_set是一个集合，有的时候我们需要一个字典，就是保存一系列key/value对，并且可以按key来查询。比如我们要保存很多同学的成绩，每位同学有一个学号，也有一个分数，我们想按学号迅速查到成绩。这时候我们就可以用unordered_map(映射)。 2 multisetc++语言中，multiset是库中一个非常有用的类型，它可以看成一个序列，插入一个数，删除一个数都能够在O(logn)的时间内完成，而且他能时刻保证序列中的数是有序的，而且序列中可以存在重复的数。 使用set或multiset之前，必须加入头文件Set、multiset都是集合类，差别在与set中不允许有重复元素，multiset中允许有重复元素。 map是标准的关联式容器，一个map是一个键值对序列，即(key,value)对。它提供基于key的快速检索能力。map中key值是唯一的。集合中的元素按一定的顺序排列。元素插入过程是按排序规则插入，所以不能指定插入位置。map的具体实现采用红黑树变体的平衡二叉树的数据结构。在插入操作和删除操作上比vector快。map可以直接存取key所对应的value，支持[]操作符，如map[key]=value。multimap与map的区别：map支持唯一键值，每个键只能出现一次；而multimap中相同键可以出现多次。multimap不支持[]操作符。 函数https://blog.csdn.net/hj490134273/article/details/6051080findhttps://blog.csdn.net/bxw1992/article/details/77749113 其他参考以下博客及资料 C++ STL 之 unordered_set 使用（包括unordersd_map） &gt;]]></content>
       <tags>
         <tag>acm</tag>
         <tag>C++</tag>
