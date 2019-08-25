@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-08-24T02:42:24.519Z</updated>
+  <updated>2019-08-25T04:03:22.452Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>segmenttree</title>
+    <link href="http://lan-ce-lot.github.io/2019/08/25/segmenttree/"/>
+    <id>http://lan-ce-lot.github.io/2019/08/25/segmenttree/</id>
+    <published>2019-08-25T04:03:22.000Z</published>
+    <updated>2019-08-25T04:03:22.452Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>ccpcwls</title>
@@ -153,7 +175,7 @@
     <link href="http://lan-ce-lot.github.io/2019/08/19/dxls9/"/>
     <id>http://lan-ce-lot.github.io/2019/08/19/dxls9/</id>
     <published>2019-08-19T05:53:12.000Z</published>
-    <updated>2019-08-22T14:22:59.007Z</updated>
+    <updated>2019-08-24T13:14:23.924Z</updated>
     
     <summary type="html">
     
@@ -414,28 +436,6 @@
       <category term="dp" scheme="http://lan-ce-lot.github.io/tags/dp/"/>
     
       <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多校联赛3补题</title>
-    <link href="http://lan-ce-lot.github.io/2019/07/30/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B3%E8%A1%A5%E9%A2%98/"/>
-    <id>http://lan-ce-lot.github.io/2019/07/30/多校联赛3补题/</id>
-    <published>2019-07-30T13:23:32.000Z</published>
-    <updated>2019-08-22T14:21:47.607Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;暴零现场。。。。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-      <category term="多校联赛" scheme="http://lan-ce-lot.github.io/tags/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B/"/>
     
   </entry>
   
