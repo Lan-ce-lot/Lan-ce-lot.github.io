@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-08-25T04:03:22.452Z</updated>
+  <updated>2019-08-26T02:49:23.339Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>szszxds</title>
+    <link href="http://lan-ce-lot.github.io/2019/08/26/szszxds/"/>
+    <id>http://lan-ce-lot.github.io/2019/08/26/szszxds/</id>
+    <published>2019-08-26T02:49:23.000Z</published>
+    <updated>2019-08-26T02:49:23.339Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>segmenttree</title>
@@ -175,7 +197,7 @@
     <link href="http://lan-ce-lot.github.io/2019/08/19/dxls9/"/>
     <id>http://lan-ce-lot.github.io/2019/08/19/dxls9/</id>
     <published>2019-08-19T05:53:12.000Z</published>
-    <updated>2019-08-24T13:14:23.924Z</updated>
+    <updated>2019-08-26T02:44:44.867Z</updated>
     
     <summary type="html">
     
@@ -413,29 +435,6 @@
     
     
       <category term="data structure" scheme="http://lan-ce-lot.github.io/tags/data-structure/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DP学习总结</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/02/DPzhengli/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/02/DPzhengli/</id>
-    <published>2019-08-02T03:05:46.000Z</published>
-    <updated>2019-08-22T14:02:26.138Z</updated>
-    
-    <summary type="html">
-    
-      &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Yellow&quot;&gt;DP是个好东西，duh!&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
-&lt;h4 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/529408?fr=aladdin&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;动态规划&lt;/a&gt;
-    
-    </summary>
-    
-    
-      <category term="dp" scheme="http://lan-ce-lot.github.io/tags/dp/"/>
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
     
   </entry>
   
