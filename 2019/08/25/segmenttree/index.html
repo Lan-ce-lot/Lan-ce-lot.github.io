@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="acm,线段树,树状数组,">
 
 
 
@@ -88,14 +88,21 @@
 
 
 
+<meta name="description" content="线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。">
+<meta name="keywords" content="acm,线段树,树状数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="segmenttree">
+<meta property="og:title" content="线段树+树状数组总结">
 <meta property="og:url" content="http://lan-ce-lot.github.io/2019/08/25/segmenttree/index.html">
 <meta property="og:site_name" content="Lance">
+<meta property="og:description" content="线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-25T04:03:22.452Z">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1336165/201808/1336165-20180801172728231-897028936.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1336165/201808/1336165-20180801172853885-1028889524.png">
+<meta property="og:updated_time" content="2019-08-27T12:05:19.940Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="segmenttree">
+<meta name="twitter:title" content="线段树+树状数组总结">
+<meta name="twitter:description" content="线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。">
+<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1336165/201808/1336165-20180801172728231-897028936.png">
 
 
 
@@ -131,7 +138,7 @@
 
 
 
-  <title>segmenttree | Lance</title>
+  <title>线段树+树状数组总结 | Lance</title>
   
 
 
@@ -319,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">segmenttree</h1>
+          <h1 class="post-title" itemprop="name headline">线段树+树状数组总结</h1>
         
 
         <div class="post-meta">
@@ -363,7 +370,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  1.2k
                 </span>
               
 
@@ -379,7 +386,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  6
                 </span>
               
             </div>
@@ -400,7 +407,25 @@
       
 
       
-        
+        <p><table><tr><td bgcolor="Yellow">线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。 </td></tr></table><br><a id="more"></a></p>
+<h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><blockquote>
+<p>将[1,n]分解成若干特定的子区间(数量不超过$4\times n$)<br>用线段树对“编号连续”的一些点，进行修改或者统计操作，修改和统计的复杂度都是O(log2(n))</p>
+<p>用线段树统计的东西，必须符合区间加法，（也就是说，如果已知左右两子树的全部信息，比如要能够推出父节点）；否则，不可能通过分成的子区间来得到[L,R]的统计结果。</p>
+<p>一个问题，只要能化成对一些“连续点”的修改和统计问题，基本就可以用线段树来解决了</p>
+</blockquote>
+<h4 id="Lazy思想"><a href="#Lazy思想" class="headerlink" title="Lazy思想"></a>Lazy思想</h4><p>对整个结点进行的操作，先在结点上做标记，而并非真正执行，直到根据查询操作的需要分成两部分。</p>
+<h4 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"> &gt; FileName:</span></span><br><span class="line"><span class="comment"> &gt; Author:      Lance</span></span><br><span class="line"><span class="comment"> &gt; Mail:        lancelot_hcs@qq.com</span></span><br><span class="line"><span class="comment"> &gt; Date:        9102.1.8</span></span><br><span class="line"><span class="comment"> &gt; Description: 我也借鉴了好多线段树+lazy的模板，维护值有用数组和结构体的，个人比较喜欢用结构体储存</span></span><br><span class="line"><span class="comment"> 然后线段树的操作也就那几种(虽然叫法各异，但是实际上是一样的)：</span></span><br><span class="line"><span class="comment"> 建树：build</span></span><br><span class="line"><span class="comment"> 更新：update，change，add</span></span><br><span class="line"><span class="comment"> 查询：find，query</span></span><br><span class="line"><span class="comment"> 标记下放：pushdown</span></span><br><span class="line"><span class="comment"> 向上更新：pushup(这个函数就一行，感觉没有必要，即两个子节点向上更新父节点的维护值)</span></span><br><span class="line"><span class="comment"> 注意：无论是线段树还是树状数组，初始数组都应该从1开始存数据</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"><span class="comment">//#include &lt;bits/stdc++.h&gt;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(linker, <span class="meta-string">"/STACK:102400000,102400000"</span>)<span class="comment">//add_stack</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> eps = <span class="number">1e-10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;<span class="comment">//int2147483647//ll9e18//unsigned ll 1e19</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e5</span> + <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">ll a[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ll sum;</span><br><span class="line">    ll lazy;</span><br><span class="line">&#125; A[maxn &lt;&lt; <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A[u].lazy = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (l == r)</span><br><span class="line">    &#123;</span><br><span class="line">        A[u].sum = a[l];<span class="comment">//这里可以改为初始数组的</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    build(<span class="number">2</span> * u, l, mid);</span><br><span class="line">    build(<span class="number">2</span> * u + <span class="number">1</span>, mid + <span class="number">1</span>, r);</span><br><span class="line">    A[u].sum = A[<span class="number">2</span> * u].sum + A[<span class="number">2</span> * u + <span class="number">1</span>].sum;<span class="comment">//等价pushup操作</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下放操作，将当前的lazy下放</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> l,<span class="keyword">int</span>  r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (A[u].lazy == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">    A[u * <span class="number">2</span>].sum += A[u].lazy * (mid - l + <span class="number">1</span>);</span><br><span class="line">    A[u * <span class="number">2</span> + <span class="number">1</span>].sum += A[u].lazy * (r - mid);</span><br><span class="line">    A[u * <span class="number">2</span>].lazy += A[u].lazy;</span><br><span class="line">    A[u * <span class="number">2</span> + <span class="number">1</span>].lazy += A[u].lazy;</span><br><span class="line">    A[u].lazy = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//l,r表示更新区间sl,sr一开始为1, n, u == 1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> sl, <span class="keyword">int</span> sr, <span class="keyword">int</span> l, <span class="keyword">int</span> r, ll k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; sr || r &lt; sl)</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= sl &amp;&amp; r &gt;= sr)</span><br><span class="line">    &#123;</span><br><span class="line">        A[u].sum += k * (sr - sl + <span class="number">1</span>);</span><br><span class="line">        A[u].lazy += k;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    pushdown(u, sl, sr);</span><br><span class="line">    <span class="keyword">int</span> mid = (sl + sr) / <span class="number">2</span>;</span><br><span class="line">    add(<span class="number">2</span> * u, sl, mid, l, r, k);</span><br><span class="line">    add(<span class="number">2</span> * u + <span class="number">1</span>, mid + <span class="number">1</span>, sr, l, r, k);</span><br><span class="line">    A[u].sum = A[u * <span class="number">2</span>].sum + A[u * <span class="number">2</span> + <span class="number">1</span>].sum;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> sl, <span class="keyword">int</span> sr, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt; sr || r &lt; sl)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (l &lt;= sl &amp;&amp; r &gt;= sr)</span><br><span class="line">        <span class="keyword">return</span> A[u].sum;</span><br><span class="line">    pushdown(u, sl, sr);</span><br><span class="line">    <span class="keyword">int</span> mid = (sl + sr) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> (query(<span class="number">2</span> * u, sl, mid, l, r) + query(<span class="number">2</span> * u + <span class="number">1</span>, mid + <span class="number">1</span>, sr, l, r));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> t, n, q, x, y, k;</span><br><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//    ios::sync_with_stdio(false);</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;q);</span><br><span class="line"><span class="comment">//注意：无论是线段树还是树状数组，初始数组都应该从1开始存数据</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;a[i]);</span><br><span class="line">    build(<span class="number">1</span>, <span class="number">1</span>, n);</span><br><span class="line">    <span class="keyword">while</span> (q--)</span><br><span class="line">    &#123;</span><br><span class="line">truetrue<span class="built_in">scanf</span>(<span class="string">" %c"</span>, &amp;c);</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">'Q'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;x, &amp;y);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, query(<span class="number">1</span>, <span class="number">1</span>, n, x, y));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d %d %d"</span>, &amp;x, &amp;y ,&amp;k);</span><br><span class="line">            add(<span class="number">1</span>, <span class="number">1</span>, n, x, y, k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="进阶有能力再补"><a href="#进阶有能力再补" class="headerlink" title="进阶有能力再补"></a>进阶<del>有能力再补</del></h4><h3 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p><img src="https://images2018.cnblogs.com/blog/1336165/201808/1336165-20180801172728231-897028936.png" alt><br><img src="https://images2018.cnblogs.com/blog/1336165/201808/1336165-20180801172853885-1028889524.png" alt></p>
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><p>add();单点更新<br>getsum();求前缀和</p>
+<h4 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">500005</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> e[maxn];</span><br><span class="line">    <span class="keyword">int</span> len = maxn;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> k &amp; (-k);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> v)</span>													<span class="comment">//区间更新</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(x &lt;= len)</span><br><span class="line">            e[x] += v,x += lowbit(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span>* getin,<span class="keyword">int</span> _len)</span>											<span class="comment">//初始化</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        len = _len;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len; i ++)</span><br><span class="line">            add(i,*(getin + i - <span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init_0</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        len = maxn,<span class="built_in">memset</span>(e, <span class="number">0</span>, <span class="keyword">sizeof</span>(e));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> x)</span>														<span class="comment">//询问</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; <span class="number">0</span>)</span><br><span class="line">            sum += e[x],x -= lowbit(x);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;ta;</span><br></pre></td></tr></table></figure>
+<h4 id="题型1单点修改-区间查询"><a href="#题型1单点修改-区间查询" class="headerlink" title="题型1单点修改+区间查询"></a>题型1单点修改+区间查询</h4><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add()<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">getsum(<span class="name">y</span>) - getsum(<span class="name">x</span> - <span class="number">1</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h4 id="题型2区间修改-单点查询"><a href="#题型2区间修改-单点查询" class="headerlink" title="题型2区间修改+单点查询"></a>题型2区间修改+单点查询</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">先差分</span><br><span class="line"><span class="keyword">add</span><span class="bash">(x, 1)；</span></span><br><span class="line"><span class="keyword">add</span><span class="bash">(y + 1,-1);</span></span><br><span class="line">getsum();</span><br></pre></td></tr></table></figure>
+<h4 id="题型3区间修改-区间查询-有树状数组还要什么线段树"><a href="#题型3区间修改-区间查询-有树状数组还要什么线段树" class="headerlink" title="题型3区间修改 + 区间查询(有树状数组还要什么线段树)"></a>题型3区间修改 + 区间查询(<del>有树状数组还要什么线段树</del>)</h4><script type="math/tex; mode=display">a[1]+a[2]+...+a[x]
+=d[1]+(d[1]+d[2])+(d[1]+d[2]+d[3])+...+(d[1]+d[2]+...+d[x])
+=d[1]/times x+d[2]/times (x-1)+...+d[x]/times 1
+=sigma(1<=i<=x)(x-i+1)*d[i]
+=(sigma(1<=i<=x)d[i])*(x+1)-sigma(1<=i<=x)d[i]*i</script><p>因此，可以只在树状数组中记录d[i]的前缀和还有d[i]*i的前缀和<br><a href>poj3468</a></p>
+<h4 id="进阶-二维树状数组"><a href="#进阶-二维树状数组" class="headerlink" title="进阶-二维树状数组"></a>进阶-二维树状数组</h4><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
       
     </div>
     
@@ -449,7 +474,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://lan-ce-lot.github.io/2019/08/25/segmenttree/" title="segmenttree">http://lan-ce-lot.github.io/2019/08/25/segmenttree/</a>
+    <a href="http://lan-ce-lot.github.io/2019/08/25/segmenttree/" title="线段树+树状数组总结">http://lan-ce-lot.github.io/2019/08/25/segmenttree/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -461,6 +486,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/acm/" rel="tag"># acm</a>
+          
+            <a href="/tags/线段树/" rel="tag"># 线段树</a>
+          
+            <a href="/tags/树状数组/" rel="tag"># 树状数组</a>
+          
+        </div>
       
 
       
@@ -550,8 +585,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -568,7 +612,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -581,7 +625,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -666,6 +710,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树"><span class="nav-text">线段树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lazy思想"><span class="nav-text">Lazy思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板"><span class="nav-text">模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进阶有能力再补"><span class="nav-text">进阶有能力再补</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树状数组"><span class="nav-text">树状数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念-1"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作"><span class="nav-text">操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板-1"><span class="nav-text">模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题型1单点修改-区间查询"><span class="nav-text">题型1单点修改+区间查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题型2区间修改-单点查询"><span class="nav-text">题型2区间修改+单点查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#题型3区间修改-区间查询-有树状数组还要什么线段树"><span class="nav-text">题型3区间修改 + 区间查询(有树状数组还要什么线段树)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进阶-二维树状数组"><span class="nav-text">进阶-二维树状数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -700,7 +760,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.8k</span>
+    <span title="Site words total count">27k</span>
   
 </div>
 

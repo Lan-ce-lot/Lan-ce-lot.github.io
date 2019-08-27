@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-08-26T02:49:23.339Z</updated>
+  <updated>2019-08-27T11:28:04.731Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ydmsj</title>
+    <link href="http://lan-ce-lot.github.io/2019/08/27/ydmsj/"/>
+    <id>http://lan-ce-lot.github.io/2019/08/27/ydmsj/</id>
+    <published>2019-08-27T11:28:04.000Z</published>
+    <updated>2019-08-27T11:28:04.731Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>szszxds</title>
@@ -39,24 +61,24 @@
   </entry>
   
   <entry>
-    <title>segmenttree</title>
+    <title>线段树+树状数组总结</title>
     <link href="http://lan-ce-lot.github.io/2019/08/25/segmenttree/"/>
     <id>http://lan-ce-lot.github.io/2019/08/25/segmenttree/</id>
     <published>2019-08-25T04:03:22.000Z</published>
-    <updated>2019-08-25T04:03:22.452Z</updated>
+    <updated>2019-08-27T12:05:19.940Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Yellow&quot;&gt;线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     
+    
+      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
+    
+      <category term="线段树" scheme="http://lan-ce-lot.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
+    
+      <category term="树状数组" scheme="http://lan-ce-lot.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
     
   </entry>
   
@@ -417,24 +439,6 @@
       <category term="data structure" scheme="http://lan-ce-lot.github.io/tags/data-structure/"/>
     
       <category term="Graph" scheme="http://lan-ce-lot.github.io/tags/Graph/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构检索</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/02/sjjg/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/02/sjjg/</id>
-    <published>2019-08-02T12:18:38.000Z</published>
-    <updated>2019-08-22T14:39:13.649Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;CornflowerBlue&quot;&gt;我们不写代码，我们只是代码的搬运工 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="data structure" scheme="http://lan-ce-lot.github.io/tags/data-structure/"/>
     
   </entry>
   
