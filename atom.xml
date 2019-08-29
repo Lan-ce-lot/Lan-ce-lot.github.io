@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-08-28T12:39:29.111Z</updated>
+  <updated>2019-08-29T13:30:45.947Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ydxds</title>
+    <link href="http://lan-ce-lot.github.io/2019/08/29/ydxds/"/>
+    <id>http://lan-ce-lot.github.io/2019/08/29/ydxds/</id>
+    <published>2019-08-29T13:30:45.000Z</published>
+    <updated>2019-08-29T13:30:45.947Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>shutaoshu</title>
@@ -67,7 +89,7 @@
     <link href="http://lan-ce-lot.github.io/2019/08/25/segmenttree/"/>
     <id>http://lan-ce-lot.github.io/2019/08/25/segmenttree/</id>
     <published>2019-08-25T04:03:22.000Z</published>
-    <updated>2019-08-28T12:07:08.446Z</updated>
+    <updated>2019-08-29T06:42:07.582Z</updated>
     
     <summary type="html">
     
@@ -421,26 +443,6 @@
       <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
     
       <category term="多校联赛" scheme="http://lan-ce-lot.github.io/tags/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Graph</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/05/tu/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/05/tu/</id>
-    <published>2019-08-05T01:53:16.000Z</published>
-    <updated>2019-08-22T13:56:05.030Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Yellow&quot;&gt;学习图的话可以类比树&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-    
-    </summary>
-    
-    
-      <category term="data structure" scheme="http://lan-ce-lot.github.io/tags/data-structure/"/>
-    
-      <category term="Graph" scheme="http://lan-ce-lot.github.io/tags/Graph/"/>
     
   </entry>
   
