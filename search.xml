@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[nanjing]]></title>
+    <title><![CDATA[The Preliminary Contest for ICPC Asia Nanjing 2019]]></title>
     <url>%2F2019%2F09%2F01%2Fnanjing%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[自我感觉海星，至少这波与我相关 A. The beautiful values of the palaceB. super_logD. Robots参考资料&gt;]]></content>
+      <tags>
+        <tag>acm</tag>
+        <tag>补题</tag>
+      </tags>
   </entry>
   <entry>
-    <title><![CDATA[yinchuan]]></title>
+    <title><![CDATA[The 2019 Asia Yinchuan First Round Online Programming]]></title>
     <url>%2F2019%2F09%2F01%2Fyinchuan%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[银川这波原题操作还是很秀的，然而菜鸡却连是原题都没有看出来，诶 A. Maximum Element In A Stack思路向栈中加入当前最大值即可。 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879#include&lt;iostream&gt;#include&lt;iomanip&gt;#include&lt;cmath&gt;#include&lt;map&gt;#include&lt;string&gt;#include&lt;vector&gt;#include&lt;set&gt;#include&lt;stack&gt;#include&lt;queue&gt;#include&lt;algorithm&gt;#include&lt;string.h&gt;#include&lt;cstdio&gt;typedef long long ll;using namespace std;const int Max=1e6+10;priority_queue&lt;int&gt; que;ll n,p,q,m,ans=0, max1;unsigned int SA,SB,SC;stack &lt;ll&gt; s;unsigned int rng61()&#123; SA ^= SA &lt;&lt; 16; SA ^= SA &gt;&gt; 5; SA ^= SA &lt;&lt; 1; unsigned int t = SA; SA = SB; SB = SC; SC ^= t ^ SA; return SC;&#125;void gen()&#123; scanf("%d%d%d%d%u%u%u", &amp;n, &amp;p, &amp;q, &amp;m, &amp;SA, &amp;SB, &amp;SC); for (int i = 1; i &lt;= n; i++) &#123; if (rng61() % (p + q) &lt; p) &#123; int x = rng61() % m + 1; if (!s.size()) s.push(x); else if (x &gt; s.top()) s.push(x); else s.push(s.top()); &#125; else &#123; if (!s.empty()) s.pop(); else continue; &#125; if (!s.empty()) ans ^= i * s.top(); &#125;&#125;int main()&#123;trueint T;truescanf("%d",&amp;T); for (int i = 1; i &lt;= T; i++) &#123; while (!s.empty()) s.pop(); ans = 0; gen(); printf("Case #%d: %lld\n",i,ans); &#125; return 0;&#125;//2//4 1 1 4 23333 66666 233333//4 2 1 4 23333 66666 233333 B. Rolling The Polygon思路数学题，每个顶点对应的弧度是角度$/times $r;r用点到点的距离角度用余弦定理，具体是$pi - arc(cos a)$a是顶点对应的内角，cos a就是用余弦定理 代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798/************************************************************************* &gt; FileName: &gt; Author: Lance &gt; Mail: lancelot_hcs@qq.com &gt; Date: 9102.1.8 &gt; Description: ************************************************************************///#include &lt;bits/stdc++.h&gt;#pragma comment(linker, "/STACK:102400000,102400000")//add_stack#include &lt;algorithm&gt;#include &lt;iostream&gt;#include &lt;cstdlib&gt;#include &lt;cstring&gt;#include &lt;sstream&gt;#include &lt;vector&gt;#include &lt;cstdio&gt;#include &lt;bitset&gt;#include &lt;string&gt;#include &lt;cmath&gt;#include &lt;deque&gt;#include &lt;queue&gt;#include &lt;stack&gt;#include &lt;map&gt;#include &lt;set&gt;using namespace std;typedef long long ll;const double pi = acos(-1.0);const int eps = 1e-10;const int mod = 1e9 + 7;#define debug(a) cout &lt;&lt; "*" &lt;&lt; a &lt;&lt; "*" &lt;&lt; endlconst int INF = 0x3f3f3f3f;//int2147483647//ll9e18//unsigned ll 1e19const int maxn = 1e5 + 5;int t, n;double ans;struct node&#123; int x, y; double angel, r; node(int _x = 0, int _y = 0, double _angel = 0, double _r = 0) : x(_x), y(_y), r(_r), angel(_angel)&#123;&#125;;&#125; a[maxn];node point;double get_r(node a, node b)&#123; return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);&#125;ll read()&#123; ll x = 0,f = 1; char ch = getchar(); while (ch &lt; '0' || ch &gt; '9') &#123; if (ch == '-') f = -1; ch = getchar(); &#125; while (ch &gt;= '0' &amp;&amp; ch &lt;= '9') &#123; x = x * 10 + ch - '0'; ch = getchar(); &#125; return x * f;&#125;int main()&#123;// ios::sync_with_stdio(false); scanf("%d", &amp;t); for (int k = 1; k &lt;= t; k++) &#123; ans = 0; n = read(); for (int i = 0; i &lt; n; i++) &#123; a[i].x = read(); a[i].y = read(); &#125; point.x = read(); point.y = read(); for (int i = 0; i &lt; n; i++) &#123; a[i].r = get_r(a[i], point); double d1 = get_r(a[i], a[(i + 1) % n]); double d2 = get_r(a[i], a[(i + n - 1) % n]); double d3 = get_r(a[(i + 1) % n], a[(i + n - 1) % n]); ans += sqrt(a[i].r) * (pi - acos((d1 + d2 - d3) / (2 * sqrt(d1) * sqrt(d2)))) ; &#125; printf("Case #%d: %.3lf\n", k, ans); &#125; return 0;&#125; F. Moving On思路代码12 L. Continuous Intervals思路代码12 I. Bubble Sort思路代码12 E. 2-3-4 Tree思路代码12 参考资料&gt;]]></content>
+      <tags>
+        <tag>acm</tag>
+        <tag>补题</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[归并排序]]></title>
@@ -46,9 +54,13 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[ccpcwls]]></title>
+    <title><![CDATA[CCPC网络赛]]></title>
     <url>%2F2019%2F08%2F24%2Fccpcwls%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[内心毫无波动 1003 K-th occurrence1002 array1004 path1005 huntian oy]]></content>
+      <tags>
+        <tag>acm</tag>
+        <tag>补题</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[STL]]></title>
@@ -93,7 +105,7 @@
   <entry>
     <title><![CDATA[多校联赛1补题]]></title>
     <url>%2F2019%2F08%2F19%2Fdxls1%2F</url>
-    <content type="text"><![CDATA[~~补题吧!~~2019-07-22 jxss1004 Wave1008 Rng1010 Worker1007 Traffic 11005 Path1004 Vacation1002 Operation1009 String 21010 Just Skip The Problem1011 Keen On Everything But Triangle1005 Everything Is Generated In Equal Probability1012 Longest Subarray1009 I Love Palindrome String 31006 Fansblog1007 Find the answer1002 Blow up the city1004 Distribution of books 41001 AND Minimum Spanning Tree1007 Just an Old Puzzle1008 K-th Closest Distance1010 Minimal Power of Prime1003 Divide the Stones 51006 string matching1007 permutation 21005 permutation 11004 equation1002 three arrays 61008 TDL1005 Snowy Smile1006 Faraway 71010 Just Repeat 81011 Roundgod and Milk Tea1009 Calabash and Landlord1003 Acesrc and Good Numbers 91006 Rikka with Coin1002 Rikka with Cake 101003 Valentine’s Day1005 Welcome Party1011 Make Rounddog Happy]]></content>
+    <content type="text"><![CDATA[~~补题吧!~~2019-07-22 jxss1004 Wave1008 Rng1010 Worker1007 Traffic 11005 Path1004 Vacation1002 Operation1009 String 21010 Just Skip The Problem1011 Keen On Everything But Triangle1005 Everything Is Generated In Equal Probability1012 Longest Subarray1009 I Love Palindrome String 31006 Fansblog1007 Find the answer1002 Blow up the city1004 Distribution of books 41001 AND Minimum Spanning Tree1007 Just an Old Puzzle1008 K-th Closest Distance1010 Minimal Power of Prime1003 Divide the Stones 51006 string matching1007 permutation 21005 permutation 11004 equation1002 three arrays 61008 TDL1005 Snowy Smile1006 Faraway 71010 Just Repeat 81011 Roundgod and Milk Tea1009 Calabash and Landlord1003 Acesrc and Good Numbers 91006 Rikka with Coin1002 Rikka with Cake 101003 Valentine’s Day1005 Welcome Party1011 Make Rounddog Happy ccpcwls1003 K-th occurrence1002 array1004 path1005 huntian oy]]></content>
       <tags>
         <tag>acm</tag>
         <tag>补题</tag>
