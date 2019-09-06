@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-09-02T13:43:06.767Z</updated>
+  <updated>2019-09-06T08:17:42.844Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>eilaozi</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/06/eilaozi/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/06/eilaozi/</id>
+    <published>2019-09-06T08:17:42.000Z</published>
+    <updated>2019-09-06T08:17:42.844Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>The Preliminary Contest for ICPC Asia Nanjing 2019</title>
@@ -415,28 +437,6 @@
       <category term="data structure" scheme="http://lan-ce-lot.github.io/tags/data-structure/"/>
     
       <category term="tree" scheme="http://lan-ce-lot.github.io/tags/tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多校联赛6补题</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/07/dxls6/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/07/dxls6/</id>
-    <published>2019-08-07T13:30:19.000Z</published>
-    <updated>2019-08-22T14:22:24.052Z</updated>
-    
-    <summary type="html">
-    
-      &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;破天荒过了两题！ &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-      <category term="多校联赛" scheme="http://lan-ce-lot.github.io/tags/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B/"/>
     
   </entry>
   
