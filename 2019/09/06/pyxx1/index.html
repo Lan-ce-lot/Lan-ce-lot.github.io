@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="acm,C++,STL,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -88,18 +88,14 @@
 
 
 
-<meta name="description" content="最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot;">
-<meta name="keywords" content="acm,C++,STL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STL">
-<meta property="og:url" content="http://lan-ce-lot.github.io/2019/08/22/stl/index.html">
+<meta property="og:title" content="pyxx1">
+<meta property="og:url" content="http://lan-ce-lot.github.io/2019/09/06/pyxx1/index.html">
 <meta property="og:site_name" content="Lance">
-<meta property="og:description" content="最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-04T13:52:36.437Z">
+<meta property="og:updated_time" content="2019-09-06T11:56:33.205Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STL">
-<meta name="twitter:description" content="最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot;">
+<meta name="twitter:title" content="pyxx1">
 
 
 
@@ -129,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://lan-ce-lot.github.io/2019/08/22/stl/">
+  <link rel="canonical" href="http://lan-ce-lot.github.io/2019/09/06/pyxx1/">
 
 
 
 
 
-  <title>STL | Lance</title>
+  <title>pyxx1 | Lance</title>
   
 
 
@@ -306,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lan-ce-lot.github.io/2019/08/22/stl/">
+    <link itemprop="mainEntityOfPage" href="http://lan-ce-lot.github.io/2019/09/06/pyxx1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Lancelot">
@@ -323,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">STL</h1>
+          <h1 class="post-title" itemprop="name headline">pyxx1</h1>
         
 
         <div class="post-meta">
@@ -335,8 +331,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-22T09:42:17+08:00">
-                2019-08-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-06T19:56:33+08:00">
+                2019-09-06
               </time>
             
 
@@ -367,7 +363,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  672
+                  0
                 </span>
               
 
@@ -383,7 +379,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  1
                 </span>
               
             </div>
@@ -404,27 +400,7 @@
       
 
       
-        <p><table><tr><td bgcolor="Yellow">最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,"余处幽篁兮终不见天,路艰难兮独后来" </td></tr></table><br><a id="more"></a><br>使用开个文章来记录自己遇见的stl骚套路。</p>
-<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="1-unordered-set"><a href="#1-unordered-set" class="headerlink" title="1 unordered_set"></a>1 unordered_set</h2><p>首先要include这个unordered_set头文件。</p>
-<blockquote>
-<p>unordered_set可以把它想象成一个集合，它提供了几个函数让我们可以增删查：<br>unordered_set::insert<br>unordered_set::find<br>unordered_set::erase</p>
-</blockquote>
-<p>这个unorder暗示着，这两个头文件中类的底层实现——Hash。 也是因为如此，你才可以在声明这些unordered模版类的时候，传入一个自定义的哈希函数，准确的说是哈希函数子（hash function object）。</p>
-<p>unordered_set是一个集合，有的时候我们需要一个字典，就是保存一系列key/value对，并且可以按key来查询。比如我们要保存很多同学的成绩，每位同学有一个学号，也有一个分数，我们想按学号迅速查到成绩。这时候我们就可以用unordered_map(映射)。</p>
-<h2 id="2-multiset"><a href="#2-multiset" class="headerlink" title="2 multiset"></a>2 multiset</h2><p>c++语言中，multiset是<set>库中一个非常有用的类型，它可以看成一个序列，插入一个数，删除一个数都能够在O(logn)的时间内完成，而且他能时刻保证序列中的数是有序的，而且序列中可以存在重复的数。</set></p>
-<blockquote>
-<p>使用set或multiset之前，必须加入头文件<set><br>Set、multiset都是集合类，差别在与set中不允许有重复元素，multiset中允许有重复元素。</set></p>
-</blockquote>
-<p>map是标准的关联式容器，一个map是一个键值对序列，即(key,value)对。它提供基于key的快速检索能力。<br>map中key值是唯一的。集合中的元素按一定的顺序排列。元素插入过程是按排序规则插入，所以不能指定插入位置。<br>map的具体实现采用红黑树变体的平衡二叉树的数据结构。在插入操作和删除操作上比vector快。<br>map可以直接存取key所对应的value，支持[]操作符，如map[key]=value。<br>multimap与map的区别：map支持唯一键值，每个键只能出现一次；而multimap中相同键可以出现多次。multimap不支持[]操作符。</p>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p><a href="https://blog.csdn.net/hj490134273/article/details/6051080" target="_blank" rel="noopener">https://blog.csdn.net/hj490134273/article/details/6051080</a><br>find<br><a href="https://blog.csdn.net/bxw1992/article/details/77749113" target="_blank" rel="noopener">https://blog.csdn.net/bxw1992/article/details/77749113</a></p>
-<h2 id="标准库-“merge”-函数-的-用法及代码"><a href="#标准库-“merge”-函数-的-用法及代码" class="headerlink" title="标准库 “merge” 函数 的 用法及代码"></a>标准库 “merge” 函数 的 用法及代码</h2><p>学merge_sort的时候发现标准库里已经有一个merge函数了，于是…嘿嘿<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">merge(vecIntA.begin(), vecIntA.end(), vecIntB.begin(), vecIntB.end(), vecIntC.begin());</span><br></pre></td></tr></table></figure></p>
-<p>参数是两个容器的首和尾，作用效果是合并加升序。</p>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p><a href="https://blog.csdn.net/sunny1996/article/details/51242184/" target="_blank" rel="noopener">看看这个</a></p>
-<h1 id="参考以下博客及资料"><a href="#参考以下博客及资料" class="headerlink" title="参考以下博客及资料"></a>参考以下博客及资料</h1><blockquote>
-<p><a href="https://blog.csdn.net/qq_32172673/article/details/85160180" target="_blank" rel="noopener">C++ STL 之 unordered_set 使用（包括unordersd_map）</a></p>
-</blockquote>
-<p>&gt;</p>
-
+        
       
     </div>
     
@@ -473,7 +449,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://lan-ce-lot.github.io/2019/08/22/stl/" title="STL">http://lan-ce-lot.github.io/2019/08/22/stl/</a>
+    <a href="http://lan-ce-lot.github.io/2019/09/06/pyxx1/" title="pyxx1">http://lan-ce-lot.github.io/2019/09/06/pyxx1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -485,16 +461,6 @@
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/acm/" rel="tag"># acm</a>
-          
-            <a href="/tags/C/" rel="tag"># C++</a>
-          
-            <a href="/tags/STL/" rel="tag"># STL</a>
-          
-        </div>
       
 
       
@@ -520,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/21/dxls10/" rel="next" title="多校联赛10补题">
-                <i class="fa fa-chevron-left"></i> 多校联赛10补题
+              <a href="/2019/09/06/eilaozi/" rel="next" title="这是title">
+                <i class="fa fa-chevron-left"></i> 这是title
               </a>
             
           </div>
@@ -529,10 +495,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/24/ccpcwls/" rel="prev" title="CCPC网络赛">
-                CCPC网络赛 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -584,17 +546,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -708,22 +661,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#容器"><span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-unordered-set"><span class="nav-text">1 unordered_set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-multiset"><span class="nav-text">2 multiset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准库-“merge”-函数-的-用法及代码"><span class="nav-text">标准库 “merge” 函数 的 用法及代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重载"><span class="nav-text">重载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考以下博客及资料"><span class="nav-text">参考以下博客及资料</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
