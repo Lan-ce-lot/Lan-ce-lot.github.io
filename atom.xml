@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-09-07T04:32:39.637Z</updated>
+  <updated>2019-09-07T09:22:00.884Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>xu</title>
+    <title>oj大全</title>
     <link href="http://lan-ce-lot.github.io/2019/09/07/oj%E5%A4%A7%E5%85%A8/"/>
     <id>http://lan-ce-lot.github.io/2019/09/07/oj大全/</id>
     <published>2019-09-07T04:32:39.000Z</published>
-    <updated>2019-09-07T04:32:39.637Z</updated>
+    <updated>2019-09-07T09:22:00.884Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,10 @@
     
     </summary>
     
+    
+      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
+    
+      <category term="在线oj" scheme="http://lan-ce-lot.github.io/tags/%E5%9C%A8%E7%BA%BFoj/"/>
     
   </entry>
   
