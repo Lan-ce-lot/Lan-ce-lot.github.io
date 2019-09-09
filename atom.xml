@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-09-07T09:28:27.668Z</updated>
+  <updated>2019-09-09T07:07:40.336Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>9.5</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/09/9-5/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/09/9-5/</id>
+    <published>2019-09-09T07:07:40.000Z</published>
+    <updated>2019-09-09T07:07:40.336Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>oj大全</title>
@@ -37,11 +59,11 @@
   </entry>
   
   <entry>
-    <title>xu</title>
+    <title>The Preliminary Contest for ICPC Asia Xuzhou 2019</title>
     <link href="http://lan-ce-lot.github.io/2019/09/07/xu/"/>
     <id>http://lan-ce-lot.github.io/2019/09/07/xu/</id>
     <published>2019-09-07T04:32:31.000Z</published>
-    <updated>2019-09-07T04:32:32.026Z</updated>
+    <updated>2019-09-09T00:25:18.795Z</updated>
     
     <summary type="html">
     
@@ -419,28 +441,6 @@
       <category term="数论" scheme="http://lan-ce-lot.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
     
       <category term="扩展欧几里德算法" scheme="http://lan-ce-lot.github.io/tags/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多校联赛7补题</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/12/dxls7/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/12/dxls7/</id>
-    <published>2019-08-12T05:37:39.000Z</published>
-    <updated>2019-08-22T14:22:34.106Z</updated>
-    
-    <summary type="html">
-    
-      &lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;暴零不多说 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-      <category term="多校联赛" scheme="http://lan-ce-lot.github.io/tags/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B/"/>
     
   </entry>
   
