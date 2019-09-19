@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-09-18T12:29:44.403Z</updated>
+  <updated>2019-09-19T12:28:33.536Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>html1</title>
-    <link href="http://lan-ce-lot.github.io/2019/09/18/html1/"/>
-    <id>http://lan-ce-lot.github.io/2019/09/18/html1/</id>
-    <published>2019-09-18T12:29:44.000Z</published>
-    <updated>2019-09-18T12:29:44.403Z</updated>
+    <title>rainberry</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/19/rainberry/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/19/rainberry/</id>
+    <published>2019-09-19T12:28:33.000Z</published>
+    <updated>2019-09-19T12:28:33.536Z</updated>
     
     <summary type="html">
     
@@ -39,11 +39,35 @@
   </entry>
   
   <entry>
+    <title>html1</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/18/html1/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/18/html1/</id>
+    <published>2019-09-18T12:29:44.000Z</published>
+    <updated>2019-09-19T10:23:58.075Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="html" scheme="http://lan-ce-lot.github.io/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
     <title>文学少年的忧郁</title>
     <link href="http://lan-ce-lot.github.io/2019/09/16/wxsndyy/"/>
     <id>http://lan-ce-lot.github.io/2019/09/16/wxsndyy/</id>
     <published>2019-09-16T01:16:32.000Z</published>
-    <updated>2019-09-18T12:03:16.322Z</updated>
+    <updated>2019-09-19T10:05:48.930Z</updated>
     
     <summary type="html">
     
@@ -143,7 +167,7 @@
     <link href="http://lan-ce-lot.github.io/2019/09/06/pyxx1/"/>
     <id>http://lan-ce-lot.github.io/2019/09/06/pyxx1/</id>
     <published>2019-09-06T11:56:33.000Z</published>
-    <updated>2019-09-14T05:28:30.780Z</updated>
+    <updated>2019-09-19T09:50:38.577Z</updated>
     
     <summary type="html">
     
@@ -272,9 +296,9 @@
     
       <category term="随笔" scheme="http://lan-ce-lot.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
-      <category term="数论" scheme="http://lan-ce-lot.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
-    
       <category term="游戏王" scheme="http://lan-ce-lot.github.io/tags/%E6%B8%B8%E6%88%8F%E7%8E%8B/"/>
+    
+      <category term="数论" scheme="http://lan-ce-lot.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
     
       <category term="图论" scheme="http://lan-ce-lot.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
     
@@ -327,7 +351,7 @@
     <link href="http://lan-ce-lot.github.io/2019/08/22/stl/"/>
     <id>http://lan-ce-lot.github.io/2019/08/22/stl/</id>
     <published>2019-08-22T01:42:17.000Z</published>
-    <updated>2019-09-04T13:52:36.437Z</updated>
+    <updated>2019-09-19T10:22:44.589Z</updated>
     
     <summary type="html">
     
@@ -398,28 +422,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;因为在来学校的路上所以没打~~逃~~ &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-      <category term="多校联赛" scheme="http://lan-ce-lot.github.io/tags/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多校联赛1补题</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/19/dxls1/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/19/dxls1/</id>
-    <published>2019-08-19T06:20:46.000Z</published>
-    <updated>2019-09-01T13:36:20.308Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;~~补题吧!~~&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     

@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Lance">
 <meta property="og:description" content="人生苦短，我用python">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-14T05:28:30.780Z">
+<meta property="og:updated_time" content="2019-09-19T09:50:38.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="py学习1">
 <meta name="twitter:description" content="人生苦短，我用python">
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  94
+                  428
                 </span>
               
 
@@ -405,12 +405,18 @@
 
       
         <p><table><tr><td bgcolor="CornflowerBlue">人生苦短，我用python </td></tr></table><br><a id="more"></a></p>
-<h1 id="0"><a href="#0" class="headerlink" title="0"></a>0</h1><p>不知道从何学起，于是随随便便找个地方开始，开个blog怕自己忘记。</p>
-<p>#</p>
+<h1 id="0"><a href="#0" class="headerlink" title="0"></a>0</h1><p>不知道从何学起，于是随随便便找个地方开始，开个blog怕自己忘记。<br><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017063826246112" target="_blank" rel="noopener">没有书籍，只有网站</a><br>#</p>
 <h2 id="来个hello-world，以表敬意"><a href="#来个hello-world，以表敬意" class="headerlink" title="来个hello world，以表敬意"></a>来个hello world，以表敬意</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"hello world"</span>)</span><br></pre></td></tr></table></figure>
 <h1 id><a href="#" class="headerlink" title="#"></a>#</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=gbk</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, i+<span class="number">1</span>):</span><br><span class="line">        print(<span class="string">'&#123;&#125;×&#123;&#125;=&#123;&#125;'</span>.format(i, j, i*j),end=<span class="string">"\t"</span>)</span><br><span class="line">    print(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
 <p>一开始没有这个<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=gbk</span></span><br></pre></td></tr></table></figure></p>
 <p>然后就一直报错…</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title="#"></a>#</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'\\\t\\'</span>)</span><br><span class="line">print(<span class="string">r'\\\t\\'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="-2"><a href="#-2" class="headerlink" title="#"></a>#</h1><p>如果字符串内部有很多换行，用\n写在一行里不好阅读，为了简化，Python允许用’’’…’’’的格式表示多行内容<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'''line1</span></span><br><span class="line"><span class="string">line2</span></span><br><span class="line"><span class="string">line3'''</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="-3"><a href="#-3" class="headerlink" title="#"></a>#</h1><p>常量<br>所谓常量就是不能变的变量，比如常用的数学常数π就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
+<p>PI = 3.14159265359<br>但事实上PI仍然是一个变量，Python根本没有任何机制保证PI不会被改变，所以，用全部大写的变量名表示常量只是一个习惯上的用法，如果你一定要改变变量PI的值，也没人能拦住你。</p>
+<h1 id="-4"><a href="#-4" class="headerlink" title="#"></a>#</h1><p>/除法计算结果是浮点数，即使是两个整数恰好整除，结果也是浮点数<br>还有一种除法是//，称为地板除，两个整数的除法仍然是整数</p>
+<h1 id="-5"><a href="#-5" class="headerlink" title="#"></a>#</h1><p>格式化输出<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Hello, %s'</span> % <span class="string">'world'</span>)</span><br><span class="line">print(<span class="string">'%2d-%02d'</span> % (<span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line">print(<span class="string">'%.2f'</span> % <span class="number">3.1415926</span>)</span><br><span class="line">print(<span class="string">'Age: %s. Gender: %s'</span> % (<span class="number">25</span>, <span class="literal">True</span>))</span><br></pre></td></tr></table></figure></p>
+<h1 id="-6"><a href="#-6" class="headerlink" title="#"></a>#</h1><p>format()<br>另一种格式化字符串的方法是使用字符串的format()方法，它会用传入的参数依次替换字符串内的占位符{0}、{1}……，不过这种方式写起来比%要麻烦得多：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello, &#123;0&#125;, 成绩提升了 &#123;1:.1f&#125;%'</span>.format(<span class="string">'小明'</span>, <span class="number">17.125</span>)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -594,7 +600,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -607,7 +613,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -701,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0"><span class="nav-text">0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#来个hello-world，以表敬意"><span class="nav-text">来个hello world，以表敬意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">#</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0"><span class="nav-text">0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#来个hello-world，以表敬意"><span class="nav-text">来个hello world，以表敬意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-text">#</span></a></li></ol></div>
             
 
           </div>
@@ -742,7 +748,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">38.2k</span>
+    <span title="Site words total count">38.7k</span>
   
 </div>
 
