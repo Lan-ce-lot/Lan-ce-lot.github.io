@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-09-23T12:10:32.666Z</updated>
+  <updated>2019-09-23T13:35:18.628Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ojyuang</title>
-    <link href="http://lan-ce-lot.github.io/2019/09/23/ojyuang/"/>
-    <id>http://lan-ce-lot.github.io/2019/09/23/ojyuang/</id>
-    <published>2019-09-23T12:10:31.000Z</published>
-    <updated>2019-09-23T12:10:32.666Z</updated>
+    <title>9-21</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/23/9-21/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/23/9-21/</id>
+    <published>2019-09-23T13:35:18.000Z</published>
+    <updated>2019-09-23T13:35:18.628Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,24 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>ojyuang</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/23/ojyuang/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/23/ojyuang/</id>
+    <published>2019-09-23T12:10:31.000Z</published>
+    <updated>2019-09-23T12:25:35.881Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;1&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="oj" scheme="http://lan-ce-lot.github.io/tags/oj/"/>
     
   </entry>
   
@@ -400,28 +418,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;&lt;font face=&quot;STCAIYUN&quot;&gt;最后一场乐，awsl&lt;/font&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-      <category term="多校联赛" scheme="http://lan-ce-lot.github.io/tags/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多校联赛4补题</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/19/dxls4/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/19/dxls4/</id>
-    <published>2019-08-19T06:22:58.000Z</published>
-    <updated>2019-08-22T14:24:06.663Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;因为停电而没打~~逃~~ &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     

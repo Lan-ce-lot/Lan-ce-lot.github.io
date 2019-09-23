@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="oj,">
 
 
 
@@ -88,14 +88,18 @@
 
 
 
+<meta name="description" content="1">
+<meta name="keywords" content="oj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ojyuang">
 <meta property="og:url" content="http://lan-ce-lot.github.io/2019/09/23/ojyuang/index.html">
 <meta property="og:site_name" content="Lance">
+<meta property="og:description" content="1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-23T12:10:32.666Z">
+<meta property="og:updated_time" content="2019-09-23T12:25:35.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ojyuang">
+<meta name="twitter:description" content="1">
 
 
 
@@ -363,7 +367,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  258
                 </span>
               
 
@@ -400,7 +404,15 @@
       
 
       
-        
+        <p>1<br><a id="more"></a></p>
+<h1 id="hduoj1089"><a href="#hduoj1089" class="headerlink" title="hduoj1089"></a>hduoj<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1089" target="_blank" rel="noopener">1089</a></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//1089</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a, b;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b)</span><br><span class="line"><span class="comment">//    while (~scanf("%d%d", &amp;a, &amp;b))</span></span><br><span class="line"><span class="comment">//    while (scanf("%d%d", &amp;a, &amp;b) != EOF)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a + b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>scanf函数返回值就是读出的变量个数，如：scanf( “%d  %d”, &amp;a, &amp;b ); 如果只有一个整数输入，返回值是1，如果有两个整数输入，返回值是2，如果一个都没有，则返回值是-1。<br>EOF是一个预定义的常量，等于-1。</p>
+<p>~取反，其实就是取相反数再-1。</p>
+<h1 id="hduoj1090"><a href="#hduoj1090" class="headerlink" title="hduoj1090"></a>hduoj<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1090" target="_blank" rel="noopener">1090</a></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//1090</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, a, b;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">while</span> (n--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a + b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="hduoj1090-1"><a href="#hduoj1090-1" class="headerlink" title="hduoj1090"></a>hduoj<a href="http://acm.hdu.edu.cn/showproblem.php?pid=1090" target="_blank" rel="noopener">1090</a></h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//1091</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">true<span class="keyword">int</span> a, b;</span><br><span class="line">    <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a == <span class="number">0</span> &amp;&amp; b == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a + b);</span><br><span class="line">    &#125;</span><br><span class="line">true<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="python输入1"><a href="#python输入1" class="headerlink" title="python输入1"></a>python<a href="https://ac.nowcoder.com/acm/contest/125/C?&amp;headNav=www&amp;headNav=acm" target="_blank" rel="noopener">输入1</a></h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a, b = map(int, input().split())</span><br><span class="line">        print(a + b)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="python输入2"><a href="#python输入2" class="headerlink" title="python输入2"></a>python<a href="https://zoj.pintia.cn/problem-sets/91827364500/problems?page=0" target="_blank" rel="noopener">输入2</a></h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">n = int(input())</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    a = int(input())</span><br><span class="line">    b = int(input())</span><br><span class="line">    print(a + b)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -462,6 +474,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/oj/" rel="tag"># oj</a>
+          
+        </div>
+      
 
       
       
@@ -495,6 +513,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/23/9-21/" rel="prev" title="9-21">
+                9-21 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -546,8 +568,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -577,7 +608,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -662,6 +693,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1089"><span class="nav-text">hduoj1089</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1090"><span class="nav-text">hduoj1090</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1090-1"><span class="nav-text">hduoj1090</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python输入1"><span class="nav-text">python输入1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python输入2"><span class="nav-text">python输入2</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -696,7 +743,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">38.7k</span>
+    <span title="Site words total count">39k</span>
   
 </div>
 
