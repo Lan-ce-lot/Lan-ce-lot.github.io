@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ojyuang]]></title>
+    <url>%2F2019%2F09%2F23%2Fojyuang%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[rainberry]]></title>
     <url>%2F2019%2F09%2F19%2Frainberry%2F</url>
     <content type="text"><![CDATA[]]></content>
@@ -102,8 +107,8 @@
     <content type="text"><![CDATA[0 大概是高中高二了解到这套卡组的，而这个卡牌游戏是在小学三年级接触的，那时候周边小卖部全是盗版的”魔法卡”，而玩法现在回想起来真™zz。回忆总是快乐的，不是吗 ？我还记得送了一套我的本命卡组狱火机给一个很要好的高中同学。 故人笑比庭中树，一日秋风一日疏 廷达魔三角也是我和同学在教室的一体机上看动漫《游戏王VRAINS》看到的。在唯一不用上课的周日，和同学在教室看看电影动漫，亦或是下几首断眉，烟鬼的top新单曲，在自习室里听个一天，或许就是我高中最简单而廉价的快乐了吧。贵一点当然是去万象喝贡茶，打街机，乐享?，抓娃娃? 魔欧拉回路 概念及定理欧拉回路是数学家欧拉在研究著名的德国哥尼斯堡(Koenigsberg)七桥问题时发现的。如图a所示，流经哥尼斯堡的普雷格尔河中有两个岛，两个岛与两岸共4处陆地通过7座杨 彼此相联。7桥问题就是如何能从任一处陆地出发，经过且经过每个桥一次后回到原出发点。 无向图：1) 设G是连通无向图，则称经过G的每条边一次并且仅一次的路径为欧拉通路；2) 如果欧拉通路是回路（起点和终点是同一个顶点），则称此回路为欧拉回路（Euler circuit）；3) 具有欧拉回路的无向图G称为欧拉图（Euler graph）。 无向图存在欧拉回路的充要条件一个无向图存在欧拉回路，当且仅当该图所有顶点度数都为偶数,且该图是连通图。有向图存在欧拉回路的充要条件一个有向图存在欧拉回路，所有顶点的入度等于出度且该图是连通图。 欧拉回路的应用 哥尼斯堡七桥问题 一笔画问题。 旋转鼓轮的设计 具体的题目实现POJ 1386POJ 1300POJ 2513题解 奈格尔守护天 概念及定理欧几里得几何中，任一个三角形伴随有一个奈格尔点（Nagel）。奈格尔点是三角形三个旁切圆与三角形三边切点到其所对顶点的交点。此点亦俗称“界心”。 奈格尔点是热尔岗点的等距共轭点。奈格尔点、内心和重心三点共线。内心是中点三角形的奈格尔点（匿名1896年），等价地说奈格尔点是反补三角形的重心 梅尔的阶梯 概念及定理（梅尔克修道院）」：是一座「本笃会修道院」，位于奥地利下奥地利州梅尔克镇的山岩上，俯瞰多瑙河，毗邻瓦豪河谷。「梅尔克修道院」是著名的洛可可式建筑。考虑到「阶梯」，这张卡有一定可能捏他了「梅尔克修道院」的「回旋阶梯」 斐波那契螺旋线也称“黄金螺旋线”，是根据斐波那契数列画出来的螺旋曲线，自然界中存在许多斐波那契螺旋线的图案。 作图规则是在以斐波那契数为边的正方形拼成的长方形中画一个90度的扇形，连起来的弧线就是斐波那契螺旋线。它来源于斐波那契数列（FibonacciSequence），又称为黄金分割数列。 陷莱莫恩攻叉点 概念及定理「ルモワーヌ点/Lemoine Point（莱莫恩点）」：在一个三角形中，类似中线是一个三条特殊的直线。他们分别是三条中线（顶点和对边中点的连线）关于相应角的平分线的反射。这三条类似中线交于三角形内部一点，称为三角形的「类似重心」或「莱莫恩点」，后者以法国数学家「エミール・ルモワーヌ/Émile Lemoine（埃利・莱莫恩）」命名，他证明了这个点的存在性。 莫雷之盾 概念及定理莫利定理（Morley’s theorem），也称为莫雷角三分线定理。将三角形的三个内角三等分，靠近某边的两条三分角线相交得到一个交点，则这样的三个交点可以构成一个正三角形。这个三角形常被称作莫利正三角形。 热尔岗终焉 概念及定理热尔岗定理 分别连接三角形一个顶点及对边上的内切圆切点的三条直线共点。这个点被称为此三角形的热尔岗点。 廷达魔三角的德劳内三角化 概念及定理Delaunay三角化算法大佬博客知识盲区 1作死写这个卡组，资料查半天，啥也没搞懂，一个卡牌游戏，搞这么多花里胡哨的。。 参考资料 百度百科 欧几里得几何]]></content>
       <tags>
         <tag>随笔</tag>
-        <tag>游戏王</tag>
         <tag>数论</tag>
+        <tag>游戏王</tag>
         <tag>图论</tag>
       </tags>
   </entry>
@@ -340,8 +345,8 @@
     <content type="text"><![CDATA[水题? 题目链接思路 这道题目看似与dp无关，其实换个思路就是一个01背包。 这道题可以用0-1背包。将所有设施的价值全部加起来，然后分成2组，要使这2组设施的价值尽可能等，即要求它们2组的价值差要最小。那么我们可以首先将求价值总和的一半儿，然后先算其中一组的价值，此时价值总和的一半就相当于背包的最大容量，然后求不超过背包最大容量的情况下背包所能得到的最大价值，总价值-最大价值就是另一组设施的价值。要注意的是，这里每件物品的重量就是每件物品的价值。还要 记住，每次的背包的N和V都要更新。 我的代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253#include&lt;iostream&gt;#include&lt;cstdio&gt;#include&lt;cstring&gt;#include&lt;algorithm&gt;#include&lt;queue&gt;#include&lt;stack&gt;#include&lt;vector&gt;#include&lt;map&gt;#include&lt;set&gt;#include&lt;bitset&gt;#include&lt;string&gt;#include&lt;cmath&gt;#include&lt;sstream&gt;using namespace std;typedef long long ll;const double pi=acos(-1.0);const int eps=1e-10;const int mod=1e9+7;const int INF=0x3f3f3f3f;//int2147483647//ll9e18//unsigned ll 1e19const int maxn=100005;int m[maxn],v[maxn],dp[maxn];int a[maxn];int main()&#123; int n,sum_v,sum_m;//v，m while(~scanf("%d",&amp;n) &amp;&amp; n &gt;= 0) &#123; sum_v = 0,sum_m = 0; int z = 0; for(int i = 0;i &lt; n;i++) &#123; scanf("%d%d",&amp;v[i],&amp;m[i]); sum_v += v[i] * m[i]; sum_m += m[i]; for(int j = 0;j &lt; m[i];j++) &#123; a[z] = v[i]; z++; &#125; &#125; memset(dp,0,sizeof(dp)); for(int i = 0;i &lt; sum_m;i++) &#123; for(int j = sum_v / 2;j &gt;= a[i];j--) &#123; dp[j] = max(dp[j],dp[j - a[i]] + a[i]); &#125; &#125; printf("%d %d\n",max(dp[sum_v / 2],sum_v - dp[sum_v / 2]),min(dp[sum_v / 2],sum_v - dp[sum_v / 2])); &#125; truereturn 0;&#125; 大佬代码12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;stdio.h&gt;#include&lt;iostream&gt;#include&lt;string.h&gt;using namespace std;int V,N,weight[10002],v[10002];long int f[100002];int OnePack() //0-1背包的主要思想&#123; memset(f,0,sizeof(f)); for(int i=0;i&lt;N;i++) &#123; for(int j=V;j&gt;=weight[i];j--) f[j]=max(f[j],f[j-weight[i]]+v[i]); &#125; return f[V];&#125;int main()&#123; int t,a,b,x,y,z; while(scanf("%d",&amp;t)&amp;&amp;t&gt;0) &#123; N=V=0; //每次背包的N和V都要更新 int i=0; while(t--) &#123; scanf("%d%d",&amp;a,&amp;b); N+=b; V+=a*b; while(b--) &#123; v[i]=a; //记录每件物品的价值 weight[i]=a; //记录每件物品的重量 i++; &#125; &#125; z=V; V/=2; x=max(OnePack(),z-OnePack()); //最大的设施价值放前面 y=min(OnePack(),z-OnePack()); cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;endl; &#125; return 0;&#125; 参考博客 Copyright © 2019 Lancelot]]></content>
       <tags>
         <tag>dp</tag>
-        <tag>0-1背包</tag>
         <tag>acm</tag>
+        <tag>0-1背包</tag>
       </tags>
   </entry>
   <entry>

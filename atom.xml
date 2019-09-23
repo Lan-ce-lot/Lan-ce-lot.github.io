@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-09-19T12:28:33.536Z</updated>
+  <updated>2019-09-23T12:10:32.666Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ojyuang</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/23/ojyuang/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/23/ojyuang/</id>
+    <published>2019-09-23T12:10:31.000Z</published>
+    <updated>2019-09-23T12:10:32.666Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>rainberry</title>
@@ -296,9 +318,9 @@
     
       <category term="随笔" scheme="http://lan-ce-lot.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
-      <category term="游戏王" scheme="http://lan-ce-lot.github.io/tags/%E6%B8%B8%E6%88%8F%E7%8E%8B/"/>
-    
       <category term="数论" scheme="http://lan-ce-lot.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
+    
+      <category term="游戏王" scheme="http://lan-ce-lot.github.io/tags/%E6%B8%B8%E6%88%8F%E7%8E%8B/"/>
     
       <category term="图论" scheme="http://lan-ce-lot.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
     
@@ -400,28 +422,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;因为停电而没打~~逃~~ &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-      <category term="多校联赛" scheme="http://lan-ce-lot.github.io/tags/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多校联赛2补题</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/19/dxls2/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/19/dxls2/</id>
-    <published>2019-08-19T06:22:26.000Z</published>
-    <updated>2019-08-22T14:20:33.335Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;因为在来学校的路上所以没打~~逃~~ &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     
