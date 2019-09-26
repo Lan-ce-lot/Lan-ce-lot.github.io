@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Lance">
 <meta property="og:description" content="1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-26T13:49:12.845Z">
+<meta property="og:updated_time" content="2019-09-26T15:12:03.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oj入门">
 <meta name="twitter:description" content="1">
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.8k
+                  1.7k
                 </span>
               
 
@@ -418,40 +418,99 @@
 <p>try的工作原理是，当开始一个try语句后，python就在当前程序的上下文中作标记，这样当异常出现时就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常。</p>
 <p>如果当try后的语句执行时发生异常，python就跳回到try并执行第一个匹配该异常的except子句，异常处理完毕，控制流就通过整个try语句）。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a, b = map(int, input().split())</span><br><span class="line">        print(a + b)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure></p>
 <h1 id="python输入2"><a href="#python输入2" class="headerlink" title="python输入2"></a>python<a href="https://zoj.pintia.cn/problem-sets/91827364500/problems?page=0" target="_blank" rel="noopener">输入2</a></h1><p>输入一开始就会说有N个Input Block,下面接着是N个Input Block。<br>注意强制类型转换int()<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">n = int(input())</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    a = int(input())</span><br><span class="line">    b = int(input())</span><br><span class="line">    print(a + b)</span><br></pre></td></tr></table></figure></p>
-<h1 id="c"><a href="#c" class="headerlink" title="c"></a>c</h1><h2 id="scanf-“”-，printf-“”"><a href="#scanf-“”-，printf-“”" class="headerlink" title="scanf(“”)，printf(“”);"></a>scanf(“”)，printf(“”);</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%.3lf"</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%5.2lf"</span>,m);  </span><br><span class="line"><span class="comment">//保留两位小数，两位整数。若整数小于两位则右对齐</span></span><br></pre></td></tr></table></figure>
+<h1 id="c"><a href="#c" class="headerlink" title="c"></a>c</h1><h2 id="scanf-“”-，printf-“”"><a href="#scanf-“”-，printf-“”" class="headerlink" title="scanf(“”)，printf(“”);"></a>scanf(“”)，printf(“”);</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%5.2lf"</span>,m);  </span><br><span class="line"><span class="comment">//保留两位小数，两位整数。若整数小于五位则右对齐</span></span><br></pre></td></tr></table></figure>
 <p>scanf<br>函数返回值就是读出的变量个数，如：scanf( “%d  %d”, &amp;a, &amp;b );<br>如果只有一个整数输入，返回值是1，如果有两个整数输入，返回值是2，如果一个都没有，则返回值是-1。<br>EOF是一个预定义的常量，等于-1。</p>
 <h2 id="getchar-，putchar"><a href="#getchar-，putchar" class="headerlink" title="getchar()，putchar();"></a>getchar()，putchar();</h2><p>getchar()主要是从标准输入流读取一个字符。有返回值为读取的字符<br>getchar()可以吃回车和空格等空白字符</p>
 <p>putchar(ch)主要是把字符ch写到标准流stdout中去</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getchar();</span><br><span class="line"></span><br><span class="line"><span class="built_in">putchar</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="gets"><a href="#gets" class="headerlink" title="gets()"></a>gets()</h2><p>gets();</p>
-<p>一般在读入字符串的过程中，通常采用scanf,但是当读入的字符串中有空格时，一般会采取gets()函数，因为gets()函数遇到换行才会停止读入，但是在PAT刷题的过程中，发现PAT不能使用gets()函数，也是出于安全的考虑，可以将gets()替换成fgets()函数，具体代码如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">////////////////////////替换前</span></span><br><span class="line">gets(str)</span><br><span class="line"><span class="comment">////////////////////////替换后</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[<span class="number">200</span>];</span><br><span class="line">fgets(str,<span class="number">200</span>,<span class="built_in">stdin</span>);</span><br><span class="line"><span class="keyword">while</span>(str[i]!=<span class="string">'\n'</span>) </span><br><span class="line">    i++;</span><br><span class="line">str[i]=<span class="string">'\0'</span></span><br></pre></td></tr></table></figure></p>
-<p>这里采用了fgets函数，fgets()函数会读到有换行符的位置或者规定的数组结束，但是不同于gets()的另一点就是，fgets()会将换行符也存入数组中，上面的代码后三行就是过滤了换行符。</p>
-<h2 id="puts"><a href="#puts" class="headerlink" title="puts()"></a>puts()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">自动换行</span><br></pre></td></tr></table></figure>
-<h2 id="cin，cout"><a href="#cin，cout" class="headerlink" title="cin，cout"></a>cin，cout</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span> &lt;&lt; a;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; a;</span><br></pre></td></tr></table></figure>
-<h2 id="getline"><a href="#getline" class="headerlink" title="getline()"></a>getline()</h2><p>与cin不同的特性，cin会以空格和回车来结束输入，而 getline(cin, str)，会把空格也输入<br>是处理string类的函数</p>
-<p>getline()将换行符丢弃,而get()将换行符保留在输入序列里<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> str;</span><br><span class="line">getline(<span class="built_in">cin</span>, str);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; str&lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
-<h2 id="cin-getline"><a href="#cin-getline" class="headerlink" title="cin.getline()"></a>cin.getline()</h2><p>cin.getline()函数是处理数组字符串的，其原型为cin.getline(char * , int)，第一个参数为一个char指针，第二个参数为数组字符串长度。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a[<span class="number">30</span>];</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个字符串："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span>.getline(a, <span class="number">10</span>);<span class="comment">//第10位存放字符串结束符'\0'</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"第"</span> &lt;&lt; i + <span class="number">1</span> &lt;&lt; <span class="string">"个值为："</span> &lt;&lt; a[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="快读"><a href="#快读" class="headerlink" title="快读"></a>快读</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll x = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>)</span><br><span class="line">            f = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="易错1"><a href="#易错1" class="headerlink" title="易错1"></a>易错1</h2><p>就是容易格式错误，有的题目要求最后不用输出空格(pta上好多题都要求这个)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i  = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">true<span class="built_in">printf</span>(i == n ? <span class="string">"%d\n"</span> : <span class="string">"%d "</span> );</span><br></pre></td></tr></table></figure></p>
-<h2 id="易错2"><a href="#易错2" class="headerlink" title="易错2"></a>易错2</h2><p>%c前面的空格就是用来屏蔽空白符的<br>所以对于scanf()而言，%c是个较为特殊的说明符。 %c前没空格，scanf()将读取标准输入流中的第一个字符，%c前有空格，scanf()则读取标准输入流中第一个非空白字符，屏蔽了空白字符。<br>如果不用scanf(“ %c”,&amp;ch)的话，加一个getchar()吃掉回车也是可以的。</p>
+<h2 id="gets-建议fgets"><a href="#gets-建议fgets" class="headerlink" title="gets()(建议fgets())"></a>gets()(建议fgets())</h2><table><tr><td bgcolor="Yellow">gets();新标准C11已废弃 </td></tr></table>
+读入的字符串中有空格时，采取gets()函数，因为gets()函数遇到换行才会停止读入;
+出于安全的考虑，可以将gets()替换成fgets()函数
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[<span class="number">200</span>];</span><br><span class="line">fgets(str,<span class="number">200</span>,<span class="built_in">stdin</span>);</span><br><span class="line"><span class="keyword">while</span>(str[i]!=<span class="string">'\n'</span>) </span><br><span class="line">    i++;</span><br><span class="line">str[i]=<span class="string">'\0'</span></span><br></pre></td></tr></table></figure>
+
+fgets()函数会读到有换行符的位置或者规定的数组结束，但是不同于gets()的另一点就是，fgets()会将换行符也存入数组中，上面的代码后三行就是过滤了换行符。
+
+
+##puts()
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">puts</span>(<span class="string">""</span>);<span class="comment">//自动换行</span></span><br></pre></td></tr></table></figure>
+
+##cin，cout
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span> &gt;&gt; a;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; a;</span><br></pre></td></tr></table></figure>
+
+##getline(cin, str)
+处理string类的函数
+与cin不同的特性，cin会以空格和回车来结束输入，而 getline(cin, str)，会把空格也输入string中
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> str;</span><br><span class="line">getline(<span class="built_in">cin</span>, str);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; str&lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+##cin.getline()
+cin.getline()函数是处理数组字符串的，其原型为cin.getline(char * , int)，第一个参数为一个char指针，第二个参数为数组字符串长度。
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a[<span class="number">30</span>];</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"请输入一个字符串："</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cin</span>.getline(a, <span class="number">10</span>);<span class="comment">//第10位存放字符串结束符'\0'</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"第"</span> &lt;&lt; i + <span class="number">1</span> &lt;&lt; <span class="string">"个值为："</span> &lt;&lt; a[i] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+##快读
+~~花里胡哨~~
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll x = <span class="number">0</span>, f = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">char</span> ch = getchar();</span><br><span class="line">    <span class="keyword">while</span> (ch &lt; <span class="string">'0'</span> || ch &gt; <span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'-'</span>)</span><br><span class="line">            f = <span class="number">-1</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (ch &gt;= <span class="string">'0'</span> &amp;&amp; ch &lt;= <span class="string">'9'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x = x * <span class="number">10</span> + ch - <span class="string">'0'</span>;</span><br><span class="line">        ch = getchar();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x * f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+##易错1
+- 就是容易格式错误，有的题目要求最后不能有多余输出空格(pta上好多题都要求这个)
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i  = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">true<span class="built_in">printf</span>(i == n ? <span class="string">"%d\n"</span> : <span class="string">"%d "</span> );</span><br></pre></td></tr></table></figure>
+
+- 所以对于scanf()而言，%c是个较为特殊的说明符。 %c前没空格，scanf()将读取标准输入流中的第一个字符，%c前有空格，scanf()则读取标准输入流中第一个非空白字符，屏蔽了空白字符。
+前面加一个getchar()吃掉回车也是可以的。
+
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;i);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">" %c"</span>, &amp;ch);</span><br></pre></td></tr></table></figure>
-<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">name = input(<span class="string">'please enter your name: '</span>)<span class="comment">#括号里可以填提示输入信息</span></span><br></pre></td></tr></table></figure>
-<p>可以看到input的返回值默认是字符串，当我们需要返回int型时需要使用int(input())的形式，也就是强制类型转换</p>
-<h2 id="input-split"><a href="#input-split" class="headerlink" title="input().split"></a>input().split</h2><p>这个可以实现一行以空格为界输入多个数字<br>map接收一个函数和一个可迭代对象（如列表）作为参数，用函数处理每个元素，然后返回新的列表。</p>
-<p>split()通过指定分隔符对字符串进行切片，并返回切片结果。<br>str.split(str=””, num=string.count(str)).<br>参数<br>str — 分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等。<br>num — 分割次数。默认为 -1, 即分隔所有。<br>返回值：返回分割后的字符串列表。</p>
+
+#python
+##input
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">name = input(<span class="string">'please enter your name: '</span>)<span class="comment">#括号里可以填提示输入信息</span></span><br></pre></td></tr></table></figure>
+
+input的返回值默认是字符串，需要返回int型时需要使用强制类型转换，int(input())的形式
+
+##input().split
+这个可以实现一行以空格为界输入多个数字
+map接收一个函数和一个可迭代对象（如列表）作为参数，用函数处理每个元素，然后返回新的列表。
+
+split()通过指定分隔符对字符串进行切片，并返回切片结果。
+str.split(str="", num=string.count(str)).
+参数
+str -- 分隔符，默认为所有的空字符，包括空格、换行(\n)、制表符(\t)等。
+num -- 分割次数。默认为 -1, 即分隔所有。
+返回值：返回分割后的字符串列表。
+
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a, b, c = map(int, input().split())</span><br><span class="line"></span><br><span class="line">a, b, c, d = map(int, input().split())</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="print"><a href="#print" class="headerlink" title="print"></a>print</h2><p>输出<br>如何让 print 不换行<br>在Python中总是默认换行的，print(x，end = ‘’ )<br>格式化输出有两种<br>一种是类似于C语言printf的方式</p>
-<blockquote>
-<p>%</p>
-</blockquote>
-<p>另一种是类似于C#的方式</p>
-<blockquote>
-<p>format()<br>基本是前文格式控制，.format(,,)中分别表示输出内容。数字(0, 1, …)即代表format()里面的元素, 所以可以使用</p>
-</blockquote>
-<p>推荐用format</p>
+
+----------------------------------------------------------------------------------
+
+
+##print
+
+输出
+在Python中总是默认换行的，让 print 不换行print(x，end = '' )
+
+格式化输出有两种
+一种是类似于C语言printf的方式
+>%
+
+另一种是类似于C#的方式
+>format()
+基本是前文格式控制，.format(,,)中分别表示输出内容。数字(0, 1, ...)即代表format()里面的元素
+
+<table><tr><td bgcolor="Yellow">推荐用format </td></tr></table>
+
+
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'常量 PI 的值近似为：%5.3f'</span> % math.pi)<span class="comment">#字段宽5，精度3  </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'&#123;&#125;×&#123;&#125;=&#123;&#125;'</span>.format(i, j, i*j),end=<span class="string">"\t"</span>)</span><br><span class="line">print(<span class="string">'&#123;0&#125; 和 &#123;1&#125;'</span>.format(<span class="string">'Google'</span>, <span class="string">'Runoob'</span>))<span class="comment">#这里的0和1分别对应第一个和第二个</span></span><br></pre></td></tr></table></figure>
-<h1 id="py易错"><a href="#py易错" class="headerlink" title="py易错"></a>py易错</h1><p>input的返回值默认为字符串<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = input()</span><br><span class="line">b = input()</span><br><span class="line">print(c + b)</span><br></pre></td></tr></table></figure></p>
+<h1 id="py易错"><a href="#py易错" class="headerlink" title="py易错"></a>py易错</h1><ul>
+<li><p>格式错误</p>
+</li>
+<li><p>input的返回值默认为字符串</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = input()</span><br><span class="line">b = input()</span><br><span class="line">print(c + b)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有一个缺陷就是不能单行输入多个数用空格分隔，</p>
+</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = int(input())</span><br><span class="line">b = int(input())</span><br><span class="line">print(c + b)</span><br></pre></td></tr></table></figure>
+<p>有那种以数字中间空格为分界的题目就要用split()<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a, b, c = map(int, input().split())</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -742,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1089"><span class="nav-text">hduoj1089</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1090"><span class="nav-text">hduoj1090</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1091"><span class="nav-text">hduoj1091</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python输入1"><span class="nav-text">python输入1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python输入2"><span class="nav-text">python输入2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c"><span class="nav-text">c</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scanf-“”-，printf-“”"><span class="nav-text">scanf(“”)，printf(“”);</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getchar-，putchar"><span class="nav-text">getchar()，putchar();</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gets"><span class="nav-text">gets()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#puts"><span class="nav-text">puts()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cin，cout"><span class="nav-text">cin，cout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getline"><span class="nav-text">getline()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cin-getline"><span class="nav-text">cin.getline()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快读"><span class="nav-text">快读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#易错1"><span class="nav-text">易错1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#易错2"><span class="nav-text">易错2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python"><span class="nav-text">python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#input"><span class="nav-text">input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input-split"><span class="nav-text">input().split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#print"><span class="nav-text">print</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#py易错"><span class="nav-text">py易错</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1089"><span class="nav-text">hduoj1089</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1090"><span class="nav-text">hduoj1090</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hduoj1091"><span class="nav-text">hduoj1091</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python输入1"><span class="nav-text">python输入1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python输入2"><span class="nav-text">python输入2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c"><span class="nav-text">c</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#scanf-“”-，printf-“”"><span class="nav-text">scanf(“”)，printf(“”);</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getchar-，putchar"><span class="nav-text">getchar()，putchar();</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gets-建议fgets"><span class="nav-text">gets()(建议fgets())</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#py易错"><span class="nav-text">py易错</span></a></li></ol></div>
             
 
           </div>
@@ -783,7 +842,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">40.9k</span>
+    <span title="Site words total count">40.8k</span>
   
 </div>
 
