@@ -24,7 +24,7 @@
   <entry>
     <title><![CDATA[html1]]></title>
     <url>%2F2019%2F09%2F18%2Fhtml1%2F</url>
-    <content type="text"><![CDATA[# 文本修饰标记12345678&lt;b&gt;...&lt;/b&gt;:加粗&lt;i&gt;...&lt;/i&gt;:倾斜&lt;u&gt;...&lt;/u&gt;:下划线&lt;strike&gt;...&lt;/strike&gt;:删除线&lt;sup&gt;...&lt;/sup&gt;:上标&lt;sub&gt;...&lt;/sub&gt;:下标&lt;em&gt;...&lt;/em&gt;:强调&lt;strong&gt;...&lt;/strong&gt;:特别强调，通常斜体加黑体 段落标记1&lt;p align = "对齐方式"&gt;...&lt;/p&gt; 强制换行标记强制另起一行 12&lt;p&gt;&lt;/p&gt;换段后面要空一点&lt;br/&gt;换行是紧挨着的 水平线``` ``# #相对路径；绝对路径；]]></content>
+    <content type="text"><![CDATA[w3school 基本标记HTML 标题HTML 标题（Heading）是通过 - 等标签进行定义的。 HTML 段落HTML 段落是通过 标签进行定义的。 HTML 链接HTML 链接是通过 标签进行定义的。This is a link HTML 图像HTML 图像是通过 标签进行定义的。# 文本修饰标记12345678&lt;b&gt;...&lt;/b&gt;:加粗&lt;i&gt;...&lt;/i&gt;:倾斜&lt;u&gt;...&lt;/u&gt;:下划线&lt;strike&gt;...&lt;/strike&gt;:删除线&lt;sup&gt;...&lt;/sup&gt;:上标&lt;sub&gt;...&lt;/sub&gt;:下标&lt;em&gt;...&lt;/em&gt;:强调&lt;strong&gt;...&lt;/strong&gt;:特别强调，通常斜体加黑体 段落标记1&lt;p align = "对齐方式"&gt;...&lt;/p&gt; 强制换行标记强制另起一行 12&lt;p&gt;&lt;/p&gt;换段后面要空一点&lt;br/&gt;换行是紧挨着的 水平线1&lt;hr widrth = "value1" size = "value2" align = "value3" color = "color1" noshade/&gt; 12相对路径:绝对路径: 表格属性bgcolor:背景颜色backgrounf:背景border:表格线粗细bordercolor:边框的颜色width and height:设置表格宽度和高度align:设置表格在页面中的相对位置cellspacing:设置相邻单元格之间、单元格和边框之间的间距cellpadding:设置单元格中的内容到单元格边框之间的距离#]]></content>
       <tags>
         <tag>html</tag>
       </tags>
