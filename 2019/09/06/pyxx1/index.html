@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Lance">
 <meta property="og:description" content="人生苦短，我用python">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-19T09:50:38.577Z">
+<meta property="og:updated_time" content="2019-10-05T14:23:15.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="py学习1">
 <meta name="twitter:description" content="人生苦短，我用python">
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  428
+                  778
                 </span>
               
 
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  3
                 </span>
               
             </div>
@@ -417,7 +417,86 @@
 <h1 id="-4"><a href="#-4" class="headerlink" title="#"></a>#</h1><p>/除法计算结果是浮点数，即使是两个整数恰好整除，结果也是浮点数<br>还有一种除法是//，称为地板除，两个整数的除法仍然是整数</p>
 <h1 id="-5"><a href="#-5" class="headerlink" title="#"></a>#</h1><p>格式化输出<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Hello, %s'</span> % <span class="string">'world'</span>)</span><br><span class="line">print(<span class="string">'%2d-%02d'</span> % (<span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line">print(<span class="string">'%.2f'</span> % <span class="number">3.1415926</span>)</span><br><span class="line">print(<span class="string">'Age: %s. Gender: %s'</span> % (<span class="number">25</span>, <span class="literal">True</span>))</span><br></pre></td></tr></table></figure></p>
 <h1 id="-6"><a href="#-6" class="headerlink" title="#"></a>#</h1><p>format()<br>另一种格式化字符串的方法是使用字符串的format()方法，它会用传入的参数依次替换字符串内的占位符{0}、{1}……，不过这种方式写起来比%要麻烦得多：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello, &#123;0&#125;, 成绩提升了 &#123;1:.1f&#125;%'</span>.format(<span class="string">'小明'</span>, <span class="number">17.125</span>)</span><br></pre></td></tr></table></figure></p>
-
+<h1 id="列表、字典、元组、集合"><a href="#列表、字典、元组、集合" class="headerlink" title="列表、字典、元组、集合"></a>列表、字典、元组、集合</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">列表</th>
+<th style="text-align:center">元组</th>
+<th style="text-align:center">集合</th>
+<th style="text-align:center">字典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>英文</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">tuple</td>
+<td style="text-align:center">set</td>
+<td style="text-align:center">dict</td>
+</tr>
+<tr>
+<td>可否读写</td>
+<td style="text-align:center">读写</td>
+<td style="text-align:center">只读</td>
+<td style="text-align:center">读写</td>
+<td style="text-align:center">读写</td>
+</tr>
+<tr>
+<td>可否重复</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td>存储方式</td>
+<td style="text-align:center">值</td>
+<td style="text-align:center">值</td>
+<td style="text-align:center">键(不能重复)</td>
+<td style="text-align:center">键值对(键不能重复)</td>
+</tr>
+<tr>
+<td>是否有序</td>
+<td style="text-align:center">有序</td>
+<td style="text-align:center">有序</td>
+<td style="text-align:center">无序</td>
+<td style="text-align:center">无序，自动正序</td>
+</tr>
+<tr>
+<td>初始化</td>
+<td style="text-align:center">[1,’a’]</td>
+<td style="text-align:center">(‘a’, 1)</td>
+<td style="text-align:center">set([1,2]) 或 {1,2}</td>
+<td style="text-align:center">{‘a’:1,’b’:2}</td>
+</tr>
+<tr>
+<td>添加</td>
+<td style="text-align:center">append</td>
+<td style="text-align:center">只读</td>
+<td style="text-align:center">add</td>
+<td style="text-align:center">d[‘key’] = ‘value’</td>
+</tr>
+<tr>
+<td>读元素</td>
+<td style="text-align:center">l[2:]</td>
+<td style="text-align:center">t[0]</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">d[‘a’]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ol>
+<li><p>列表<br>列表、元组、字典、集合的区别是python面试中最常见的一个问题。这个问题虽然很基础，但确实能反映出面试者的基础水平。</p>
+<pre><code> list是处理一组有序项目的数据结构，即你可以在一个列表中存储一个序列的项目。列表中的项目。列表中的项目应该包括在方括号中，这样python就知道你是在指明一个列表。一旦你创建了一个列表，你就可以添加，删除，或者是搜索列表中的项目。由于你可以增加或删除项目，我们说列表是可变的数据类型，即这种类型是可以被改变的，并且列表是可以嵌套的。python里的列表用“[]”表示：　　
+</code></pre></li>
+</ol>
+<p>lst = [‘arwen’,123]<br>print lst[0]<br>print lst[1]</p>
+<p>lst[0] = ‘weiwen’</p>
+<p>　　向list中添加项有两种方法：append和extend。</p>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2>
       
     </div>
     
@@ -707,7 +786,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0"><span class="nav-text">0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#来个hello-world，以表敬意"><span class="nav-text">来个hello world，以表敬意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-text">#</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0"><span class="nav-text">0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#来个hello-world，以表敬意"><span class="nav-text">来个hello world，以表敬意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列表、字典、元组、集合"><span class="nav-text">列表、字典、元组、集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-text">字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组"><span class="nav-text">元组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-text">集合</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -748,7 +827,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">41.3k</span>
+    <span title="Site words total count">41.6k</span>
   
 </div>
 
