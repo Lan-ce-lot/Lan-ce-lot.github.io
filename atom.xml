@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-10-03T01:04:01.319Z</updated>
+  <updated>2019-10-06T14:26:54.086Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>css</title>
+    <link href="http://lan-ce-lot.github.io/2019/10/06/css/"/>
+    <id>http://lan-ce-lot.github.io/2019/10/06/css/</id>
+    <published>2019-10-06T13:43:58.000Z</published>
+    <updated>2019-10-06T14:26:54.086Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;div style=&quot;background:CornflowerBlue; color:&quot;&gt;HTML和CSS的关系就是“内容”和“形式”，即HTML来组织网页的结构和内容，CSS来决定网页的表现形式 &lt;/div&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="-css" scheme="http://lan-ce-lot.github.io/tags/css/"/>
+    
+  </entry>
   
   <entry>
     <title>jgame</title>
@@ -43,17 +61,11 @@
     <link href="http://lan-ce-lot.github.io/2019/09/23/9-21/"/>
     <id>http://lan-ce-lot.github.io/2019/09/23/9-21/</id>
     <published>2019-09-23T13:35:18.000Z</published>
-    <updated>2019-09-23T14:00:47.987Z</updated>
+    <updated>2019-10-06T13:41:57.663Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Bisque&quot;&gt;“张老师，您看...”，真令人叹服，为什么有人说话能够如此高贵而优雅。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     
@@ -67,7 +79,7 @@
     <link href="http://lan-ce-lot.github.io/2019/09/23/ojyuang/"/>
     <id>http://lan-ce-lot.github.io/2019/09/23/ojyuang/</id>
     <published>2019-09-23T12:10:31.000Z</published>
-    <updated>2019-09-27T05:14:34.907Z</updated>
+    <updated>2019-10-06T13:42:21.460Z</updated>
     
     <summary type="html">
     
@@ -107,7 +119,7 @@
     <link href="http://lan-ce-lot.github.io/2019/09/18/html1/"/>
     <id>http://lan-ce-lot.github.io/2019/09/18/html1/</id>
     <published>2019-09-18T12:29:44.000Z</published>
-    <updated>2019-10-02T13:57:37.448Z</updated>
+    <updated>2019-10-06T13:40:58.396Z</updated>
     
     <summary type="html">
     
@@ -225,7 +237,7 @@
     <link href="http://lan-ce-lot.github.io/2019/09/06/pyxx1/"/>
     <id>http://lan-ce-lot.github.io/2019/09/06/pyxx1/</id>
     <published>2019-09-06T11:56:33.000Z</published>
-    <updated>2019-10-05T14:23:15.987Z</updated>
+    <updated>2019-10-06T13:41:28.188Z</updated>
     
     <summary type="html">
     
@@ -401,28 +413,6 @@
       <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
     
       <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>STL</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/22/stl/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/22/stl/</id>
-    <published>2019-08-22T01:42:17.000Z</published>
-    <updated>2019-09-19T10:22:44.589Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Yellow&quot;&gt;最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot; &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="C++" scheme="http://lan-ce-lot.github.io/tags/C/"/>
-    
-      <category term="STL" scheme="http://lan-ce-lot.github.io/tags/STL/"/>
     
   </entry>
   
