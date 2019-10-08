@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[css]]></title>
     <url>%2F2019%2F10%2F06%2Fcss%2F</url>
-    <content type="text"><![CDATA[HTML和CSS的关系就是“内容”和“形式”，即HTML来组织网页的结构和内容，CSS来决定网页的表现形式 CSS的基本语法css由一系列样式规则组成，浏览器将这些规则应用到相应的元素上。CSS规则可以表达为： row 1, cell 1 row 1, cell 2]]></content>
+    <content type="text"><![CDATA[HTML和CSS的关系就是“内容”和“形式”，即HTML来组织网页的结构和内容，CSS来决定网页的表现形式 CSS的基本语法css由一系列样式规则组成，浏览器将这些规则应用到相应的元素上。CSS规则可以表达为： row 1, cell 1 row 1, cell 2 &lt;/table&gt;选择器以及多条声明，多条声明间用分号分开。 注释1/**/ 行内式所有HTML标记都有一个style，行内式就是在这个Style属性中为相应的标记添加要应用的样式，即将CSS代码直接写在style属性中1&lt;p style = "font-size: 20pt; font-weight: bold; color: red"&gt;&lt;/p&gt; 不推荐 嵌入式1234567&lt;head&gt;&lt;style type = "text/css"&gt;trueh1.mylayout&#123;truetrueborder-width: 1;border:solid;text-align:center;color:redtrue&#125;&lt;/style&gt;&lt;/head&gt; 局限 链接式链接式是将CSS样式代码写在一个以.css为后缀的CSS文件里，然后用标记链接到这个样式表文件，标记必须放在区域 home.css1h1&#123;border-width:1; border:solid; text-align: center; color: red;&#125; main.html123&lt;head&gt;&lt;link href="home.css" rel="stylrsheet" type="text/css"&gt;&lt;/head&gt; 方便推荐 选择器选择器其实是CSS样式的名字，常用的有：标记、类、ID、伪类。例如：1h1&#123;color: red; font-size: 14px;&#125; 作用是将h1元素内的文字颜色定义为红色，字体大小设置为14像素。]]></content>
       <tags>
         <tag>-css</tag>
       </tags>
