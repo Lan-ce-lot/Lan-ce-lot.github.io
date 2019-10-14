@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="Lance">
 <meta property="og:description" content="人生苦短，我用python">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-06T13:41:28.188Z">
+<meta property="og:updated_time" content="2019-10-11T03:13:58.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="py学习1">
 <meta name="twitter:description" content="人生苦短，我用python">
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  778
+                  930
                 </span>
               
 
@@ -496,7 +496,7 @@
 <p>lst = [‘arwen’,123]<br>print lst[0]<br>print lst[1]</p>
 <p>lst[0] = ‘weiwen’</p>
 <p>　　向list中添加项有两种方法：append和extend。</p>
-<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">word = (<span class="string">'answer'</span>, <span class="string">'python'</span>,<span class="string">'password'</span>, <span class="string">'learn'</span>)</span><br><span class="line">print(<span class="string">'     欢迎参加猜单词游戏\n'</span>, <span class="string">' 请把下列各字母组合成一个正确的单词.\n'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:                                                          <span class="comment">#随机取词</span></span><br><span class="line">    get_word = <span class="string">''</span></span><br><span class="line">    temp = random.randint(<span class="number">0</span>, len(word) - <span class="number">1</span>)</span><br><span class="line">    temp_word = word[temp]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (len(temp_word)):                                          <span class="comment">#打乱字母</span></span><br><span class="line">        position = random.randint(<span class="number">0</span>, len(temp_word) - <span class="number">1</span>)</span><br><span class="line">        get_word += temp_word[position]</span><br><span class="line">        temp_word = temp_word[:position] + temp_word[(position + <span class="number">1</span>):]<span class="comment">#切片操作</span></span><br><span class="line">        </span><br><span class="line">    print(<span class="string">'乱序后单词:'</span>,get_word)</span><br><span class="line">    <span class="keyword">if</span>(input(<span class="string">'请你猜:'</span>) != word[temp]):</span><br><span class="line">        print(<span class="string">'对不起不正确.'</span>)</span><br><span class="line">        <span class="keyword">while</span>(input(<span class="string">'继续猜:'</span>) != word[temp]):print(<span class="string">'对不起不正确.'</span>) </span><br><span class="line">    print(<span class="string">'真棒，你猜对了!\n'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:                                                      <span class="comment">#是否继续</span></span><br><span class="line">        judge_w = input(<span class="string">'是否继续(Y/N):'</span>)</span><br><span class="line">        <span class="keyword">if</span> (judge_w == <span class="string">'Y'</span> <span class="keyword">or</span> judge_w == <span class="string">'y'</span>):<span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> (judge_w == <span class="string">'N'</span> <span class="keyword">or</span> judge_w == <span class="string">'n'</span>):exit()</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -786,7 +786,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0"><span class="nav-text">0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#来个hello-world，以表敬意"><span class="nav-text">来个hello world，以表敬意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列表、字典、元组、集合"><span class="nav-text">列表、字典、元组、集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-text">字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组"><span class="nav-text">元组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-text">集合</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0"><span class="nav-text">0</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#来个hello-world，以表敬意"><span class="nav-text">来个hello world，以表敬意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-text">#</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列表、字典、元组、集合"><span class="nav-text">列表、字典、元组、集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-text">字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组"><span class="nav-text">元组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合"><span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验"><span class="nav-text">实验</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -827,7 +827,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42k</span>
+    <span title="Site words total count">42.2k</span>
   
 </div>
 
