@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-10-07T05:49:03.909Z</updated>
+  <updated>2019-10-16T08:06:26.936Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -17,20 +17,68 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>css</title>
-    <link href="http://lan-ce-lot.github.io/2019/10/06/css/"/>
-    <id>http://lan-ce-lot.github.io/2019/10/06/css/</id>
-    <published>2019-10-06T13:43:58.000Z</published>
-    <updated>2019-10-07T05:49:03.909Z</updated>
+    <title>codeforceSUN</title>
+    <link href="http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/"/>
+    <id>http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/</id>
+    <published>2019-10-16T08:06:26.000Z</published>
+    <updated>2019-10-16T08:06:26.936Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;div style=&quot;background:CornflowerBlue; color:&quot;&gt;HTML和CSS的关系就是“内容”和“形式”，即HTML来组织网页的结构和内容，CSS来决定网页的表现形式 &lt;/div&gt;&lt;br&gt;
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
     
     </summary>
     
     
-      <category term="-css" scheme="http://lan-ce-lot.github.io/tags/css/"/>
+  </entry>
+  
+  <entry>
+    <title>timec</title>
+    <link href="http://lan-ce-lot.github.io/2019/10/14/timec/"/>
+    <id>http://lan-ce-lot.github.io/2019/10/14/timec/</id>
+    <published>2019-10-14T04:57:56.000Z</published>
+    <updated>2019-10-15T11:42:29.451Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
+    
+      <category term="时间复杂度" scheme="http://lan-ce-lot.github.io/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS</title>
+    <link href="http://lan-ce-lot.github.io/2019/10/06/css/"/>
+    <id>http://lan-ce-lot.github.io/2019/10/06/css/</id>
+    <published>2019-10-06T13:43:58.000Z</published>
+    <updated>2019-10-14T14:23:57.478Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;div style=&quot;background:CornflowerBlue &quot;&gt;HTML和CSS关系就是“内容”、“形式”，即HTML来组织网页结构和内容，CSS来决定网页形式 &lt;/div&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://lan-ce-lot.github.io/tags/css/"/>
     
   </entry>
   
@@ -371,48 +419,6 @@
       <category term="游戏王" scheme="http://lan-ce-lot.github.io/tags/%E6%B8%B8%E6%88%8F%E7%8E%8B/"/>
     
       <category term="图论" scheme="http://lan-ce-lot.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>线段树+树状数组总结</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/25/segmenttree/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/25/segmenttree/</id>
-    <published>2019-08-25T04:03:22.000Z</published>
-    <updated>2019-09-01T12:27:35.536Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Yellow&quot;&gt;线段树是一种二叉搜索树，与区间树相似，它将一个区间划分成一些单元区间，每个单元区间对应线段树中的一个叶结点。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="线段树" scheme="http://lan-ce-lot.github.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
-    
-      <category term="树状数组" scheme="http://lan-ce-lot.github.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CCPC网络赛</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/24/ccpcwls/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/24/ccpcwls/</id>
-    <published>2019-08-24T02:42:24.000Z</published>
-    <updated>2019-09-02T13:43:47.591Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;内心毫无波动 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
     
   </entry>
   

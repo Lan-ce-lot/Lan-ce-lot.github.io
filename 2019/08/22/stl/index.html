@@ -97,7 +97,7 @@
 <meta property="og:description" content="最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://lan-ce-lot.github.io/assets/img/诶佬子/20190906162034667.jpg">
-<meta property="og:updated_time" content="2019-09-19T10:22:44.589Z">
+<meta property="og:updated_time" content="2019-10-14T05:24:45.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL">
 <meta name="twitter:description" content="最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot;">
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  679
+                  678
                 </span>
               
 
@@ -407,7 +407,7 @@
 
       
         <p><table><tr><td bgcolor="Yellow">最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,"余处幽篁兮终不见天,路艰难兮独后来" </td></tr></table><br><a id="more"></a><br>使用开个文章来记录自己遇见的stl骚套路。</p>
-<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="0-vector"><a href="#0-vector" class="headerlink" title="0 vector"></a>0 vector</h2><p><img src="\assets\img\诶佬子\20190906162034667.jpg" alt></p>
+<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="0-vector"><a href="#0-vector" class="headerlink" title="0 vector"></a>0 vector</h2><p><img src="\assets\img\诶佬子\20190906162034667.jpg" alt="text"></p>
 <h2 id="1-unordered-set"><a href="#1-unordered-set" class="headerlink" title="1 unordered_set"></a>1 unordered_set</h2><p>首先要include这个unordered_set头文件。</p>
 <blockquote>
 <p>unordered_set可以把它想象成一个集合，它提供了几个函数让我们可以增删查：<br>unordered_set::insert<br>unordered_set::find<br>unordered_set::erase</p>
@@ -418,15 +418,16 @@
 <blockquote>
 <p>使用set或multiset之前，必须加入头文件<set><br>Set、multiset都是集合类，差别在与set中不允许有重复元素，multiset中允许有重复元素。</set></p>
 </blockquote>
-<p>map是标准的关联式容器，一个map是一个键值对序列，即(key,value)对。它提供基于key的快速检索能力。<br>map中key值是唯一的。集合中的元素按一定的顺序排列。元素插入过程是按排序规则插入，所以不能指定插入位置。<br>map的具体实现采用红黑树变体的平衡二叉树的数据结构。在插入操作和删除操作上比vector快。<br>map可以直接存取key所对应的value，支持[]操作符，如map[key]=value。<br>multimap与map的区别：map支持唯一键值，每个键只能出现一次；而multimap中相同键可以出现多次。multimap不支持[]操作符。</p>
+<p>map是标准的关联式容器，一个map是一个键值对序列，即(key,value)对。它提供基于key的快速检索能力。<br>map中key值是唯一的。集合中的元素按一定的顺序排列。元素插入过程是按排序规则插入，所以不能指定插入位置。<br>map的具体实现采用红黑树变体的平衡二叉树的数据结构。在插入操作和删除操作上比vector快。</p>
+<p>map可以直接存取key所对应的value，支持[]操作符，如map[key]=value。<br>multimap与map的区别：map支持唯一键值，每个键只能出现一次；而multimap中相同键可以出现多次。multimap不支持[]操作符。</p>
 <h2 id="c-hash-map用法总结"><a href="#c-hash-map用法总结" class="headerlink" title="c++ hash_map用法总结"></a>c++ hash_map用法总结</h2><h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p><a href="https://blog.csdn.net/hj490134273/article/details/6051080" target="_blank" rel="noopener">https://blog.csdn.net/hj490134273/article/details/6051080</a><br>find<br><a href="https://blog.csdn.net/bxw1992/article/details/77749113" target="_blank" rel="noopener">https://blog.csdn.net/bxw1992/article/details/77749113</a></p>
-<h2 id="标准库-“merge”-函数-的-用法及代码"><a href="#标准库-“merge”-函数-的-用法及代码" class="headerlink" title="标准库 “merge” 函数 的 用法及代码"></a>标准库 “merge” 函数 的 用法及代码</h2><p>学merge_sort的时候发现标准库里已经有一个merge函数了，于是…嘿嘿<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">merge(vecIntA.begin(), vecIntA.end(), vecIntB.begin(), vecIntB.end(), vecIntC.begin());</span><br></pre></td></tr></table></figure></p>
+<h2 id="标准库-“merge”-函数-的-用法及代码"><a href="#标准库-“merge”-函数-的-用法及代码" class="headerlink" title="标准库 “merge” 函数 的 用法及代码"></a>标准库 “merge” 函数 的 用法及代码</h2><p>学merge_sort的时候发现标准库里已经有一个merge函数了，于是…嘿嘿</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">merge(vecIntA.begin(), vecIntA.end(), vecIntB.begin(), vecIntB.end(), vecIntC.begin());</span><br></pre></td></tr></table></figure>
 <p>参数是两个容器的首和尾，作用效果是合并加升序。</p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p><a href="https://blog.csdn.net/sunny1996/article/details/51242184/" target="_blank" rel="noopener">看看这个</a></p>
 <h1 id="参考以下博客及资料"><a href="#参考以下博客及资料" class="headerlink" title="参考以下博客及资料"></a>参考以下博客及资料</h1><blockquote>
 <p><a href="https://blog.csdn.net/qq_32172673/article/details/85160180" target="_blank" rel="noopener">C++ STL 之 unordered_set 使用（包括unordersd_map）</a></p>
 </blockquote>
-<p>&gt;</p>
 
       
     </div>
@@ -614,7 +615,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -627,7 +628,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -762,7 +763,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.2k</span>
+    <span title="Site words total count">42.8k</span>
   
 </div>
 
