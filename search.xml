@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[codeforceSUN]]></title>
-    <url>%2F2019%2F10%2F16%2FcodeforceSUN%2F</url>
+    <title><![CDATA[queue]]></title>
+    <url>%2F2019%2F10%2F16%2Fqueue%2F</url>
     <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[codeforce在失去中得到]]></title>
+    <url>%2F2019%2F10%2F16%2FcodeforceSUN%2F</url>
+    <content type="text"><![CDATA[就这样我们失去了名额，但是这不能怪谁，要怪就怪自己，没有好好写题。这场 codefor 可以说是比较简单的一场了，可惜我没能珍惜，自我感觉还有三题可做。 题面Problem FKeeping On Track 思路AC代码12 Problem GA Question of Ingestion 思路AC代码12 Problem JWorkout for a Dumbbell 思路AC代码12 参考博客 大佬博客1]]></content>
+      <tags>
+        <tag>acm</tag>
+        <tag>补题</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[timec]]></title>
@@ -371,7 +380,7 @@
   <entry>
     <title><![CDATA[Blog template]]></title>
     <url>%2F2019%2F07%2F30%2Fblog-template%2F</url>
-    <content type="text"><![CDATA[这里是测试模板。。。 ####标题一 * 1 [link1]() * 2 ![img]() * 3 --- ####粗体 **1234** 1234 ####颜色 补题 学习总结acm相关 学习总结 随笔其他 我喜欢的 背景色 背景色 背景色 背景色 背景色 背景色 斜体12341234 tu: &emsp;空格&emsp;&emsp; 斜体加粗1234 删除线这是加删除线的文字1 有序列表 1 2 3 4 表格 Tables Are Cool col 3 is right-aligned $1600 col 2 is centered $12 zebra stripes are neat $1 Copyright © 2019 Lancelot 背景色是 1 orange 背景色2 BlueViolet 操作一波Markdown编辑器的字体颜色、背景色markdown中用html和css强化显示 列表:1 列出所有元素： 无序列表元素 A 元素 A 的有序子列表 yi1 前面加四个空格 列表里的多段换行：前面必须加四个空格，这样换行，整体的格式不会乱 列表里引用： 前面空一行仍然需要在 &gt; 前面加四个空格 列表里代码段： ```前面四个空格，之后按代码语法 书写 或者直接空八个，引入代码块 我是黑体字 我是微软雅黑 我是华文彩云 color=#0099ff size=72 face=”黑体” color=#00ffff color=gray Size：规定文本的尺寸大小。可能的值：从 1 到 7 的数字。浏览器默认值是 3 居中 居左 居右 这里的背景色是：PowderBlue， 十六进制颜色值： #B0E0E6，rgb(176, 224, 230)否则的话否则的话：$\color{DarkTurquoise}{否则的话}$汉字格式汉字格式：$\color{silver}{汉字格式}$就是这样就是这样：$\color{HotPink}{就是这样}$orz latex我下面是注脚1 7040563540]]></content>
+    <content type="text"><![CDATA[这里是测试模板。。。 #### 标题一 * 1 [link1](1) * 2 ![img]() * 3 --- #### 粗体 **1234** 1234 #### 颜色 补题 学习总结acm相关 学习总结 随笔其他 我喜欢的 背景色 背景色 背景色 背景色 背景色 背景色 斜体12341234 tu: &emsp;空格&emsp;&emsp; 斜体加粗1234 删除线这是加删除线的文字1 有序列表 1 2 3 4 表格 Tables Are Cool col 3 is right-aligned $1600 col 2 is centered $12 zebra stripes are neat $1 Copyright © 2019 Lancelot 背景色是 1 orange 背景色2 BlueViolet 操作一波Markdown编辑器的字体颜色、背景色markdown中用html和css强化显示 列表:1 列出所有元素： 无序列表元素A 元素 A 的有序子列表 yi1 前面加四个空格 列表里的多段换行：前面必须加四个空格，这样换行，整体的格式不会乱 列表里引用： 前面空一行仍然需要在 &gt; 前面加四个空格 列表里代码段： 12前面四个空格，之后按代码语法 书写 或者直接空八个，引入代码块 我是黑体字 我是微软雅黑 我是华文彩云 color=#0099ff size=72 face=”黑体” color=#00ffff color=gray Size：规定文本的尺寸大小。可能的值：从 1 到 7 的数字。浏览器默认值是 3 居中 居左 居右 这里的背景色是：PowderBlue， 十六进制颜色值： #B0E0E6，rgb(176, 224, 230)否则的话否则的话：$\color{DarkTurquoise}{否则的话}$汉字格式汉字格式：$\color{silver}{汉字格式}$就是这样就是这样：$\color{HotPink}{就是这样}$orz latex我下面是注脚1 7040563540]]></content>
       <tags>
         <tag>template</tag>
         <tag>标签2</tag>

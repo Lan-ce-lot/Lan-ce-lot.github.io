@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-10-16T08:06:26.936Z</updated>
+  <updated>2019-10-16T13:36:38.914Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>codeforceSUN</title>
-    <link href="http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/"/>
-    <id>http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/</id>
-    <published>2019-10-16T08:06:26.000Z</published>
-    <updated>2019-10-16T08:06:26.936Z</updated>
+    <title>queue</title>
+    <link href="http://lan-ce-lot.github.io/2019/10/16/queue/"/>
+    <id>http://lan-ce-lot.github.io/2019/10/16/queue/</id>
+    <published>2019-10-16T13:36:38.000Z</published>
+    <updated>2019-10-16T13:36:38.914Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,26 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>codeforce在失去中得到</title>
+    <link href="http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/"/>
+    <id>http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/</id>
+    <published>2019-10-16T08:06:26.000Z</published>
+    <updated>2019-10-16T13:20:41.133Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Yellow&quot;&gt;就这样我们失去了名额，但是这不能怪谁，要怪就怪自己，没有好好写题。这场 codefor 可以说是比较简单的一场了，可惜我没能珍惜，自我感觉还有三题可做。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
+    
+      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
     
   </entry>
   
@@ -185,7 +205,7 @@
     <link href="http://lan-ce-lot.github.io/2019/09/16/wxsndyy/"/>
     <id>http://lan-ce-lot.github.io/2019/09/16/wxsndyy/</id>
     <published>2019-09-16T01:16:32.000Z</published>
-    <updated>2019-09-19T10:05:48.930Z</updated>
+    <updated>2019-10-16T13:22:53.227Z</updated>
     
     <summary type="html">
     
@@ -395,30 +415,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>廷达魔三角</title>
-    <link href="http://lan-ce-lot.github.io/2019/08/27/ydmsj/"/>
-    <id>http://lan-ce-lot.github.io/2019/08/27/ydmsj/</id>
-    <published>2019-08-27T11:28:04.000Z</published>
-    <updated>2019-08-28T12:22:38.270Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;0&quot;&gt;&lt;a href=&quot;#0&quot; class=&quot;headerlink&quot; title=&quot;0 &quot;&gt;&lt;/a&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Bisque&quot;&gt;0 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/h3&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="http://lan-ce-lot.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="数论" scheme="http://lan-ce-lot.github.io/tags/%E6%95%B0%E8%AE%BA/"/>
-    
-      <category term="游戏王" scheme="http://lan-ce-lot.github.io/tags/%E6%B8%B8%E6%88%8F%E7%8E%8B/"/>
-    
-      <category term="图论" scheme="http://lan-ce-lot.github.io/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
