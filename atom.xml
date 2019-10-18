@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-10-16T13:36:38.914Z</updated>
+  <updated>2019-10-17T11:16:39.247Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -21,20 +21,16 @@
     <link href="http://lan-ce-lot.github.io/2019/10/16/queue/"/>
     <id>http://lan-ce-lot.github.io/2019/10/16/queue/</id>
     <published>2019-10-16T13:36:38.000Z</published>
-    <updated>2019-10-16T13:36:38.914Z</updated>
+    <updated>2019-10-17T11:16:39.247Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;CornflowerBlue&quot;&gt;队列，以前只是用在BFS里，再者就是SPFA的队列优化了，不过之前用的都是stl打法，嘻嘻~ &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     
+    
+      <category term="data structure" scheme="http://lan-ce-lot.github.io/tags/data-structure/"/>
     
   </entry>
   
@@ -43,7 +39,7 @@
     <link href="http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/"/>
     <id>http://lan-ce-lot.github.io/2019/10/16/codeforceSUN/</id>
     <published>2019-10-16T08:06:26.000Z</published>
-    <updated>2019-10-16T13:20:41.133Z</updated>
+    <updated>2019-10-18T00:40:19.185Z</updated>
     
     <summary type="html">
     
