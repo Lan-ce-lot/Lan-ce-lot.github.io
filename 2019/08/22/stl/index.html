@@ -97,7 +97,7 @@
 <meta property="og:description" content="最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://lan-ce-lot.github.io/assets/img/诶佬子/20190906162034667.jpg">
-<meta property="og:updated_time" content="2019-10-14T05:24:45.123Z">
+<meta property="og:updated_time" content="2019-10-22T14:11:41.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL">
 <meta name="twitter:description" content="最近看多了大佬题解代码,™一堆stl容器stl函数我闻所未闻,&quot;余处幽篁兮终不见天,路艰难兮独后来&quot;">
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  678
+                  702
                 </span>
               
 
@@ -424,6 +424,8 @@
 <h2 id="标准库-“merge”-函数-的-用法及代码"><a href="#标准库-“merge”-函数-的-用法及代码" class="headerlink" title="标准库 “merge” 函数 的 用法及代码"></a>标准库 “merge” 函数 的 用法及代码</h2><p>学merge_sort的时候发现标准库里已经有一个merge函数了，于是…嘿嘿</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">merge(vecIntA.begin(), vecIntA.end(), vecIntB.begin(), vecIntB.end(), vecIntC.begin());</span><br></pre></td></tr></table></figure>
 <p>参数是两个容器的首和尾，作用效果是合并加升序。</p>
+<h2 id="memcpy"><a href="#memcpy" class="headerlink" title="memcpy"></a>memcpy</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="built_in">memcpy</span>(a, b, <span class="keyword">sizeof</span>(b));</span><br><span class="line"><span class="built_in">memset</span>(a, <span class="number">0</span>, <span class="keyword">sizeof</span>(a));</span><br></pre></td></tr></table></figure>
+<p>好用的数组赋值函数</p>
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p><a href="https://blog.csdn.net/sunny1996/article/details/51242184/" target="_blank" rel="noopener">看看这个</a></p>
 <h1 id="参考以下博客及资料"><a href="#参考以下博客及资料" class="headerlink" title="参考以下博客及资料"></a>参考以下博客及资料</h1><blockquote>
 <p><a href="https://blog.csdn.net/qq_32172673/article/details/85160180" target="_blank" rel="noopener">C++ STL 之 unordered_set 使用（包括unordersd_map）</a></p>
@@ -722,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#容器"><span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-vector"><span class="nav-text">0 vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-unordered-set"><span class="nav-text">1 unordered_set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-multiset"><span class="nav-text">2 multiset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-hash-map用法总结"><span class="nav-text">c++ hash_map用法总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准库-“merge”-函数-的-用法及代码"><span class="nav-text">标准库 “merge” 函数 的 用法及代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重载"><span class="nav-text">重载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考以下博客及资料"><span class="nav-text">参考以下博客及资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#容器"><span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-vector"><span class="nav-text">0 vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-unordered-set"><span class="nav-text">1 unordered_set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-multiset"><span class="nav-text">2 multiset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-hash-map用法总结"><span class="nav-text">c++ hash_map用法总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准库-“merge”-函数-的-用法及代码"><span class="nav-text">标准库 “merge” 函数 的 用法及代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memcpy"><span class="nav-text">memcpy</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重载"><span class="nav-text">重载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考以下博客及资料"><span class="nav-text">参考以下博客及资料</span></a></li></ol></div>
             
 
           </div>
