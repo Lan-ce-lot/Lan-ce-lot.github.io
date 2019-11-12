@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[disjoint set union]]></title>
+    <url>%2F2019%2F11%2F12%2Fdisjoint-set-union%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[network-flows]]></title>
     <url>%2F2019%2F10%2F27%2Fnetwork-flows%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[递归不程序调用自身的编程技巧称为递归（ recursion）一般来说，递归需要有边界条件、递归前进段和递归返回段。当边界条件不满足时，递归前进；当边界条件满足时，递归返回。递归就是有去（递去）有回（归来） 底层原理其实是栈.栈的特点是后进先出,也就是最后进入栈的事件是最先被处理的 阶乘1234567891011121314151617181920#include &lt;iostream&gt;using namespace std; void Hanoi(int n,char a,char b,char c)&#123; if(n&gt;0) &#123; Hanoi(n-1,a,c,b); cout&lt;&lt;"把"&lt;&lt;n&lt;&lt;"号从"&lt;&lt;a&lt;&lt;"移动到"&lt;&lt;c&lt;&lt;endl; Hanoi(n-1,b,a,c); &#125;&#125;int main()&#123; int n; cin&gt;&gt;n; Hanoi(n,'a','b','c'); return 0;&#125; 斐波那契2041 超级楼梯有一楼梯共M级，刚开始时你在第一级，若每次只能跨上一级或二级，要走上第M级，共有多少种走法？ DFS和BFS算法这两个算法是要求要能不看模板也能打出来的。我们现在主要是理解思想，不止可以走迷宫，树的遍历，层序遍历， void Inserter(BitTree bt,int key){ BitTree parent; //表示双亲结点； BitTree head = bt; BitTree p=(BitTree *)malloc(sizeof(BitTree)); p-&gt;data=key; //保存结点数据； p-&gt;lchild=p-&gt;rchild=NULL; //左右子树置空； //查找需要添加的父结点，这个父结点是度为0的结点； while(head) { parent=head; if(key&lt;head-&gt;data) //若关键字小于结点的数据； head=head-&gt;lchild; //在左子树上查找； else //若关键字大于结点的数据； head=head-&gt;rchild; //在右子树上查找； } //判断添加到左子树还是右子树； if(key&lt;parent-&gt;data) //小于父结点； parent-&gt;lchild=p; //添加到左子树； else //大于父结点； parent-&gt;rchild=p; //添加到右子树；]]></content>
+      <tags>
+        <tag>acm</tag>
+        <tag>网络流</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[jxcpc]]></title>
@@ -238,7 +247,7 @@
   <entry>
     <title><![CDATA[多校联赛1补题]]></title>
     <url>%2F2019%2F08%2F19%2Fdxls1%2F</url>
-    <content type="text"><![CDATA[~~补题吧!~~2019-07-22 jxss1004 Wave1008 Rng1010 Worker1007 Traffic 11005 Path1004 Vacation1002 Operation1009 String 21010 Just Skip The Problem1011 Keen On Everything But Triangle1005 Everything Is Generated In Equal Probability1012 Longest Subarray1009 I Love Palindrome String 31006 Fansblog1007 Find the answer1002 Blow up the city1004 Distribution of books 41001 AND Minimum Spanning Tree1007 Just an Old Puzzle1008 K-th Closest Distance1010 Minimal Power of Prime1003 Divide the Stones 51006 string matching1007 permutation 21005 permutation 11004 equation1002 three arrays 61008 TDL1005 Snowy Smile1006 Faraway 71010 Just Repeat 81011 Roundgod and Milk Tea1009 Calabash and Landlord1003 Acesrc and Good Numbers 91006 Rikka with Coin1002 Rikka with Cake 101003 Valentine’s Day1005 Welcome Party1011 Make Rounddog Happy ccpcwls1003 K-th occurrence1002 array1004 path1005 huntian oy 1005 Path思路最短路，无负权。邻接表，迪杰斯特拉或者SPFA AC代码12]]></content>
+    <content type="text"><![CDATA[~~补题吧!~~2019-07-22 jxss1004 Wave1008 Rng1010 Worker1007 Traffic 11005 Path1004 Vacation1002 Operation1009 String 21010 Just Skip The Problem1011 Keen On Everything But Triangle1005 Everything Is Generated In Equal Probability1012 Longest Subarray1009 I Love Palindrome String 31006 Fansblog1007 Find the answer1002 Blow up the city1004 Distribution of books 41001 AND Minimum Spanning Tree1007 Just an Old Puzzle1008 K-th Closest Distance1010 Minimal Power of Prime1003 Divide the Stones 51006 string matching1007 permutation 21005 permutation 11004 equation1002 three arrays 61008 TDL1005 Snowy Smile1006 Faraway 71010 Just Repeat 81011 Roundgod and Milk Tea1009 Calabash and Landlord1003 Acesrc and Good Numbers 91006 Rikka with Coin1002 Rikka with Cake 101003 Valentine’s Day1005 Welcome Party1011 Make Rounddog Happy ccpcwls1003 K-th occurrence1002 array1004 path1005 huntian oy 1005 Path思路最短路，无负权。邻接表，迪杰斯特拉或者SPFA AC代码12 ```c++]]></content>
       <tags>
         <tag>acm</tag>
         <tag>补题</tag>

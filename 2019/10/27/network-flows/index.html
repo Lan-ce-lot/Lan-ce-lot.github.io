@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="acm,网络流,">
 
 
 
@@ -88,14 +88,18 @@
 
 
 
+<meta name="description" content="递归不程序调用自身的编程技巧称为递归（ recursion）一般来说，递归需要有边界条件、递归前进段和递归返回段。当边界条件不满足时，递归前进；当边界条件满足时，递归返回。递归就是有去（递去）有回（归来） 底层原理其实是栈.栈的特点是后进先出,也就是最后进入栈的事件是最先被处理的 阶乘1234567891011121314151617181920#include &amp;lt;iostream&amp;gt;u">
+<meta name="keywords" content="acm,网络流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="network-flows">
 <meta property="og:url" content="http://lan-ce-lot.github.io/2019/10/27/network-flows/index.html">
 <meta property="og:site_name" content="Lance">
+<meta property="og:description" content="递归不程序调用自身的编程技巧称为递归（ recursion）一般来说，递归需要有边界条件、递归前进段和递归返回段。当边界条件不满足时，递归前进；当边界条件满足时，递归返回。递归就是有去（递去）有回（归来） 底层原理其实是栈.栈的特点是后进先出,也就是最后进入栈的事件是最先被处理的 阶乘1234567891011121314151617181920#include &amp;lt;iostream&amp;gt;u">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-27T03:22:13.614Z">
+<meta property="og:updated_time" content="2019-11-05T12:05:41.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="network-flows">
+<meta name="twitter:description" content="递归不程序调用自身的编程技巧称为递归（ recursion）一般来说，递归需要有边界条件、递归前进段和递归返回段。当边界条件不满足时，递归前进；当边界条件满足时，递归返回。递归就是有去（递去）有回（归来） 底层原理其实是栈.栈的特点是后进先出,也就是最后进入栈的事件是最先被处理的 阶乘1234567891011121314151617181920#include &amp;lt;iostream&amp;gt;u">
 
 
 
@@ -363,7 +367,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  470
                 </span>
               
 
@@ -400,7 +404,27 @@
       
 
       
-        
+        <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p><del>不</del><br>程序调用自身的编程技巧称为递归（ recursion）<br>一般来说，递归需要有边界条件、递归前进段和递归返回段。当边界条件不满足时，递归前进；当边界条件满足时，递归返回。<br>递归就是有去（递去）有回（归来）</p>
+<p>底层原理其实是栈.栈的特点是后进先出,也就是最后进入栈的事件是最先被处理的</p>
+<h3 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Hanoi</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">char</span> a,<span class="keyword">char</span> b,<span class="keyword">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Hanoi(n<span class="number">-1</span>,a,c,b);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"把"</span>&lt;&lt;n&lt;&lt;<span class="string">"号从"</span>&lt;&lt;a&lt;&lt;<span class="string">"移动到"</span>&lt;&lt;c&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        Hanoi(n<span class="number">-1</span>,b,a,c);</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    Hanoi(n,<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="斐波那契"><a href="#斐波那契" class="headerlink" title="斐波那契"></a>斐波那契</h3><h3 id="2041-超级楼梯"><a href="#2041-超级楼梯" class="headerlink" title="2041 超级楼梯"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2041" target="_blank" rel="noopener">2041 超级楼梯</a></h3><p>有一楼梯共M级，刚开始时你在第一级，若每次只能跨上一级或二级，要走上第M级，共有多少种走法？</p>
+<h2 id="DFS和BFS算法"><a href="#DFS和BFS算法" class="headerlink" title="DFS和BFS算法"></a>DFS和BFS算法</h2><p>这两个算法是要求要能不看模板也能打出来的。<br>我们现在主要是理解思想，不止可以走迷宫，树的遍历，层序遍历，</p>
+<p>void Inserter(BitTree <em>bt,int key)<br>{<br>    BitTree </em>parent;   //表示双亲结点；<br>    BitTree <em>head = bt;<br>    BitTree </em>p=(BitTree *)malloc(sizeof(BitTree));<br>    p-&gt;data=key;   //保存结点数据；<br>    p-&gt;lchild=p-&gt;rchild=NULL;  //左右子树置空；</p>
+<pre><code>//查找需要添加的父结点，这个父结点是度为0的结点；
+while(head) 
+{
+    parent=head;
+    if(key&lt;head-&gt;data)   //若关键字小于结点的数据；
+        head=head-&gt;lchild; //在左子树上查找； 
+    else   //若关键字大于结点的数据；
+        head=head-&gt;rchild;  //在右子树上查找；
+}
+//判断添加到左子树还是右子树；
+if(key&lt;parent-&gt;data)   //小于父结点；
+    parent-&gt;lchild=p;    //添加到左子树；
+else    //大于父结点；
+    parent-&gt;rchild=p;   //添加到右子树；
+</code></pre>
       
     </div>
     
@@ -462,6 +486,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/acm/" rel="tag"># acm</a>
+          
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+        </div>
+      
 
       
       
@@ -495,6 +527,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/12/disjoint-set-union/" rel="prev" title="disjoint set union">
+                disjoint set union <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -546,8 +582,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,7 +609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -577,7 +622,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -662,6 +707,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归"><span class="nav-text">递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阶乘"><span class="nav-text">阶乘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#斐波那契"><span class="nav-text">斐波那契</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2041-超级楼梯"><span class="nav-text">2041 超级楼梯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DFS和BFS算法"><span class="nav-text">DFS和BFS算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -696,7 +757,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.2k</span>
+    <span title="Site words total count">48.7k</span>
   
 </div>
 

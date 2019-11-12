@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-10-27T03:22:13.614Z</updated>
+  <updated>2019-11-12T12:56:17.446Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>network-flows</title>
-    <link href="http://lan-ce-lot.github.io/2019/10/27/network-flows/"/>
-    <id>http://lan-ce-lot.github.io/2019/10/27/network-flows/</id>
-    <published>2019-10-27T03:22:13.000Z</published>
-    <updated>2019-10-27T03:22:13.614Z</updated>
+    <title>disjoint set union</title>
+    <link href="http://lan-ce-lot.github.io/2019/11/12/disjoint-set-union/"/>
+    <id>http://lan-ce-lot.github.io/2019/11/12/disjoint-set-union/</id>
+    <published>2019-11-12T12:56:17.000Z</published>
+    <updated>2019-11-12T12:56:17.446Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,32 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>network-flows</title>
+    <link href="http://lan-ce-lot.github.io/2019/10/27/network-flows/"/>
+    <id>http://lan-ce-lot.github.io/2019/10/27/network-flows/</id>
+    <published>2019-10-27T03:22:13.000Z</published>
+    <updated>2019-11-05T12:05:41.094Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
+    
+      <category term="网络流" scheme="http://lan-ce-lot.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/"/>
     
   </entry>
   
@@ -384,26 +410,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;自我感觉海星，至少这波与我相关 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
-    
-      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The 2019 Asia Yinchuan First Round Online Programming</title>
-    <link href="http://lan-ce-lot.github.io/2019/09/01/yinchuan/"/>
-    <id>http://lan-ce-lot.github.io/2019/09/01/yinchuan/</id>
-    <published>2019-09-01T13:21:56.000Z</published>
-    <updated>2019-09-04T11:56:57.118Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Tomato&quot;&gt;银川这波原题操作还是很秀的，然而菜鸡却连是原题都没有看出来，诶 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     
