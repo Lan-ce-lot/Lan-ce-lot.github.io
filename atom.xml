@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-12-19T10:02:12.118Z</updated>
+  <updated>2019-12-19T10:08:22.758Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -21,20 +21,18 @@
     <link href="http://lan-ce-lot.github.io/2019/12/19/ph/"/>
     <id>http://lan-ce-lot.github.io/2019/12/19/ph/</id>
     <published>2019-12-19T10:02:12.000Z</published>
-    <updated>2019-12-19T10:02:12.118Z</updated>
+    <updated>2019-12-19T10:08:22.758Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
+      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Bisque&quot;&gt;《致中文系》 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
     
     </summary>
     
+    
+      <category term="随笔" scheme="http://lan-ce-lot.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="诗" scheme="http://lan-ce-lot.github.io/tags/%E8%AF%97/"/>
     
   </entry>
   
@@ -43,7 +41,7 @@
     <link href="http://lan-ce-lot.github.io/2019/11/19/hua/"/>
     <id>http://lan-ce-lot.github.io/2019/11/19/hua/</id>
     <published>2019-11-19T13:14:26.000Z</published>
-    <updated>2019-11-19T13:14:26.755Z</updated>
+    <updated>2019-12-19T11:49:07.359Z</updated>
     
     <summary type="html">
     
@@ -57,6 +55,10 @@
     
     </summary>
     
+    
+      <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
+    
+      <category term="补题" scheme="http://lan-ce-lot.github.io/tags/%E8%A1%A5%E9%A2%98/"/>
     
   </entry>
   
@@ -371,6 +373,24 @@
   </entry>
   
   <entry>
+    <title>白色尾巴的黑猫</title>
+    <link href="http://lan-ce-lot.github.io/2019/09/09/readme/java/"/>
+    <id>http://lan-ce-lot.github.io/2019/09/09/readme/java/</id>
+    <published>2019-09-09T14:07:40.000Z</published>
+    <updated>2019-09-14T05:30:02.410Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;Bisque&quot;&gt;记住这个夜晚！ &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://lan-ce-lot.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>oj大全</title>
     <link href="http://lan-ce-lot.github.io/2019/09/07/oj%E5%A4%A7%E5%85%A8/"/>
     <id>http://lan-ce-lot.github.io/2019/09/07/oj大全/</id>
@@ -409,24 +429,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>py学习1</title>
-    <link href="http://lan-ce-lot.github.io/2019/09/06/pyxx1/"/>
-    <id>http://lan-ce-lot.github.io/2019/09/06/pyxx1/</id>
-    <published>2019-09-06T11:56:33.000Z</published>
-    <updated>2019-11-15T02:21:36.527Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&quot;CornflowerBlue&quot;&gt;人生苦短，我用python &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="py" scheme="http://lan-ce-lot.github.io/tags/py/"/>
     
   </entry>
   
