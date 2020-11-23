@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2019-12-19T10:08:22.758Z</updated>
+  <updated>2020-11-23T12:49:59.811Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://lan-ce-lot.github.io/2020/11/23/%E6%B5%8B%E8%AF%95/"/>
+    <id>http://lan-ce-lot.github.io/2020/11/23/测试/</id>
+    <published>2020-11-23T12:49:28.877Z</published>
+    <updated>2020-11-23T12:49:59.811Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>ph</title>
@@ -407,28 +429,6 @@
       <category term="acm" scheme="http://lan-ce-lot.github.io/tags/acm/"/>
     
       <category term="在线oj" scheme="http://lan-ce-lot.github.io/tags/%E5%9C%A8%E7%BA%BFoj/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The Preliminary Contest for ICPC Asia Xuzhou 2019</title>
-    <link href="http://lan-ce-lot.github.io/2019/09/07/xu/"/>
-    <id>http://lan-ce-lot.github.io/2019/09/07/xu/</id>
-    <published>2019-09-07T04:32:31.000Z</published>
-    <updated>2019-09-09T00:25:18.795Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
     
   </entry>
   
