@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lan-ce-lot.github.io/"/>
-  <updated>2020-11-23T12:49:59.811Z</updated>
+  <updated>2020-11-23T14:46:06.272Z</updated>
   <id>http://lan-ce-lot.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://lan-ce-lot.github.io/2020/11/23/%E6%B5%8B%E8%AF%95/"/>
-    <id>http://lan-ce-lot.github.io/2020/11/23/测试/</id>
-    <published>2020-11-23T12:49:28.877Z</published>
-    <updated>2020-11-23T12:49:59.811Z</updated>
+    <title>实验二</title>
+    <link href="http://lan-ce-lot.github.io/2020/11/23/%E5%AE%9E%E9%AA%8C%E4%BA%8C/"/>
+    <id>http://lan-ce-lot.github.io/2020/11/23/实验二/</id>
+    <published>2020-11-23T13:33:23.000Z</published>
+    <updated>2020-11-23T14:46:06.272Z</updated>
     
     <summary type="html">
     
@@ -35,6 +35,8 @@
     
     </summary>
     
+    
+      <category term="实验" scheme="http://lan-ce-lot.github.io/tags/%E5%AE%9E%E9%AA%8C/"/>
     
   </entry>
   

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2020%2F11%2F23%2F%E6%B5%8B%E8%AF%95%2F</url>
-    <content type="text"><![CDATA[实验二]]></content>
+    <title><![CDATA[实验二]]></title>
+    <url>%2F2020%2F11%2F23%2F%E5%AE%9E%E9%AA%8C%E4%BA%8C%2F</url>
+    <content type="text"><![CDATA[实验二绝对路径 相对路径]]></content>
+      <tags>
+        <tag>实验</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[ph]]></title>
