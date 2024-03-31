@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="人生苦短，我用python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习">
+<meta property="og:url" content="http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="人生苦短，我用python">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-09-06T11:56:33.000Z">
+<meta property="article:modified_time" content="2024-03-28T12:59:28.864Z">
+<meta property="article:author" content="lance">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Python学习</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2019/09/07/The-Preliminary-Contest-for-ICPC-Asia-Xuzhou-2019/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2019/09/01/The-Preliminary-Contest-for-ICPC-Asia-Nanjing-2019/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&text=Python学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&is_video=false&description=Python学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python学习&body=Check out this article: http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&name=Python学习&description=&lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;人生苦短，我用python &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&t=Python学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0"><span class="toc-number">1.</span> <span class="toc-text">0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E4%B8%AAhello-world%EF%BC%8C%E4%BB%A5%E8%A1%A8%E6%95%AC%E6%84%8F"><span class="toc-number">1.1.</span> <span class="toc-text">来个hello world，以表敬意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E5%8F%A3%E8%AF%80"><span class="toc-number">1.2.</span> <span class="toc-text">乘法口诀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-number">1.3.</span> <span class="toc-text">转义字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%8F%B7"><span class="toc-number">1.4.</span> <span class="toc-text">引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E5%86%85%E5%AE%B9"><span class="toc-number">1.5.</span> <span class="toc-text">多行内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">4.</span> <span class="toc-text">格式化输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">5.1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E5%85%B8"><span class="toc-number">5.2.</span> <span class="toc-text">字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-number">5.3.</span> <span class="toc-text">元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-number">5.4.</span> <span class="toc-text">集合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C1"><span class="toc-number">6.</span> <span class="toc-text">实验1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C2"><span class="toc-number">7.</span> <span class="toc-text">实验2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">7.1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">7.2.</span> <span class="toc-text">2</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Python学习
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">lance</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-06T11:56:33.000Z" class="dt-published" itemprop="datePublished">2019-09-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p><table><tr><td bgcolor="CornflowerBlue">人生苦短，我用python </td></tr></table><br><span id="more"></span></p>
+<h2 id="0"><a href="#0" class="headerlink" title="0"></a>0</h2><p>不知道从何学起，于是随随便便找个地方开始，开个blog怕自己忘记。<br><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017063826246112">没有书籍，只有网站</a></p>
+<h3 id="来个hello-world，以表敬意"><a href="#来个hello-world，以表敬意" class="headerlink" title="来个hello world，以表敬意"></a>来个hello world，以表敬意</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hello world&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="乘法口诀"><a href="#乘法口诀" class="headerlink" title="乘法口诀"></a>乘法口诀</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=gbk</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, i+<span class="number">1</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;&#123;&#125;×&#123;&#125;=&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(i, j, i*j),end=<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>一开始没有这个</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=gbk</span></span><br></pre></td></tr></table></figure>
+<p>然后就一直报错…</p>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\\\t\\&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">r&#x27;\\\t\\&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h3><p>单引号双引号<br>三引号’’’多行字符串’’’</p>
+<h3 id="多行内容"><a href="#多行内容" class="headerlink" title="多行内容"></a>多行内容</h3><p>如果字符串内部有很多换行，用\n写在一行里不好阅读，为了简化，Python允许用’’’…’’’的格式表示多行内容</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;&#x27;line1</span></span><br><span class="line"><span class="string">line2</span></span><br><span class="line"><span class="string">line3&#x27;&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>所谓常量就是不能变的变量，比如常用的数学常数π就是一个常量。在Python中，通常用全部大写的变量名表示常量：</p>
+<p>PI = 3.14159265359<br>但事实上PI仍然是一个变量，Python根本没有任何机制保证PI不会被改变，所以，用全部大写的变量名表示常量只是一个习惯上的用法，如果你一定要改变变量PI的值，也没人能拦住你。</p>
+<h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h2><p>/除法计算结果是浮点数，即使是两个整数恰好整除，结果也是浮点数<br>还有一种除法是//，称为地板除，两个整数的除法仍然是整数</p>
+<h2 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello, %s&#x27;</span> % <span class="string">&#x27;world&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%2d-%02d&#x27;</span> % (<span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;%.2f&#x27;</span> % <span class="number">3.1415926</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Age: %s. Gender: %s&#x27;</span> % (<span class="number">25</span>, <span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+<p>format()<br>另一种格式化字符串的方法是使用字符串的format()方法，它会用传入的参数依次替换字符串内的占位符{0}、{1}……，不过这种方式写起来比%要麻烦得多：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;Hello, &#123;0&#125;, 成绩提升了 &#123;1:.1f&#125;%&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;小明&#x27;</span>, <span class="number">17.125</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">列表</th>
+<th style="text-align:center">元组</th>
+<th style="text-align:center">集合</th>
+<th style="text-align:center">字典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>英文</td>
+<td style="text-align:center">list</td>
+<td style="text-align:center">tuple</td>
+<td style="text-align:center">set</td>
+<td style="text-align:center">dict</td>
+</tr>
+<tr>
+<td>可否读写</td>
+<td style="text-align:center">读写</td>
+<td style="text-align:center">只读</td>
+<td style="text-align:center">读写</td>
+<td style="text-align:center">读写</td>
+</tr>
+<tr>
+<td>可否重复</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td>存储方式</td>
+<td style="text-align:center">值</td>
+<td style="text-align:center">值</td>
+<td style="text-align:center">键(不能重复)</td>
+<td style="text-align:center">键值对(键不能重复)</td>
+</tr>
+<tr>
+<td>是否有序</td>
+<td style="text-align:center">有序</td>
+<td style="text-align:center">有序</td>
+<td style="text-align:center">无序</td>
+<td style="text-align:center">无序，自动正序</td>
+</tr>
+<tr>
+<td>初始化</td>
+<td style="text-align:center">[1,’a’]</td>
+<td style="text-align:center">(‘a’, 1)</td>
+<td style="text-align:center">set([1,2]) 或 {1,2}</td>
+<td style="text-align:center">{‘a’:1,’b’:2}</td>
+</tr>
+<tr>
+<td>添加</td>
+<td style="text-align:center">append</td>
+<td style="text-align:center">只读</td>
+<td style="text-align:center">add</td>
+<td style="text-align:center">d[‘key’] = ‘value’</td>
+</tr>
+<tr>
+<td>读元素</td>
+<td style="text-align:center">l[2:]</td>
+<td style="text-align:center">t[0]</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">d[‘a’]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表、元组、字典、集合的区别是python面试中最常见的一个问题。这个问题虽然很基础，但确实能反映出面试者的基础水平。</p>
+<blockquote>
+<p>list是处理一组有序项目的数据结构，即你可以在一个列表中存储一个序列的项目。列表中的项目。列表中的项目应该包括在方括号中，这样python就知道你是在指明一个列表。一旦你创建了一个列表，你就可以添加，删除，或者是搜索列表中的项目。由于你可以增加或删除项目，我们说列表是可变的数据类型，即这种类型是可以被改变的，并且列表是可以嵌套的。python里的列表用“[]”表示：　　</p>
+</blockquote>
+<p>lst = [‘arwen’,123]<br>print lst[0]<br>print lst[1]</p>
+<p>lst[0] = ‘weiwen’</p>
+<p>向list中添加项有两种方法：append和extend。</p>
+<p>append():列表后追加元素</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">word.append(<span class="string">&#x27;1&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>extend()或者+=：列表合并，将一个列表加入到另一个中，成为一个列表。</p>
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><ol>
+<li>字典中的元素顺序无关紧要，通过不同的键(key)进行访问，字典是可以改变的，和现实的字典类似。</li>
+<li>字典在其它的语言中被称为关系型数组，哈希表，哈希图等。<br>使用大括号{key:value}创建</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#键值对的字典</span></span><br><span class="line">one_dict = &#123;<span class="string">&quot;day1&quot;</span>:study</span><br><span class="line"><span class="string">&quot;day2&quot;</span>:paly</span><br><span class="line"><span class="string">&quot;day3&quot;</span>:sleep</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#储存一个元素</span></span><br><span class="line">d = &#123;</span><br><span class="line">    <span class="string">&#x27;one&#x27;</span>:<span class="number">123</span>,</span><br><span class="line">    <span class="string">&#x27;two&#x27;</span>:<span class="number">2</span>,</span><br><span class="line">    <span class="string">&#x27;three&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">    <span class="string">&#x27;test&#x27;</span>:<span class="number">2</span></span><br><span class="line">   &#125;</span><br><span class="line"> d2 = d[<span class="string">&#x27;three&#x27;</span>]</span><br><span class="line"> d2</span><br><span class="line"> [<span class="string">&#x27;three&#x27;</span>:<span class="number">3</span>]</span><br><span class="line"><span class="comment">#访问一个元素,如果不存在会报错</span></span><br><span class="line">d = &#123;</span><br><span class="line">    <span class="string">&#x27;one&#x27;</span>:<span class="number">123</span>,</span><br><span class="line">    <span class="string">&#x27;two&#x27;</span>:<span class="number">2</span>,</span><br><span class="line">    <span class="string">&#x27;three&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">    <span class="string">&#x27;test&#x27;</span>:<span class="number">2</span></span><br><span class="line">   &#125;</span><br><span class="line">   d[<span class="string">&#x27;one&#x27;</span>]</span><br><span class="line">   <span class="number">123</span></span><br><span class="line"><span class="comment">#添加一个元素，然后修改这个元素</span></span><br><span class="line">d = &#123;</span><br><span class="line">    <span class="string">&#x27;one&#x27;</span>:<span class="number">123</span>,</span><br><span class="line">    <span class="string">&#x27;two&#x27;</span>:<span class="number">2</span>,</span><br><span class="line">    <span class="string">&#x27;three&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">    <span class="string">&#x27;test&#x27;</span>:<span class="number">2</span></span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">#添加元素&#x27;try&#x27;:55</span></span><br><span class="line">d[<span class="string">&#x27;try&#x27;</span>] = <span class="string">&#x27;55&#x27;</span></span><br><span class="line">d</span><br><span class="line">d = &#123;</span><br><span class="line">    <span class="string">&#x27;one&#x27;</span>:<span class="number">123</span>,</span><br><span class="line">    <span class="string">&#x27;two&#x27;</span>:<span class="number">2</span>,</span><br><span class="line">    <span class="string">&#x27;three&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">    <span class="string">&#x27;test&#x27;</span>:<span class="number">2</span></span><br><span class="line">    <span class="string">&#x27;try&#x27;</span>:<span class="number">55</span></span><br><span class="line">   &#125;</span><br><span class="line">修改元素<span class="number">55</span>为<span class="number">5</span></span><br><span class="line">d[<span class="string">&#x27;try&#x27;</span>] = <span class="string">&#x27;5&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>[key]储存，访问，添加或者修改元素</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将包含双值的子序列的序列转换成字典,第一值为键，第二个值为值</span></span><br><span class="line">one_list = [[<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>],[<span class="number">2</span>,<span class="string">&#x27;b&#x27;</span>]]</span><br><span class="line"><span class="built_in">dict</span>(one_list)</span><br><span class="line">&#123;<span class="number">1</span>:<span class="string">&#x27;a&#x27;</span>,<span class="number">2</span>:<span class="string">&#x27;b&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#可以将双值的，双字符，元组，列表化成字典。</span></span><br><span class="line">tos = (<span class="string">&#x27;ab&#x27;</span>,<span class="string">&#x27;cd&#x27;</span>,<span class="string">&#x27;ef&#x27;</span>)</span><br><span class="line"><span class="built_in">dict</span>(tos)</span><br><span class="line">&#123;<span class="string">&#x27;c&#x27;</span>:<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;a&#x27;</span>:<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;e&#x27;</span>:<span class="string">&#x27;f&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组与序列类似，也是由任意元素组成的序列，但是元组一旦创建如同字符串，不可改变。</p>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><p>集合和只剩下的键的字典类似，键与键之间不允许重复，类似数学中的集合，主要包括并、交等运算，且集合是无序的。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#偶数集合</span></span><br><span class="line">even_numbers = &#123;<span class="number">0</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>union() 或者 | 函数获取并集<br>different() 或者 - 获得集合的并集<br>symmetric_difference() 或者 ^ 获得异或集（只在两个集合中出现一次）<br>issubset() 或者 &lt;= 判断一个集合是否是另一个集合的子集<br>&lt; 判断真子集<br>issupset() 或者 &gt;= 判断超集（超集的概念与子集相反）</p>
+</blockquote>
+<h2 id="实验1"><a href="#实验1" class="headerlink" title="实验1"></a>实验1</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">word = (<span class="string">&#x27;answer&#x27;</span>, <span class="string">&#x27;python&#x27;</span>,<span class="string">&#x27;password&#x27;</span>, <span class="string">&#x27;learn&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;     欢迎参加猜单词游戏\n&#x27;</span>, <span class="string">&#x27; 请把下列各字母组合成一个正确的单词.\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:                                                          <span class="comment">#随机取词</span></span><br><span class="line">    get_word = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    temp = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(word) - <span class="number">1</span>)</span><br><span class="line">    temp_word = word[temp]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">len</span>(temp_word)):                                          <span class="comment">#打乱字母</span></span><br><span class="line">        position = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(temp_word) - <span class="number">1</span>)</span><br><span class="line">        get_word += temp_word[position]</span><br><span class="line">        temp_word = temp_word[:position] + temp_word[(position + <span class="number">1</span>):]<span class="comment">#切片操作</span></span><br><span class="line">        </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;乱序后单词:&#x27;</span>,get_word)</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">input</span>(<span class="string">&#x27;请你猜:&#x27;</span>) != word[temp]):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;对不起不正确.&#x27;</span>)</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">input</span>(<span class="string">&#x27;继续猜:&#x27;</span>) != word[temp]):<span class="built_in">print</span>(<span class="string">&#x27;对不起不正确.&#x27;</span>) </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;真棒，你猜对了!\n&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:                                                      <span class="comment">#是否继续</span></span><br><span class="line">        judge_w = <span class="built_in">input</span>(<span class="string">&#x27;是否继续(Y/N):&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> (judge_w == <span class="string">&#x27;Y&#x27;</span> <span class="keyword">or</span> judge_w == <span class="string">&#x27;y&#x27;</span>):<span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> (judge_w == <span class="string">&#x27;N&#x27;</span> <span class="keyword">or</span> judge_w == <span class="string">&#x27;n&#x27;</span>):exit()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="实验2"><a href="#实验2" class="headerlink" title="实验2"></a>实验2</h2><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"></span><br><span class="line"><span class="comment">#单词列表</span></span><br><span class="line">regions = [(<span class="number">1</span>, <span class="string">&#x27;anwser&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;password&#x27;</span>), (<span class="number">3</span>, <span class="string">&#x27;python&#x27;</span>), (<span class="number">4</span>, <span class="string">&#x27;learn&#x27;</span>), (<span class="number">5</span>, <span class="string">&#x27;star&#x27;</span>), (<span class="number">6</span>, <span class="string">&#x27;warn&#x27;</span>), (<span class="number">7</span>, <span class="string">&#x27;error&#x27;</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建数据库，单词写入数据库</span></span><br><span class="line">con = sqlite3.connect(<span class="string">r&quot;F:\work\二上\py\SQL数据库\test.db&quot;</span>)</span><br><span class="line">con.execute(<span class="string">&quot;create table region(id primary key, name)&quot;</span>)</span><br><span class="line">con.executemany(<span class="string">&quot;insert into region(id, name) values(?, ?)&quot;</span>, regions)</span><br><span class="line"></span><br><span class="line">con.commit()</span><br><span class="line">con.close()</span><br></pre></td></tr></table></figure>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">con = sqlite3.connect(<span class="string">r&quot;F:\work\二上\py\SQL数据库\test.db&quot;</span>)         <span class="comment">#单词从数据库中取出</span></span><br><span class="line">cur = con.execute(<span class="string">&quot;select id, name from region&quot;</span>)</span><br><span class="line">word = []</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cur: word.append(row[<span class="number">1</span>])</span><br><span class="line">cur.close()</span><br><span class="line">con.close()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;     欢迎参加猜单词游戏\n&#x27;</span>, <span class="string">&#x27; 请把下列各字母组合成一个正确的单词.\n&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:                                                          <span class="comment">#随机取词</span></span><br><span class="line">    get_word = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    temp = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(word) - <span class="number">1</span>)</span><br><span class="line">    temp_word = word[temp]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">len</span>(temp_word)):                                          <span class="comment">#打乱字母</span></span><br><span class="line">        position = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(temp_word) - <span class="number">1</span>)</span><br><span class="line">        get_word += temp_word[position]</span><br><span class="line">        temp_word = temp_word[:position] + temp_word[(position + <span class="number">1</span>):]<span class="comment">#切片操作</span></span><br><span class="line">        </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;乱序后单词:&#x27;</span>,get_word)</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">input</span>(<span class="string">&#x27;请你猜:&#x27;</span>) != word[temp]):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;对不起不正确.&#x27;</span>)</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">input</span>(<span class="string">&#x27;继续猜:&#x27;</span>) != word[temp]):<span class="built_in">print</span>(<span class="string">&#x27;对不起不正确.&#x27;</span>) </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;真棒，你猜对了!\n&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:                                                      <span class="comment">#是否继续</span></span><br><span class="line">        judge_w = <span class="built_in">input</span>(<span class="string">&#x27;是否继续(Y/N):&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> (judge_w == <span class="string">&#x27;Y&#x27;</span> <span class="keyword">or</span> judge_w == <span class="string">&#x27;y&#x27;</span>):<span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> (judge_w == <span class="string">&#x27;N&#x27;</span> <span class="keyword">or</span> judge_w == <span class="string">&#x27;n&#x27;</span>):exit()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0"><span class="toc-number">1.</span> <span class="toc-text">0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E4%B8%AAhello-world%EF%BC%8C%E4%BB%A5%E8%A1%A8%E6%95%AC%E6%84%8F"><span class="toc-number">1.1.</span> <span class="toc-text">来个hello world，以表敬意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%98%E6%B3%95%E5%8F%A3%E8%AF%80"><span class="toc-number">1.2.</span> <span class="toc-text">乘法口诀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-number">1.3.</span> <span class="toc-text">转义字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%8F%B7"><span class="toc-number">1.4.</span> <span class="toc-text">引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E5%86%85%E5%AE%B9"><span class="toc-number">1.5.</span> <span class="toc-text">多行内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">4.</span> <span class="toc-text">格式化输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8"><span class="toc-number">5.1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E5%85%B8"><span class="toc-number">5.2.</span> <span class="toc-text">字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-number">5.3.</span> <span class="toc-text">元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-number">5.4.</span> <span class="toc-text">集合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C1"><span class="toc-number">6.</span> <span class="toc-text">实验1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C2"><span class="toc-number">7.</span> <span class="toc-text">实验2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">7.1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">7.2.</span> <span class="toc-text">2</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&text=Python学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&is_video=false&description=Python学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python学习&body=Check out this article: http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&title=Python学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&name=Python学习&description=&lt;p&gt;&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;人生苦短，我用python &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/09/06/Python%E5%AD%A6%E4%B9%A0/&t=Python学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2024
+    lance
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

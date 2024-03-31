@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="普通map的实现不是并发安全，并发读写会painc  思想：读写分离，以空间换时间，动态调整  用法123456789101112131415161718192021func Test_sync_map(t *testing.T) &#123;      var smp sync.Map      smp.Store(&quot;a&quot;, &quot;111111&quot;)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sync.Map原理">
+<meta property="og:url" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="普通map的实现不是并发安全，并发读写会painc  思想：读写分离，以空间换时间，动态调整  用法123456789101112131415161718192021func Test_sync_map(t *testing.T) &#123;      var smp sync.Map      smp.Store(&quot;a&quot;, &quot;111111&quot;)">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240326235028794.png">
+<meta property="og:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327000200431.png">
+<meta property="og:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327000807513.png">
+<meta property="og:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327002941535.png">
+<meta property="og:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327003433907.png">
+<meta property="og:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327004118520.png">
+<meta property="og:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327004154817.png">
+<meta property="article:published_time" content="2024-03-27T04:29:58.000Z">
+<meta property="article:modified_time" content="2024-03-27T11:42:36.422Z">
+<meta property="article:author" content="lance">
+<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="并发">
+<meta property="article:tag" content="面经">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240326235028794.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>sync.Map原理</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/03/27/Golang%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/03/26/hello-world/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&text=sync.Map原理"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&is_video=false&description=sync.Map原理"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sync.Map原理&body=Check out this article: http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&name=sync.Map原理&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&t=sync.Map原理"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#entry"><span class="toc-number">2.1.</span> <span class="toc-text">entry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#readOnly"><span class="toc-number">2.2.</span> <span class="toc-text">readOnly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">读流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">写流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E6%B5%81%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">删流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%B5%81%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">遍历流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E7%A1%AC%E5%88%A0%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text">软硬删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8-expunged-%E6%A0%87%E8%AF%86%E7%A1%AC%E5%88%A0%E9%99%A4%E6%80%81"><span class="toc-number">7.1.</span> <span class="toc-text">为什么用 expunged 标识硬删除态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E8%BD%AC"><span class="toc-number">8.</span> <span class="toc-text">数据流转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        sync.Map原理
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">lance</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-27T04:29:58.000Z" class="dt-published" itemprop="datePublished">2024-03-27</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Golang/" rel="tag">Golang</a>, <a class="p-category" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a>, <a class="p-category" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>普通map的实现不是并发安全，并发读写会painc</p>
+<blockquote>
+<p>思想：读写分离，以空间换时间，动态调整</p>
+</blockquote>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test_sync_map</span><span class="params">(t *testing.T)</span></span> &#123;  </span><br><span class="line">    <span class="keyword">var</span> smp sync.Map  </span><br><span class="line">    smp.Store(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;111111&quot;</span>)  </span><br><span class="line">    smp.Store(<span class="string">&quot;b&quot;</span>, <span class="string">&quot;222&quot;</span>)  </span><br><span class="line">    smp.Store(<span class="string">&quot;c&quot;</span>, <span class="string">&quot;222&quot;</span>)  </span><br><span class="line">    smp.Store(<span class="string">&quot;d&quot;</span>, <span class="string">&quot;222&quot;</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// load  </span></span><br><span class="line">    v, ok := smp.Load(<span class="string">&quot;a&quot;</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> !ok &#123;  </span><br><span class="line">       t.Error(<span class="string">&quot;a not exist&quot;</span>)  </span><br><span class="line">       <span class="keyword">return</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">    str, _ := v.(<span class="type">string</span>)  </span><br><span class="line">    smp.Range(<span class="function"><span class="keyword">func</span><span class="params">(key, value any)</span></span> <span class="type">bool</span> &#123;  </span><br><span class="line">       t.Logf(<span class="string">&quot;key:%v value:%v&quot;</span>, key, value)  </span><br><span class="line">       <span class="keyword">return</span> key != <span class="string">&quot;c&quot;</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    t.Log(str)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>思路，类似缓存机制<br>sync.map：空间换时间，一个 map 只读（无锁化），一个 map 读写（上锁）<br>得到 misses 阈值会进行 read map 和 dirty map 的更新轮换</p>
+<p><img src="/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240326235028794.png" alt></p>
+<h3 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> entry <span class="keyword">struct</span> &#123; </span><br><span class="line">  p atomic.Pointer[any]  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三种状态<br>1 存活态：正常指向元素<br>2 软删除态：nil<br>3 硬删除态：指向expunged</p>
+<p>如果key value 被软删除，dirty仍然存在，如果再插入，可以不用加锁，借助CAS(Compare And Swap比较交换，是一种无锁原子算法)<br>如果key value 被硬删除，则需要加锁</p>
+<h3 id="readOnly"><a href="#readOnly" class="headerlink" title="readOnly"></a>readOnly</h3><p>如果amended为false，说明可以直接用<br>否则访问dirty兜底</p>
+<h2 id="读流程"><a href="#读流程" class="headerlink" title="读流程"></a>读流程</h2><p><img src="/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327000200431.png" alt></p>
+<h2 id="写流程"><a href="#写流程" class="headerlink" title="写流程"></a>写流程</h2><p><img src="/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327000807513.png" alt></p>
+<p>如果amended 是false<br>dirtyLocked，</p>
+<blockquote>
+<p>因为entry是指针，readOnly和dirty，所以修改是同步的</p>
+</blockquote>
+<p>missLock 把更新的数据覆盖到read，同时dirty置nil O(1)<br>dirtyLock 把read的数据拷贝回dirty（把被删除的屏蔽掉）O(n)<br>dirty 一定不存在硬删除态</p>
+<p>希望dirtyLock尽可能少<br>missLock -&gt; store全新的key value对 -&gt;dirtyLock，==写(插入)多读少==</p>
+<h2 id="删流程"><a href="#删流程" class="headerlink" title="删流程"></a>删流程</h2><p><img src="/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327002941535.png" alt></p>
+<p>在dirty会做物理意义上的删除<br>而read只会做软删除<br>misscnt也会在删除累加</p>
+<h2 id="遍历流程"><a href="#遍历流程" class="headerlink" title="遍历流程"></a>遍历流程</h2><p><img src="/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327003433907.png" alt></p>
+<h2 id="软硬删除"><a href="#软硬删除" class="headerlink" title="软硬删除"></a>软硬删除</h2><h3 id="为什么用-expunged-标识硬删除态"><a href="#为什么用-expunged-标识硬删除态" class="headerlink" title="为什么用 expunged 标识硬删除态"></a>为什么用 expunged 标识硬删除态</h3><p>软删除：key-value仍存在，nil，插入CAS操作，无需加锁<br>硬删除：只会在dirtyLock出现，一定不会在dirty map存在。要保证dirty比read全</p>
+<h2 id="数据流转"><a href="#数据流转" class="headerlink" title="数据流转"></a>数据流转</h2><p>d-&gt;r big O(1)，因为要遍历除掉硬删除和软删除<br><img src="/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327004118520.png" alt></p>
+<p>r-&gt;d O(n)</p>
+<p><img src="/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/image-20240327004154817.png" alt></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>适用于读多、更新多、删除多、插入少的场景</li>
+<li>若插入次数太多，sync.Map等价于互斥锁+map</li>
+<li>sync.Map可能存在性能抖动问题，在读/删流程miss readOnly 次数过多时（触发missLocked 流程），下一次插入操作的过程中（dirtyLocked流程）</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p>1 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/nMuCMA8ONnhs1lsTVMcNgA">Golang sync.Map 实现原理</a><br>2 <a target="_blank" rel="noopener" href="https://pkg.go.dev/golang.org/x/sync/syncmap">syncmap package - golang.org/x/sync/syncmap - Go Packages</a></p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#entry"><span class="toc-number">2.1.</span> <span class="toc-text">entry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#readOnly"><span class="toc-number">2.2.</span> <span class="toc-text">readOnly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">读流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E6%B5%81%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">写流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E6%B5%81%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">删流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%8D%E5%8E%86%E6%B5%81%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">遍历流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E7%A1%AC%E5%88%A0%E9%99%A4"><span class="toc-number">7.</span> <span class="toc-text">软硬删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8-expunged-%E6%A0%87%E8%AF%86%E7%A1%AC%E5%88%A0%E9%99%A4%E6%80%81"><span class="toc-number">7.1.</span> <span class="toc-text">为什么用 expunged 标识硬删除态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E8%BD%AC"><span class="toc-number">8.</span> <span class="toc-text">数据流转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">10.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&text=sync.Map原理"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&is_video=false&description=sync.Map原理"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sync.Map原理&body=Check out this article: http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&title=sync.Map原理"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&name=sync.Map原理&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/03/27/sync-Map%E5%8E%9F%E7%90%86/&t=sync.Map原理"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2024
+    lance
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
