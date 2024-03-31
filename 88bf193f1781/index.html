@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="堆(Heap)是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵完全二叉树的数组对象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heap">
+<meta property="og:url" content="http://example.com/88bf193f1781/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="堆(Heap)是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵完全二叉树的数组对象。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-10T01:02:09.000Z">
+<meta property="article:modified_time" content="2024-03-28T13:06:23.202Z">
+<meta property="article:author" content="lance">
+<meta property="article:tag" content="data structure">
+<meta property="article:tag" content="heap">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Heap</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/76d9ade63906/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/e0efc08a897c/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/88bf193f1781/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/88bf193f1781/&text=Heap"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/88bf193f1781/&is_video=false&description=Heap"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Heap&body=Check out this article: http://example.com/88bf193f1781/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/88bf193f1781/&name=Heap&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;堆(Heap)是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵完全二叉树的数组对象。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/88bf193f1781/&t=Heap"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 堆的常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%B1%9E%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text"> 堆属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%B9%B6%E4%B8%8D%E8%83%BD%E5%8F%96%E4%BB%A3%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E6%9C%89%E7%9B%B8%E4%BC%BC%E4%B9%8B%E5%A4%84%E4%B9%9F%E6%9C%89%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%90%8C"><span class="toc-number">3.</span> <span class="toc-text"> 堆并不能取代二叉搜索树，它们之间有相似之处也有一些不同。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%A0%86%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E6%9D%A5%E6%BA%90"><span class="toc-number">4.</span> <span class="toc-text"> 最大堆代码实现(代码来源)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stl%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E6%9C%80%E5%B0%8F%E5%A0%86"><span class="toc-number">5.</span> <span class="toc-text"> stl优先队列+最小堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-number">6.</span> <span class="toc-text"> 参考博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E4%BB%A3%E7%A0%81%E8%A7%81github"><span class="toc-number">7.</span> <span class="toc-text"> 更多代码见github</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Heap
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">lance</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-10T01:02:09.000Z" class="dt-published" itemprop="datePublished">2019-08-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/data-structure/" rel="tag">data structure</a>, <a class="p-category" href="/tags/heap/" rel="tag">heap</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <table><tr><td bgcolor="CornflowerBlue">堆(Heap)是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵完全二叉树的数组对象。 </td></tr></table>
+<span id="more"></span>
+<blockquote>
+<p>堆就是用数组实现的二叉树，所有它没有使用父指针或者子指针。堆根据“堆属性”来排序，“堆属性”决定了树中节点的位置。</p>
+</blockquote>
+<h2 id="堆的常用方法"><a class="markdownIt-Anchor" href="#堆的常用方法"></a> 堆的常用方法</h2>
+<ul>
+<li>构建优先队列</li>
+<li>支持堆排序</li>
+<li>快速找出一个集合中的最小值（或者最大值）</li>
+</ul>
+<h2 id="堆属性"><a class="markdownIt-Anchor" href="#堆属性"></a> 堆属性</h2>
+<blockquote>
+<p>堆分为两种：最大堆和最小堆，两者的差别在于节点的排序方式。<br>
+在最大堆中，父节点的值比每一个子节点的值都要大。在最小堆中，父节点的值比每一个子节点的值都要小。这就是所谓的“堆属性”，并且这个属性对堆中的每一个节点都成立。</p>
+</blockquote>
+<h2 id="堆并不能取代二叉搜索树它们之间有相似之处也有一些不同"><a class="markdownIt-Anchor" href="#堆并不能取代二叉搜索树它们之间有相似之处也有一些不同"></a> 堆并不能取代<a target="_blank" rel="noopener" href="https://lan-ce-lot.github.io/2019/08/05/shu/#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%EF%BC%9A">二叉搜索树</a>，它们之间有相似之处也有一些不同。</h2>
+<blockquote>
+<ul>
+<li>节点的顺序。在二叉搜索树中，左子节点必须比父节点小，右子节点必须必比父节点大。但是在堆中并非如此。在最大堆中两个子节点都必须比父节点小，而在最小堆中，它们都必须比父节点大。</li>
+</ul>
+</blockquote>
+<ul>
+<li>内存占用。普通树占用的内存空间比它们存储的数据要多。你必须为节点对象以及左/右子节点指针分配额为是我内存。堆仅仅使用一个数据来村塾数组，且不使用指针。</li>
+<li>平衡。二叉搜索树必须是“平衡”的情况下，其大部分操作的复杂度才能达到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>。你可以按任意顺序位置插入/删除数据，或者使用 AVL 树或者红黑树，但是在堆中实际上不需要整棵树都是有序的。我们只需要满足对属性即可，所以在堆中平衡不是问题。因为堆中数据的组织方式可以保证<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span> 的性能。</li>
+<li>搜索。在二叉树中搜索会很快，但是在堆中搜索会很慢。在堆中搜索不是第一优先级，因为使用堆的目的是将最大（或者最小）的节点放在最前面，从而快速的进行相关插入、删除操作。</li>
+</ul>
+<h2 id="最大堆代码实现代码来源"><a class="markdownIt-Anchor" href="#最大堆代码实现代码来源"></a> 最大堆代码实现(<a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/ZJU-93001?tid=1003997005#/learn/content?type=detail&amp;id=1007588492&amp;cid=1009165021">代码来源</a>)</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"> &gt; FileName:</span></span><br><span class="line"><span class="comment"> &gt; Author:      Lance</span></span><br><span class="line"><span class="comment"> &gt; Mail:        lancelot_hcs@qq.com</span></span><br><span class="line"><span class="comment"> &gt; Date:        9102.1.8</span></span><br><span class="line"><span class="comment"> &gt; Description:</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> eps = <span class="number">1e-10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;<span class="comment">//int2147483647//ll9e18//unsigned ll 1e19</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1005</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MaxData = INF;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MaxSize = maxn;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> ElementType;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HeapStruct</span> *<span class="title">MaxHeap</span>;</span></span><br><span class="line">MaxHeap <span class="title function_">Create</span><span class="params">(<span class="type">int</span> MaxSize)</span>;</span><br><span class="line"><span class="type">bool</span> <span class="title function_">IsFull</span><span class="params">(MaxHeap H)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Insert</span><span class="params">(MaxHeap H, ElementType item)</span>;</span><br><span class="line"><span class="type">bool</span> <span class="title function_">IsEmpty</span><span class="params">(MaxHeap H)</span>;</span><br><span class="line">ElementType <span class="title function_">DeleteMax</span><span class="params">(MaxHeap H)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">最大堆的储存，其实用一个数组进行，这里的指针等价</span></span><br><span class="line"><span class="comment">************************************************************************/</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HeapStruct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElementType *Elements;<span class="comment">//heap array</span></span><br><span class="line">    <span class="type">int</span> Size;</span><br><span class="line">    <span class="type">int</span> Capacity;<span class="comment">//最大容量</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> __<span class="title">MaxHeap</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">public:</span><br><span class="line">    MaxHeap ele;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    创建一个堆</span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    MaxHeap <span class="title function_">Create</span><span class="params">(<span class="type">int</span> MaxSize)</span></span><br><span class="line">    &#123;</span><br><span class="line">        MaxHeap H = (MaxHeap)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> HeapStruct));</span><br><span class="line">        H-&gt;Elements = (ElementType*)<span class="built_in">malloc</span>((MaxSize + <span class="number">1</span>) * <span class="keyword">sizeof</span>(ElementType));</span><br><span class="line">        H-&gt;Size = <span class="number">0</span>;</span><br><span class="line">        H-&gt;Capacity = MaxSize;</span><br><span class="line">        H-&gt;Elements[<span class="number">0</span>] = MaxData;<span class="comment">//哨兵，大于堆中所有可能元素</span></span><br><span class="line">        <span class="keyword">return</span> H;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    <span class="type">void</span> <span class="title function_">Insert</span><span class="params">(MaxHeap H, ElementType item)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> i;</span><br><span class="line">        <span class="keyword">if</span> (IsFull(H))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;最大堆已满\n&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        i = ++H-&gt;Size;</span><br><span class="line">        <span class="keyword">for</span> (; H-&gt;Elements[i / <span class="number">2</span>] &lt; item; i /= <span class="number">2</span>)</span><br><span class="line">            H-&gt;Elements[i] = H-&gt;Elements[i / <span class="number">2</span>];</span><br><span class="line">        H-&gt;Elements[i] = item;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    ElementType <span class="title function_">DeleteMax</span><span class="params">(MaxHeap H)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> Parent, Child;</span><br><span class="line">        ElementType MaxItem, temp;</span><br><span class="line">        <span class="keyword">if</span> (IsEmpty(H))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;最大堆空\n&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        MaxItem = H-&gt;Elements[<span class="number">1</span>];</span><br><span class="line">        temp = H-&gt;Elements[H-&gt;Size--];</span><br><span class="line">        <span class="keyword">for</span> (Parent = <span class="number">1</span>; Parent * <span class="number">2</span> &lt;= H-&gt;Size; Parent = Child)</span><br><span class="line">        &#123;</span><br><span class="line">            Child = Parent * <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> ((Child != H-&gt;Size) &amp;&amp; (H-&gt;Elements[Child] &lt; H-&gt;Elements[Child + <span class="number">1</span>]))</span><br><span class="line">                Child++;</span><br><span class="line">            <span class="keyword">if</span> (temp &gt;= H-&gt;Elements[Child])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                H-&gt;Elements[Parent] = H-&gt;Elements[Child];</span><br><span class="line">        &#125;</span><br><span class="line">        H-&gt;Elements[Parent] = temp;</span><br><span class="line">        <span class="keyword">return</span> MaxItem;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    <span class="type">bool</span> <span class="title function_">IsFull</span><span class="params">(MaxHeap H)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> (H-&gt;Size == H-&gt;Capacity);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    <span class="type">bool</span> <span class="title function_">IsEmpty</span><span class="params">(MaxHeap H)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> (H-&gt;Size == <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    <span class="type">void</span> <span class="title function_">Print</span><span class="params">(MaxHeap H)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> co = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= H-&gt;Size; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            i &gt; co - <span class="number">1</span>?<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>),co &lt;&lt;= <span class="number">1</span>:i;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, H-&gt;Elements[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    __MaxHeap H;</span><br><span class="line">    H.ele = H.Create(MaxSize);</span><br><span class="line">    H.Insert(H.ele, <span class="number">5</span>);</span><br><span class="line">    H.Insert(H.ele, <span class="number">4</span>);</span><br><span class="line">    H.Insert(H.ele, <span class="number">10</span>);</span><br><span class="line">    H.Insert(H.ele, <span class="number">8</span>);</span><br><span class="line">    H.Insert(H.ele, <span class="number">7</span>);</span><br><span class="line">    H.Insert(H.ele, <span class="number">9</span>);</span><br><span class="line">    H.Insert(H.ele, <span class="number">6</span>);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    H.DeleteMax(H.ele);</span><br><span class="line">    H.Print(H.ele);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="stl优先队列最小堆"><a class="markdownIt-Anchor" href="#stl优先队列最小堆"></a> stl优先队列+最小堆</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_N 10000</span></span><br><span class="line"><span class="comment">//priority_queue</span></span><br><span class="line"><span class="type">int</span> heap[MAX_N],sz = <span class="number">0</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = sz++;</span><br><span class="line">    <span class="keyword">while</span>(i &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> p = (i - <span class="number">1</span>) / <span class="number">2</span>;													<span class="comment">//p 为父节点编号</span></span><br><span class="line">        <span class="keyword">if</span>(heap[p] &lt;= x)</span><br><span class="line">            <span class="keyword">break</span>;													<span class="comment">//父子节点没有大小颠倒则退出</span></span><br><span class="line">        heap[i] = heap[p];														<span class="comment">//父子互换</span></span><br><span class="line">        i = p;</span><br><span class="line">    &#125;</span><br><span class="line">    heap[i] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> ret = heap[<span class="number">0</span>];															<span class="comment">//*min_element() 返回值</span></span><br><span class="line">    <span class="type">int</span> x = heap[--sz];															<span class="comment">//最后一个数提到根</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i * <span class="number">2</span> + <span class="number">1</span> &lt; sz)														<span class="comment">//从根开始向下交换，</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> a = i * <span class="number">2</span> + <span class="number">1</span>,b = i * <span class="number">2</span> + <span class="number">2</span>;										<span class="comment">//取出较小的子节点</span></span><br><span class="line">        <span class="keyword">if</span>(b &lt; sz &amp;&amp; heap[b] &lt; heap[a] )</span><br><span class="line">            a = b;</span><br><span class="line">        <span class="keyword">if</span>(heap[a] &gt;= x)														<span class="comment">//父子节点大小颠倒则退出</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        heap[i] = heap[a];														<span class="comment">//</span></span><br><span class="line">        i = a;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    heap[i] = x;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    push(<span class="number">10</span>);</span><br><span class="line">    push(<span class="number">1</span>);</span><br><span class="line">    push(<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;pop()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;heap[<span class="number">0</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//stl优先队列</span></span><br><span class="line">    <span class="built_in">priority_queue</span>&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    q.push(<span class="number">10</span>);</span><br><span class="line">    q.push(<span class="number">1</span>);</span><br><span class="line">    q.push(<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;q.top()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    q.pop();</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;q.top()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//	system(&quot;pause&quot;);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="参考博客"><a class="markdownIt-Anchor" href="#参考博客"></a> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6b526aa481b1">参考博客</a></h2>
+<h2 id="更多代码见github"><a class="markdownIt-Anchor" href="#更多代码见github"></a> <a target="_blank" rel="noopener" href="https://github.com/Lan-ce-lot/data-structures">更多代码见github</a></h2>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 堆的常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%B1%9E%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text"> 堆属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%B9%B6%E4%B8%8D%E8%83%BD%E5%8F%96%E4%BB%A3%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E6%9C%89%E7%9B%B8%E4%BC%BC%E4%B9%8B%E5%A4%84%E4%B9%9F%E6%9C%89%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%90%8C"><span class="toc-number">3.</span> <span class="toc-text"> 堆并不能取代二叉搜索树，它们之间有相似之处也有一些不同。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%A0%86%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E6%9D%A5%E6%BA%90"><span class="toc-number">4.</span> <span class="toc-text"> 最大堆代码实现(代码来源)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stl%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E6%9C%80%E5%B0%8F%E5%A0%86"><span class="toc-number">5.</span> <span class="toc-text"> stl优先队列+最小堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E5%8D%9A%E5%AE%A2"><span class="toc-number">6.</span> <span class="toc-text"> 参考博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E4%BB%A3%E7%A0%81%E8%A7%81github"><span class="toc-number">7.</span> <span class="toc-text"> 更多代码见github</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/88bf193f1781/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/88bf193f1781/&text=Heap"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/88bf193f1781/&is_video=false&description=Heap"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Heap&body=Check out this article: http://example.com/88bf193f1781/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/88bf193f1781/&title=Heap"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/88bf193f1781/&name=Heap&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;堆(Heap)是计算机科学中一类特殊的数据结构的统称。堆通常是一个可以被看做一棵完全二叉树的数组对象。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/88bf193f1781/&t=Heap"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2024
+    lance
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
