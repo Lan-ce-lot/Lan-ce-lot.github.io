@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="树状图是一种数据结构，它是由n（n&gt;&#x3D;1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树">
+<meta property="og:url" content="http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="树状图是一种数据结构，它是由n（n&gt;&#x3D;1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-09T08:49:53.000Z">
+<meta property="article:modified_time" content="2024-03-28T13:19:45.861Z">
+<meta property="article:author" content="lance">
+<meta property="article:tag" content="data structure">
+<meta property="article:tag" content="tree">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>树</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2019/08/Heap/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2019/08/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B6%E8%A1%A5%E9%A2%98/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&text=树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&is_video=false&description=树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=树&body=Check out this article: http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&name=树&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;树状图是一种数据结构，它是由n（n&gt;=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&t=树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text"> 树：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">2.</span> <span class="toc-text"> 二分查找：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.0.0.1.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%82%A8%E5%AD%98"><span class="toc-number">3.</span> <span class="toc-text"> 树的储存：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">4.</span> <span class="toc-text"> 树的遍历：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text"> 二叉搜索树：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">5.1.</span> <span class="toc-text"> 概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="toc-number">5.2.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%9D%A5%E6%BA%90%E6%B5%99%E5%A4%A7%E6%85%95%E8%AF%BE%E8%87%AA%E6%88%91%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 代码来源浙大慕课+自我优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E4%BB%A3%E7%A0%81%E8%A7%81github"><span class="toc-number">7.</span> <span class="toc-text"> 更多代码见github</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        树
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">lance</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-09T08:49:53.000Z" class="dt-published" itemprop="datePublished">2019-08-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/data-structure/" rel="tag">data structure</a>, <a class="p-category" href="/tags/tree/" rel="tag">tree</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <table><tr><td bgcolor="CornflowerBlue">树状图是一种数据结构，它是由n（n>=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。 </td></tr></table>
+<span id="more"></span>
+<h2 id="树"><a class="markdownIt-Anchor" href="#树"></a> 树：</h2>
+<blockquote>
+<p>树是由根结点和若干颗子树构成的。树是由一个集合以及在该集合上定义的一种关系构成的。集合中的元素称为树的结点，所定义的关系称为父子关系。父子关系在树的结点之间建立了一个层次结构。在这种层次结构中有一个结点具有特殊的地位，这个结点称为该树的根结点，或称为树根。</p>
+</blockquote>
+<h2 id="二分查找"><a class="markdownIt-Anchor" href="#二分查找"></a> 二分查找：</h2>
+<blockquote>
+<p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法。但是，折半查找要求线性表必须采用顺序存储结构，而且表中元素按关键字有序排列。</p>
+</blockquote>
+<p><s>提到树，就得先从二分查找这个有着<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlog(n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>复杂度的算法说起，因为二分查找本身就会生成一个二叉搜索树。</s></p>
+<h5 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现：</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">BinarySearch</span><span class="params">(List Tbl, ElementType K)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> l, r ,mid, NoFound = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    l = <span class="number">1</span>;</span><br><span class="line">    r = Tbl-&gt;Length;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r)</span><br><span class="line">    &#123;</span><br><span class="line">        mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (K &lt; Tbl-&gt;Element[mid])</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (K &gt; Tbl-&gt;Element[mid])</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> NoFound;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="树的储存"><a class="markdownIt-Anchor" href="#树的储存"></a> 树的储存：</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElementType Data;</span><br><span class="line">    BinTree Left;</span><br><span class="line">    BinTree Right;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="树的遍历"><a class="markdownIt-Anchor" href="#树的遍历"></a> 树的遍历：</h2>
+<ul>
+<li>先序</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">先序遍历的非递归算法</span></span><br><span class="line"><span class="comment">按照根左右的顺序沿一定路径经过路径上所有的结点。</span></span><br><span class="line"><span class="comment">在二叉树中，先根后左再右。巧记：根左右。</span></span><br><span class="line"><span class="comment">    A</span></span><br><span class="line"><span class="comment">  /   \</span></span><br><span class="line"><span class="comment">  B    C</span></span><br><span class="line"><span class="comment"> / \  /</span></span><br><span class="line"><span class="comment">D   E F</span></span><br><span class="line"><span class="comment">结果：ABDECF</span></span><br><span class="line"><span class="comment">************************************************************************/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">PreOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">&#123;</span><br><span class="line">    BinTree T = BT;</span><br><span class="line">    <span class="built_in">stack</span>&lt;BinTree&gt; S;</span><br><span class="line">    <span class="keyword">while</span> (T || !S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(T)</span><br><span class="line">        &#123;</span><br><span class="line">            S.push(T);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>, T-&gt;Data);<span class="comment">//</span></span><br><span class="line">            T = T-&gt;Left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!S.empty())</span><br><span class="line">        &#123;</span><br><span class="line">        	T = S.top();</span><br><span class="line">            S.pop();</span><br><span class="line">            <span class="comment">//区别在这里</span></span><br><span class="line">            T = T-&gt;Right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>中序</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">中序遍历(Inorder Traversal (LDR))</span></span><br><span class="line"><span class="comment">非递归实现：</span></span><br><span class="line"><span class="comment">在二叉树中，中序遍历首先遍历左子树，</span></span><br><span class="line"><span class="comment">然后访问根结点，最后遍历右子树。</span></span><br><span class="line"><span class="comment">        A</span></span><br><span class="line"><span class="comment">      /   \</span></span><br><span class="line"><span class="comment">      B    C</span></span><br><span class="line"><span class="comment">     / \  /</span></span><br><span class="line"><span class="comment">    D   E F</span></span><br><span class="line"><span class="comment">结果：DBEAFC</span></span><br><span class="line"><span class="comment">*************************************************************************/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">InOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">&#123;</span><br><span class="line">    BinTree T = BT;</span><br><span class="line">    <span class="built_in">stack</span>&lt;BinTree&gt; S;</span><br><span class="line">    <span class="keyword">while</span> (T || !S.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(T)</span><br><span class="line">        &#123;</span><br><span class="line">            S.push(T);</span><br><span class="line">            T = T-&gt;Left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!S.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            T = S.top();</span><br><span class="line">            S.pop();</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>, T-&gt;Data);</span><br><span class="line">            T = T-&gt;Right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>后序</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">后序遍历的非递归算法</span></span><br><span class="line"><span class="comment">后序遍历（LRD）是二叉树遍历的一种，</span></span><br><span class="line"><span class="comment">也叫做后根遍历、后序周游，可记做左右根。</span></span><br><span class="line"><span class="comment">后序遍历有递归算法和非递归算法两种。</span></span><br><span class="line"><span class="comment">在二叉树中，先左后右再根，即首先遍历左子树，</span></span><br><span class="line"><span class="comment">然后遍历右子树，最后访问根结点。</span></span><br><span class="line"><span class="comment">        A</span></span><br><span class="line"><span class="comment">      /   \</span></span><br><span class="line"><span class="comment">      B    C</span></span><br><span class="line"><span class="comment">     / \  /</span></span><br><span class="line"><span class="comment">    D   E F</span></span><br><span class="line"><span class="comment">结果：DEBFCA</span></span><br><span class="line"><span class="comment">已知前序遍历和中序遍历，就能确定后序遍历。</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">PostOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (BT)</span><br><span class="line">    &#123;</span><br><span class="line">        PostOrderTraversal(BT-&gt;Left);</span><br><span class="line">        PostOrderTraversal(BT-&gt;Right);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>, BT-&gt;Data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>层序(这个可以类比bfs)</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">层序遍历(bfs?)的非递归算法</span></span><br><span class="line"><span class="comment">队列实现</span></span><br><span class="line"><span class="comment">************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">LevelOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;BinTree&gt; Q;</span><br><span class="line">    BinTree T;</span><br><span class="line">    Q.push(BT);</span><br><span class="line">    <span class="keyword">while</span> (!Q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">    	T = Q.front();</span><br><span class="line">        Q.pop();</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, T-&gt;Data);</span><br><span class="line">        <span class="keyword">if</span> (T-&gt;Left)</span><br><span class="line">            Q.push(T-&gt;Left);</span><br><span class="line">        <span class="keyword">if</span> (T-&gt;Right)</span><br><span class="line">            Q.push(T-&gt;Right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二叉搜索树"><a class="markdownIt-Anchor" href="#二叉搜索树"></a> 二叉搜索树：</h2>
+<h3 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念：</h3>
+<blockquote>
+<p>二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为二叉排序树。</p>
+</blockquote>
+<h3 id="代码实现-2"><a class="markdownIt-Anchor" href="#代码实现-2"></a> 代码实现：</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment"> &gt; FileName:</span></span><br><span class="line"><span class="comment"> &gt; Author:      Lance</span></span><br><span class="line"><span class="comment"> &gt; Mail:        lancelot_hcs@qq.com</span></span><br><span class="line"><span class="comment"> &gt; Date:        9102.1.8</span></span><br><span class="line"><span class="comment"> &gt; Description:</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> pi = <span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> eps = <span class="number">1e-10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF = <span class="number">0x3f3f3f3f</span>;<span class="comment">//int2147483647//ll9e18//unsigned ll 1e19</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> maxn = <span class="number">1005</span>;</span><br><span class="line"><span class="type">int</span> a[maxn];</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> *<span class="title">BinTree</span>;</span></span><br><span class="line"><span class="keyword">typedef</span> BinTree Position;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> ElementType;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElementType Data;</span><br><span class="line">    BinTree Left;</span><br><span class="line">    BinTree Right;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> __<span class="title">BST</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">public:</span><br><span class="line"></span><br><span class="line">    BinTree BST = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    查找递归</span></span><br><span class="line"><span class="comment">    ************************************************************************/</span></span><br><span class="line">    Position <span class="title function_">Find</span><span class="params">(ElementType X, BinTree BST)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!BST)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">if</span> (X &gt; BST-&gt;Data)</span><br><span class="line">            <span class="keyword">return</span> Find(X, BST-&gt;Right);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (X &lt; BST-&gt;Data)</span><br><span class="line">            <span class="keyword">return</span> Find(X, BST-&gt;Left);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> BST;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//迭代</span></span><br><span class="line">    Position <span class="title function_">Find1</span><span class="params">(ElementType X, BinTree BST)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!BST)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">if</span> (X &gt; BST-&gt;Data)</span><br><span class="line">            <span class="keyword">return</span> Find1(X, BST-&gt;Right);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (X &lt; BST-&gt;Data)</span><br><span class="line">            <span class="keyword">return</span> Find1(X, BST-&gt;Left);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> BST;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    查找最小元素</span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    Position <span class="title function_">FindMin</span><span class="params">(BinTree BST)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!BST)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!BST-&gt;Left)</span><br><span class="line">            <span class="keyword">return</span> BST;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> FindMin(BST-&gt;Left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    查找最大元素迭代</span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    Position <span class="title function_">FindMax</span><span class="params">(BinTree BST)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (BST)</span><br><span class="line">            <span class="keyword">while</span> (BST-&gt;Right)</span><br><span class="line">                BST = BST-&gt;Right;</span><br><span class="line">        <span class="keyword">return</span> BST;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    插入和查找相似</span></span><br><span class="line"><span class="comment">    ************************************************************************/</span></span><br><span class="line"></span><br><span class="line">    BinTree <span class="title function_">Insert</span><span class="params">(ElementType X, BinTree BST)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!BST)<span class="comment">//空树生成</span></span><br><span class="line">        &#123;</span><br><span class="line">            BST = (BinTree)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> TreeNode));</span><br><span class="line">            BST-&gt;Data = X;</span><br><span class="line">            BST-&gt;Left = BST-&gt;Right = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (X &lt; BST-&gt;Data)</span><br><span class="line">                BST-&gt;Left = Insert(X, BST-&gt;Left);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (X &gt; BST-&gt;Data)</span><br><span class="line">                BST-&gt;Right = Insert(X, BST-&gt;Right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> BST;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    删除</span></span><br><span class="line"><span class="comment">    ************************************************************************/</span></span><br><span class="line">    BinTree <span class="title function_">Delete</span><span class="params">(ElementType X, BinTree BST)</span></span><br><span class="line">    &#123;</span><br><span class="line">        Position Tmp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!BST)</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">&quot;未找到&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (X &lt; BST-&gt;Data)</span><br><span class="line">            BST-&gt;Left = Delete(X, BST-&gt;Left);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (X &gt; BST-&gt;Data)</span><br><span class="line">            BST-&gt;Right = Delete(X, BST-&gt;Right);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (BST-&gt;Left &amp;&amp; BST-&gt;Right)</span><br><span class="line">        &#123;</span><br><span class="line">            Tmp = FindMin(BST-&gt;Right);</span><br><span class="line">            BST-&gt;Data = Tmp-&gt;Data;</span><br><span class="line">            BST-&gt;Right = Delete(BST-&gt;Data, BST-&gt;Right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Tmp = BST;</span><br><span class="line">            <span class="keyword">if</span> (!BST-&gt;Left)</span><br><span class="line">                BST = BST-&gt;Right;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!BST-&gt;Right)</span><br><span class="line">                BST = BST-&gt;Left;</span><br><span class="line">            <span class="built_in">free</span>(Tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> BST;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    中序遍历(Inorder Traversal (LDR))</span></span><br><span class="line"><span class="comment">    非递归实现：</span></span><br><span class="line"><span class="comment">    在二叉树中，中序遍历首先遍历左子树，</span></span><br><span class="line"><span class="comment">    然后访问根结点，最后遍历右子树。</span></span><br><span class="line"><span class="comment">            A</span></span><br><span class="line"><span class="comment">          /   \</span></span><br><span class="line"><span class="comment">          B    C</span></span><br><span class="line"><span class="comment">         / \  /</span></span><br><span class="line"><span class="comment">        D   E F</span></span><br><span class="line"><span class="comment">    结果：DBEAFC</span></span><br><span class="line"><span class="comment">    *************************************************************************/</span></span><br><span class="line">    <span class="type">void</span> <span class="title function_">InOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">    &#123;</span><br><span class="line">        BinTree T = BT;</span><br><span class="line">        <span class="built_in">stack</span>&lt;BinTree&gt; S;</span><br><span class="line">        <span class="keyword">while</span> (T || !S.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(T)</span><br><span class="line">            &#123;</span><br><span class="line">                S.push(T);</span><br><span class="line">                T = T-&gt;Left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!S.empty())</span><br><span class="line">            &#123;</span><br><span class="line">                T = S.top();</span><br><span class="line">                S.pop();</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>, T-&gt;Data);</span><br><span class="line">                T = T-&gt;Right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    先序遍历的非递归算法</span></span><br><span class="line"><span class="comment">    按照根左右的顺序沿一定路径经过路径上所有的结点。</span></span><br><span class="line"><span class="comment">    在二叉树中，先根后左再右。巧记：根左右。</span></span><br><span class="line"><span class="comment">        A</span></span><br><span class="line"><span class="comment">      /   \</span></span><br><span class="line"><span class="comment">      B    C</span></span><br><span class="line"><span class="comment">     / \  /</span></span><br><span class="line"><span class="comment">    D   E F</span></span><br><span class="line"><span class="comment">    结果：ABDECF</span></span><br><span class="line"><span class="comment">    ************************************************************************/</span></span><br><span class="line">    <span class="type">void</span> <span class="title function_">PreOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">    &#123;</span><br><span class="line">        BinTree T = BT;</span><br><span class="line">        <span class="built_in">stack</span>&lt;BinTree&gt; S;</span><br><span class="line">        <span class="keyword">while</span> (T || !S.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(T)</span><br><span class="line">            &#123;</span><br><span class="line">                S.push(T);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>, T-&gt;Data);<span class="comment">//</span></span><br><span class="line">                T = T-&gt;Left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!S.empty())</span><br><span class="line">            &#123;</span><br><span class="line">                T = S.top();</span><br><span class="line">                S.pop();</span><br><span class="line">                <span class="comment">//区别在这里</span></span><br><span class="line">                T = T-&gt;Right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    后序遍历的非递归算法</span></span><br><span class="line"><span class="comment">    后序遍历（LRD）是二叉树遍历的一种，</span></span><br><span class="line"><span class="comment">    也叫做后根遍历、后序周游，可记做左右根。</span></span><br><span class="line"><span class="comment">    后序遍历有递归算法和非递归算法两种。</span></span><br><span class="line"><span class="comment">    在二叉树中，先左后右再根，即首先遍历左子树，</span></span><br><span class="line"><span class="comment">    然后遍历右子树，最后访问根结点。</span></span><br><span class="line"><span class="comment">            A</span></span><br><span class="line"><span class="comment">          /   \</span></span><br><span class="line"><span class="comment">          B    C</span></span><br><span class="line"><span class="comment">         / \  /</span></span><br><span class="line"><span class="comment">        D   E F</span></span><br><span class="line"><span class="comment">    结果：DEBFCA</span></span><br><span class="line"><span class="comment">    已知前序遍历和中序遍历，就能确定后序遍历。</span></span><br><span class="line"><span class="comment">     ************************************************************************/</span></span><br><span class="line">    <span class="type">void</span> <span class="title function_">PostOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (BT)</span><br><span class="line">        &#123;</span><br><span class="line">            PostOrderTraversal(BT-&gt;Left);</span><br><span class="line">            PostOrderTraversal(BT-&gt;Right);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%5d&quot;</span>, BT-&gt;Data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">    层序遍历(bfs?)的非递归算法</span></span><br><span class="line"><span class="comment">    队列实现</span></span><br><span class="line"><span class="comment">    ************************************************************************/</span></span><br><span class="line"></span><br><span class="line">    <span class="type">void</span> <span class="title function_">LevelOrderTraversal</span><span class="params">(BinTree BT)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">queue</span>&lt;BinTree&gt; Q;</span><br><span class="line">        BinTree T;</span><br><span class="line">        Q.push(BT);</span><br><span class="line">        <span class="keyword">while</span> (!Q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            T = Q.front();</span><br><span class="line">            Q.pop();</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, T-&gt;Data);</span><br><span class="line">            <span class="keyword">if</span> (T-&gt;Left)</span><br><span class="line">                Q.push(T-&gt;Left);</span><br><span class="line">            <span class="keyword">if</span> (T-&gt;Right)</span><br><span class="line">                Q.push(T-&gt;Right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">__BST B;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*************************************************************************</span></span><br><span class="line"><span class="comment">主函数</span></span><br><span class="line"><span class="comment"> ************************************************************************/</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    B.BST = B.Insert(<span class="number">5</span>, B.BST);</span><br><span class="line">    B.BST = B.Insert(<span class="number">10</span>, B.BST);</span><br><span class="line">    B.BST = B.Insert(<span class="number">2</span>, B.BST);</span><br><span class="line">    B.BST = B.Insert(<span class="number">1</span>, B.BST);</span><br><span class="line">    B.BST = B.Insert(<span class="number">3</span>, B.BST);</span><br><span class="line">    B.BST = B.Insert(<span class="number">6</span>, B.BST);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n中序遍历&quot;</span>);</span><br><span class="line">    B.InOrderTraversal(B.BST);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n层序遍历&quot;</span>);</span><br><span class="line">    B.LevelOrderTraversal(B.BST);<span class="comment">//</span></span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n先序遍历&quot;</span>);</span><br><span class="line">    B.PreOrderTraversal(B.BST);</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;\n后序遍历&quot;</span>);</span><br><span class="line">    B.PostOrderTraversal(B.BST);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//中序遍历</span></span><br><span class="line"><span class="comment">//    1    2    3    5    6   10</span></span><br><span class="line"><span class="comment">//层序遍历</span></span><br><span class="line"><span class="comment">//5</span></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="comment">//10</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="comment">//6</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//先序遍历</span></span><br><span class="line"><span class="comment">//    5    2    1    3   10    6</span></span><br><span class="line"><span class="comment">//后序遍历</span></span><br><span class="line"><span class="comment">//    1    3    2    6   10    5</span></span><br></pre></td></tr></table></figure>
+<h2 id="代码来源浙大慕课自我优化"><a class="markdownIt-Anchor" href="#代码来源浙大慕课自我优化"></a> <a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/ZJU-93001?tid=1003997005#/learn/content?type=detail&amp;id=1007588486&amp;cid=1009151981">代码来源浙大慕课+自我优化</a></h2>
+<h2 id="更多代码见github"><a class="markdownIt-Anchor" href="#更多代码见github"></a> <a target="_blank" rel="noopener" href="https://github.com/Lan-ce-lot/data-structures">更多代码见github</a></h2>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text"> 树：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">2.</span> <span class="toc-text"> 二分查找：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.0.0.1.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%82%A8%E5%AD%98"><span class="toc-number">3.</span> <span class="toc-text"> 树的储存：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">4.</span> <span class="toc-text"> 树的遍历：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text"> 二叉搜索树：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">5.1.</span> <span class="toc-text"> 概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="toc-number">5.2.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%9D%A5%E6%BA%90%E6%B5%99%E5%A4%A7%E6%85%95%E8%AF%BE%E8%87%AA%E6%88%91%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 代码来源浙大慕课+自我优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E4%BB%A3%E7%A0%81%E8%A7%81github"><span class="toc-number">7.</span> <span class="toc-text"> 更多代码见github</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&text=树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&is_video=false&description=树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=树&body=Check out this article: http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&name=树&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;树状图是一种数据结构，它是由n（n&gt;=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&t=树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2024
+    lance
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
