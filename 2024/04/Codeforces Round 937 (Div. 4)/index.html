@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="欢乐div. 4 A. Stair, Peak, or Neither?输入 a, b, c如果数字形成一个阶梯，输出“ STAIR”，如果数字形成一个峰值，输出“ PEAK”，否则输出“ NONE”(输出不带引号的字符串)。 12345678910111213141516171819#include &lt;bits&#x2F;stdc++.h&gt;    using namespace std;  t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Round 937 (Div. 4)">
+<meta property="og:url" content="http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="欢乐div. 4 A. Stair, Peak, or Neither?输入 a, b, c如果数字形成一个阶梯，输出“ STAIR”，如果数字形成一个峰值，输出“ PEAK”，否则输出“ NONE”(输出不带引号的字符串)。 12345678910111213141516171819#include &lt;bits&#x2F;stdc++.h&gt;    using namespace std;  t">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-01T08:52:00.000Z">
+<meta property="article:modified_time" content="2024-04-01T16:24:20.725Z">
+<meta property="article:author" content="lance">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Codeforces Round 937 (Div. 4)</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/03/Golang%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&text=Codeforces Round 937 (Div. 4)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&is_video=false&description=Codeforces Round 937 (Div. 4)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Codeforces Round 937 (Div. 4)&body=Check out this article: http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&name=Codeforces Round 937 (Div. 4)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&t=Codeforces Round 937 (Div. 4)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Stair-Peak-or-Neither"><span class="toc-number">1.</span> <span class="toc-text">A. Stair, Peak, or Neither?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-Upscaling"><span class="toc-number">2.</span> <span class="toc-text">B. Upscaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Clock-Conversion"><span class="toc-number">3.</span> <span class="toc-text">C. Clock Conversion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Product-of-Binary-Decimals"><span class="toc-number">4.</span> <span class="toc-text">D. Product of Binary Decimals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-Nearly-Shortest-Repeating-Substring"><span class="toc-number">5.</span> <span class="toc-text">E. Nearly Shortest Repeating Substring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-0-1-2-Tree-%EF%BC%88%E8%A1%A5%E9%A2%98%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">F - 0, 1, 2, Tree!（补题）</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Codeforces Round 937 (Div. 4)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">lance</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-04-01T08:52:00.000Z" class="dt-published" itemprop="datePublished">2024-04-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>欢乐div. 4</p>
+<h2 id="A-Stair-Peak-or-Neither"><a href="#A-Stair-Peak-or-Neither" class="headerlink" title="A. Stair, Peak, or Neither?"></a>A. Stair, Peak, or Neither?</h2><p>输入 a, b, c<br>如果数字形成一个阶梯，输出“ STAIR”，如果数字形成一个峰值，输出“ PEAK”，否则输出“ NONE”(输出不带引号的字符串)。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;  </span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;  </span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;  </span><br><span class="line">ll t;  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    cin &gt;&gt; t;  </span><br><span class="line">    ll a, b ,c;  </span><br><span class="line">    <span class="keyword">while</span> (t--) &#123;  </span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;  </span><br><span class="line">        <span class="keyword">if</span> (a &lt; b &amp;&amp; b &lt; c) &#123;  </span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;STAIR&quot;</span> &lt;&lt; endl;  </span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &lt; b &amp;&amp; b &gt; c) &#123;  </span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;PEAK&quot;</span> &lt;&lt; endl;  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;NONE&quot;</span> &lt;&lt; endl;  </span><br><span class="line">        &#125;    &#125;    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="B-Upscaling"><a href="#B-Upscaling" class="headerlink" title="B. Upscaling"></a>B. Upscaling</h2>
+<p>思路：两个看成一个处理</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;</span><br><span class="line">ll t, n;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    ll a, b ,c;</span><br><span class="line">    <span class="keyword">while</span> (t--) &#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="function">vector&lt;string&gt; <span class="title">ans</span><span class="params">(n * <span class="number">2</span>, string(n * <span class="number">2</span>, <span class="string">&#x27;.&#x27;</span>))</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((i + j) % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">2</span>; k++) &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">0</span>; l &lt; <span class="number">2</span>; l++) &#123;</span><br><span class="line">                            ans[i * <span class="number">2</span> + k][j * <span class="number">2</span> + l] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it : ans) &#123;</span><br><span class="line">            cout &lt;&lt; it &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="C-Clock-Conversion"><a href="#C-Clock-Conversion" class="headerlink" title="C. Clock Conversion"></a>C. Clock Conversion</h2><p>24 小时制转 12 小时</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span>  </span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;  </span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;  </span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;  </span><br><span class="line">ll t, n;  </span><br><span class="line">  </span><br><span class="line"><span class="function">string <span class="title">convert24HourTo12Hour</span><span class="params">(<span class="type">const</span> string&amp; time24)</span> </span>&#123;  </span><br><span class="line">    <span class="comment">// Extract hours and minutes from the input string  </span></span><br><span class="line">    <span class="type">int</span> hour = <span class="built_in">stoi</span>(time24.<span class="built_in">substr</span>(<span class="number">0</span>, <span class="number">2</span>));  </span><br><span class="line">    string minutes = time24.<span class="built_in">substr</span>(<span class="number">3</span>);  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// Determine the period (AM/PM)  </span></span><br><span class="line">    string period = hour &gt;= <span class="number">12</span> ? <span class="string">&quot;PM&quot;</span> : <span class="string">&quot;AM&quot;</span>;  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// Convert hour to 12-hour format  </span></span><br><span class="line">    hour = hour % <span class="number">12</span>;  </span><br><span class="line">    <span class="keyword">if</span> (hour == <span class="number">0</span>) hour = <span class="number">12</span>; <span class="comment">// Handle midnight and noon cases  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">// Format the hour to ensure it has two digits    string hourStr = (hour &lt; 10) ? &quot;0&quot; + to_string(hour) : to_string(hour);  </span></span><br><span class="line">  </span><br><span class="line">    <span class="comment">// Construct the final string  </span></span><br><span class="line">    <span class="keyword">return</span> hourStr + <span class="string">&quot;:&quot;</span> + minutes + <span class="string">&quot; &quot;</span> + period;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    cin &gt;&gt; t;  </span><br><span class="line">    ll a, b ,c;  </span><br><span class="line">    <span class="keyword">while</span> (t--) &#123;  </span><br><span class="line">        string inputTime;  </span><br><span class="line"><span class="comment">//        cout &lt;&lt; &quot;Enter time in 24-hour format (HH:MM): &quot;;  </span></span><br><span class="line">        cin &gt;&gt; inputTime;  </span><br><span class="line">  </span><br><span class="line">        string convertedTime = <span class="built_in">convert24HourTo12Hour</span>(inputTime);  </span><br><span class="line">        cout &lt;&lt; convertedTime &lt;&lt; endl;  </span><br><span class="line">  </span><br><span class="line">    &#125;    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<h2 id="D-Product-of-Binary-Decimals"><a href="#D-Product-of-Binary-Decimals" class="headerlink" title="D. Product of Binary Decimals"></a>D. Product of Binary Decimals</h2><p>只包换 1 和 0 的数的乘积 $\left(1 \leq n \leq 10^5\right)$<br>思路，先 BFS 枚举 n 范围内的所有可能数，倒序枚举，如果为因子则循环除去，如果最后为 1 输出 YES 否则 NO</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;</span><br><span class="line">ll t, n;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> debug(x) cout &lt;&lt; #x &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"></span><br><span class="line"><span class="function">vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; <span class="title">generateBinaryDecimals</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    queue&lt;<span class="type">long</span> <span class="type">long</span>&gt; q;</span><br><span class="line">    q.<span class="built_in">push</span>(<span class="number">1</span>); <span class="comment">// Start with 1 as the first binary decimal number</span></span><br><span class="line">    vector&lt;<span class="type">long</span> <span class="type">long</span>&gt; result;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> num = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check if the current number is less than or equal to n</span></span><br><span class="line">        <span class="keyword">if</span> (num &lt;= n) &#123;</span><br><span class="line">            result.<span class="built_in">push_back</span>(num);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Generate the next numbers by appending 0 and 1</span></span><br><span class="line">            q.<span class="built_in">push</span>(num * <span class="number">10</span>);</span><br><span class="line">            q.<span class="built_in">push</span>(num * <span class="number">10</span> + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    vector&lt;ll&gt; tmp = <span class="built_in">generateBinaryDecimals</span>(<span class="number">100000</span>);</span><br><span class="line"><span class="comment">//    for (auto it : tmp) &#123;</span></span><br><span class="line"><span class="comment">//        cout &lt;&lt; it &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="comment">// remove 1</span></span><br><span class="line">    tmp.<span class="built_in">erase</span>(tmp.<span class="built_in">begin</span>());</span><br><span class="line">    <span class="built_in">sort</span>(tmp.<span class="built_in">begin</span>(), tmp.<span class="built_in">end</span>(), <span class="built_in">greater</span>&lt;ll&gt;());</span><br><span class="line">    ll a, b, c;</span><br><span class="line">    <span class="keyword">while</span> (t--) &#123;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        <span class="comment">// then</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it: tmp) &#123;</span><br><span class="line">            <span class="keyword">while</span> (n % it == <span class="number">0</span>) &#123;</span><br><span class="line">                n /= it;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;YES&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;NO&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">10</span></span><br><span class="line"><span class="comment">11</span></span><br><span class="line"><span class="comment">100</span></span><br><span class="line"><span class="comment">101</span></span><br><span class="line"><span class="comment">110</span></span><br><span class="line"><span class="comment">111</span></span><br><span class="line"><span class="comment">1000</span></span><br><span class="line"><span class="comment">1001</span></span><br><span class="line"><span class="comment">1010</span></span><br><span class="line"><span class="comment">1011</span></span><br><span class="line"><span class="comment">1100</span></span><br><span class="line"><span class="comment">1101</span></span><br><span class="line"><span class="comment">1110</span></span><br><span class="line"><span class="comment">1111</span></span><br><span class="line"><span class="comment">10000</span></span><br><span class="line"><span class="comment">10001</span></span><br><span class="line"><span class="comment">10010</span></span><br><span class="line"><span class="comment">10011</span></span><br><span class="line"><span class="comment">10100</span></span><br><span class="line"><span class="comment">10101</span></span><br><span class="line"><span class="comment">10110</span></span><br><span class="line"><span class="comment">10111</span></span><br><span class="line"><span class="comment">11000</span></span><br><span class="line"><span class="comment">11001</span></span><br><span class="line"><span class="comment">11010</span></span><br><span class="line"><span class="comment">11011</span></span><br><span class="line"><span class="comment">11100</span></span><br><span class="line"><span class="comment">11101</span></span><br><span class="line"><span class="comment">11110</span></span><br><span class="line"><span class="comment">11111</span></span><br><span class="line"><span class="comment">100000</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="E-Nearly-Shortest-Repeating-Substring"><a href="#E-Nearly-Shortest-Repeating-Substring" class="headerlink" title="E. Nearly Shortest Repeating Substring"></a>E. Nearly Shortest Repeating Substring</h2><p>给定一个长度为 n 的 string，取一个子串长短 k<br>要求 n % k == 0<br>将 n / k 个子串拼接后与 string 至多只有一个字符不同</p>
+<p>思路：<br>枚举子串长度，map 记录，如果可行需保证 map 的 size &lt;= 2，<br>如果为 1 则说明可以<br>如果为 2 必须保证有一个 value 为 1 且 key 1 和 key 2 的差别只有一个字符串</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;</span><br><span class="line">ll t, n;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> debug(x) cout &lt;&lt; #x &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(string s, <span class="type">int</span> mid)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// check if have a substring of length mid</span></span><br><span class="line">    <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">    unordered_map&lt;string, <span class="type">int</span>&gt; mp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= n - mid; i+=mid) &#123;</span><br><span class="line">        string sub = s.<span class="built_in">substr</span>(i, mid);</span><br><span class="line">        mp[sub]++;</span><br><span class="line">        <span class="keyword">if</span> (mp.<span class="built_in">size</span>() &gt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (mp.<span class="built_in">size</span>() == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (mp.<span class="built_in">size</span>() == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// must have one value == 1</span></span><br><span class="line">        <span class="type">bool</span> f1 = <span class="number">0</span>;</span><br><span class="line">        string s11 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="type">int</span> c = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it : mp) &#123;</span><br><span class="line">            <span class="keyword">if</span> (it.second == <span class="number">1</span>) &#123;</span><br><span class="line">                f1 = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (s11 == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">                s11 = it.first;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; s11.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (s11[i] != it.first[i]) &#123;</span><br><span class="line">                        c++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (f1 &amp;&amp; c &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    ll a, b ,c;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span> (t--) &#123;</span><br><span class="line">        string s;</span><br><span class="line">        cin &gt;&gt; n;</span><br><span class="line">        cin &gt;&gt; s;</span><br><span class="line">        <span class="comment">// a string len n</span></span><br><span class="line">        <span class="comment">// find min len of string k</span></span><br><span class="line">        <span class="comment">// find the number n % k == 0</span></span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; v;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (n % i == <span class="number">0</span>) &#123;</span><br><span class="line">                v.<span class="built_in">push_back</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans = n;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> it : v) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">check</span>(s, it)) &#123;</span><br><span class="line">                ans = it;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="F-0-1-2-Tree-（补题）"><a href="#F-0-1-2-Tree-（补题）" class="headerlink" title="F - 0, 1, 2, Tree!（补题）"></a>F - 0, 1, 2, Tree!（补题）</h2><p>给点a, b, c 个度分别为 2，1，0 的节点，构建深度最小的树</p>
+<p>思路：</p>
+<ol>
+<li>先通过 a 和 c 构造完全二叉树，然后其中可以插入任意 b，所以有a + 1 != c（不能构成完全二叉树） 就是-1</li>
+<li>我们一个一个点添加，一层一层遍历，每个节点对当前层的接口数的贡献是-1。如果是节点2，对下一层接口数贡献为2，节点1贡献为1。如果当前层接口数用完了就下一层，初始值层0设为1</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e5</span> + <span class="number">10</span>;</span><br><span class="line">ll t, n;</span><br><span class="line">ll v[N];</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> debug(x) cout &lt;&lt; #x &lt;&lt; <span class="string">&quot; = &quot;</span> &lt;&lt; x &lt;&lt; endl</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    ll a, b, c;</span><br><span class="line">    cin &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span> (t--) &#123;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        <span class="comment">// tree min height</span></span><br><span class="line">        <span class="comment">// a node have 2 son</span></span><br><span class="line">        <span class="comment">// b node have 1 son</span></span><br><span class="line">        <span class="comment">// c node have 0 son</span></span><br><span class="line">        <span class="comment">// a b c &lt;= 10^5</span></span><br><span class="line">        <span class="comment">// a + b + c = 3 * 10^5</span></span><br><span class="line"></span><br><span class="line">        ll tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">memset</span>(v, <span class="number">0</span>, <span class="keyword">sizeof</span> v);</span><br><span class="line">        <span class="keyword">if</span> (a + <span class="number">1</span> != c) &#123;</span><br><span class="line">            cout &lt;&lt; <span class="number">-1</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            v[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">            ll h = <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> l = a + b + c;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= l; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!v[h]) &#123;</span><br><span class="line">                    h++;</span><br><span class="line">                &#125;</span><br><span class="line">                v[h]--;</span><br><span class="line">                <span class="keyword">if</span> (a) &#123;</span><br><span class="line">                    a--;</span><br><span class="line">                    v[h + <span class="number">1</span>] += <span class="number">2</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span>(b) &#123;</span><br><span class="line">                    b--;</span><br><span class="line">                    v[h + <span class="number">1</span>]++;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span>(c) &#123;</span><br><span class="line">                    c--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            cout &lt;&lt; h &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Stair-Peak-or-Neither"><span class="toc-number">1.</span> <span class="toc-text">A. Stair, Peak, or Neither?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-Upscaling"><span class="toc-number">2.</span> <span class="toc-text">B. Upscaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Clock-Conversion"><span class="toc-number">3.</span> <span class="toc-text">C. Clock Conversion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-Product-of-Binary-Decimals"><span class="toc-number">4.</span> <span class="toc-text">D. Product of Binary Decimals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-Nearly-Shortest-Repeating-Substring"><span class="toc-number">5.</span> <span class="toc-text">E. Nearly Shortest Repeating Substring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-0-1-2-Tree-%EF%BC%88%E8%A1%A5%E9%A2%98%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">F - 0, 1, 2, Tree!（补题）</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&text=Codeforces Round 937 (Div. 4)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&is_video=false&description=Codeforces Round 937 (Div. 4)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Codeforces Round 937 (Div. 4)&body=Check out this article: http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&title=Codeforces Round 937 (Div. 4)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&name=Codeforces Round 937 (Div. 4)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/Codeforces%20Round%20937%20(Div.%204)/&t=Codeforces Round 937 (Div. 4)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2024
+    lance
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
