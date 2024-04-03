@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Kubernetes 会为每个容器都在 CPU Cgroup 的子系统中建立一个控制组，然后把容器中进程写入到这个控制组里。  cpu.cfs_quota_us、cpu.cfs_period_us Kubernetes 是通过 CPU cgroup 控制模块中的 cpu.cfs_period_us，cpu.cfs_quota_us 两个配置来实现的。kubernetes 会为这个 containe">
+    <meta name="description" content="Kubernetes 会为每个容器都在 CPU Cgroup 的子系统中建立一个控制组，然后把容器中进程写入到这个控制组里。 硬限这样做对同宿主机的其他容器来说比较安全，因为一旦超过硬限，容器就无法运行，只能等待下一个period；对本容器来说，比较危险。 容器的核数&#x3D;cpu.cfs_quota_us &#x2F; cpu.cfs_period_us; 软限cpu.cfs_quota_us &#x3D;-1 ，仅设置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kubernetes 资源限额">
 <meta property="og:url" content="http://example.com/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/index.html">
 <meta property="og:site_name" content="lan&#39;s spaces">
-<meta property="og:description" content="Kubernetes 会为每个容器都在 CPU Cgroup 的子系统中建立一个控制组，然后把容器中进程写入到这个控制组里。  cpu.cfs_quota_us、cpu.cfs_period_us Kubernetes 是通过 CPU cgroup 控制模块中的 cpu.cfs_period_us，cpu.cfs_quota_us 两个配置来实现的。kubernetes 会为这个 containe">
+<meta property="og:description" content="Kubernetes 会为每个容器都在 CPU Cgroup 的子系统中建立一个控制组，然后把容器中进程写入到这个控制组里。 硬限这样做对同宿主机的其他容器来说比较安全，因为一旦超过硬限，容器就无法运行，只能等待下一个period；对本容器来说，比较危险。 容器的核数&#x3D;cpu.cfs_quota_us &#x2F; cpu.cfs_period_us; 软限cpu.cfs_quota_us &#x3D;-1 ，仅设置">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-02T12:59:00.000Z">
-<meta property="article:modified_time" content="2024-04-03T16:14:16.157Z">
+<meta property="article:modified_time" content="2024-04-03T16:22:21.767Z">
 <meta property="article:author" content="lance">
 <meta property="article:tag" content="Cgroup">
 <meta name="twitter:card" content="summary">
@@ -70,8 +70,7 @@
 	
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">
-    
+<body class="max-width mx-auto px3 ltr">    
       <div id="header-post">
   <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
@@ -127,7 +126,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cpucfs_quota_us-cpucfs_period_us"><span class="toc-number">1.</span> <span class="toc-text"> cpu.cfs_quota_us、cpu.cfs_period_us</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpushares"><span class="toc-number">2.</span> <span class="toc-text"> cpu.shares</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-number">3.</span> <span class="toc-text"> docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text"> 参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E9%99%90"><span class="toc-number">1.</span> <span class="toc-text">硬限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E9%99%90"><span class="toc-number">2.</span> <span class="toc-text">软限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu-cfs-quota-us%E3%80%81cpu-cfs-period-us"><span class="toc-number">3.</span> <span class="toc-text">cpu.cfs_quota_us、cpu.cfs_period_us</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu-shares"><span class="toc-number">4.</span> <span class="toc-text">cpu.shares</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-number">5.</span> <span class="toc-text">docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -173,23 +172,20 @@
 
   <div class="content e-content" itemprop="articleBody">
     <p>Kubernetes 会为每个容器都在 CPU Cgroup 的子系统中建立一个控制组，然后把容器中进程写入到这个控制组里。</p>
-<h2 id="cpucfs_quota_us-cpucfs_period_us"><a class="markdownIt-Anchor" href="#cpucfs_quota_us-cpucfs_period_us"></a> cpu.cfs_quota_us、cpu.cfs_period_us</h2>
-<p>Kubernetes 是通过 CPU cgroup 控制模块中的 cpu.cfs_period_us，cpu.cfs_quota_us 两个配置来实现的。kubernetes 会为这个 container cgroup 配置两条信息：</p>
+<h2 id="硬限"><a href="#硬限" class="headerlink" title="硬限"></a>硬限</h2><p>这样做对同宿主机的其他容器来说比较安全，因为一旦超过硬限，容器就无法运行，只能等待下一个period；对本容器来说，比较危险。</p>
+<p>容器的核数=cpu.cfs_quota_us / cpu.cfs_period_us;</p>
+<h2 id="软限"><a href="#软限" class="headerlink" title="软限"></a>软限</h2><p>cpu.cfs_quota_us =-1 ，仅设置cpu.shares，即为软限，通过软限可以提升整机的cpu利用率。因为只有当cpu繁忙时，shares才会起作用。并且shares的作用和进程nice值极为相似，都是影响红黑树上节点右移的速度，来间接控制任务获取cpu时间。</p>
+<h2 id="cpu-cfs-quota-us、cpu-cfs-period-us"><a href="#cpu-cfs-quota-us、cpu-cfs-period-us" class="headerlink" title="cpu.cfs_quota_us、cpu.cfs_period_us"></a>cpu.cfs_quota_us、cpu.cfs_period_us</h2><p>Kubernetes 是通过 CPU cgroup 控制模块中的 cpu.cfs_period_us，cpu.cfs_quota_us 两个配置来实现的。kubernetes 会为这个 container cgroup 配置两条信息：</p>
 <blockquote>
-<p>cpu.cfs_period_us = 100000 (i.e. 100ms)<br>
-cpu.cfs_quota_us = quota = (cpu in millicores * 100000) / 1000</p>
+<p>cpu.cfs_period_us = 100000 (i.e. 100ms)<br>cpu.cfs_quota_us = quota = (cpu in millicores * 100000) / 1000</p>
 </blockquote>
-<p>容器 CPU 的上限由 cpu.cfs_quota_us 除以 cpu.cfs_period_us 得出的值来决定的。而且，在操作系统里，cpu.cfs_period_us 的值一般是个固定值。<br>
-在 cgroup 的 CPU 子系统中，可以通过这两个配置，严格控制这个 cgroup 中的进程对 CPU 的使用量，保证使用的 CPU 资源不会超过 cfs_quota_us/cfs_period_us，也正好就是申请的 limit 值。<br>
-对于 cpu 来说，如果没有指定 limit 的话，那么 cfs_quota_us 将会被设置为 -1，即没有限制。</p>
-<h2 id="cpushares"><a class="markdownIt-Anchor" href="#cpushares"></a> cpu.shares</h2>
-<p>在 CPU Cgroup 中 cpu.shares == 1024 表示 1 个 CPU 的比例，那么 Request CPU 的值就是 n，给 cpu.shares 的赋值对应就是 n X 1024。<br>
-CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现的。当你指定了某个容器的 CPU request 值为 x millicores 时，kubernetes 会为这个 container 所在的 cgroup 的 cpu.shares 的值指定为 x * 1024 / 1000。即：</p>
+<p>容器 CPU 的上限由 cpu.cfs_quota_us 除以 cpu.cfs_period_us 得出的值来决定的。而且，在操作系统里，cpu.cfs_period_us 的值一般是个固定值。<br>在 cgroup 的 CPU 子系统中，可以通过这两个配置，严格控制这个 cgroup 中的进程对 CPU 的使用量，保证使用的 CPU 资源不会超过 cfs_quota_us/cfs_period_us，也正好就是申请的 limit 值。<br>对于 cpu 来说，如果没有指定 limit 的话，那么 cfs_quota_us 将会被设置为 -1，即没有限制。</p>
+<h2 id="cpu-shares"><a href="#cpu-shares" class="headerlink" title="cpu.shares"></a>cpu.shares</h2><p>在 CPU Cgroup 中 cpu.shares == 1024 表示 1 个 CPU 的比例，那么 Request CPU 的值就是 n，给 cpu.shares 的赋值对应就是 n X 1024。<br>CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现的。当你指定了某个容器的 CPU request 值为 x millicores 时，kubernetes 会为这个 container 所在的 cgroup 的 cpu.shares 的值指定为 x * 1024 / 1000。即：</p>
 <blockquote>
 <p>cpu.shares = (cpu in millicores * 1024) / 1000</p>
 </blockquote>
-<p>举个例子，当你的 container 的 CPU request 的值为 1 时，它相当于 1000 millicores，所以此时这个 container 所在的 cgroup 组的 cpu.shares 的值为 1024。<br>
-这样做希望达到的终效果就是：即便在极端情况下，即所有在这个物理机上面的 pod 都是 CPU 繁忙型的作业的时候（分配多少 CPU 就会使用多少 CPU），仍旧能够保证这个 container 的能够被分配到 1 个核的 CPU 计算量。其实就是保证这个 container 的对 CPU 资源的低需求。即&quot;Request CPU&quot;就是无论其他容器申请多少 CPU 资源，即使运行时整个节点的 CPU 都被占满的情况下，我的这个容器还是可以保证获得需要的 CPU 数目。</p>
+<p>举个例子，当你的 container 的 CPU request 的值为 1 时，它相当于 1000 millicores，所以此时这个 container 所在的 cgroup 组的 cpu.shares 的值为 1024。<br>这样做希望达到的终效果就是：即便在极端情况下，即所有在这个物理机上面的 pod 都是 CPU 繁忙型的作业的时候（分配多少 CPU 就会使用多少 CPU），仍旧能够保证这个 container 的能够被分配到 1 个核的 CPU 计算量。其实就是保证这个 container 的对 CPU 资源的低需求。即”Request CPU”就是无论其他容器申请多少 CPU 资源，即使运行时整个节点的 CPU 都被占满的情况下，我的这个容器还是可以保证获得需要的 CPU 数目。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -216,8 +212,9 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
 </tr>
 </tbody>
 </table>
-<h2 id="docker"><a class="markdownIt-Anchor" href="#docker"></a> docker</h2>
-<p>在docker中可以使用以下参数：</p>
+</div>
+<h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><p>在docker中可以使用以下参数：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -248,8 +245,8 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
 </tr>
 </tbody>
 </table>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<p><a target="_blank" rel="noopener" href="https://arthurchiao.art/blog/k8s-cgroup-zh/">k8s 基于 cgroup 的资源限额（capacity enforcement）：模型设计与代码实现（2023）</a></p>
+</div>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://arthurchiao.art/blog/k8s-cgroup-zh/">k8s 基于 cgroup 的资源限额（capacity enforcement）：模型设计与代码实现（2023）</a></p>
 <p><a target="_blank" rel="noopener" href="https://medium.com/geekculture/layer-by-layer-cgroup-in-kubernetes-c4e26bda676c">Layer-by-Layer Cgroup in Kubernetes | by Stefanie Lai | Geek Culture | Medium</a></p>
 <p><a target="_blank" rel="noopener" href="https://gist.github.com/mcastelino/b8ce9a70b00ee56036dadd70ded53e9f">Kubernetes and cgroups Resource Management/Static cpuManagerPolicy/Memory and Resource Isolation &amp; Scheduling · GitHub</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/design-proposals-archive/blob/main/node/node-allocatable.md">design-proposals-archive/node/node-allocatable.md at main · kubernetes/design-proposals-archive · GitHub</a></p>
@@ -281,7 +278,7 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cpucfs_quota_us-cpucfs_period_us"><span class="toc-number">1.</span> <span class="toc-text"> cpu.cfs_quota_us、cpu.cfs_period_us</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpushares"><span class="toc-number">2.</span> <span class="toc-text"> cpu.shares</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-number">3.</span> <span class="toc-text"> docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text"> 参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E9%99%90"><span class="toc-number">1.</span> <span class="toc-text">硬限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E9%99%90"><span class="toc-number">2.</span> <span class="toc-text">软限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu-cfs-quota-us%E3%80%81cpu-cfs-period-us"><span class="toc-number">3.</span> <span class="toc-text">cpu.cfs_quota_us、cpu.cfs_period_us</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu-shares"><span class="toc-number">4.</span> <span class="toc-text">cpu.shares</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-number">5.</span> <span class="toc-text">docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 
@@ -393,5 +390,21 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
 
 <!-- utterances Comments -->
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
 </body>
 </html>
