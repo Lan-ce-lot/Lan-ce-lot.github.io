@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://example.com/2024/04/Introduction%20to%20Seccomp/image-20240402113056251.png">
 <meta property="og:image" content="http://example.com/2024/04/Introduction%20to%20Seccomp/image-20240402113107214.png">
 <meta property="article:published_time" content="2024-04-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-04T06:02:41.639Z">
+<meta property="article:modified_time" content="2024-04-04T06:05:33.339Z">
 <meta property="article:author" content="lance">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2024/04/Introduction%20to%20Seccomp/image-20240402113016295.png">
@@ -130,7 +130,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">1.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-space-x-Kernel-Space"><span class="toc-number">2.</span> <span class="toc-text">User space x Kernel Space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp"><span class="toc-number">3.</span> <span class="toc-text">Seccomp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp-on-Kubernetes-Pods"><span class="toc-number">4.</span> <span class="toc-text">Seccomp on Kubernetes Pods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">4.1.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">1.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-space-x-Kernel-Space"><span class="toc-number">2.</span> <span class="toc-text">User space x Kernel Space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp"><span class="toc-number">3.</span> <span class="toc-text">Seccomp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp-on-Kubernetes-Pods"><span class="toc-number">4.</span> <span class="toc-text">Seccomp on Kubernetes Pods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -190,7 +190,7 @@
 <p>This <strong>deny list</strong> restricts the use of the _<strong>clock_nanosleep</strong>_ system call. If you look at the previous example, this call is used by the sleep command. When this profile is applied to our pod, which executes the command sleep, the pod goes directly to _Error state_. That is, the process does not even run.</p>
 <p><img src="/2024/04/Introduction%20to%20Seccomp/image-20240402113107214.png" alt></p>
 <p>If you want to know more about seccomp and how we do at Cisco I recommend the article “Hardening Kubernetes Containers Security with Seccomp” here on the Techblog. In this article you will learn more about the best practices for creating and managing the seccomp profiles and how to use Cisco Secure Firewall Cloud Native to enhance seccomp.</p>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tutorials/clusters/seccomp/?ref=192.168.1.240">Restrict a Container’s Syscalls with seccomp</a></li>
 <li><a target="_blank" rel="noopener" href="https://techblog.cisco.com/blog/hardening-kubernetes-containers-security-with-seccomp/?ref=192.168.1.240">Hardening Kubernetes Containers Security with Seccomp</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.redhat.com/en/blog/architecting-containers-part-1-why-understanding-user-space-vs-kernel-space-matters?ref=192.168.1.240">Architecting Containers Part 1: Why Understanding User Space vs. Kernel Space Matters</a></li>
@@ -222,7 +222,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">1.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-space-x-Kernel-Space"><span class="toc-number">2.</span> <span class="toc-text">User space x Kernel Space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp"><span class="toc-number">3.</span> <span class="toc-text">Seccomp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp-on-Kubernetes-Pods"><span class="toc-number">4.</span> <span class="toc-text">Seccomp on Kubernetes Pods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#References"><span class="toc-number">4.1.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">1.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-space-x-Kernel-Space"><span class="toc-number">2.</span> <span class="toc-text">User space x Kernel Space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp"><span class="toc-number">3.</span> <span class="toc-text">Seccomp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp-on-Kubernetes-Pods"><span class="toc-number">4.</span> <span class="toc-text">Seccomp on Kubernetes Pods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 

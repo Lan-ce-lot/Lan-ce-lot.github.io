@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Linux 中的沙箱技术文件系统隔离Chroot jail通常来说，提到 chroot 一般有两个含义，chroot (1) 是&#x2F;usr&#x2F;bin&#x2F;chroot, chroot (2) 是 glibc 中的一个函数。  Chroot (1)Chroot - run command or interactive shell with special root directoryChroot [OPTI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux中的容器与沙箱初探">
+<meta property="og:url" content="http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="Linux 中的沙箱技术文件系统隔离Chroot jail通常来说，提到 chroot 一般有两个含义，chroot (1) 是&#x2F;usr&#x2F;bin&#x2F;chroot, chroot (2) 是 glibc 中的一个函数。  Chroot (1)Chroot - run command or interactive shell with special root directoryChroot [OPTI">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-04T06:19:00.000Z">
+<meta property="article:modified_time" content="2024-04-04T06:21:15.400Z">
+<meta property="article:author" content="lance">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>linux中的容器与沙箱初探</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&text=linux中的容器与沙箱初探"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&is_video=false&description=linux中的容器与沙箱初探"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=linux中的容器与沙箱初探&body=Check out this article: http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&name=linux中的容器与沙箱初探&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&t=linux中的容器与沙箱初探"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E6%B2%99%E7%AE%B1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">Linux 中的沙箱技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">文件系统隔离</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Chroot-jail"><span class="toc-number">1.1.1.</span> <span class="toc-text">Chroot jail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Restricted-bash"><span class="toc-number">1.1.2.</span> <span class="toc-text">Restricted bash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7"><span class="toc-number">1.2.</span> <span class="toc-text">进程监控</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ptrace"><span class="toc-number">1.2.1.</span> <span class="toc-text">Ptrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Seccomp"><span class="toc-number">1.2.2.</span> <span class="toc-text">Seccomp</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">Linux 中的容器技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cgroup-%E4%B8%8E-Namespace"><span class="toc-number">2.2.</span> <span class="toc-text">Cgroup 与 Namespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Namespace"><span class="toc-number">2.3.</span> <span class="toc-text">使用Namespace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84-API-%E4%BB%A5%E5%8F%8A%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text">命名空间相关的 API 以及用法示例：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Cgroup"><span class="toc-number">2.4.</span> <span class="toc-text">使用Cgroup</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Cgroup-%E9%99%90%E5%88%B6%E8%B5%84%E6%BA%90%EF%BC%88%E4%BB%A5-CPU-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">使用 Cgroup 限制资源（以 CPU 为例）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AC%E8%BF%90"><span class="toc-number">3.</span> <span class="toc-text">搬运</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        linux中的容器与沙箱初探
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">lance</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-04-04T06:19:00.000Z" class="dt-published" itemprop="datePublished">2024-04-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Linux-中的沙箱技术"><a href="#Linux-中的沙箱技术" class="headerlink" title="Linux 中的沙箱技术"></a>Linux 中的沙箱技术</h2><h3 id="文件系统隔离"><a href="#文件系统隔离" class="headerlink" title="文件系统隔离"></a>文件系统隔离</h3><h4 id="Chroot-jail"><a href="#Chroot-jail" class="headerlink" title="Chroot jail"></a>Chroot jail</h4><p>通常来说，提到 chroot 一般有两个含义，chroot (1) 是/usr/bin/chroot, chroot (2) 是 glibc 中的一个函数。</p>
+<blockquote>
+<p>Chroot (1)<br>Chroot - run command or interactive shell with special root directory<br>Chroot [OPTION] NEWROOT [COMMAND [ARG]…]</p>
+<p>Chroot (2)<br>Chroot - change root directory<br>Int chroot (const char *path);</p>
+</blockquote>
+<p>Chroot 的主要功能就是改变根目录，如运行 chroot “/home/atum/newroot/” 会启动一个新的 shell，且目录”/home/atum/newroot/”成为该 shell 下的新的根目录”/”。</p>
+<p>chroot 沙箱可以将进程对文件的访问限制在一个指定的目录中，但是由于 chroot 不是一个安全的 feature，所以该沙箱可能会被逃逸出来。关于 chroot 沙箱逃逸的方法<a target="_blank" rel="noopener" href="https://github.com/earthquake/chw00t?ref=192.168.1.240">在这里</a></p>
+<h4 id="Restricted-bash"><a href="#Restricted-bash" class="headerlink" title="Restricted bash"></a>Restricted bash</h4><p>Rbash 的主要作用是限制了部分 bash 命令，其作用之一就是使得 bash 只能执行当前目录下的可执行文件，且不允许改变当前工作目录。</p>
+<blockquote>
+<p>If bash is started with the name rbash, or the -r option is supplied at invocation, the shell becomes restricted. A restricted shell is used to set up an environment more controlled than the standard shell.</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">atum<span class="variable">@ubuntu</span><span class="symbol">:~</span><span class="variable">$ </span>rbash</span><br><span class="line">atum<span class="variable">@ubuntu</span><span class="symbol">:~</span><span class="variable">$ </span>cd <span class="variable constant_">PWN</span></span><br><span class="line"><span class="symbol">rbash:</span> <span class="symbol">cd:</span> restricted</span><br><span class="line">atum<span class="variable">@ubuntu</span><span class="symbol">:~</span><span class="variable">$ </span>./<span class="variable constant_">PWN</span>/rp++</span><br><span class="line"><span class="symbol">rbash:</span> ./<span class="variable constant_">PWN</span>/rp++: <span class="symbol">restricted:</span> cannot specify <span class="string">`/&#x27; in command names</span></span><br><span class="line"><span class="string">atum@ubuntu:~$ export PATH=$PATH:/home/atum/PWN</span></span><br><span class="line"><span class="string">rbash: PATH: readonly variable</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+<p>Rbash 的绕过方法也有很多，通常跟 chroot 配合使用</p>
+<h3 id="进程监控"><a href="#进程监控" class="headerlink" title="进程监控"></a>进程监控</h3><h4 id="Ptrace"><a href="#Ptrace" class="headerlink" title="Ptrace"></a>Ptrace</h4><p>Ptrace 是一个系统调用，tracer 进程可以使用 ptrace 监控和修改 tracee 进程的运行状态，如内存、寄存器的值等。</p>
+<blockquote>
+<p>Long ptrace (enum __ptrace_request request, pid_t pid, void <em>addr, void </em>data);</p>
+<p>The ptrace () system call provides a means by which one process (the “tracer”) may observe and control the execution of another process (the “tracee”), and examine and change the tracee’s memory and registers.</p>
+</blockquote>
+<p>使用 ptrace 可以让某一进程处于受控状态，所以可以用作实现沙箱，如我们可以利用 ptrace 来监控 tracee 使用哪些系统调用，并组织 tracee 使用某些危险的系统调用等。</p>
+<h4 id="Seccomp"><a href="#Seccomp" class="headerlink" title="Seccomp"></a>Seccomp</h4><p>Seccomp 是 linux 提供的一种沙箱机制，可以用来限制程序可以使用和不可使用的系统调用</p>
+<blockquote>
+<p>Seccomp (short for secure computing mode) is a computer security facility in the Linux kernel. Seccomp allows a process to make a one-way transition into a “secure” state where it can only make user configured system calls</p>
+</blockquote>
+<p>Seccomp 沙箱主要有两种模式，SECCOMP_SET_MODE_STRICT 只运行调用 4 个系统调用 read (2), write (2), _exit (2), sigreturn (2) 四个系统调用，而 SECCOMP_SET_MODE_FILTER 则允许通过 BPF 指定系统调用的黑名单或者白名单</p>
+<blockquote>
+<p>SECCOMP_SET_MODE_STRICT  </p>
+<p>The only system calls that the calling thread is permitted to make are read (2), write (2), _exit (2) (but not exit_group (2)), and sigreturn (2).</p>
+<p>SECCOMP_SET_MODE_FILTER<br>The system calls allowed are defined by a pointer to a Berkeley Packet Filter (BPF) passed via args.</p>
+</blockquote>
+<p>Seccomp 本身是一种很安全的技术，但是在 SECCOMP_SET_MODE_FILTER 环境下通常会因为 BPF 使用不正确导致沙箱存在被绕过的可能。</p>
+<h2 id="Linux-中的容器技术"><a href="#Linux-中的容器技术" class="headerlink" title="Linux 中的容器技术"></a>Linux 中的容器技术</h2><h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><blockquote>
+<p>Operating-system-level virtualization is a server virtualization method in which the kernel of an operating system allows the existence of multiple isolated user-space instances, instead of just one. Such instances, which are sometimes called containers, software containers</p>
+</blockquote>
+<p>容器的目的是进行<strong>资源隔离</strong>和<strong>控制隔离</strong>。</p>
+<ul>
+<li>资源隔离：隔离计算资源，如 CPU、RAM、DISK 等。</li>
+<li>控制隔离：隔离一些控制结构，如 UID、PID 等</li>
+</ul>
+<h3 id="Cgroup-与-Namespace"><a href="#Cgroup-与-Namespace" class="headerlink" title="Cgroup 与 Namespace"></a><code>Cgroup</code> 与 <code>Namespace</code></h3><p><strong>资源隔离</strong>依赖于 linux 内核的 Cgroup 实现，<strong>控制隔离</strong>依赖于 linux 内核的 namespace</p>
+<blockquote>
+<p>The Linux kernel provides the cgroups functionality that allows limitation and prioritization of resources (CPU, memory, block I/O, network, etc.) without the need for starting any virtual machines, and also namespace isolation functionality that allows complete isolation of an applications’ view of the operating environment, including process trees, networking, user IDs and mounted file systems.</p>
+</blockquote>
+<p>目前比较有名的容器均是基于 Cgroup 和 namespace 实现的：</p>
+<ul>
+<li>LXC:</li>
+</ul>
+<blockquote>
+<p>LXC combines the kernel’s cgroups and support for isolated namespaces to provide an isolated environment for applications</p>
+</blockquote>
+<ul>
+<li>Docker</li>
+</ul>
+<blockquote>
+<p>Docker containers are very similar to LXC containers, and they have similar security features. When you start a container with docker run, behind the scenes Docker creates a set of namespaces and control groups for the container.</p>
+</blockquote>
+<h3 id="使用Namespace"><a href="#使用Namespace" class="headerlink" title="使用Namespace"></a>使用<strong>Namespace</strong></h3><p>Linux 中的 namespace 思想上跟 C++里面的差不多，通俗来说把一些全局的东西分割成很多份局部，而且使得处在局部里面的人以为自己是全局。</p>
+<blockquote>
+<p>A namespace wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource. Changes to theg lobal resource are visible to other processes that are members of the namespace, but are invisible to other processes. One use of namespaces is to implement containers.</p>
+</blockquote>
+<p>目前最新版的 linuxkernel 支持 7 个命名空间</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Linux provides the following namespaces:</span><br><span class="line"></span><br><span class="line">Namespace   Constant          Isolates</span><br><span class="line">Cgroup      <span class="built_in">CLONE_NEWCGROUP</span>   Cgroup root directory</span><br><span class="line">IPC         <span class="built_in">CLONE_NEWIPC</span>      System V IPC, POSIX message queues</span><br><span class="line">Network     <span class="built_in">CLONE_NEWNET</span>      Network devices, stacks, ports, etc.</span><br><span class="line">Mount       <span class="built_in">CLONE_NEWNS</span>       Mount points</span><br><span class="line">PID         <span class="built_in">CLONE_NEWPID</span>      Process IDs</span><br><span class="line">User        <span class="built_in">CLONE_NEWUSER</span>     User and group IDs</span><br><span class="line">UTS         <span class="built_in">CLONE_NEWUTS</span>      Hostname and NIS domain nam</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="命名空间相关的-API-以及用法示例："><a href="#命名空间相关的-API-以及用法示例：" class="headerlink" title="命名空间相关的 API 以及用法示例："></a>命名空间相关的 API 以及用法示例：</h4><p><strong>clone</strong>： 创建一个新进程，并且可以根据 flag 创建新的命名空间。新创建的进程是该命名空间的 owner</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">clone</span><span class="params">(<span class="type">int</span> (*fn)(<span class="type">void</span> *), <span class="type">void</span> *child_stack,<span class="type">int</span> flags, <span class="type">void</span> *arg, ...)</span></span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">childFunc</span><span class="params">(<span class="type">char</span> * str)</span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s: My pid is %d\n&quot;</span>,str,getpid());</span><br><span class="line">	sleep(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> STACK_SIZE (1024 * 1024)</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>* argv[])</span>&#123;</span><br><span class="line">	<span class="type">void</span> *<span class="built_in">stack</span> = <span class="built_in">malloc</span>(STACK_SIZE);</span><br><span class="line">	stackTop = <span class="built_in">stack</span> + STACK_SIZE; </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;parent: My pid is %d\n&quot;</span>,getpid());</span><br><span class="line">	<span class="type">int</span> pid = clone(childFunc, stackTop, CLONE_NEWPID | SIGCHLD, <span class="string">&quot;child&quot;</span>);</span><br><span class="line">	wait(<span class="literal">NULL</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;parent: My child pid is %d\n&quot;</span>,pid);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">run it, we get:</span><br><span class="line">parent: My pid is <span class="number">12424</span></span><br><span class="line">child: My pid is <span class="number">0</span></span><br><span class="line">parent: My child pid is <span class="number">12425</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>setns</strong> 让当前进程加入一个已存在的命名空间。命名空间由 fd 指定，命名空间类型由 nstype 指定。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">setns</span><span class="params">(<span class="type">int</span> fd, <span class="type">int</span> nstype)</span>;</span><br><span class="line"></span><br><span class="line">Example：</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> fd;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;before: my pid is %d&quot;</span>,getpid());</span><br><span class="line">fd = open(<span class="string">&quot;/proc/12425/ns/pid&quot;</span>, O_RDONLY);  </span><br><span class="line">setns(fd, CLONE_NEWPID);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;after: my pid is %d&quot;</span>,getpid());</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> run it, we get:</span><br><span class="line"> before: my pid is <span class="number">12426</span></span><br><span class="line"> after: my pid is <span class="number">2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>unshare</strong> 让当前进程离开当前的命名空间，然后创建并进入一个新的命名空间, 效果跟 clone 差不多，只不过 unshare 不会创建新的进程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">unshare</span><span class="params">(<span class="type">int</span> flags)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;before: my pid is %d&quot;</span>,<span class="built_in">getpid</span>());</span><br><span class="line">	<span class="built_in">unshare</span>(CLONE_NEWPID);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;before: my pid is %d&quot;</span>,<span class="built_in">getpid</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">run it we get:</span><br><span class="line"></span><br><span class="line">before: my pid is <span class="number">12427</span></span><br><span class="line">after: my pid is <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>以上案例主要是以 PID NAMESPACE 为例，可以看得出 PID NAMESPACE 可以做到 PID 的隔离，其他 NAMESPACE 的用法类似，如 USER NAMESPACE 可以做到 UID 和 GID 的隔离，MOUNT NAMESPACE 可以做到文件系统的隔离等。</p>
+<p>另外，创建除了 USER NAMESPACE 以外的 NAMESPACE 需要 root 权限，所以通常的做法是首先进入 USER NAMESPACE，这样就可以得到一个当前 USER NAMESPACE 下的 root user，再创建其他的 namespace</p>
+<blockquote>
+<p>A process created via fork (2) or clone (2) without the CLONE_NEWUSER flag is a member of the same user namespace as its parent</p>
+<p>A call to clone (2) or unshare (2) with the CLONE_NEWUSER flag makes the new child process (for clone (2)) or the caller (for unshare (2)) a member of the new user namespace created by the call</p>
+</blockquote>
+<h3 id="使用Cgroup"><a href="#使用Cgroup" class="headerlink" title="使用Cgroup"></a>使用<strong>Cgroup</strong></h3><p>Cgroup 用来限制和监控进程对资源的使用</p>
+<blockquote>
+<p>Control cgroups, usually referred to as cgroups, are a Linux kernel feature which allow processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored.</p>
+</blockquote>
+<h4 id="使用-Cgroup-限制资源（以-CPU-为例）"><a href="#使用-Cgroup-限制资源（以-CPU-为例）" class="headerlink" title="使用 Cgroup 限制资源（以 CPU 为例）"></a>使用 Cgroup 限制资源（以 CPU 为例）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">挂载指定cgroup</span><br><span class="line">mount -t cgroup -o cpu,cpuacct none /sys/fs/cgroup/cpu,cpuacct</span><br><span class="line">或者可以挂载所有cgroup</span><br><span class="line">mount -t cgroup -o all cgroup /sys/fs/cgroup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">查看已挂载的cgroup：</span><br><span class="line"><span class="comment"># ls /sys/fs/cgroup</span></span><br><span class="line">blkio    cpu,cpuacct  freezer  net_cls           perf_event</span><br><span class="line">cpu      cpuset       hugetlb  net_cls,net_prio  pids</span><br><span class="line">cpuacct  devices      memory   net_prio          systemd</span><br><span class="line"></span><br><span class="line">创建一个新的cpu cgroup， 并设置该cgroup的进程最多使用50%的CPU</span><br><span class="line"><span class="comment"># mkdir /sys/fs/cgroup/cpu/cg1</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"></span><br><span class="line">运行一个耗时间的脚本</span><br><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line">i=0;</span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">do</span> i=<span class="variable">$i</span>+1;</span><br><span class="line"><span class="keyword">done</span>;</span><br><span class="line"></span><br><span class="line">查看CPU的使用</span><br><span class="line"><span class="comment"># top</span></span><br><span class="line">   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND    </span><br><span class="line">  4145 root      20   0   21404   4544   2776 R 100.0  0.1   0:25.62 bash </span><br><span class="line">  </span><br><span class="line">将当前4145进程加入cgroup </span><br><span class="line"><span class="built_in">echo</span> 4145 &gt; /sys/fs/cgroup/cpu/cg1/tasks</span><br><span class="line"></span><br><span class="line">再次查看CPU的使用</span><br><span class="line"><span class="comment"># top</span></span><br><span class="line">   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND    </span><br><span class="line">  4145 root      20   0   30576   4696   2136 R  49.5  0.1   0:55.41 bash      </span><br></pre></td></tr></table></figure>
+<p>Cgroup 以进程族 (process group) 为单位进行资源的限制，fork 产生的子进程会继承父进程的 cgroup。</p>
+<blockquote>
+<p>A child process created via fork (2) inherits its parent’s cgroup memberships. A process’s cgroup memberships are preserved across execve (2).</p>
+</blockquote>
+<p>另外，我们也可以使用 setrlimit prlimit 等系统调用来以单个用户或者单个进程为单位进行资源的限制，这两套资源限制的机制是独立生效的</p>
+<h2 id="搬运"><a href="#搬运" class="headerlink" title="搬运"></a>搬运</h2><p><a target="_blank" rel="noopener" href="https://atum.li/2017/04/25/linuxsandbox/?ref=192.168.1.240#linux%E4%B8%AD%E7%9A%84%E6%B2%99%E7%AE%B1%E6%8A%80%E6%9C%AF">linux中的容器与沙箱初探 — Atum</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E6%B2%99%E7%AE%B1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">Linux 中的沙箱技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">文件系统隔离</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Chroot-jail"><span class="toc-number">1.1.1.</span> <span class="toc-text">Chroot jail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Restricted-bash"><span class="toc-number">1.1.2.</span> <span class="toc-text">Restricted bash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7"><span class="toc-number">1.2.</span> <span class="toc-text">进程监控</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ptrace"><span class="toc-number">1.2.1.</span> <span class="toc-text">Ptrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Seccomp"><span class="toc-number">1.2.2.</span> <span class="toc-text">Seccomp</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">Linux 中的容器技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cgroup-%E4%B8%8E-Namespace"><span class="toc-number">2.2.</span> <span class="toc-text">Cgroup 与 Namespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Namespace"><span class="toc-number">2.3.</span> <span class="toc-text">使用Namespace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84-API-%E4%BB%A5%E5%8F%8A%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text">命名空间相关的 API 以及用法示例：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Cgroup"><span class="toc-number">2.4.</span> <span class="toc-text">使用Cgroup</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Cgroup-%E9%99%90%E5%88%B6%E8%B5%84%E6%BA%90%EF%BC%88%E4%BB%A5-CPU-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">使用 Cgroup 限制资源（以 CPU 为例）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AC%E8%BF%90"><span class="toc-number">3.</span> <span class="toc-text">搬运</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&text=linux中的容器与沙箱初探"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&is_video=false&description=linux中的容器与沙箱初探"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=linux中的容器与沙箱初探&body=Check out this article: http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&name=linux中的容器与沙箱初探&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&t=linux中的容器与沙箱初探"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2024
+    lance
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
