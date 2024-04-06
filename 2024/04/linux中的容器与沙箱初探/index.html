@@ -1,171 +1,133 @@
 <!DOCTYPE html>
-<html lang=en>
+<html>
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Linux 中的沙箱技术文件系统隔离Chroot jail通常来说，提到 chroot 一般有两个含义，chroot (1) 是&#x2F;usr&#x2F;bin&#x2F;chroot, chroot (2) 是 glibc 中的一个函数。  Chroot (1)Chroot - run command or interactive shell with special root directoryChroot [OPTI">
+  <meta charset="utf-8">
+  
+  
+  <title>linux中的容器与沙箱初探 | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Linux 中的沙箱技术文件系统隔离Chroot jail通常来说，提到 chroot 一般有两个含义，chroot (1) 是&#x2F;usr&#x2F;bin&#x2F;chroot, chroot (2) 是 glibc 中的一个函数。  Chroot (1)Chroot - run command or interactive shell with special root directoryChroot [OPT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux中的容器与沙箱初探">
 <meta property="og:url" content="http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/index.html">
 <meta property="og:site_name" content="lan&#39;s spaces">
-<meta property="og:description" content="Linux 中的沙箱技术文件系统隔离Chroot jail通常来说，提到 chroot 一般有两个含义，chroot (1) 是&#x2F;usr&#x2F;bin&#x2F;chroot, chroot (2) 是 glibc 中的一个函数。  Chroot (1)Chroot - run command or interactive shell with special root directoryChroot [OPTI">
+<meta property="og:description" content="Linux 中的沙箱技术文件系统隔离Chroot jail通常来说，提到 chroot 一般有两个含义，chroot (1) 是&#x2F;usr&#x2F;bin&#x2F;chroot, chroot (2) 是 glibc 中的一个函数。  Chroot (1)Chroot - run command or interactive shell with special root directoryChroot [OPT">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-04-04T06:19:00.000Z">
-<meta property="article:modified_time" content="2024-04-04T06:21:15.400Z">
+<meta property="article:modified_time" content="2024-04-06T09:31:30.743Z">
 <meta property="article:author" content="lance">
 <meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>linux中的容器与沙箱初探</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
+  
     
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+  
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
+<body>
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+      
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/categories">Categories</a></li>
+        
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
+      <ul class="nav-meta">
         
-        <li><a class="icon" aria-label="Previous post" href="/2024/04/Hexo%E4%B8%BB%E9%A2%98%E5%BC%80%E5%8F%91/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="icon icon-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        
+        <li class="nav-search">
+          <a title="Search">
+            <i class="icon icon-search" aria-hidden="true"></i>
+            <span>Search</span>
+          </a>
+        </li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&text=linux中的容器与沙箱初探"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&is_video=false&description=linux中的容器与沙箱初探"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=linux中的容器与沙箱初探&body=Check out this article: http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&name=linux中的容器与沙箱初探&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&t=linux中的容器与沙箱初探"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+      
+      
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E6%B2%99%E7%AE%B1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">Linux 中的沙箱技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">文件系统隔离</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Chroot-jail"><span class="toc-number">1.1.1.</span> <span class="toc-text">Chroot jail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Restricted-bash"><span class="toc-number">1.1.2.</span> <span class="toc-text">Restricted bash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7"><span class="toc-number">1.2.</span> <span class="toc-text">进程监控</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ptrace"><span class="toc-number">1.2.1.</span> <span class="toc-text">Ptrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Seccomp"><span class="toc-number">1.2.2.</span> <span class="toc-text">Seccomp</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">Linux 中的容器技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cgroup-%E4%B8%8E-Namespace"><span class="toc-number">2.2.</span> <span class="toc-text">Cgroup 与 Namespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Namespace"><span class="toc-number">2.3.</span> <span class="toc-text">使用Namespace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84-API-%E4%BB%A5%E5%8F%8A%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text">命名空间相关的 API 以及用法示例：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Cgroup"><span class="toc-number">2.4.</span> <span class="toc-text">使用Cgroup</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Cgroup-%E9%99%90%E5%88%B6%E8%B5%84%E6%BA%90%EF%BC%88%E4%BB%A5-CPU-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">使用 Cgroup 限制资源（以 CPU 为例）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AC%E8%BF%90"><span class="toc-number">3.</span> <span class="toc-text">搬运</span></a></li></ol>
+  </nav>
+
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+          <a class="nav-search" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
       </div>
-    
-  </span>
+  </div>
+  
+  
+  
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+  
+<script src="/js/script.js"></script>
+
 </div>
 
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
+    <article id="post-linux中的容器与沙箱初探" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/" class="article-date">
+  <time class="dt-published" datetime="2024-04-04T06:19:00.000Z" itemprop="datePublished">2024-04-04</time>
+</a>
     
-    <div class="content index py4 ">
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        linux中的容器与沙箱初探
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      linux中的容器与沙箱初探
     </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">lance</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2024-04-04T06:19:00.000Z" class="dt-published" itemprop="datePublished">2024-04-04</time>
-        
-      
-    </div>
-
-
-      
-
-      
-
-    </div>
-  </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <h2 id="Linux-中的沙箱技术"><a href="#Linux-中的沙箱技术" class="headerlink" title="Linux 中的沙箱技术"></a>Linux 中的沙箱技术</h2><h3 id="文件系统隔离"><a href="#文件系统隔离" class="headerlink" title="文件系统隔离"></a>文件系统隔离</h3><h4 id="Chroot-jail"><a href="#Chroot-jail" class="headerlink" title="Chroot jail"></a>Chroot jail</h4><p>通常来说，提到 chroot 一般有两个含义，chroot (1) 是/usr/bin/chroot, chroot (2) 是 glibc 中的一个函数。</p>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <span id="more"></span>
+<h2 id="Linux-中的沙箱技术"><a href="#Linux-中的沙箱技术" class="headerlink" title="Linux 中的沙箱技术"></a>Linux 中的沙箱技术</h2><h3 id="文件系统隔离"><a href="#文件系统隔离" class="headerlink" title="文件系统隔离"></a>文件系统隔离</h3><h4 id="Chroot-jail"><a href="#Chroot-jail" class="headerlink" title="Chroot jail"></a>Chroot jail</h4><p>通常来说，提到 chroot 一般有两个含义，chroot (1) 是/usr/bin/chroot, chroot (2) 是 glibc 中的一个函数。</p>
 <blockquote>
 <p>Chroot (1)<br>Chroot - run command or interactive shell with special root directory<br>Chroot [OPTION] NEWROOT [COMMAND [ARG]…]</p>
 <p>Chroot (2)<br>Chroot - change root directory<br>Int chroot (const char *path);</p>
@@ -250,143 +212,49 @@
 <p>另外，我们也可以使用 setrlimit prlimit 等系统调用来以单个用户或者单个进程为单位进行资源的限制，这两套资源限制的机制是独立生效的</p>
 <h2 id="搬运"><a href="#搬运" class="headerlink" title="搬运"></a>搬运</h2><p><a target="_blank" rel="noopener" href="https://atum.li/2017/04/25/linuxsandbox/?ref=192.168.1.240#linux%E4%B8%AD%E7%9A%84%E6%B2%99%E7%AE%B1%E6%8A%80%E6%9C%AF">linux中的容器与沙箱初探 — Atum</a></p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/" data-id="clunu29mk0016ecjgddrj5fmn" data-title="linux中的容器与沙箱初探" class="article-share-link"><span class="fa fa-share">share</span></a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/Hexo%E4%B8%BB%E9%A2%98%E5%BC%80%E5%8F%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          Hexo主题开发
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">Linux CFS 调度器</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+    <div class="nav-footer">
+  <nav class="nav-wrapper">
+    <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/tags/">tags</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E6%B2%99%E7%AE%B1%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">Linux 中的沙箱技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">文件系统隔离</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Chroot-jail"><span class="toc-number">1.1.1.</span> <span class="toc-text">Chroot jail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Restricted-bash"><span class="toc-number">1.1.2.</span> <span class="toc-text">Restricted bash</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7"><span class="toc-number">1.2.</span> <span class="toc-text">进程监控</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ptrace"><span class="toc-number">1.2.1.</span> <span class="toc-text">Ptrace</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Seccomp"><span class="toc-number">1.2.2.</span> <span class="toc-text">Seccomp</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">Linux 中的容器技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cgroup-%E4%B8%8E-Namespace"><span class="toc-number">2.2.</span> <span class="toc-text">Cgroup 与 Namespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Namespace"><span class="toc-number">2.3.</span> <span class="toc-text">使用Namespace</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84-API-%E4%BB%A5%E5%8F%8A%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text">命名空间相关的 API 以及用法示例：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Cgroup"><span class="toc-number">2.4.</span> <span class="toc-text">使用Cgroup</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Cgroup-%E9%99%90%E5%88%B6%E8%B5%84%E6%BA%90%EF%BC%88%E4%BB%A5-CPU-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-number">2.4.1.</span> <span class="toc-text">使用 Cgroup 限制资源（以 CPU 为例）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AC%E8%BF%90"><span class="toc-number">3.</span> <span class="toc-text">搬运</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&text=linux中的容器与沙箱初探"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&is_video=false&description=linux中的容器与沙箱初探"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=linux中的容器与沙箱初探&body=Check out this article: http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&title=linux中的容器与沙箱初探"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&name=linux中的容器与沙箱初探&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/&t=linux中的容器与沙箱初探"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2019-2024
-    lance
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
+  </section>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

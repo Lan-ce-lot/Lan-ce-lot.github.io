@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang=en>
+<html>
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="树状图是一种数据结构，它是由n（n&gt;&#x3D;1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。">
+  <meta charset="utf-8">
+  
+  
+  <title>树 | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="树状图是一种数据结构，它是由n（n&gt;&#x3D;1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树">
 <meta property="og:url" content="http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/index.html">
@@ -19,160 +19,116 @@
 <meta property="article:tag" content="data structure">
 <meta property="article:tag" content="tree">
 <meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>树</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
+  
     
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+  
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
+<body>
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+      
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/categories">Categories</a></li>
+        
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
+      <ul class="nav-meta">
         
-        <li><a class="icon" aria-label="Previous post" href="/2019/08/Heap/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2019/08/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B6%E8%A1%A5%E9%A2%98/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="icon icon-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        
+        <li class="nav-search">
+          <a title="Search">
+            <i class="icon icon-search" aria-hidden="true"></i>
+            <span>Search</span>
+          </a>
+        </li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&text=树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&is_video=false&description=树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=树&body=Check out this article: http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&name=树&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;树状图是一种数据结构，它是由n（n&gt;=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&t=树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+      
+      
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text"> 树：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">2.</span> <span class="toc-text"> 二分查找：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.0.0.1.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%82%A8%E5%AD%98"><span class="toc-number">3.</span> <span class="toc-text"> 树的储存：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">4.</span> <span class="toc-text"> 树的遍历：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text"> 二叉搜索树：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">5.1.</span> <span class="toc-text"> 概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="toc-number">5.2.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%9D%A5%E6%BA%90%E6%B5%99%E5%A4%A7%E6%85%95%E8%AF%BE%E8%87%AA%E6%88%91%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 代码来源浙大慕课+自我优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E4%BB%A3%E7%A0%81%E8%A7%81github"><span class="toc-number">7.</span> <span class="toc-text"> 更多代码见github</span></a></li></ol>
+  </nav>
+
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+          <a class="nav-search" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
       </div>
-    
-  </span>
+  </div>
+  
+  
+  
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+  
+<script src="/js/script.js"></script>
+
 </div>
 
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
+    <article id="post-树基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2019-08-09T08:49:53.000Z" itemprop="datePublished">2019-08-09</time>
+</a>
     
-    <div class="content index py4 ">
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        树
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      树
     </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">lance</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-08-09T08:49:53.000Z" class="dt-published" itemprop="datePublished">2019-08-09</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/data-structure/" rel="tag">data structure</a>, <a class="p-category" href="/tags/tree/" rel="tag">tree</a>
-    </div>
-
-
-    </div>
-  </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <table><tr><td bgcolor="CornflowerBlue">树状图是一种数据结构，它是由n（n>=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。 </td></tr></table>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <table><tr><td bgcolor="CornflowerBlue">树状图是一种数据结构，它是由n（n>=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。 </td></tr></table>
 <span id="more"></span>
 <h2 id="树"><a class="markdownIt-Anchor" href="#树"></a> 树：</h2>
 <blockquote>
@@ -214,143 +170,51 @@
 <h2 id="代码来源浙大慕课自我优化"><a class="markdownIt-Anchor" href="#代码来源浙大慕课自我优化"></a> <a target="_blank" rel="noopener" href="https://www.icourse163.org/learn/ZJU-93001?tid=1003997005#/learn/content?type=detail&amp;id=1007588486&amp;cid=1009151981">代码来源浙大慕课+自我优化</a></h2>
 <h2 id="更多代码见github"><a class="markdownIt-Anchor" href="#更多代码见github"></a> <a target="_blank" rel="noopener" href="https://github.com/Lan-ce-lot/data-structures">更多代码见github</a></h2>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/" data-id="clunu29mp002becjgegxf4mwl" data-title="树" class="article-share-link"><span class="fa fa-share">share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data-structure/" rel="tag">data structure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tree/" rel="tag">tree</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/Heap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          Heap
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B6%E8%A1%A5%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">多校联赛6补题</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+    <div class="nav-footer">
+  <nav class="nav-wrapper">
+    <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/tags/">tags</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text"> 树：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-number">2.</span> <span class="toc-text"> 二分查找：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.0.0.1.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%82%A8%E5%AD%98"><span class="toc-number">3.</span> <span class="toc-text"> 树的储存：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">4.</span> <span class="toc-text"> 树的遍历：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text"> 二叉搜索树：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">5.1.</span> <span class="toc-text"> 概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="toc-number">5.2.</span> <span class="toc-text"> 代码实现：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%9D%A5%E6%BA%90%E6%B5%99%E5%A4%A7%E6%85%95%E8%AF%BE%E8%87%AA%E6%88%91%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text"> 代码来源浙大慕课+自我优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E4%BB%A3%E7%A0%81%E8%A7%81github"><span class="toc-number">7.</span> <span class="toc-text"> 更多代码见github</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&text=树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&is_video=false&description=树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=树&body=Check out this article: http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&title=树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&name=树&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;CornflowerBlue&#34;&gt;树状图是一种数据结构，它是由n（n&gt;=1）个有限结点组成一个具有层次关系的集合。把它叫做“树”是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/08/%E6%A0%91%E5%9F%BA%E7%A1%80/&t=树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2019-2024
-    lance
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
+  </section>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

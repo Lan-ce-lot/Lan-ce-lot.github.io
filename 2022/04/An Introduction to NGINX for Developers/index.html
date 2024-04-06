@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang=en>
+<html>
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Picture this - you’ve created a web application and are now searching for the right web server to host it from. Your application might consist of multiple static files — HTML, CSS, and JavaScript, a b">
+  <meta charset="utf-8">
+  
+  
+  <title>An Introduction to NGINX for Developers | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Picture this - you’ve created a web application and are now searching for the right web server to host it from. Your application might consist of multiple static files — HTML, CSS, and JavaScript, a b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="An Introduction to NGINX for Developers">
 <meta property="og:url" content="http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/index.html">
@@ -18,342 +18,210 @@
 <meta property="article:author" content="lance">
 <meta property="article:tag" content="Nginx">
 <meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>An Introduction to NGINX for Developers</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
+  
     
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+  
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
+<body>
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+      
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/categories">Categories</a></li>
+        
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
+      <ul class="nav-meta">
         
-        <li><a class="icon" aria-label="Previous post" href="/2022/05/2022%E6%89%93%E5%B7%A5%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2021/12/%E4%BF%9D%E7%A0%94%E7%BB%8F%E5%8E%86/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="icon icon-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        
+        <li class="nav-search">
+          <a title="Search">
+            <i class="icon icon-search" aria-hidden="true"></i>
+            <span>Search</span>
+          </a>
+        </li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&text=An Introduction to NGINX for Developers"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&is_video=false&description=An Introduction to NGINX for Developers"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=An Introduction to NGINX for Developers&body=Check out this article: http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&name=An Introduction to NGINX for Developers&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&t=An Introduction to NGINX for Developers"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+      
+      
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-Installation-%E2%80%94-Architecture"><span class="toc-number">1.</span> <span class="toc-text">Basic Installation — Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration-Settings"><span class="toc-number">2.</span> <span class="toc-text">Configuration Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Start-NGINX"><span class="toc-number">3.</span> <span class="toc-text">Start NGINX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+  </nav>
+
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+          <a class="nav-search" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
       </div>
-    
-  </span>
+  </div>
+  
+  
+  
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+  
+<script src="/js/script.js"></script>
+
 </div>
 
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
+    <article id="post-An Introduction to NGINX for Developers" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/" class="article-date">
+  <time class="dt-published" datetime="2022-04-30T12:22:00.000Z" itemprop="datePublished">2022-04-30</time>
+</a>
     
-    <div class="content index py4 ">
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        An Introduction to NGINX for Developers
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      An Introduction to NGINX for Developers
     </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">lance</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2022-04-30T12:22:00.000Z" class="dt-published" itemprop="datePublished">2022-04-30</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Nginx/" rel="tag">Nginx</a>
-    </div>
-
-
-    </div>
-  </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <p>Picture this - you’ve created a web application and are now searching for the right web server to host it from.</p>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Picture this - you’ve created a web application and are now searching for the right web server to host it from.</p>
 <p>Your application might consist of multiple static files — HTML, CSS, and JavaScript, a backend API service or even multiple webservices. Using Nginx might be what you are looking for, and there are couple of reasons for that.</p>
 <p>NGINX is a powerful web server and uses a non-threaded, event-driven architecture that enables it to outperform Apache if configured correctly. It can also do other important things, such as load balancing, HTTP caching, or be used as a reverse proxy.</p>
 <p>NGINX Architecture</p>
 <p>In this article, I’ll cover a few basic steps about how to install and configure the most common parts of NGINX.</p>
-<h2 id="Basic-Installation-—-Architecture"><a href="#Basic-Installation-—-Architecture" class="headerlink" title="Basic Installation — Architecture"></a><strong>Basic Installation — Architecture</strong></h2><p>There are two ways to install NGINX, either using a pre-built binary or building it up from source.</p>
+<h2 id="basic-installation-architecture"><a class="markdownIt-Anchor" href="#basic-installation-architecture"></a> <strong>Basic Installation — Architecture</strong></h2>
+<p>There are two ways to install NGINX, either using a pre-built binary or building it up from source.</p>
 <p>The first method is much easiest and faster, but building it up from source provides the ability to include various third-party modules that make NGINX even more powerful. It allows us to customize it to fit the needs of the application.</p>
 <p>To install a prebuilt Debian package, the only thing you have to do is:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get updatesudo apt-get install nginx</span><br></pre></td></tr></table></figure>
 <p>After the installation process has finished, you can verify everything is OK by running the command below, which should print the latest version of NGINX.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -vnginx version: nginx/1.6.2</span><br></pre></td></tr></table></figure>
-<p>Your new webserver will be installed at the location <code>/etc/nginx****/****</code>. If you go inside this folder, you will see several files and folders. The most important ones that will require our attention later are the file <code>nginx.conf</code> and the folder <code>sites-available</code>.</p>
-<h2 id="Configuration-Settings"><a href="#Configuration-Settings" class="headerlink" title="Configuration Settings"></a><strong>Configuration Settings</strong></h2><p>The core settings of NGINX are in the <code>nginx.conf</code> file, which by default looks like this.</p>
+<p>Your new webserver will be installed at the location <code>/etc/nginx****/****</code>. If you go inside this folder, you will see several files and folders. The most important ones that will require our attention later are the file <code>nginx.conf</code> and the folder <code>sites-available</code>.</p>
+<h2 id="configuration-settings"><a class="markdownIt-Anchor" href="#configuration-settings"></a> <strong>Configuration Settings</strong></h2>
+<p>The core settings of NGINX are in the <code>nginx.conf</code> file, which by default looks like this.</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span> www-data;</span><br><span class="line"><span class="attribute">worker_processes</span> <span class="number">4</span>;</span><br><span class="line"><span class="attribute">pid</span> /run/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span> <span class="number">768</span>;</span><br><span class="line">    <span class="comment"># multi_accept on;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">sendfile</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">tcp_nopush</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">tcp_nodelay</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">keepalive_timeout</span> <span class="number">65</span>;</span><br><span class="line">    <span class="attribute">types_hash_max_size</span> <span class="number">2048</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># server_tokens off;</span></span><br><span class="line">    <span class="comment"># server_names_hash_bucket_size 64;</span></span><br><span class="line">    <span class="comment"># server_name_in_redirect off;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/mime.types;</span><br><span class="line">    <span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/access.log;</span><br><span class="line">    <span class="attribute">error_log</span> /var/log/nginx/<span class="literal">error</span>.log;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">gzip_disable</span> <span class="string">&quot;msie6&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># gzip_vary on;</span></span><br><span class="line">    <span class="comment"># gzip_proxied any;</span></span><br><span class="line">    <span class="comment"># gzip_comp_level 6;</span></span><br><span class="line">    <span class="comment"># gzip_buffers 16 8k;</span></span><br><span class="line">    <span class="comment"># gzip_http_version 1.1;</span></span><br><span class="line">    <span class="comment"># gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/sites-enabled/*;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The file is structured into <strong><strong>Contexts</strong></strong>. The first one is the <strong><strong>events</strong></strong> Context, and the second one is the <strong><strong>http</strong></strong> Context. This structure enables some advanced layering of your configuration as each context can have other nested contexts that inherit everything from their parent but can also override a setting as needed.</p>
+<p>The file is structured into <strong><strong>Contexts</strong></strong>. The first one is the <strong><strong>events</strong></strong> Context, and the second one is the <strong><strong>http</strong></strong> Context. This structure enables some advanced layering of your configuration as each context can have other nested contexts that inherit everything from their parent but can also override a setting as needed.</p>
 <p>Various things in this file can be tweaked based on your needs, but NGINX is so simple to use that you can go along even with the default settings. Some of the most important pieces of the NGINX config file are:</p>
 <ul>
-<li><strong><strong>worker_processes:</strong></strong> This setting defines the number of worker processes that NGINX will use. Because NGINX is single threaded, this number should usually be equal to the number of CPU cores.</li>
-<li><strong><strong>worker_connections:</strong></strong> This is the maximum number of simultaneous connections for each worker process and tells our worker processes how many people can simultaneously be served by NGINX. The bigger it is, the more simultaneous users the NGINX will be able to serve.</li>
-<li><strong><strong>access_log &amp; error_log:</strong></strong> These are the files that NGINX will use to log any erros and access attempts. These logs are generally reviewed for debugging and troubleshooting.</li>
-<li><strong><strong>gzip:</strong></strong> These are the settings for GZIP compression of NGINX responses. Enabling this one along with the various sub-settings that by default are commented out will result in a quite a big performance upgrade. From the sub-settings of GZIP, care should be taken for the gzip_comp_level, which is the level of compression and ranges from 1 to 10. Generally, this value should not be above 6 — the gain in terms of size reduction is insignificant, as it needs a lot more CPU usage. gzip_types is a list of response types that compression will be applied on.</li>
+<li><strong><strong>worker_processes:</strong></strong> This setting defines the number of worker processes that NGINX will use. Because NGINX is single threaded, this number should usually be equal to the number of CPU cores.</li>
+<li><strong><strong>worker_connections:</strong></strong> This is the maximum number of simultaneous connections for each worker process and tells our worker processes how many people can simultaneously be served by NGINX. The bigger it is, the more simultaneous users the NGINX will be able to serve.</li>
+<li><strong><strong>access_log &amp; error_log:</strong></strong> These are the files that NGINX will use to log any erros and access attempts. These logs are generally reviewed for debugging and troubleshooting.</li>
+<li><strong><strong>gzip:</strong></strong> These are the settings for GZIP compression of NGINX responses. Enabling this one along with the various sub-settings that by default are commented out will result in a quite a big performance upgrade. From the sub-settings of GZIP, care should be taken for the gzip_comp_level, which is the level of compression and ranges from 1 to 10. Generally, this value should not be above 6 — the gain in terms of size reduction is insignificant, as it needs a lot more CPU usage. gzip_types is a list of response types that compression will be applied on.</li>
 </ul>
 <p>Your NGINX install can support far more than a single website, and the files that define your server’s sites live in the /etc/nginx/sites-available directory.</p>
 <p>However, the files in this directory aren’t “live” — you can have as many site definition files in here as you want, but NGINX won’t actually do anything with them unless they’re symlinked into the /etc/nginx/sites-enabled directory (you could also copy them there, but symlinking ensures there’s only one copy of each file to keep track of).</p>
 <p>This gives you a method to quickly put websites online and take them offline without having to actually delete any files — when you’re ready for a site to go online, symlink it into sites-enabled and restart NGINX.</p>
-<p>The <code>sites-available</code> directory includes configurations for virtual hosts. This allows the web server to be configured for multiple sites that have separate configurations. The sites within this directory are not live and are only enabled if we create a symbolic link into the <code>sites-enabled</code> folder.</p>
+<p>The <code>sites-available</code> directory includes configurations for virtual hosts. This allows the web server to be configured for multiple sites that have separate configurations. The sites within this directory are not live and are only enabled if we create a symbolic link into the <code>sites-enabled</code> folder.</p>
 <p>Either create a new file for you application or edit the default one. A typical configuration looks like the below one.</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> remoteApplicationServer &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">10.10.10.10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">upstream</span> remoteAPIServer &#123;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">20.20.20.20</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">20.20.20.21</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">20.20.20.22</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">20.20.20.23</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> www.customapp.com customapp.com;</span><br><span class="line">    <span class="attribute">root</span> /var/www/html;</span><br><span class="line">    <span class="attribute">index</span> index.html;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">alias</span> /var/www/html/customapp/;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ =<span class="number">404</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> /remoteapp &#123;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>:<span class="variable">$server_port</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://remoteAPIServer/;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> /api/v1/ &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> https://remoteAPIServer/api/v1/;</span><br><span class="line">        <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Connection <span class="string">&#x27;upgrade&#x27;</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_cache_bypass</span> <span class="variable">$http_upgrade</span>;</span><br><span class="line">        <span class="attribute">proxy_redirect</span> http:// https://;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Much like the <code>nginx.conf</code>, this one also uses the concept of nested contexts (and all of these are also nested inside the <strong><strong>HTTP</strong></strong> context of nginx.conf, so they also inherit everything from it).</p>
-<p>The <strong><strong>server</strong></strong> context defines a specific virtual server to handle your clients’ requests. You can have multiple server blocks, and NGINX will choose between them based on the <code>listen</code> and <code>server_name</code> directives.</p>
-<p>Inside a server block, we define multiple <strong><strong>location</strong></strong> contexts that are used to decide how to handle the client requests. Whenever a request comes in, NGINX will try to match its URI to one of those location definitions and handle it accordingly.</p>
+<p>Much like the <code>nginx.conf</code>, this one also uses the concept of nested contexts (and all of these are also nested inside the <strong><strong>HTTP</strong></strong> context of nginx.conf, so they also inherit everything from it).</p>
+<p>The <strong><strong>server</strong></strong> context defines a specific virtual server to handle your clients’ requests. You can have multiple server blocks, and NGINX will choose between them based on the <code>listen</code> and <code>server_name</code> directives.</p>
+<p>Inside a server block, we define multiple <strong><strong>location</strong></strong> contexts that are used to decide how to handle the client requests. Whenever a request comes in, NGINX will try to match its URI to one of those location definitions and handle it accordingly.</p>
 <p>There are many important directives that can be used under the location context, such as:</p>
 <ul>
-<li><strong><strong>try_files</strong></strong> will try to serve a static file found under the folder that points to the root directive.</li>
-<li><strong><strong>proxy_pass</strong></strong> will send the request to a specified proxied server.</li>
-<li><strong><strong>rewrite</strong></strong> will rewrite the incoming URI based on a regular expression so that another location block will be able to handle it.</li>
+<li><strong><strong>try_files</strong></strong> will try to serve a static file found under the folder that points to the root directive.</li>
+<li><strong><strong>proxy_pass</strong></strong> will send the request to a specified proxied server.</li>
+<li><strong><strong>rewrite</strong></strong> will rewrite the incoming URI based on a regular expression so that another location block will be able to handle it.</li>
 </ul>
-<p>The <strong><strong>upstream</strong></strong> context defines a pool of servers that NGINX will proxy the requests to. After we create an upstream block and define a server inside it we can then reference it by name inside our location blocks. Furthermore, an upstream context can have many servers assigned under it so that NGINX will do some load balancing when proxying the requests.</p>
-<h2 id="Start-NGINX"><a href="#Start-NGINX" class="headerlink" title="Start NGINX"></a><strong>Start NGINX</strong></h2><p>After we have finished with the configuration and we have moved our web application over to the appropriate folder, we can start up NGINX using the below command:</p>
+<p>The <strong><strong>upstream</strong></strong> context defines a pool of servers that NGINX will proxy the requests to. After we create an upstream block and define a server inside it we can then reference it by name inside our location blocks. Furthermore, an upstream context can have many servers assigned under it so that NGINX will do some load balancing when proxying the requests.</p>
+<h2 id="start-nginx"><a class="markdownIt-Anchor" href="#start-nginx"></a> <strong>Start NGINX</strong></h2>
+<p>After we have finished with the configuration and we have moved our web application over to the appropriate folder, we can start up NGINX using the below command:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx start</span><br></pre></td></tr></table></figure>
 <p>After that, whenever we change something on our configuration, we only have to reload it (without downtime) using the command below.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx reload</span><br></pre></td></tr></table></figure>
 <p>Lastly, we can check NGINX’s status using the command below.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx status</span><br></pre></td></tr></table></figure>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><strong>Conclusion</strong></h2><p>With so many features out of the box, NGINX can be a great way to serve your application or even be used as a HTTP proxy or load balancer for your other web servers. Understanding the way NGINX works and handles requests will give a lot of power to scaling and balancing the load of your applications.</p>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> <strong>Conclusion</strong></h2>
+<p>With so many features out of the box, NGINX can be a great way to serve your application or even be used as a HTTP proxy or load balancer for your other web servers. Understanding the way NGINX works and handles requests will give a lot of power to scaling and balancing the load of your applications.</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/" data-id="clunu29mc0006ecjg7eo8emem" data-title="An Introduction to NGINX for Developers" class="article-share-link"><span class="fa fa-share">share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/05/2022%E6%89%93%E5%B7%A5%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          2022打工记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/%E4%BF%9D%E7%A0%94%E7%BB%8F%E5%8E%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">保研经历</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+    <div class="nav-footer">
+  <nav class="nav-wrapper">
+    <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/tags/">tags</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-Installation-%E2%80%94-Architecture"><span class="toc-number">1.</span> <span class="toc-text">Basic Installation — Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Configuration-Settings"><span class="toc-number">2.</span> <span class="toc-text">Configuration Settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Start-NGINX"><span class="toc-number">3.</span> <span class="toc-text">Start NGINX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">4.</span> <span class="toc-text">Conclusion</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&text=An Introduction to NGINX for Developers"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&is_video=false&description=An Introduction to NGINX for Developers"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=An Introduction to NGINX for Developers&body=Check out this article: http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&title=An Introduction to NGINX for Developers"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&name=An Introduction to NGINX for Developers&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2022/04/An%20Introduction%20to%20NGINX%20for%20Developers/&t=An Introduction to NGINX for Developers"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2019-2024
-    lance
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
+  </section>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

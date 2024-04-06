@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang=en>
+<html>
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="图论算法在计算机科学中扮演着很重要的角色，它提供了对很多问题都有效的一种简单而系统的建模方式">
+  <meta charset="utf-8">
+  
+  
+  <title>图基础 | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="图论算法在计算机科学中扮演着很重要的角色，它提供了对很多问题都有效的一种简单而系统的建模方式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图基础">
 <meta property="og:url" content="http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/index.html">
@@ -24,160 +24,116 @@
 <meta property="article:tag" content="Graph">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/%5Cassets%5Cimg%5Ctu%5C20180112155042647.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>图基础</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
+  
     
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+  
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
+<body>
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+      
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/categories">Categories</a></li>
+        
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
+      <ul class="nav-meta">
         
-        <li><a class="icon" aria-label="Previous post" href="/2019/08/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B5%E8%A1%A5%E9%A2%98/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2019/08/DP%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="icon icon-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        
+        <li class="nav-search">
+          <a title="Search">
+            <i class="icon icon-search" aria-hidden="true"></i>
+            <span>Search</span>
+          </a>
+        </li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&text=图基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&is_video=false&description=图基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=图基础&body=Check out this article: http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&name=图基础&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;Yellow&#34;&gt;图论算法在计算机科学中扮演着很重要的角色，它提供了对很多问题都有效的一种简单而系统的建模方式&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&t=图基础"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+      
+      
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text"> 概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%97%A0%E5%90%91%E5%9B%BE"><span class="toc-number">1.1.</span> <span class="toc-text"> 1. 无向图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 拓扑序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text"> 图的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="toc-number">2.1.</span> <span class="toc-text"> 邻接矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%82%BB%E6%8E%A5%E8%A1%A8%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F"><span class="toc-number">2.2.</span> <span class="toc-text"> 邻接表(链式前向星)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">3.</span> <span class="toc-text"> 图的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#dfs%E7%AE%97%E6%B3%95depth-first-search"><span class="toc-number">3.1.</span> <span class="toc-text"> dfs算法(Depth First Search)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#bfs%E7%AE%97%E6%B3%95breadth-first-search"><span class="toc-number">3.2.</span> <span class="toc-text"> bfs算法(Breadth First Search)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2018%E8%93%9D%E6%A1%A5%E6%9D%AFca%E7%BB%84"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 2018蓝桥杯c++A组</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#p1126-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AC%E9%87%8D%E7%89%A9"><span class="toc-number">3.2.2.</span> <span class="toc-text"> P1126 机器人搬重物</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98%E4%BB%A5%E4%B8%8B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E5%B7%B2%E4%B8%8A%E4%BC%A0github"><span class="toc-number">4.</span> <span class="toc-text"> 最短路问题(以下算法模板已上传github)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text"> 单源最短路问题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#bellman-ford%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text"> Bellman-Ford算法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#spfa%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text"> SPFA算法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#spfa%E7%9A%84%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96"><span class="toc-number">4.1.3.</span> <span class="toc-text"> spfa的队列优化</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#dijkstra%E7%AE%97%E6%B3%95%E8%B4%AA%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">4.1.4.</span> <span class="toc-text"> Dijkstra算法(贪心思想)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%AA%E6%9D%B0%E6%96%AF%E7%89%B9%E6%8B%89%E7%9A%84%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96"><span class="toc-number">4.1.5.</span> <span class="toc-text"> 迪杰斯特拉的优先队列优化</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="toc-number">4.2.</span> <span class="toc-text"> 多源最短路问题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#floyd-warshall%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.1.</span> <span class="toc-text"> (Floyd-Warshall算法)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text"> 最小生成树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#prim%E7%AE%97%E6%B3%95bfs%E6%80%9D%E6%83%B3"><span class="toc-number">5.1.</span> <span class="toc-text"> Prim算法(bfs思想)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#kruskal%E7%AE%97%E6%B3%95"><span class="toc-number">5.2.</span> <span class="toc-text"> Kruskal算法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA%E8%BF%9B%E9%98%B6"><span class="toc-number">6.</span> <span class="toc-text"> 图论进阶有空再补</span></a></li></ol>
+  </nav>
+
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+          <a class="nav-search" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
       </div>
-    
-  </span>
+  </div>
+  
+  
+  
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+  
+<script src="/js/script.js"></script>
+
 </div>
 
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
+    <article id="post-图基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2019-08-05T01:53:16.000Z" itemprop="datePublished">2019-08-05</time>
+</a>
     
-    <div class="content index py4 ">
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        图基础
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      图基础
     </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">lance</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2019-08-05T01:53:16.000Z" class="dt-published" itemprop="datePublished">2019-08-05</time>
-        
-      
-    </div>
-
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Graph/" rel="tag">Graph</a>, <a class="p-category" href="/tags/data/" rel="tag">data</a>, <a class="p-category" href="/tags/structure/" rel="tag">structure</a>
-    </div>
-
-
-    </div>
-  </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <table><tr><td bgcolor="Yellow">图论算法在计算机科学中扮演着很重要的角色，它提供了对很多问题都有效的一种简单而系统的建模方式</td></tr></table><span id="more"></span>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <table><tr><td bgcolor="Yellow">图论算法在计算机科学中扮演着很重要的角色，它提供了对很多问题都有效的一种简单而系统的建模方式</td></tr></table><span id="more"></span>
 <h4 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h4>
 <blockquote>
 <p>图由顶点(vertex, node)和边(edge)组成。顶点代表对象。我们可以给边赋予各种各样的属性，如权值(cost)。<br>
@@ -339,143 +295,51 @@ map[i,j] = min{map[i,k] + maxp[k,j], map[i,j]};<br>
 <p>(以上图论算法参考<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/20417057">《算法笔记》</a>-图算法专题)</p>
 <h4 id="图论进阶"><a class="markdownIt-Anchor" href="#图论进阶"></a> <a href>图论进阶</a><s>有空再补</s></h4>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/" data-id="clunu29ml001gecjg0mam5jmr" data-title="图基础" class="article-share-link"><span class="fa fa-share">share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/" rel="tag">Graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/data/" rel="tag">data</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/structure/" rel="tag">structure</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B5%E8%A1%A5%E9%A2%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          多校联赛5补题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/DP%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">DP学习总结</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+    <div class="nav-footer">
+  <nav class="nav-wrapper">
+    <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/tags/">tags</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text"> 概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%97%A0%E5%90%91%E5%9B%BE"><span class="toc-number">1.1.</span> <span class="toc-text"> 1. 无向图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8B%93%E6%89%91%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 拓扑序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.</span> <span class="toc-text"> 图的表示</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5"><span class="toc-number">2.1.</span> <span class="toc-text"> 邻接矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%82%BB%E6%8E%A5%E8%A1%A8%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F"><span class="toc-number">2.2.</span> <span class="toc-text"> 邻接表(链式前向星)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86"><span class="toc-number">3.</span> <span class="toc-text"> 图的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#dfs%E7%AE%97%E6%B3%95depth-first-search"><span class="toc-number">3.1.</span> <span class="toc-text"> dfs算法(Depth First Search)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#bfs%E7%AE%97%E6%B3%95breadth-first-search"><span class="toc-number">3.2.</span> <span class="toc-text"> bfs算法(Breadth First Search)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2018%E8%93%9D%E6%A1%A5%E6%9D%AFca%E7%BB%84"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 2018蓝桥杯c++A组</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#p1126-%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AC%E9%87%8D%E7%89%A9"><span class="toc-number">3.2.2.</span> <span class="toc-text"> P1126 机器人搬重物</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98%E4%BB%A5%E4%B8%8B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF%E5%B7%B2%E4%B8%8A%E4%BC%A0github"><span class="toc-number">4.</span> <span class="toc-text"> 最短路问题(以下算法模板已上传github)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%95%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text"> 单源最短路问题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#bellman-ford%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text"> Bellman-Ford算法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#spfa%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text"> SPFA算法</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#spfa%E7%9A%84%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96"><span class="toc-number">4.1.3.</span> <span class="toc-text"> spfa的队列优化</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#dijkstra%E7%AE%97%E6%B3%95%E8%B4%AA%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">4.1.4.</span> <span class="toc-text"> Dijkstra算法(贪心思想)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%AA%E6%9D%B0%E6%96%AF%E7%89%B9%E6%8B%89%E7%9A%84%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E4%BC%98%E5%8C%96"><span class="toc-number">4.1.5.</span> <span class="toc-text"> 迪杰斯特拉的优先队列优化</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%9A%E6%BA%90%E6%9C%80%E7%9F%AD%E8%B7%AF%E9%97%AE%E9%A2%98"><span class="toc-number">4.2.</span> <span class="toc-text"> 多源最短路问题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#floyd-warshall%E7%AE%97%E6%B3%95"><span class="toc-number">4.2.1.</span> <span class="toc-text"> (Floyd-Warshall算法)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text"> 最小生成树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#prim%E7%AE%97%E6%B3%95bfs%E6%80%9D%E6%83%B3"><span class="toc-number">5.1.</span> <span class="toc-text"> Prim算法(bfs思想)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#kruskal%E7%AE%97%E6%B3%95"><span class="toc-number">5.2.</span> <span class="toc-text"> Kruskal算法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA%E8%BF%9B%E9%98%B6"><span class="toc-number">6.</span> <span class="toc-text"> 图论进阶有空再补</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&text=图基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&is_video=false&description=图基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=图基础&body=Check out this article: http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&title=图基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&name=图基础&description=&lt;table&gt;&lt;tr&gt;&lt;td bgcolor=&#34;Yellow&#34;&gt;图论算法在计算机科学中扮演着很重要的角色，它提供了对很多问题都有效的一种简单而系统的建模方式&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/&t=图基础"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2019-2024
-    lance
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
+  </section>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

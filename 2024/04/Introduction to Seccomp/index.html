@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang=en>
+<html>
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="转载防失效 Outshift | Introduction to Seccomp ContainersOver the years, the way we build our applications has changed from a monolithic paradigm to a Microservices paradigm. Containerization gained strengt">
+  <meta charset="utf-8">
+  
+  
+  <title>Introduction to Seccomp | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="转载防失效 Outshift | Introduction to Seccomp  Containers Over the years, the way we build our applications has changed from a monolithic paradigm to a Microservices paradigm. Containerization gained stren">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Seccomp">
 <meta property="og:url" content="http://example.com/2024/04/Introduction%20to%20Seccomp/index.html">
 <meta property="og:site_name" content="lan&#39;s spaces">
-<meta property="og:description" content="转载防失效 Outshift | Introduction to Seccomp ContainersOver the years, the way we build our applications has changed from a monolithic paradigm to a Microservices paradigm. Containerization gained strengt">
+<meta property="og:description" content="转载防失效 Outshift | Introduction to Seccomp  Containers Over the years, the way we build our applications has changed from a monolithic paradigm to a Microservices paradigm. Containerization gained stren">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2024/04/Introduction%20to%20Seccomp/image-20240402113016295.png">
 <meta property="og:image" content="http://example.com/2024/04/Introduction%20to%20Seccomp/image-20240402113037151.png">
@@ -22,317 +22,190 @@
 <meta property="article:author" content="lance">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2024/04/Introduction%20to%20Seccomp/image-20240402113016295.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Introduction to Seccomp</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
+  
     
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+  
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
+<body>
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+      
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives">Archives</a></li>
+        
+          <li><a href="/about">About</a></li>
+        
+          <li><a href="/tags">Tags</a></li>
+        
+          <li><a href="/categories">Categories</a></li>
+        
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
+      <ul class="nav-meta">
         
-        <li><a class="icon" aria-label="Previous post" href="/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2024/04/Metasploitable%202%20Exploitability%20Guide/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="icon icon-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        
+        <li class="nav-search">
+          <a title="Search">
+            <i class="icon icon-search" aria-hidden="true"></i>
+            <span>Search</span>
+          </a>
+        </li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/Introduction%20to%20Seccomp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&text=Introduction to Seccomp"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&is_video=false&description=Introduction to Seccomp"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Introduction to Seccomp&body=Check out this article: http://example.com/2024/04/Introduction%20to%20Seccomp/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&name=Introduction to Seccomp&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/Introduction%20to%20Seccomp/&t=Introduction to Seccomp"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+      
+      
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">1.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-space-x-Kernel-Space"><span class="toc-number">2.</span> <span class="toc-text">User space x Kernel Space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp"><span class="toc-number">3.</span> <span class="toc-text">Seccomp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp-on-Kubernetes-Pods"><span class="toc-number">4.</span> <span class="toc-text">Seccomp on Kubernetes Pods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
+  </nav>
+
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+          <a class="nav-search" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
       </div>
-    
-  </span>
+  </div>
+  
+  
+  
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+  
+<script src="/js/script.js"></script>
+
 </div>
 
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
+    <article id="post-Introduction to Seccomp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/Introduction%20to%20Seccomp/" class="article-date">
+  <time class="dt-published" datetime="2024-04-01T16:00:00.000Z" itemprop="datePublished">2024-04-02</time>
+</a>
     
-    <div class="content index py4 ">
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    
-    <h1 class="posttitle p-name" itemprop="name headline">
-        Introduction to Seccomp
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Introduction to Seccomp
     </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">lance</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2024-04-01T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-04-02</time>
-        
-      
-    </div>
-
-
-      
-
-      
-
-    </div>
-  </header>
   
 
-  <div class="content e-content" itemprop="articleBody">
-    <p>转载防失效</p>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>转载防失效</p>
 <p><a target="_blank" rel="noopener" href="https://outshift.cisco.com/blog/introduction-to-seccomp">Outshift | Introduction to Seccomp</a></p>
-<h2 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h2><p>Over the years, the way we build our applications has changed from a monolithic paradigm to a Microservices paradigm. Containerization gained strength, and with it the success of Docker and Kubernetes.</p>
+<h2 id="containers"><a class="markdownIt-Anchor" href="#containers"></a> Containers</h2>
+<p>Over the years, the way we build our applications has changed from a monolithic paradigm to a Microservices paradigm. Containerization gained strength, and with it the success of Docker and Kubernetes.</p>
 <p>Briefly, a container is a set of processes. If you have multiple containers, you will have multiple sets of processes which are isolated from each other using namespaces and cgroups. Namespaces are responsible for isolating processes (which processes can my process see?) and cgroups are responsible for reserving resources for the processes (how much CPU can my process use?).</p>
 <p><img src="/2024/04/Introduction%20to%20Seccomp/image-20240402113016295.png" alt></p>
-<p>In the image above, we have an example of the isolation done by namespace. The ubuntu pod, pictured, is executing a _sleep_ command. For the pod, _sleep_ is the process with PID 1. The container doesn’t see any processes from the host, or from other containers, so it considers the _sleep_ process as the first one. Otherwise, the host can see the processes inside all containers, and for him the PID of the _sleep_ process is 7275.</p>
-<p>Who is responsible for creating the namespace for each container? The answer is simple: <strong>the runtime container</strong> handles this task (Example: runc on docker). But if the process need access to hardware, how is this done? Here, we need to understand the concepts of user space and kernel space.</p>
-<h2 id="User-space-x-Kernel-Space"><a href="#User-space-x-Kernel-Space" class="headerlink" title="User space x Kernel Space"></a>User space x Kernel Space</h2><p>Linux divides the memory into <strong>user space</strong> and <strong>kernel space</strong>. All user processes live on the <strong>user space</strong> and the kernel processes on <strong>kernel space</strong>. When a user process needs to interact with hardware, it makes system calls, or just syscalls, to the kernel on the kernel space.</p>
+<p>In the image above, we have an example of the isolation done by namespace. The ubuntu pod, pictured, is executing a <em>sleep</em> command. For the pod, <em>sleep</em> is the process with PID 1. The container doesn’t see any processes from the host, or from other containers, so it considers the <em>sleep</em> process as the first one. Otherwise, the host can see the processes inside all containers, and for him the PID of the <em>sleep</em> process is 7275.</p>
+<p>Who is responsible for creating the namespace for each container? The answer is simple: <strong>the runtime container</strong> handles this task (Example: runc on docker). But if the process need access to hardware, how is this done? Here, we need to understand the concepts of user space and kernel space.</p>
+<h2 id="user-space-x-kernel-space"><a class="markdownIt-Anchor" href="#user-space-x-kernel-space"></a> User space x Kernel Space</h2>
+<p>Linux divides the memory into <strong>user space</strong> and <strong>kernel space</strong>. All user processes live on the <strong>user space</strong> and the kernel processes on <strong>kernel space</strong>. When a user process needs to interact with hardware, it makes system calls, or just syscalls, to the kernel on the kernel space.</p>
 <p><img src="/2024/04/Introduction%20to%20Seccomp/image-20240402113037151.png" alt></p>
 <p>Although processes inside a container cannot see those on the host due to the isolation created by namespaces, there is no analogous solution for the kernel. That is, our containers share the same kernel space between themselves and the host. Thus, it would be possible for a container to erase file systems using syscall, or write on files that require privileges. This is far less secure than using virtual machines where each service has its own user and kernel space.</p>
-<h2 id="Seccomp"><a href="#Seccomp" class="headerlink" title="Seccomp"></a>Seccomp</h2><p>The good news is that it is possible to restrict the syscalls a process can do. Seccomp is a Linux kernel feature available since version 2.6.12, which limits the syscalls a process can do. The seccomp makes use of profiles which are json files that tell what is allowed and what is not allowed regarding system calls.<br>The runtimes already leverage seccomp profiles to limit some system calls by default. It’s possible to use its profiles on Kubernetes by enabling a feature gate on kubelet. However, it is also possible to add more security by creating customized and more restrictive profiles for a specific pod.</p>
-<h2 id="Seccomp-on-Kubernetes-Pods"><a href="#Seccomp-on-Kubernetes-Pods" class="headerlink" title="Seccomp on Kubernetes Pods"></a>Seccomp on Kubernetes Pods</h2><p>Using <strong>_securityContext_</strong> you can use seccomp profiles on your pods or containers. Here’s an example of a Pod that uses a seccomp profile (We’ll use this example later). The profile can be specified inside the Pod or the container, the difference is that when you do it inside the Pod all the containers inside it use the same profile. It is also important to set <strong>_allowPrivilegeEscalation_</strong> to false to prevent the container from trying to acquire more power than is allowed. Otherwise, the seccomp profile won’t be applied.</p>
+<h2 id="seccomp"><a class="markdownIt-Anchor" href="#seccomp"></a> Seccomp</h2>
+<p>The good news is that it is possible to restrict the syscalls a process can do. Seccomp is a Linux kernel feature available since version 2.6.12, which limits the syscalls a process can do. The seccomp makes use of profiles which are json files that tell what is allowed and what is not allowed regarding system calls.<br>
+The runtimes already leverage seccomp profiles to limit some system calls by default. It’s possible to use its profiles on Kubernetes by enabling a feature gate on kubelet. However, it is also possible to add more security by creating customized and more restrictive profiles for a specific pod.</p>
+<h2 id="seccomp-on-kubernetes-pods"><a class="markdownIt-Anchor" href="#seccomp-on-kubernetes-pods"></a> Seccomp on Kubernetes Pods</h2>
+<p>Using <strong><em>securityContext</em></strong> you can use seccomp profiles on your pods or containers. Here’s an example of a Pod that uses a seccomp profile (We’ll use this example later). The profile can be specified inside the Pod or the container, the difference is that when you do it inside the Pod all the containers inside it use the same profile. It is also important to set <strong><em>allowPrivilegeEscalation</em></strong> to false to prevent the container from trying to acquire more power than is allowed. Otherwise, the seccomp profile won’t be applied.</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">creationTimestamp:</span> <span class="literal">null</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ubuntu-deny</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">securityContext:</span></span><br><span class="line">    <span class="attr">seccompProfile:</span></span><br><span class="line">      <span class="attr">type:</span> <span class="string">Localhost</span></span><br><span class="line">      <span class="attr">localhostProfile:</span> <span class="string">deny-list.json</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">ubuntu</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">ubuntu-deny</span></span><br><span class="line">      <span class="attr">command:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">sleep</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">&quot;90000&quot;</span></span><br><span class="line">      <span class="attr">securityContext:</span></span><br><span class="line">        <span class="attr">allowPrivilegeEscalation:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>Seccomp is a powerful tool. But knowing which system call we should permit our process to do is a difficult task. A simple command like _sleep_ can make a few dozen system calls as shown in the image below.</p>
+<p>Seccomp is a powerful tool. But knowing which system call we should permit our process to do is a difficult task. A simple command like <em>sleep</em> can make a few dozen system calls as shown in the image below.</p>
 <p><img src="/2024/04/Introduction%20to%20Seccomp/image-20240402113056251.png" alt></p>
-<p>One way to get around this is using deny-type profiles. In a <strong>deny list</strong> you prohibit some calls and allow all others. This way you can ensure that your container won’t try to do stranger things with the host. And you will be able to answer faster to new threats. Here is an example of a <strong>deny list</strong>.</p>
+<p>One way to get around this is using deny-type profiles. In a <strong>deny list</strong> you prohibit some calls and allow all others. This way you can ensure that your container won’t try to do stranger things with the host. And you will be able to answer faster to new threats. Here is an example of a <strong>deny list</strong>.</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;defaultAction&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SCMP_ACT_ALLOW&quot;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;architectures&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">		<span class="string">&quot;SCMP_ARCH_X86_64&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="string">&quot;SCMP_ARCH_X86&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="string">&quot;SCMP_ARCH_X32&quot;</span></span><br><span class="line">	<span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">	<span class="attr">&quot;syscalls&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">		<span class="punctuation">&#123;</span></span><br><span class="line">			<span class="attr">&quot;names&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;clock_nanosleep&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">			<span class="attr">&quot;action&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SCMP_ACT_ERRNO&quot;</span></span><br><span class="line">		<span class="punctuation">&#125;</span></span><br><span class="line">	<span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>This <strong>deny list</strong> restricts the use of the _<strong>clock_nanosleep</strong>_ system call. If you look at the previous example, this call is used by the sleep command. When this profile is applied to our pod, which executes the command sleep, the pod goes directly to _Error state_. That is, the process does not even run.</p>
+<p>This <strong>deny list</strong> restricts the use of the <em><strong>clock_nanosleep</strong></em> system call. If you look at the previous example, this call is used by the sleep command. When this profile is applied to our pod, which executes the command sleep, the pod goes directly to <em>Error state</em>. That is, the process does not even run.</p>
 <p><img src="/2024/04/Introduction%20to%20Seccomp/image-20240402113107214.png" alt></p>
 <p>If you want to know more about seccomp and how we do at Cisco I recommend the article “Hardening Kubernetes Containers Security with Seccomp” here on the Techblog. In this article you will learn more about the best practices for creating and managing the seccomp profiles and how to use Cisco Secure Firewall Cloud Native to enhance seccomp.</p>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<h2 id="references"><a class="markdownIt-Anchor" href="#references"></a> References</h2>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tutorials/clusters/seccomp/?ref=192.168.1.240">Restrict a Container’s Syscalls with seccomp</a></li>
 <li><a target="_blank" rel="noopener" href="https://techblog.cisco.com/blog/hardening-kubernetes-containers-security-with-seccomp/?ref=192.168.1.240">Hardening Kubernetes Containers Security with Seccomp</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.redhat.com/en/blog/architecting-containers-part-1-why-understanding-user-space-vs-kernel-space-matters?ref=192.168.1.240">Architecting Containers Part 1: Why Understanding User Space vs. Kernel Space Matters</a></li>
 </ul>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/04/Introduction%20to%20Seccomp/" data-id="clunu29mg000iecjg7xayenbr" data-title="Introduction to Seccomp" class="article-share-link"><span class="fa fa-share">share</span></a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <div class="article-nav-title">
+        
+          Kubernetes 资源限额
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/Metasploitable%202%20Exploitability%20Guide/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <div class="article-nav-title">Metasploitable 2 Exploitability Guide</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
 
-        
-          <div id="footer-post-container">
-  <div id="footer-post">
+    <div class="nav-footer">
+  <nav class="nav-wrapper">
+    <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-        
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/about/">About</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/tags/">tags</a></li>
-        
-      </ul>
-    </div>
-
-    
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Containers"><span class="toc-number">1.</span> <span class="toc-text">Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-space-x-Kernel-Space"><span class="toc-number">2.</span> <span class="toc-text">User space x Kernel Space</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp"><span class="toc-number">3.</span> <span class="toc-text">Seccomp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seccomp-on-Kubernetes-Pods"><span class="toc-number">4.</span> <span class="toc-text">Seccomp on Kubernetes Pods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/04/Introduction%20to%20Seccomp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&text=Introduction to Seccomp"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&is_video=false&description=Introduction to Seccomp"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Introduction to Seccomp&body=Check out this article: http://example.com/2024/04/Introduction%20to%20Seccomp/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&title=Introduction to Seccomp"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/04/Introduction%20to%20Seccomp/&name=Introduction to Seccomp&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2024/04/Introduction%20to%20Seccomp/&t=Introduction to Seccomp"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2019-2024
-    lance
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
-
-
-
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
-
-
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
-
-
-
-
-<!-- clipboard -->
-
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
-
-
-<script src="/js/main.js"></script>
-
-<!-- search -->
-
-<!-- Baidu Analytics -->
-
-<!-- Cloudflare Analytics -->
-
-<!-- Disqus Comments -->
-
-<!-- utterances Comments -->
+  </section>
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
