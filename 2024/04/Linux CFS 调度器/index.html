@@ -107,89 +107,121 @@
 
   <div class="nav-close" role="button" aria-label="Close"></div>
   <section class="page-wrapper">
-    <article id="post-Linux CFS 调度器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/" class="article-date">
-  <time class="dt-published" datetime="2024-04-02T16:00:00.000Z" itemprop="datePublished">2024-04-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Linux CFS 调度器
-    </h1>
-  
+    <div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+<header class="post-header">
+	<div class="inner">
+		<span class="post-info">
+      <span class="post-type">
+        Article
+      </span>
       
+        <a class="tag-link" href="/tags/OS/" rel="tag"><span class="post-count">OS</span></a>
+      
+    </span>
+    <h1 class="post-title">Linux CFS 调度器</h1>
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          
+        </figure>
+      </div>
+      <h4 class="post-meta-author">
+        lance
+      </h4>
+      <time class="post-meta-date" datetime="2024-04-03">
+        03 Apr 2024
+      </time>
+    </div>
+  </div>
+</header>
+
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+			<section class="post-content">
         <pre><code>Linux 默认调度器 CFS 相关的一些内容。
-</code></pre><span id="more"></span>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="CFS"><a href="#CFS" class="headerlink" title="CFS"></a>CFS</h3><p>CFS（Completely Fair Scheduler）是 Linux 内置（也是目前默认）的一个 <code>内核调度器</code>， 如名字所示，它实现了所谓的“完全公平”调度算法，将 CPU 资源均匀地分配给各进程（ 在内核代码中称为“任务”，task）。</p>
+</code></pre>
+<span id="more"></span>
+<h2 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h2>
+<h3 id="cfs"><a class="markdownIt-Anchor" href="#cfs"></a> CFS</h3>
+<p>CFS（Completely Fair Scheduler）是 Linux 内置（也是目前默认）的一个 <code>内核调度器</code>， 如名字所示，它实现了所谓的“完全公平”调度算法，将 CPU 资源均匀地分配给各进程（ 在内核代码中称为“任务”，task）。</p>
 <p><img src="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/image-20240403232634712.png" alt></p>
 <ul>
 <li>两个进程：每个进程会各占 50% CPU 时间；</li>
 <li>四个进程：每个进程会各占 25% CPU 时间；</li>
 </ul>
-<h3 id="支持进程组"><a href="#支持进程组" class="headerlink" title="支持进程组"></a>支持进程组</h3><p>进程会组织成进程组（task group）的形式， 用户希望先对进程组分配 CPU 份额，再<strong>在每个进程组里面实现公平调度</strong>。</p>
+<h3 id="支持进程组"><a class="markdownIt-Anchor" href="#支持进程组"></a> 支持进程组</h3>
+<p>进程会组织成进程组（task group）的形式， 用户希望先对进程组分配 CPU 份额，再<strong>在每个进程组里面实现公平调度</strong>。</p>
 <p>比如多用户场景希望对每个用户公平分配 CPU Time</p>
 <p>引入了</p>
 <ul>
 <li>实时任务的组调度（RT group）（SCHED_RT）</li>
-<li><p>常规进程的组调度（task group）（SCHED_NORMAL）</p>
-<p><code>CONFIG_RT_GROUP_SCHED</code> 支持对 real-time (SCHED_FIFO 先来先服务 and SCHED_RR 时间片轮转) 任务进行分组 CFS。</p>
-</li>
+<li>常规进程的组调度（task group）（SCHED_NORMAL）</li>
 </ul>
+<p><code>CONFIG_RT_GROUP_SCHED</code> 支持对 real-time (SCHED_FIFO 先来先服务 and SCHED_RR 时间片轮转) 任务进行分组 CFS。</p>
 <p>实时进程有严格的响应时间限制（Qos 高），要确保这些进程的响应实时性</p>
 <p>除实时进程外就是常规进程，没有严格的响应时间限制， 当系统繁忙时，响应延迟就会增加。支持对普通 CFS (SCHED_NORMAL, SCHED_BATCH) 任务进行分组</p>
-<h3 id="支持-CPU-限额"><a href="#支持-CPU-限额" class="headerlink" title="支持 CPU 限额"></a>支持 CPU 限额</h3><p>CFS 的一些问题</p>
+<h3 id="支持-cpu-限额"><a class="markdownIt-Anchor" href="#支持-cpu-限额"></a> 支持 CPU 限额</h3>
+<p>CFS 的一些问题</p>
 <ul>
 <li>CFS 不能做到真正完全公平。如果两个 Task，其中一个 Task有很多 sleep/wait 时间， CFS 就会把多余的时间给到第二个 Task，导致第二个 Task 实际使用的时间超过一半。</li>
-<li>优先级高的进程仍然可能获得更大的时间片，RT 类型任务时，永远比 NORMAL 先执行。优先级可以通过 <code>nice(2)</code> 控制。</li>
-<li>无法设置 CPU 使用上限。CFS <strong>只关注 CPU 平均分配，并不保证 CPU 时间</strong>（上下限）。CPU share/quota 只有相对意义，share 大的一定比 share 小的能分到更多 CPU，仅此而已。CPU 限额对<strong>按 CPU 时间计费</strong>场景很关键，如公有云。</li>
+<li>优先级高的进程仍然可能获得更大的时间片，RT 类型任务时，永远比 NORMAL 先执行。优先级可以通过 <code>nice(2)</code> 控制。</li>
+<li>无法设置 CPU 使用上限。CFS <strong>只关注 CPU 平均分配，并不保证 CPU 时间</strong>（上下限）。CPU share/quota 只有相对意义，share 大的一定比 share 小的能分到更多 CPU，仅此而已。CPU 限额对<strong>按 CPU 时间计费</strong>场景很关键，如公有云。</li>
 </ul>
-<p>Google 提出了 <code>CFS CPU 带宽控制</code>（CFS bandwidth control）方案。</p>
+<p>Google 提出了 <code>CFS CPU 带宽控制</code>（CFS bandwidth control）方案。</p>
 <p>同时，burst 特性：允许借用前一个进程剩下的带宽。</p>
-<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><blockquote>
+<h2 id="设计"><a class="markdownIt-Anchor" href="#设计"></a> 设计</h2>
+<blockquote>
 <p><strong>将真实 CPU 建模为一个“理想、精确的多任务 CPU”</strong></p>
 </blockquote>
-<p>内核为每个 CPU 维护了一个可运行进程的队列（runqueue）； CFS 有一个可配置的调度周期 <code>sched_latency</code>；接下来的基本调度过程：</p>
+<p>内核为每个 CPU 维护了一个可运行进程的队列（runqueue）； CFS 有一个可配置的调度周期 <code>sched_latency</code>；接下来的基本调度过程：</p>
 <ul>
 <li>CFS 根据当前可运行进程的数量 N，计算得到每个进程应该执行的时间 sched_latency/N；</li>
 <li>依次取出进程执行以上计算出的时间；</li>
 <li>如果 runqueue 有变化，再重新计算可执行时间。</li>
 </ul>
-<h3 id="vruntime"><a href="#vruntime" class="headerlink" title="vruntime"></a>vruntime</h3><p>在真实 CPU 上，任意时间只能运行一个任务；为了实现“公平”，CFS 引入了 “virtual runtime”（虚拟运行时间）的概念。</p>
+<h3 id="vruntime"><a class="markdownIt-Anchor" href="#vruntime"></a> vruntime</h3>
+<p>在真实 CPU 上，任意时间只能运行一个任务；为了实现“公平”，CFS 引入了 “virtual runtime”（虚拟运行时间）的概念。</p>
 <ul>
 <li>vruntime 表示进程真正在 CPU 上执行的时间，不包括任何形式的等待时间；</li>
 <li>机器一般都是多核的，因此 vruntime 是在多个 CPU 上执行时间的累加。</li>
 </ul>
-<h3 id="runqueue"><a href="#runqueue" class="headerlink" title="runqueue"></a>runqueue</h3><p>是每个 CPU 上的可运行进程队列，之前就已经存在，并不是 CFS 引入的。</p>
-<h3 id="time-ordered-rbtree"><a href="#time-ordered-rbtree" class="headerlink" title="time-ordered rbtree"></a>time-ordered rbtree</h3><blockquote>
-<p>红黑树，查询复杂度：<code>O(logN)</code> 插入复杂度 <code>O(logN)</code></p>
+<h3 id="runqueue"><a class="markdownIt-Anchor" href="#runqueue"></a> runqueue</h3>
+<p>是每个 CPU 上的可运行进程队列，之前就已经存在，并不是 CFS 引入的。</p>
+<h3 id="time-ordered-rbtree"><a class="markdownIt-Anchor" href="#time-ordered-rbtree"></a> time-ordered rbtree</h3>
+<blockquote>
+<p>红黑树，查询复杂度：<code>O(logN)</code> 插入复杂度 <code>O(logN)</code></p>
 </blockquote>
-<p>思想：进程 vruntime 最小，说明累计执行时间最少，从“公平”的角度来说，就需要执行它。<br>CFS 用红黑树来组织这些进程（描述 runqueue），<code>vruntime</code> 为 key，所有 runnable 的进程使用 <code>p-&gt;se.vruntime</code> 排序<br>每次取出最左边的进程（红黑树特性），执行完成后插入越来越右边，这样每个任务都有机会成为最左边的节点， 在一段确定是时间内总得得到 CPU 资源。<br>同时维护min vruntime 和 max vruntime<br><code>min vruntime</code> 用于防止进程饥饿：当一个新的进程被创建或一个等待（阻塞）的进程重新回到就绪状态时，其 vruntime 会被设置为当前所有进程中的最小 vruntime 值。</p>
+<p>思想：进程 vruntime 最小，说明累计执行时间最少，从“公平”的角度来说，就需要执行它。<br>
+CFS 用红黑树来组织这些进程（描述 runqueue），<code>vruntime</code> 为 key，所有 runnable 的进程使用 <code>p-&gt;se.vruntime</code> 排序<br>
+每次取出最左边的进程（红黑树特性），执行完成后插入越来越右边，这样每个任务都有机会成为最左边的节点， 在一段确定是时间内总得得到 CPU 资源。<br>
+同时维护min vruntime 和 max vruntime<br>
+<code>min vruntime</code> 用于防止进程饥饿：当一个新的进程被创建或一个等待（阻塞）的进程重新回到就绪状态时，其 vruntime 会被设置为当前所有进程中的最小 vruntime 值。</p>
 <p><code>max vruntime</code>用途是避免 vruntime 的数值超出处理范围：由于 vruntime 是不断累加的，理论上它可能会增长到一个极大的值。max vruntime 作为一个上限，可以防止 vruntime 的溢出（overflow）。</p>
-<h2 id="调度策略"><a href="#调度策略" class="headerlink" title="调度策略"></a>调度策略</h2><h3 id="RT"><a href="#RT" class="headerlink" title="RT"></a>RT</h3><h4 id="SCHED-FIFO"><a href="#SCHED-FIFO" class="headerlink" title="SCHED_FIFO"></a><code>SCHED_FIFO</code></h4><p>先进先出。</p>
+<h2 id="调度策略"><a class="markdownIt-Anchor" href="#调度策略"></a> 调度策略</h2>
+<h3 id="rt"><a class="markdownIt-Anchor" href="#rt"></a> RT</h3>
+<h4 id="sched_fifo"><a class="markdownIt-Anchor" href="#sched_fifo"></a> <code>SCHED_FIFO</code></h4>
+<p>先进先出。</p>
 <p>进程在下面的条件下会放弃 CPU：</p>
 <ol>
 <li>进程在等待，例如 IO 操作。当进程<strong>再回到 ready 状态时</strong>，它会被放到 runqueue 队尾。</li>
-<li>进程通过 <strong>==<code>sched_yield</code>==</strong> yield（主动让出） CPU。进程<strong>立即</strong>进入 runqueue 队尾。</li>
+<li>进程通过 <strong><mark><code>sched_yield</code></mark></strong> yield（主动让出） CPU。进程<strong>立即</strong>进入 runqueue 队尾。</li>
 </ol>
-<h4 id="SCHED-RR"><a href="#SCHED-RR" class="headerlink" title="SCHED_RR"></a><code>SCHED_RR</code></h4><p>在这种调度策略中，runqueue 中的每个进程轮流获得时间片（quantum）。</p>
+<h4 id="sched_rr"><a class="markdownIt-Anchor" href="#sched_rr"></a> <code>SCHED_RR</code></h4>
+<p>在这种调度策略中，runqueue 中的每个进程轮流获得时间片（quantum）。</p>
 <p>调度策略：影响的是 runqueue 如何工作，每个进程能获得多少执行时间。</p>
-<h3 id="NORMAL"><a href="#NORMAL" class="headerlink" title="NORMAL"></a>NORMAL</h3><h4 id="SCHED-NORMAL"><a href="#SCHED-NORMAL" class="headerlink" title="SCHED_NORMAL"></a><code>SCHED_NORMAL</code></h4><p>历史上叫 <code>SCHED_OTHER</code>，适用于普通任务的调度。</p>
-<h4 id="SCHED-BATCH"><a href="#SCHED-BATCH" class="headerlink" title="SCHED_BATCH"></a><code>SCHED_BATCH</code></h4><p>适合批量任务。不像普通任务那样容易被抢占，因此每个任务运行的时间可以更长，缓存效率更高，但交互性变差。</p>
-<h4 id="SCHED-IDLE"><a href="#SCHED-IDLE" class="headerlink" title="SCHED_IDLE"></a><code>SCHED_IDLE</code></h4><blockquote>
+<h3 id="normal"><a class="markdownIt-Anchor" href="#normal"></a> NORMAL</h3>
+<h4 id="sched_normal"><a class="markdownIt-Anchor" href="#sched_normal"></a> <code>SCHED_NORMAL</code></h4>
+<p>历史上叫 <code>SCHED_OTHER</code>，适用于普通任务的调度。</p>
+<h4 id="sched_batch"><a class="markdownIt-Anchor" href="#sched_batch"></a> <code>SCHED_BATCH</code></h4>
+<p>适合批量任务。不像普通任务那样容易被抢占，因此每个任务运行的时间可以更长，缓存效率更高，但交互性变差。</p>
+<h4 id="sched_idle"><a class="markdownIt-Anchor" href="#sched_idle"></a> <code>SCHED_IDLE</code></h4>
+<blockquote>
 <p>这甚至比 nice 19还要弱，但它不是一个真正的空闲计时器调度器，以避免陷入可能导致机器死锁的优先转置问题。</p>
 </blockquote>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -216,58 +248,103 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="CPU-配额"><a href="#CPU-配额" class="headerlink" title="CPU 配额"></a>CPU 配额</h2><p>给 cpu cgroup 引入了两个新配置项：</p>
+<h2 id="cpu-配额"><a class="markdownIt-Anchor" href="#cpu-配额"></a> CPU 配额</h2>
+<p>给 cpu cgroup 引入了两个新配置项：</p>
 <ul>
-<li><strong>==<code>cpu.cfs_period_us</code>==</strong>: 周期（period），每个周期单独计算，周期结束之后状态（quota 等）清零；默认 100ms</li>
-<li><strong>==<code>cpu.cfs_quota_us</code>==</strong>: 在一个周期里的份额（quota），默认 5ms。<br>  最大 1s，最小 1ms：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> u64 max_cfs_quota_period = <span class="number">1</span> * NSEC_PER_SEC; <span class="comment">/* 1s */</span></span><br><span class="line"><span class="type">const</span> u64 min_cfs_quota_period = <span class="number">1</span> * NSEC_PER_MSEC; <span class="comment">/* 1ms */</span></span><br></pre></td></tr></table></figure>
+<li><strong><mark><code>cpu.cfs_period_us</code></mark></strong>: 周期（period），每个周期单独计算，周期结束之后状态（quota 等）清零；默认 100ms</li>
+<li><strong><mark><code>cpu.cfs_quota_us</code></mark></strong>: 在一个周期里的份额（quota），默认 5ms。<br>
+最大 1s，最小 1ms：  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> u64 max_cfs_quota_period = <span class="number">1</span> * NSEC_PER_SEC; <span class="comment">/* 1s */</span></span><br><span class="line"><span class="type">const</span> u64 min_cfs_quota_period = <span class="number">1</span> * NSEC_PER_MSEC; <span class="comment">/* 1ms */</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>此外还有一个统计输出：</p>
 <ul>
-<li><strong>==<code>cpu.stat</code>==</strong>：输出 throttling statistics<br>后来还引入了一个优化项：</li>
-<li>cpu.cfs_burst_us: the maximum accumulated run-time。上一个进程没用完的份额，可以给下一个 CPU 用。<br>默认值：<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cpu.cfs_period_us</span>=<span class="number">100</span>ms</span><br><span class="line"><span class="attr">cpu.cfs_quota_us</span>=-<span class="number">1</span></span><br><span class="line"><span class="attr">cpu.cfs_burst_us</span>=<span class="number">0</span>  <span class="comment"># 5.15+</span></span><br></pre></td></tr></table></figure>
-</li>
+<li><strong><mark><code>cpu.stat</code></mark></strong>：输出 throttling statistics<br>
+后来还引入了一个优化项：</li>
+<li>cpu.cfs_burst_us: the maximum accumulated run-time。上一个进程没用完的份额，可以给下一个 CPU 用。<br>
+默认值：</li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://arthurchiao.art/blog/linux-cfs-design-and-implementation-zh/">Linux CFS 调度器：原理、设计与内核实现（2023）</a></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cpu.cfs_period_us</span>=<span class="number">100</span>ms</span><br><span class="line"><span class="attr">cpu.cfs_quota_us</span>=-<span class="number">1</span></span><br><span class="line"><span class="attr">cpu.cfs_burst_us</span>=<span class="number">0</span>  <span class="comment"># 5.15+</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a target="_blank" rel="noopener" href="https://arthurchiao.art/blog/linux-cfs-design-and-implementation-zh/">Linux CFS 调度器：原理、设计与内核实现（2023）</a></p>
 
-      
+      </section>
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=Linux CFS 调度器&url=http://example.com/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/index.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/index.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=http://example.com/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/index.html&title=Linux CFS 调度器" onclick="window.open(this.href, 'linkedin-share', 'width=550,height=520');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+          <aside class="post-tags">
+            <span class="post-info-label">Tags</span>
+            
+              <a class="post-tag" href="/tags/OS/" rel="tag">OS</a>
+            
+          </aside>
+        
+      </section>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/" data-id="clunu29mh000mecjg0p005613" data-title="Linux CFS 调度器" class="article-share-link"><span class="fa fa-share">share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS/" rel="tag">OS</a></li></ul>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2024/04/linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">newer</strong>
-      <div class="article-nav-title">
-        
-          linux中的容器与沙箱初探
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">older</strong>
-      <div class="article-nav-title">Kubernetes 资源限额</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-
+  </article>
+</main>
+<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+  });
+</script>
     <div class="nav-footer">
   <nav class="nav-wrapper">
     <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>

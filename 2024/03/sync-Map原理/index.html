@@ -6,12 +6,12 @@
   
   <title>sync.Map原理 | lan&#39;s spaces</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="普通map的实现不是并发安全，并发读写会painc  思想：读写分离，以空间换时间，动态调整   用法 123456789101112131415161718192021func Test_sync_map(t *testing.T) &#123;      var smp sync.Map      smp.Store(&quot;a&quot;, &quot;111111&quot;)">
+  <meta name="description" content="普通map的实现不是并发安全，并发读写会painc  思想：读写分离，以空间换时间，动态调整">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sync.Map原理">
 <meta property="og:url" content="http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="lan&#39;s spaces">
-<meta property="og:description" content="普通map的实现不是并发安全，并发读写会painc  思想：读写分离，以空间换时间，动态调整   用法 123456789101112131415161718192021func Test_sync_map(t *testing.T) &#123;      var smp sync.Map      smp.Store(&quot;a&quot;, &quot;111111&quot;)">
+<meta property="og:description" content="普通map的实现不是并发安全，并发读写会painc  思想：读写分离，以空间换时间，动态调整">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/image-20240326235028794.png">
 <meta property="og:image" content="http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/image-20240327000200431.png">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/image-20240327004118520.png">
 <meta property="og:image" content="http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/image-20240327004154817.png">
 <meta property="article:published_time" content="2024-03-27T04:29:58.000Z">
-<meta property="article:modified_time" content="2024-03-27T11:42:36.422Z">
+<meta property="article:modified_time" content="2024-04-06T10:36:07.922Z">
 <meta property="article:author" content="lance">
 <meta property="article:tag" content="Golang">
 <meta property="article:tag" content="并发">
@@ -115,32 +115,46 @@
 
   <div class="nav-close" role="button" aria-label="Close"></div>
   <section class="page-wrapper">
-    <article id="post-sync-Map原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/sync-Map%E5%8E%9F%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2024-03-27T04:29:58.000Z" itemprop="datePublished">2024-03-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      sync.Map原理
-    </h1>
-  
+    <div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+<header class="post-header">
+	<div class="inner">
+		<span class="post-info">
+      <span class="post-type">
+        Article
+      </span>
       
+        <a class="tag-link" href="/tags/Golang/" rel="tag"><span class="post-count">Golang</span></a>
+      
+    </span>
+    <h1 class="post-title">sync.Map原理</h1>
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          
+        </figure>
+      </div>
+      <h4 class="post-meta-author">
+        lance
+      </h4>
+      <time class="post-meta-date" datetime="2024-03-27">
+        27 Mar 2024
+      </time>
+    </div>
+  </div>
+</header>
+
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+			<section class="post-content">
         <p>普通map的实现不是并发安全，并发读写会painc</p>
 <blockquote>
 <p>思想：读写分离，以空间换时间，动态调整</p>
 </blockquote>
+<span id="more"></span>
 <h2 id="用法"><a class="markdownIt-Anchor" href="#用法"></a> 用法</h2>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test_sync_map</span><span class="params">(t *testing.T)</span></span> &#123;  </span><br><span class="line">    <span class="keyword">var</span> smp sync.Map  </span><br><span class="line">    smp.Store(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;111111&quot;</span>)  </span><br><span class="line">    smp.Store(<span class="string">&quot;b&quot;</span>, <span class="string">&quot;222&quot;</span>)  </span><br><span class="line">    smp.Store(<span class="string">&quot;c&quot;</span>, <span class="string">&quot;222&quot;</span>)  </span><br><span class="line">    smp.Store(<span class="string">&quot;d&quot;</span>, <span class="string">&quot;222&quot;</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// load  </span></span><br><span class="line">    v, ok := smp.Load(<span class="string">&quot;a&quot;</span>)  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> !ok &#123;  </span><br><span class="line">       t.Error(<span class="string">&quot;a not exist&quot;</span>)  </span><br><span class="line">       <span class="keyword">return</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">    str, _ := v.(<span class="type">string</span>)  </span><br><span class="line">    smp.Range(<span class="function"><span class="keyword">func</span><span class="params">(key, value any)</span></span> <span class="type">bool</span> &#123;  </span><br><span class="line">       t.Logf(<span class="string">&quot;key:%v value:%v&quot;</span>, key, value)  </span><br><span class="line">       <span class="keyword">return</span> key != <span class="string">&quot;c&quot;</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    t.Log(str)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h2>
@@ -201,43 +215,84 @@ misscnt也会在删除累加</p>
 2 <a target="_blank" rel="noopener" href="https://pkg.go.dev/golang.org/x/sync/syncmap">syncmap package - golang.org/x/sync/syncmap - Go Packages</a></p>
 </blockquote>
 
-      
+      </section>
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=sync.Map原理&url=http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/index.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/index.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/index.html&title=sync.Map原理" onclick="window.open(this.href, 'linkedin-share', 'width=550,height=520');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+          <aside class="post-tags">
+            <span class="post-info-label">Tags</span>
+            
+              <a class="post-tag" href="/tags/Golang/" rel="tag">Golang</a> <a class="post-tag" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a> <a class="post-tag" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a>
+            
+          </aside>
+        
+      </section>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/sync-Map%E5%8E%9F%E7%90%86/" data-id="clunu29mk0018ecjg7vjm4ya8" data-title="sync.Map原理" class="article-share-link"><span class="fa fa-share">share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag">并发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a></li></ul>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2024/03/Golang%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">newer</strong>
-      <div class="article-nav-title">
-        
-          Golang内存逃逸
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">older</strong>
-      <div class="article-nav-title">React文档阅读记录</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-
+  </article>
+</main>
+<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+  });
+</script>
     <div class="nav-footer">
   <nav class="nav-wrapper">
     <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>

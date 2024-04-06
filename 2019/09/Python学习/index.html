@@ -105,28 +105,41 @@
 
   <div class="nav-close" role="button" aria-label="Close"></div>
   <section class="page-wrapper">
-    <article id="post-Python学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/09/Python%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2019-09-06T11:56:33.000Z" itemprop="datePublished">2019-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Python学习
-    </h1>
-  
+    <div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+<header class="post-header">
+	<div class="inner">
+		<span class="post-info">
+      <span class="post-type">
+        Article
+      </span>
       
+        <a class="tag-link" href="/tags/Python/" rel="tag"><span class="post-count">Python</span></a>
+      
+    </span>
+    <h1 class="post-title">Python学习</h1>
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          
+        </figure>
+      </div>
+      <h4 class="post-meta-author">
+        lance
+      </h4>
+      <time class="post-meta-date" datetime="2019-09-06">
+        06 Sep 2019
+      </time>
+    </div>
+  </div>
+</header>
+
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+			<section class="post-content">
         <table><tr><td bgcolor="CornflowerBlue">人生苦短，我用python </td></tr></table>
 <span id="more"></span>
 <h2 id="0"><a class="markdownIt-Anchor" href="#0"></a> 0</h2>
@@ -272,43 +285,84 @@ issupset() 或者 &gt;= 判断超集（超集的概念与子集相反）</p>
 <h3 id="2"><a class="markdownIt-Anchor" href="#2"></a> 2</h3>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sqlite3</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">con = sqlite3.connect(<span class="string">r&quot;F:\work\二上\py\SQL数据库\test.db&quot;</span>)         <span class="comment">#单词从数据库中取出</span></span><br><span class="line">cur = con.execute(<span class="string">&quot;select id, name from region&quot;</span>)</span><br><span class="line">word = []</span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> cur: word.append(row[<span class="number">1</span>])</span><br><span class="line">cur.close()</span><br><span class="line">con.close()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;     欢迎参加猜单词游戏\n&#x27;</span>, <span class="string">&#x27; 请把下列各字母组合成一个正确的单词.\n&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:                                                          <span class="comment">#随机取词</span></span><br><span class="line">    get_word = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    temp = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(word) - <span class="number">1</span>)</span><br><span class="line">    temp_word = word[temp]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">len</span>(temp_word)):                                          <span class="comment">#打乱字母</span></span><br><span class="line">        position = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(temp_word) - <span class="number">1</span>)</span><br><span class="line">        get_word += temp_word[position]</span><br><span class="line">        temp_word = temp_word[:position] + temp_word[(position + <span class="number">1</span>):]<span class="comment">#切片操作</span></span><br><span class="line">        </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;乱序后单词:&#x27;</span>,get_word)</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">input</span>(<span class="string">&#x27;请你猜:&#x27;</span>) != word[temp]):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;对不起不正确.&#x27;</span>)</span><br><span class="line">        <span class="keyword">while</span>(<span class="built_in">input</span>(<span class="string">&#x27;继续猜:&#x27;</span>) != word[temp]):<span class="built_in">print</span>(<span class="string">&#x27;对不起不正确.&#x27;</span>) </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;真棒，你猜对了!\n&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:                                                      <span class="comment">#是否继续</span></span><br><span class="line">        judge_w = <span class="built_in">input</span>(<span class="string">&#x27;是否继续(Y/N):&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> (judge_w == <span class="string">&#x27;Y&#x27;</span> <span class="keyword">or</span> judge_w == <span class="string">&#x27;y&#x27;</span>):<span class="keyword">break</span></span><br><span class="line">        <span class="keyword">elif</span> (judge_w == <span class="string">&#x27;N&#x27;</span> <span class="keyword">or</span> judge_w == <span class="string">&#x27;n&#x27;</span>):exit()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-      
+      </section>
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=Python学习&url=http://example.com/2019/09/Python%E5%AD%A6%E4%B9%A0/index.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2019/09/Python%E5%AD%A6%E4%B9%A0/index.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=http://example.com/2019/09/Python%E5%AD%A6%E4%B9%A0/index.html&title=Python学习" onclick="window.open(this.href, 'linkedin-share', 'width=550,height=520');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+          <aside class="post-tags">
+            <span class="post-info-label">Tags</span>
+            
+              <a class="post-tag" href="/tags/Python/" rel="tag">Python</a>
+            
+          </aside>
+        
+      </section>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/Python%E5%AD%A6%E4%B9%A0/" data-id="clunu29mi000uecjgbwm01d4t" data-title="Python学习" class="article-share-link"><span class="fa fa-share">share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/09/The-Preliminary-Contest-for-ICPC-Asia-Xuzhou-2019/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">newer</strong>
-      <div class="article-nav-title">
-        
-          The Preliminary Contest for ICPC Asia Xuzhou 2019
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/09/The-Preliminary-Contest-for-ICPC-Asia-Nanjing-2019/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">older</strong>
-      <div class="article-nav-title">The Preliminary Contest for ICPC Asia Nanjing 2019</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-
+  </article>
+</main>
+<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+  });
+</script>
     <div class="nav-footer">
   <nav class="nav-wrapper">
     <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>

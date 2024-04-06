@@ -106,28 +106,41 @@
 
   <div class="nav-close" role="button" aria-label="Close"></div>
   <section class="page-wrapper">
-    <article id="post-DP学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2019/08/DP%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
-  <time class="dt-published" datetime="2019-08-02T03:05:46.000Z" itemprop="datePublished">2019-08-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      DP学习总结
-    </h1>
-  
+    <div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+<header class="post-header">
+	<div class="inner">
+		<span class="post-info">
+      <span class="post-type">
+        Article
+      </span>
       
+        <a class="tag-link" href="/tags/ACM/" rel="tag"><span class="post-count">ACM</span></a>
+      
+    </span>
+    <h1 class="post-title">DP学习总结</h1>
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          
+        </figure>
+      </div>
+      <h4 class="post-meta-author">
+        lance
+      </h4>
+      <time class="post-meta-date" datetime="2019-08-02">
+        02 Aug 2019
+      </time>
+    </div>
+  </div>
+</header>
+
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+			<section class="post-content">
         <h2 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h2>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/529408?fr=aladdin">动态规划</a>(dynamic programming)是运筹学的一个分支，是求解决策过程(decision process)最优化的数学方法。20世纪50年代初美国数学家R.E.Bellman等人在研究多阶段决策过程(multistep decision process)的优化问题时，提出了著名的最优化原理(principle of optimality)，把多阶段过程转化为一系列单阶段问题，利用各阶段之间的关系，逐个求解，创立了解决这类过程优化问题的新方法——动态规划。动态规划是一种分阶段求解决策问题的数学思想。</p>
@@ -206,43 +219,84 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> dp[<span class="number">110</span>][<span class="number">110</span>];</span><br><span class="line">string a, b;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt;a &gt;&gt; b;</span><br><span class="line">    <span class="type">int</span> lena = a.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> lenb = b.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= lena; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        dp[i][<span class="number">0</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= lenb; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        dp[<span class="number">0</span>][i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= lena; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= lenb; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i - <span class="number">1</span>] == b[j - <span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                dp[i][j] = <span class="built_in">min</span>(<span class="built_in">min</span>(dp[i][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j]), dp[i - <span class="number">1</span>][j - <span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; dp[lena][lenb] &lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="背包问题-有空再补吧"><a class="markdownIt-Anchor" href="#背包问题-有空再补吧"></a> 背包问题 <s>有空再补吧</s></h2>
 
-      
+      </section>
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=DP学习总结&url=http://example.com/2019/08/DP%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2019/08/DP%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=http://example.com/2019/08/DP%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html&title=DP学习总结" onclick="window.open(this.href, 'linkedin-share', 'width=550,height=520');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+          <aside class="post-tags">
+            <span class="post-info-label">Tags</span>
+            
+              <a class="post-tag" href="/tags/ACM/" rel="tag">ACM</a> <a class="post-tag" href="/tags/DP/" rel="tag">DP</a>
+            
+          </aside>
+        
+      </section>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/08/DP%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="clunu29md0009ecjg3hdc8c2c" data-title="DP学习总结" class="article-share-link"><span class="fa fa-share">share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/" rel="tag">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/" rel="tag">DP</a></li></ul>
 
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/08/%E5%9B%BE%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">newer</strong>
-      <div class="article-nav-title">
-        
-          图基础
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/07/%E5%A4%9A%E6%A0%A1%E8%81%94%E8%B5%9B3%E8%A1%A5%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">older</strong>
-      <div class="article-nav-title">多校联赛3补题</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-
+  </article>
+</main>
+<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+  });
+</script>
     <div class="nav-footer">
   <nav class="nav-wrapper">
     <span class="nav-copy">lance &copy; 2024  <a class="nav-rss" title="RSS" href="/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
