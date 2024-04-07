@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="有生之年第一场 LeetCode周赛，y神 就带我 AK 了，何其荣幸！ 泪目…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode第 392 场周赛">
+<meta property="og:url" content="https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="有生之年第一场 LeetCode周赛，y神 就带我 AK 了，何其荣幸！ 泪目…">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-07T04:33:00.000Z">
+<meta property="article:modified_time" content="2024-04-07T14:46:05.001Z">
+<meta property="article:author" content="lance">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LeetCode第 392 场周赛</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2024/04/%E7%89%9B%E5%AE%A2%E5%91%A8%E8%B5%9B%20Round%2039/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2024/04/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B90%E8%A1%A5%E9%A2%98/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&text=LeetCode第 392 场周赛"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&is_video=false&description=LeetCode第 392 场周赛"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode第 392 场周赛&body=Check out this article: https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&name=LeetCode第 392 场周赛&description=&lt;p&gt;有生之年第一场 LeetCode周赛，&lt;code&gt;y神&lt;/code&gt; 就带我 AK 了，何其荣幸！&lt;br&gt;
+泪目…&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&t=LeetCode第 392 场周赛"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#100264-%E6%9C%80%E9%95%BF%E7%9A%84%E4%B8%A5%E6%A0%BC%E9%80%92%E5%A2%9E%E6%88%96%E9%80%92%E5%87%8F%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text"> 100264. 最长的严格递增或递减子数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#100242-%E6%BB%A1%E8%B6%B3%E8%B7%9D%E7%A6%BB%E7%BA%A6%E6%9D%9F%E4%B8%94%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text"> 100242. 满足距离约束且字典序最小的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3107-%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0%E7%AD%89%E4%BA%8E-k-%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text"> 3107. 使数组中位数等于 K 的最少操作数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#100244-%E5%B8%A6%E6%9D%83%E5%9B%BE%E9%87%8C%E6%97%85%E9%80%94%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7"><span class="toc-number">4.</span> <span class="toc-text"> 100244. 带权图里旅途的最小代价</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        LeetCode第 392 场周赛
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">lance</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-04-07T04:33:00.000Z" class="dt-published" itemprop="datePublished">2024-04-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/LeetCode/" rel="tag">LeetCode</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>有生之年第一场 LeetCode周赛，<code>y神</code> 就带我 AK 了，何其荣幸！<br>
+泪目…</p>
+<span id="more"></span>
+<h2 id="100264-最长的严格递增或递减子数组"><a class="markdownIt-Anchor" href="#100264-最长的严格递增或递减子数组"></a> 100264. 最长的严格递增或递减子数组</h2>
+<p>模拟即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestMonotonicSubarray</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = l + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> c = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                c++;</span><br><span class="line">                ans = <span class="built_in">max</span>(c,ans);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                c = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        c = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                c++;</span><br><span class="line">                ans = <span class="built_in">max</span>(c,ans);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                c = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Solution s;</span><br><span class="line"><span class="comment">//    vector&lt;int&gt; nums = &#123;1, 4, 3, 3, 2&#125;;</span></span><br><span class="line"><span class="comment">//    vector&lt;int&gt; nums = &#123;3, 3, 3, 3&#125;;</span></span><br><span class="line"><span class="comment">//    vector&lt;int&gt; nums = &#123;1, 4, 3, 3, 2&#125;;</span></span><br><span class="line">    cout &lt;&lt; s.<span class="built_in">longestMonotonicSubarray</span>(nums) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="100242-满足距离约束且字典序最小的字符串"><a class="markdownIt-Anchor" href="#100242-满足距离约束且字典序最小的字符串"></a> 100242. 满足距离约束且字典序最小的字符串</h2>
+<p>模拟即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="comment">// distance(s1, s2)</span></span><br><span class="line"><span class="comment">// calc min dis s1[i] s2[i]</span></span><br><span class="line"><span class="comment">// distance(&quot;ab&quot;, &quot;cd&quot;) == 4</span></span><br><span class="line"><span class="comment">// distance(&quot;a&quot;, &quot;z&quot;) == 1</span></span><br><span class="line"><span class="comment">// 你可以对字符串 s 执行 任意次 操作。在每次操作中，可以将 s 中的一个字母 改变 为 任意 其他小写英文字母。</span></span><br><span class="line"><span class="comment">// 可以得到的 字典序最小 的字符串 t ，且满足 distance(s, t) &lt;= k</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">pair&lt;<span class="type">int</span>, <span class="type">char</span>&gt; <span class="title">c</span><span class="params">(<span class="type">char</span> &amp;c1, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">char</span> cc;</span><br><span class="line">        <span class="type">int</span> dis = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (c1 - <span class="string">&#x27;a&#x27;</span> &lt; <span class="string">&#x27;z&#x27;</span> - c1 + <span class="number">1</span>) &#123;</span><br><span class="line">            dis = c1 - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            cc = c1 - dis;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dis = <span class="string">&#x27;z&#x27;</span> - c1 + <span class="number">1</span>;</span><br><span class="line">            cc = (c1 - <span class="string">&#x27;a&#x27;</span> + dis) % <span class="number">26</span> + <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k &gt;= dis) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">make_pair</span>(dis, cc);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// all k</span></span><br><span class="line">            <span class="keyword">if</span> (c1 + k &lt; c1 - k) &#123;</span><br><span class="line">                cc = c1 + k;</span><br><span class="line">                dis = k;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cc = c1 - k;</span><br><span class="line">                dis = k;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">make_pair</span>(dis, cc);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">string <span class="title">getSmallestString</span><span class="params">(string s, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;it: s) &#123;</span><br><span class="line">            <span class="comment">// using min cost to</span></span><br><span class="line">            <span class="keyword">auto</span> [kk, cc] = <span class="built_in">c</span>(it, k);</span><br><span class="line">            k -= kk;</span><br><span class="line">            it = cc;</span><br><span class="line">            <span class="keyword">if</span> (k == <span class="number">0</span>) &#123; <span class="keyword">break</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Solution s;</span><br><span class="line"><span class="comment">//    cout &lt;&lt; s.getSmallestString(&quot;zbbz&quot;, 3) &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">//    cout &lt;&lt; s.getSmallestString(&quot;xaxcd&quot;, 4) &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">//    cout &lt;&lt; s.getSmallestString(&quot;lol&quot;, 0) &lt;&lt; endl;</span></span><br><span class="line">    <span class="comment">//&quot;rn&quot;</span></span><br><span class="line">    <span class="comment">//9</span></span><br><span class="line">    <span class="comment">// r s t u v w x y z a</span></span><br><span class="line">    cout &lt;&lt; s.<span class="built_in">getSmallestString</span>(<span class="string">&quot;rn&quot;</span>, <span class="number">9</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="3107-使数组中位数等于-k-的最少操作数"><a class="markdownIt-Anchor" href="#3107-使数组中位数等于-k-的最少操作数"></a> 3107. 使数组中位数等于 K 的最少操作数</h2>
+<p>排序，分类讨论，都是把前面或者后面堆成 k，这样中位数就是 k<br>
+十分眼熟的题目</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">minOperationsToMakeMedianK</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> mid = nums.<span class="built_in">size</span>() / <span class="number">2</span>;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (k == nums[mid]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k &gt; nums[mid]) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = mid; i &lt; nums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] &lt; k) &#123;</span><br><span class="line">                    ans += k - nums[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = mid; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] &gt; k) &#123;</span><br><span class="line">                    ans += nums[i] - k;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Solution s;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; nums&#123;<span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    cout &lt;&lt; s.<span class="built_in">minOperationsToMakeMedianK</span>(nums, <span class="number">4</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="100244-带权图里旅途的最小代价"><a class="markdownIt-Anchor" href="#100244-带权图里旅途的最小代价"></a> 100244. 带权图里旅途的最小代价</h2>
+<p>并查集<br>
+因为任何一个集合的与和一定是最小值，所以可以维护一个集合的最小值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">2e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">UnionFind</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; fa;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; faMin;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; faAnd;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UnionFind</span>(<span class="type">int</span> n) : <span class="built_in">fa</span>(n), <span class="built_in">faMin</span>(n, INT_MAX), <span class="built_in">faAnd</span>(n, INT_MAX) &#123;</span><br><span class="line">        <span class="built_in">iota</span>(fa.<span class="built_in">begin</span>(), fa.<span class="built_in">end</span>(), <span class="number">0</span>); <span class="comment">// Fill fa with 0 to n-1</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (fa[x] != x) &#123;</span><br><span class="line">            fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fa[x];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> from, <span class="type">int</span> to, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> x = <span class="built_in">find</span>(from), y = <span class="built_in">find</span>(to);</span><br><span class="line">        <span class="keyword">if</span> (x == y) &#123;</span><br><span class="line">            faAnd[x] &amp;= val;</span><br><span class="line">            faMin[x] = <span class="built_in">min</span>(faMin[x], val);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fa[x] = y;</span><br><span class="line">        faAnd[y] = faAnd[x] &amp; faAnd[y] &amp; val;</span><br><span class="line">        faMin[y] = <span class="built_in">min</span>(&#123;faMin[x], faMin[y], val&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">same</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">minimumCost</span><span class="params">(<span class="type">int</span> n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; edges, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="function">UnionFind <span class="title">uf</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; e : edges) &#123;</span><br><span class="line">            uf.<span class="built_in">merge</span>(e[<span class="number">0</span>], e[<span class="number">1</span>], e[<span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(queries.size())</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; queries.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            <span class="type">int</span> x = queries[i][<span class="number">0</span>], y = queries[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (x == y) &#123;</span><br><span class="line">                ans[i] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!uf.<span class="built_in">same</span>(x, y)) &#123;</span><br><span class="line">                ans[i] = <span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> f = uf.<span class="built_in">find</span>(x);</span><br><span class="line">            ans[i] = <span class="built_in">min</span>(uf.faMin[f], uf.faAnd[f]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Solution s;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; edges&#123;&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">7</span>&#125;,</span><br><span class="line">                              &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">7</span>&#125;,</span><br><span class="line">                              &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; query&#123;&#123;<span class="number">0</span>, <span class="number">3</span>&#125;,</span><br><span class="line">                              &#123;<span class="number">3</span>, <span class="number">4</span>&#125;&#125;;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; ans = s.<span class="built_in">minimumCost</span>(<span class="number">5</span>, edges, query);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it: ans) &#123;</span><br><span class="line">        cout &lt;&lt; it &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/tags/">tags</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#100264-%E6%9C%80%E9%95%BF%E7%9A%84%E4%B8%A5%E6%A0%BC%E9%80%92%E5%A2%9E%E6%88%96%E9%80%92%E5%87%8F%E5%AD%90%E6%95%B0%E7%BB%84"><span class="toc-number">1.</span> <span class="toc-text"> 100264. 最长的严格递增或递减子数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#100242-%E6%BB%A1%E8%B6%B3%E8%B7%9D%E7%A6%BB%E7%BA%A6%E6%9D%9F%E4%B8%94%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text"> 100242. 满足距离约束且字典序最小的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3107-%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E4%BD%8D%E6%95%B0%E7%AD%89%E4%BA%8E-k-%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text"> 3107. 使数组中位数等于 K 的最少操作数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#100244-%E5%B8%A6%E6%9D%83%E5%9B%BE%E9%87%8C%E6%97%85%E9%80%94%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A3%E4%BB%B7"><span class="toc-number">4.</span> <span class="toc-text"> 100244. 带权图里旅途的最小代价</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&text=LeetCode第 392 场周赛"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&is_video=false&description=LeetCode第 392 场周赛"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LeetCode第 392 场周赛&body=Check out this article: https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&title=LeetCode第 392 场周赛"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&name=LeetCode第 392 场周赛&description=&lt;p&gt;有生之年第一场 LeetCode周赛，&lt;code&gt;y神&lt;/code&gt; 就带我 AK 了，何其荣幸！&lt;br&gt;
+泪目…&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.lancelot.top/2024/04/LeetCode%E7%AC%AC%20392%20%E5%9C%BA%E5%91%A8%E8%B5%9B/&t=LeetCode第 392 场周赛"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2019-2024
+    lance
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/tags/">tags</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
