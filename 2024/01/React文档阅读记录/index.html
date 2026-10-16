@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="由于之前对React的学习更多依赖于阅读Github上的高star项目，所以常常需要调出文档来读。虽然是React的文档不如Vue的中文文档易读(只能说React的翻译很奇怪)，但是细品可以发现，文档写的还是很不错的(相较于Redux的 论文文档)。于是开个坑记录一些有意思的东西。">
+  <meta charset="utf-8">
+  <script>
+    var localTheme = localStorage.getItem('attila_theme');
+    if (localTheme === 'dark') document.documentElement.classList.add('theme-dark');
+    if (localTheme === 'light') document.documentElement.classList.add('theme-light');
+  </script>
+  
+  
+  <title>React文档阅读记录 | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="由于之前对React的学习更多依赖于阅读Github上的高star项目，所以常常需要调出文档来读。虽然是React的文档不如Vue的中文文档易读(只能说React的翻译很奇怪)，但是细品可以发现，文档写的还是很不错的(相较于Redux的 论文文档)。于是开个坑记录一些有意思的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React文档阅读记录">
 <meta property="og:url" content="https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/index.html">
@@ -14,158 +19,129 @@
 <meta property="og:description" content="由于之前对React的学习更多依赖于阅读Github上的高star项目，所以常常需要调出文档来读。虽然是React的文档不如Vue的中文文档易读(只能说React的翻译很奇怪)，但是细品可以发现，文档写的还是很不错的(相较于Redux的 论文文档)。于是开个坑记录一些有意思的东西。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-05T11:05:19.464Z">
+<meta property="article:modified_time" content="2026-10-16T16:57:28.491Z">
 <meta property="article:author" content="lance">
 <meta name="twitter:card" content="summary">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>React文档阅读记录</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
+  
     
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
+<body class="">
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Home">
+      
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
+        
+            <li class="nav-home">
+                <a href="/"><span>Home</span></a>
+            </li>
+        
+            <li class="nav-archives">
+                <a href="/archives"><span>Archives</span></a>
+            </li>
+        
+            <li class="nav-about">
+                <a href="/about"><span>About</span></a>
+            </li>
+        
+            <li class="nav-tags">
+                <a href="/tags"><span>Tags</span></a>
+            </li>
+        
+    </ul>
+      <ul class="nav-meta">
+        
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-facebook">
+          <a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=100076106084068" title="Facebook" target="_blank">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+            <span>Facebook</span>
+          </a>
+        </li>
+        
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2024/03/sync-Map%E5%8E%9F%E7%90%86/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2022/05/2022%E6%89%93%E5%B7%A5%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&text=React文档阅读记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&is_video=false&description=React文档阅读记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=React文档阅读记录&body=Check out this article: https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&name=React文档阅读记录&description=&lt;p&gt;由于之前对React的学习更多依赖于阅读Github上的高star项目，所以常常需要调出文档来读。虽然是React的文档不如Vue的中文文档易读(只能说React的翻译很奇怪)，但是细品可以发现，文档写的还是很不错的(相较于Redux的 &lt;code&gt;论文文档&lt;/code&gt;)。于是开个坑记录一些有意思的东西。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&t=React文档阅读记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+  </nav>
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props"><span class="toc-number">1.</span> <span class="toc-text"> Props</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hook"><span class="toc-number">2.</span> <span class="toc-text"> Hook</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#usestate"><span class="toc-number">2.1.</span> <span class="toc-text"> useState</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#useeffect"><span class="toc-number">2.2.</span> <span class="toc-text"> useEffect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tip"><span class="toc-number">3.</span> <span class="toc-text"> Tip</span></a></li></ol>
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
       </div>
-    
-  </span>
+  </div>
 </div>
 
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
     
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+
+<div class="progress-container">
+  <span class="progress-bar"></span>
+</div>
+
+
+<header class="post-header ">
+  <div class="inner">
     
-    <h1 class="posttitle p-name" itemprop="name headline">
-        React文档阅读记录
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">lance</span>
-      </span>
+    <span class="post-info">
+      <span class="post-type">Article</span>
       
-    <div class="postdate">
-      
-        <time datetime="2024-01-24T16:00:00.000Z" class="dt-published" itemprop="datePublished">2024-01-25</time>
-        
-      
+    </span>
+    
+    <h1 class="post-title">React文档阅读记录</h1>
+    
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          <a href="/" class="author-avatar">
+            <img class="author-profile-image" src="/css/images/avatar.jpg" alt="lance">
+          </a>
+        </figure>
+      </div>
+      <h4 class="post-meta-author">lance</h4>
+      <time datetime="2024-01-25">25 Jan 2024</time>
+      &bull; 2 min read
     </div>
+    
+    
+  </div>
+</header>
 
-
-      
-
-      
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <p>由于之前对React的学习更多依赖于阅读Github上的高star项目，所以常常需要调出文档来读。虽然是React的文档不如Vue的中文文档易读(只能说React的翻译很奇怪)，但是细品可以发现，文档写的还是很不错的(相较于Redux的 <code>论文文档</code>)。于是开个坑记录一些有意思的东西。</p>
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+      <section class="post-content">
+        <p>由于之前对React的学习更多依赖于阅读Github上的高star项目，所以常常需要调出文档来读。虽然是React的文档不如Vue的中文文档易读(只能说React的翻译很奇怪)，但是细品可以发现，文档写的还是很不错的(相较于Redux的 <code>论文文档</code>)。于是开个坑记录一些有意思的东西。</p>
 <span id="more"></span>
 <hr>
 <h2 id="props"><a class="markdownIt-Anchor" href="#props"></a> Props</h2>
@@ -179,7 +155,8 @@
 <p>state可以和Vue的data类别，但react的state和vue的data还是有很大区别的，Vue的data是和虚拟dom双向绑定的，React的state需要通过setState进行修改，是一个单向过程，而且在更新过程中的钩子函数中修改的话，会造成死循环。</p>
 <p>另外，有一个函数式更新</p>
 <p>如果新的 state 需要通过使用先前的 state 计算得出，那么可以将函数传递给 <code>setState</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setCount(prevCount =&gt; prevCount - 1)</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class="react">setCount(prevCount =&gt; prevCount - 1)
+</code></pre>
 <p><code>useState</code> 不会自动合并更新对象</p>
 <p><code>useReducer</code> 是另一种可选方案，它更适合用于管理包含多个子值的 state 对象。</p>
 <h3 id="useeffect"><a class="markdownIt-Anchor" href="#useeffect"></a> useEffect</h3>
@@ -191,143 +168,146 @@
 <h2 id="tip"><a class="markdownIt-Anchor" href="#tip"></a> Tip</h2>
 <p><code>&lt;&gt;&lt;/&gt;</code>不占用Dom</p>
 
-  </div>
-</article>
+      </section>
 
+      
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/share?text=React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95&url=https%3A%2F%2Fblog.lancelot.top%2F2024%2F01%2FReact%25E6%2596%2587%25E6%25A1%25A3%25E9%2598%2585%25E8%25AF%25BB%25E8%25AE%25B0%25E5%25BD%2595%2F" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+          </a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.lancelot.top%2F2024%2F01%2FReact%25E6%2596%2587%25E6%25A1%25A3%25E9%2598%2585%25E8%25AF%25BB%25E8%25AE%25B0%25E5%25BD%2595%2F" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+          </a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.lancelot.top%2F2024%2F01%2FReact%25E6%2596%2587%25E6%25A1%25A3%25E9%2598%2585%25E8%25AF%25BB%25E8%25AE%25B0%25E5%25BD%2595%2F&title=React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+          <a title="Email" aria-label="Email" class="email" href="mailto:?subject=React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95&body=https%3A%2F%2Fblog.lancelot.top%2F2024%2F01%2FReact%25E6%2596%2587%25E6%25A1%25A3%25E9%2598%2585%25E8%25AF%25BB%25E8%25AE%25B0%25E5%25BD%2595%2F">
+            <i class="icon icon-mail" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+      </section>
 
+      
+      
 
+      
+      <aside class="post-nav">
         
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
+        <a class="post-nav-next" href="/2024/03/sync-Map%E5%8E%9F%E7%90%86/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-left" aria-label="Newer Posts"></i>
+            <h2 class="post-nav-title">sync.Map原理</h2>
+            <p class="post-nav-excerpt">普通map的实现不是并发安全，并发读写会painc 思想：读写分离，以空间换时间，动态调整</p>
+            <p class="post-nav-meta"><time datetime="2024-03-27">27 Mar 2024</time></p>
+          </section>
+        </a>
         
-          <li><a href="/">Home</a></li>
         
-          <li><a href="/about/">About</a></li>
+        <a class="post-nav-prev" href="/2022/05/2022%E6%89%93%E5%B7%A5%E8%AE%B0%E5%BD%95/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-right" aria-label="Older Posts"></i>
+            <h2 class="post-nav-title">2022打工记录</h2>
+            <p class="post-nav-excerpt">自3月12日离开学校来到杭州已有两月有余，遂浅记一下这段不长不短的历程。</p>
+            <p class="post-nav-meta"><time datetime="2022-05-16">16 May 2022</time></p>
+          </section>
+        </a>
         
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/tags/">tags</a></li>
-        
-      </ul>
+        <div class="clear"></div>
+      </aside>
+      
+      
     </div>
+  </article>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.jQuery) return;
+    var $ = window.jQuery;
+    var viewport = $(window);
+    var post = $('.post-content');
+    if (post.length && $.fn.fitVids) post.fitVids();
+
+    function codestyling() {
+      if (!window.hljs) return;
+      $('pre code').each(function(i, e) {
+        var cls = e.className || '';
+        if (cls && !/\blanguage-|\blang-/.test(cls)) {
+          e.className = 'language-' + cls.trim().split(/\s+/)[0];
+        }
+        hljs.highlightElement(e);
+        if (!$(this).hasClass('language-text')) {
+          var code = $(this);
+          var lines = code.html().split(/\n(?!$)/g).length;
+          var numbers = '';
+          for (var n = 1; n <= lines; n++) {
+            numbers += '<span class="line" aria-hidden="true">' + n + '</span>';
+          }
+          code.parent().append('<div class="lines">' + numbers + '</div>');
+        }
+      });
+    }
+    codestyling();
 
     
+    function readingProgress() {
+      if (!post.length || !post.height()) return;
+      var postBottom = post.offset().top + post.height();
+      var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete') : $('.progress-container').removeClass('complete');
+    }
+    readingProgress();
+    viewport.on({
+      'scroll': readingProgress,
+      'resize': readingProgress,
+      'orientationchange': readingProgress
+    });
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#props"><span class="toc-number">1.</span> <span class="toc-text"> Props</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hook"><span class="toc-number">2.</span> <span class="toc-text"> Hook</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#usestate"><span class="toc-number">2.1.</span> <span class="toc-text"> useState</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#useeffect"><span class="toc-number">2.2.</span> <span class="toc-text"> useEffect</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tip"><span class="toc-number">3.</span> <span class="toc-text"> Tip</span></a></li></ol>
-      </div>
-    
+  });
+</script>
 
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&text=React文档阅读记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&is_video=false&description=React文档阅读记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=React文档阅读记录&body=Check out this article: https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&title=React文档阅读记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&name=React文档阅读记录&description=&lt;p&gt;由于之前对React的学习更多依赖于阅读Github上的高star项目，所以常常需要调出文档来读。虽然是React的文档不如Vue的中文文档易读(只能说React的翻译很奇怪)，但是细品可以发现，文档写的还是很不错的(相较于Redux的 &lt;code&gt;论文文档&lt;/code&gt;)。于是开个坑记录一些有意思的东西。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.lancelot.top/2024/01/React%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/&t=React文档阅读记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
 
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+    <div class="nav-footer">
+  <nav class="nav-wrapper" aria-label="Copyright">
+    <span class="nav-copy">lance &copy; 2026 <a class="nav-rss" title="RSS" href="/atom.xml" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+    <span class="nav-credits">
+      <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme">
+        <span class="theme-icon"></span><span class="theme-text">System theme</span>
+      </a>
+    </span>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2019-2024
-    lance
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
+  </section>
+  
 
 
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+<script src="/js/libs/jquery.min.js"></script>
 
 
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+<script src="/js/libs/highlight.pack.js"></script>
 
 
+<script src="/js/libs/jquery.fitvids.js"></script>
 
 
-<!-- clipboard -->
 
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/main.js"></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
+<script src="/js/script.js"></script>
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -343,7 +323,6 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

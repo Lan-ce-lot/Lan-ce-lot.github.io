@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="对于一个编排系统来说，**资源管理**至少需要考虑以下几个方面  资源模型的抽象 资源的调度 资源的限额 k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？">
+  <meta charset="utf-8">
+  <script>
+    var localTheme = localStorage.getItem('attila_theme');
+    if (localTheme === 'dark') document.documentElement.classList.add('theme-dark');
+    if (localTheme === 'light') document.documentElement.classList.add('theme-light');
+  </script>
+  
+  
+  <title>Kubernetes 资源限额 | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="对于一个编排系统来说，**资源管理**至少需要考虑以下几个方面  资源模型的抽象 资源的调度 资源的限额 k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kubernetes 资源限额">
 <meta property="og:url" content="https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/index.html">
@@ -16,171 +21,133 @@
 <meta property="og:image" content="https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/image-20240404162100256.png">
 <meta property="og:image" content="https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/image-20240404160559524.png">
 <meta property="article:published_time" content="2024-04-02T12:59:00.000Z">
-<meta property="article:modified_time" content="2024-04-06T10:35:19.103Z">
+<meta property="article:modified_time" content="2026-10-16T16:57:28.492Z">
 <meta property="article:author" content="lance">
 <meta property="article:tag" content="Cgroup">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/image-20240404162100256.png">
-    
-    
-      
-        
-          <link rel="shortcut icon" href="/images/favicon.ico">
-        
-      
-      
-        
-          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-        
-      
-      
-        
-          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-        
-      
-    
-    <!-- title -->
-    <title>Kubernetes 资源限额</title>
-    <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
-
-    <!-- styles -->
-    
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- persian styles -->
+  
     
-    <!-- rss -->
-    
-    
-      <link rel="alternate" href="/true" title="lan&#39;s spaces" type="application/atom+xml" />
-    
-	<!-- mathjax -->
-	
-		<script type="text/x-mathjax-config">
-		  MathJax.Hub.Config({
-			tex2jax: {
-			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-			  inlineMath: [['$','$']]
-			}
-		  });
-		</script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-	
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
+<body class="">
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Home">
+      
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
+        
+            <li class="nav-home">
+                <a href="/"><span>Home</span></a>
+            </li>
+        
+            <li class="nav-archives">
+                <a href="/archives"><span>Archives</span></a>
+            </li>
+        
+            <li class="nav-about">
+                <a href="/about"><span>About</span></a>
+            </li>
+        
+            <li class="nav-tags">
+                <a href="/tags"><span>Tags</span></a>
+            </li>
+        
+    </ul>
+      <ul class="nav-meta">
+        
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-facebook">
+          <a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=100076106084068" title="Facebook" target="_blank">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+            <span>Facebook</span>
+          </a>
+        </li>
+        
       </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" aria-label="Previous post" href="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/2024/04/Introduction%20to%20Seccomp/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&text=Kubernetes 资源限额"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&is_video=false&description=Kubernetes 资源限额"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Kubernetes 资源限额&body=Check out this article: https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&name=Kubernetes 资源限额&description=&lt;p&gt;对于一个编排系统来说，**&lt;mark&gt;资源管理&lt;/mark&gt;**至少需要考虑以下几个方面&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;资源模型的抽象&lt;/li&gt;
-&lt;li&gt;资源的调度&lt;/li&gt;
-&lt;li&gt;资源的限额&lt;br&gt;
-k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？&lt;/li&gt;
-&lt;/ol&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&t=Kubernetes 资源限额"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+  </nav>
 
-    </div>
-    
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu"><span class="toc-number">1.</span> <span class="toc-text"> CPU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E9%99%90"><span class="toc-number">1.1.</span> <span class="toc-text"> 硬限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E9%99%90"><span class="toc-number">1.2.</span> <span class="toc-text"> 软限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpucfs_quota_us-cpucfs_period_us"><span class="toc-number">1.3.</span> <span class="toc-text"> cpu.cfs_quota_us、cpu.cfs_period_us</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpushares"><span class="toc-number">1.4.</span> <span class="toc-text"> cpu.shares</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.5.</span> <span class="toc-text"> 概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker"><span class="toc-number">1.6.</span> <span class="toc-text"> docker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#memory"><span class="toc-number">2.</span> <span class="toc-text"> Memory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qos"><span class="toc-number">3.</span> <span class="toc-text"> QoS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text"> 参考</span></a></li></ol>
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
       </div>
-    
-  </span>
+  </div>
 </div>
 
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
     
-    <div class="content index py4 ">
-        
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+
+<div class="progress-container">
+  <span class="progress-bar"></span>
+</div>
+
+
+<header class="post-header ">
+  <div class="inner">
     
-    <h1 class="posttitle p-name" itemprop="name headline">
-        Kubernetes 资源限额
-    </h1>
-
-
-
-    <div class="meta">
-      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">lance</span>
-      </span>
+    <span class="post-info">
+      <span class="post-type">Article</span>
       
-    <div class="postdate">
+      <span class="post-count">Cgroup</span>
       
-        <time datetime="2024-04-02T12:59:00.000Z" class="dt-published" itemprop="datePublished">2024-04-02</time>
-        
-      
+    </span>
+    
+    <h1 class="post-title">Kubernetes 资源限额</h1>
+    
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          <a href="/" class="author-avatar">
+            <img class="author-profile-image" src="/css/images/avatar.jpg" alt="lance">
+          </a>
+        </figure>
+      </div>
+      <h4 class="post-meta-author">lance</h4>
+      <time datetime="2024-04-02">02 Apr 2024</time>
+      &bull; 12 min read
     </div>
+    
+    
+  </div>
+</header>
 
-
-      
-
-      
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Cgroup/" rel="tag">Cgroup</a>
-    </div>
-
-
-    </div>
-  </header>
-  
-
-  <div class="content e-content" itemprop="articleBody">
-    <p>对于一个编排系统来说，**<mark>资源管理</mark>**至少需要考虑以下几个方面</p>
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+      <section class="post-content">
+        <p>对于一个编排系统来说，**<mark>资源管理</mark>**至少需要考虑以下几个方面</p>
 <ol>
 <li>资源模型的抽象</li>
 <li>资源的调度</li>
@@ -278,7 +245,8 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
 </tbody>
 </table>
 <h2 id="memory"><a class="markdownIt-Anchor" href="#memory"></a> Memory</h2>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod&lt;UID&gt;/memory<span class="selector-class">.limit_in_bytes</span> = <span class="built_in">sum</span>(pod<span class="selector-class">.spec</span><span class="selector-class">.containers</span><span class="selector-class">.resources</span><span class="selector-class">.limits</span><span class="selector-attr">[memory]</span>)</span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class>pod&lt;UID&gt;/memory.limit_in_bytes = sum(pod.spec.containers.resources.limits[memory])
+</code></pre>
 <p>内存的单位在 requests/limits 和在 cgroup 配置文件中都是一样的，所以直接写入 cgroup 内存配置文件。 对于 cgroup v1，</p>
 <ul>
 <li><strong><code>memory.memsw.limit_in_bytes</code></strong> (memory+swap limit)</li>
@@ -294,7 +262,12 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
 <li>中优先级 pod：介于高低优先级之间，看实际的业务场景和需求。</li>
 </ul>
 <p>k8s 针对这种需求提供了 cgroups-per-qos 选项：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pkg/kubelet/apis/config/types.go</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Enable QoS based Cgroup hierarchy: top level cgroups for QoS Classes</span></span><br><span class="line"><span class="comment">// And all Burstable and BestEffort pods are brought up under their specific top level QoS cgroup.</span></span><br><span class="line">CgroupsPerQOS <span class="built_in">bool</span></span><br></pre></td></tr></table></figure>
+<pre class="highlight"><code class>// pkg/kubelet/apis/config/types.go
+
+// Enable QoS based Cgroup hierarchy: top level cgroups for QoS Classes
+// And all Burstable and BestEffort pods are brought up under their specific top level QoS cgroup.
+CgroupsPerQOS bool
+</code></pre>
 <p>如果设置了 kubelet <strong><mark><code>--cgroups-per-qos=true</code></mark></strong> 参数（默认为 true）， 就会将所有 pod 分成三种 QoS，优先级从高到低：<strong><mark><code>Guaranteed &gt; Burstable &gt; BestEffort</code></mark></strong>。 三种 QoS 是根据 <code>requests/limits</code> 的大小关系来定义的：</p>
 <ol>
 <li>
@@ -324,149 +297,151 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
 <p><a target="_blank" rel="noopener" href="https://github.com/kubernetes/design-proposals-archive/blob/main/node/node-allocatable.md">design-proposals-archive/node/node-allocatable.md at main · kubernetes/design-proposals-archive · GitHub</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.seafog.cn/archives/891889117">kubernetes 和 docker 中 Cgroup 限制 CPU 的工作原理 - seafog</a></p>
 
-  </div>
-</article>
+      </section>
 
+      
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/share?text=Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D&url=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2FKubernetes%2520%25E8%25B5%2584%25E6%25BA%2590%25E9%2599%2590%25E9%25A2%259D%2F" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+          </a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2FKubernetes%2520%25E8%25B5%2584%25E6%25BA%2590%25E9%2599%2590%25E9%25A2%259D%2F" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+          </a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2FKubernetes%2520%25E8%25B5%2584%25E6%25BA%2590%25E9%2599%2590%25E9%25A2%259D%2F&title=Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+          <a title="Email" aria-label="Email" class="email" href="mailto:?subject=Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D&body=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2FKubernetes%2520%25E8%25B5%2584%25E6%25BA%2590%25E9%2599%2590%25E9%25A2%259D%2F">
+            <i class="icon icon-mail" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+        <aside class="post-tags">
+          <span class="post-info-label">Topic</span>
+          <a class="post-tag-link" href="/tags/Cgroup/" rel="tag">Cgroup</a>
+        </aside>
+        
+      </section>
 
+      
+      
 
+      
+      <aside class="post-nav">
         
-          <div id="footer-post-container">
-  <div id="footer-post">
-
-    <div id="nav-footer" style="display: none">
-      <ul>
+        <a class="post-nav-next" href="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-left" aria-label="Newer Posts"></i>
+            <h2 class="post-nav-title">Linux CFS 调度器</h2>
+            <p class="post-nav-excerpt">Linux 默认调度器 CFS 相关的一些内容。</p>
+            <p class="post-nav-meta"><time datetime="2024-04-03">03 Apr 2024</time></p>
+          </section>
+        </a>
         
-          <li><a href="/">Home</a></li>
         
-          <li><a href="/about/">About</a></li>
+        <a class="post-nav-prev" href="/2024/04/Introduction%20to%20Seccomp/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-right" aria-label="Older Posts"></i>
+            <h2 class="post-nav-title">Introduction to Seccomp</h2>
+            <p class="post-nav-excerpt">转载防失效 Outshift | Introduction to Seccomp</p>
+            <p class="post-nav-meta"><time datetime="2024-04-02">02 Apr 2024</time></p>
+          </section>
+        </a>
         
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a href="/tags/">tags</a></li>
-        
-      </ul>
+        <div class="clear"></div>
+      </aside>
+      
+      
     </div>
+  </article>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.jQuery) return;
+    var $ = window.jQuery;
+    var viewport = $(window);
+    var post = $('.post-content');
+    if (post.length && $.fn.fitVids) post.fitVids();
+
+    function codestyling() {
+      if (!window.hljs) return;
+      $('pre code').each(function(i, e) {
+        var cls = e.className || '';
+        if (cls && !/\blanguage-|\blang-/.test(cls)) {
+          e.className = 'language-' + cls.trim().split(/\s+/)[0];
+        }
+        hljs.highlightElement(e);
+        if (!$(this).hasClass('language-text')) {
+          var code = $(this);
+          var lines = code.html().split(/\n(?!$)/g).length;
+          var numbers = '';
+          for (var n = 1; n <= lines; n++) {
+            numbers += '<span class="line" aria-hidden="true">' + n + '</span>';
+          }
+          code.parent().append('<div class="lines">' + numbers + '</div>');
+        }
+      });
+    }
+    codestyling();
 
     
+    function readingProgress() {
+      if (!post.length || !post.height()) return;
+      var postBottom = post.offset().top + post.height();
+      var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete') : $('.progress-container').removeClass('complete');
+    }
+    readingProgress();
+    viewport.on({
+      'scroll': readingProgress,
+      'resize': readingProgress,
+      'orientationchange': readingProgress
+    });
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu"><span class="toc-number">1.</span> <span class="toc-text"> CPU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E9%99%90"><span class="toc-number">1.1.</span> <span class="toc-text"> 硬限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E9%99%90"><span class="toc-number">1.2.</span> <span class="toc-text"> 软限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpucfs_quota_us-cpucfs_period_us"><span class="toc-number">1.3.</span> <span class="toc-text"> cpu.cfs_quota_us、cpu.cfs_period_us</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpushares"><span class="toc-number">1.4.</span> <span class="toc-text"> cpu.shares</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.5.</span> <span class="toc-text"> 概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker"><span class="toc-number">1.6.</span> <span class="toc-text"> docker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#memory"><span class="toc-number">2.</span> <span class="toc-text"> Memory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qos"><span class="toc-number">3.</span> <span class="toc-text"> QoS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text"> 参考</span></a></li></ol>
-      </div>
-    
+  });
+</script>
 
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&text=Kubernetes 资源限额"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&is_video=false&description=Kubernetes 资源限额"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Kubernetes 资源限额&body=Check out this article: https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&title=Kubernetes 资源限额"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&name=Kubernetes 资源限额&description=&lt;p&gt;对于一个编排系统来说，**&lt;mark&gt;资源管理&lt;/mark&gt;**至少需要考虑以下几个方面&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;资源模型的抽象&lt;/li&gt;
-&lt;li&gt;资源的调度&lt;/li&gt;
-&lt;li&gt;资源的限额&lt;br&gt;
-k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？&lt;/li&gt;
-&lt;/ol&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/&t=Kubernetes 资源限额"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
 
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
-  </div>
+    <div class="nav-footer">
+  <nav class="nav-wrapper" aria-label="Copyright">
+    <span class="nav-copy">lance &copy; 2026 <a class="nav-rss" title="RSS" href="/atom.xml" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+    <span class="nav-credits">
+      <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme">
+        <span class="theme-icon"></span><span class="theme-text">System theme</span>
+      </a>
+    </span>
+  </nav>
 </div>
 
-        
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy;
-    
-    
-    2019-2024
-    lance
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/about/">About</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a href="/tags/">tags</a></li><!--
-     -->
-      </ul>
-    </nav>
-  </div>
-</footer>
-
-    </div>
-    <!-- styles -->
+  </section>
+  
 
 
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+<script src="/js/libs/jquery.min.js"></script>
 
 
-    <!-- jquery -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+<script src="/js/libs/highlight.pack.js"></script>
 
 
+<script src="/js/libs/jquery.fitvids.js"></script>
 
 
-<!-- clipboard -->
 
   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
-  
-  <script type="text/javascript">
-  $(function() {
-    // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
-    btn += '<i class="fa-regular fa-clone"></i>';
-    btn += '</span>';
-    // mount it!
-    $(".highlight table").before(btn);
-    var clip = new ClipboardJS('.btn-copy', {
-      text: function(trigger) {
-        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
-      }
-    });
-    clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
-      e.clearSelection();
-    })
-  })
-  </script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/main.js"></script>
 
-<!-- search -->
 
-<!-- Baidu Analytics -->
+<script src="/js/script.js"></script>
 
-<!-- Cloudflare Analytics -->
 
-<!-- Disqus Comments -->
 
-<!-- utterances Comments -->
+
 
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -482,7 +457,6 @@ k8s 是目前最流行的容器编排系统，那它是如何解决这些问题�
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
