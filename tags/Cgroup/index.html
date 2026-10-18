@@ -127,7 +127,7 @@
       <article class="post">
     <div class="inner">
         <div class="box post-box">
-            <h2 class="post-title"><a href="/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/">Kubernetes 资源限额</a></h2>
+            <h2 class="post-title"><a href="/2024/04/a2f41ca99432/">Kubernetes 资源限额</a></h2>
             <span class="post-meta">
                 By
                 lance
@@ -138,13 +138,8 @@
                 <time datetime="2024-04-02">02 Apr 2024</time>
             </span>
             
-            <p class="post-excerpt"><p>对于一个编排系统来说，<strong><mark>资源管理</mark></strong>至少需要考虑以下几个方面</p>
-<ol>
-<li>资源模型的抽象</li>
-<li>资源的调度</li>
-<li>资源的限额<br>
-k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？</li>
-</ol>&hellip;</p>
+            
+            <p class="post-excerpt">编排系统要处理资源模型、调度和限额。这篇看 Kubernetes 怎样用 cgroup 限制容器 CPU，以及 requests 和 limits 怎样影响调度。</p>
             
         </div>
     </div>
@@ -194,20 +189,5 @@ k8s 是目前最流行的容器编排系统，那它是如何解决这些问题�
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

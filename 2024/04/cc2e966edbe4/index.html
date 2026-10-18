@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    var localTheme = localStorage.getItem('attila_theme');
+    if (localTheme === 'dark') document.documentElement.classList.add('theme-dark');
+    if (localTheme === 'light') document.documentElement.classList.add('theme-light');
+  </script>
+  
+  
+  <title>linux中的容器与沙箱初探 | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Linux 里的沙箱从 chroot、restricted bash 到 ptrace 和 seccomp；容器则是在这之上用 namespace 和 cgroup 把进程隔开。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux中的容器与沙箱初探">
+<meta property="og:url" content="https://blog.lancelot.top/2024/04/cc2e966edbe4/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="Linux 里的沙箱从 chroot、restricted bash 到 ptrace 和 seccomp；容器则是在这之上用 namespace 和 cgroup 把进程隔开。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-04-04T06:19:00.000Z">
+<meta property="article:modified_time" content="2026-10-18T08:17:20.443Z">
+<meta property="article:author" content="lance">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="">
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Home">
+      
+      <ul>
+        
+            <li class="nav-home">
+                <a href="/"><span>Home</span></a>
+            </li>
+        
+            <li class="nav-archives">
+                <a href="/archives"><span>Archives</span></a>
+            </li>
+        
+            <li class="nav-about">
+                <a href="/about"><span>About</span></a>
+            </li>
+        
+            <li class="nav-tags">
+                <a href="/tags"><span>Tags</span></a>
+            </li>
+        
+    </ul>
+      <ul class="nav-meta">
+        
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-facebook">
+          <a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=100076106084068" title="Facebook" target="_blank">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+            <span>Facebook</span>
+          </a>
+        </li>
+        
+      </ul>
+  </nav>
+
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+      </div>
+  </div>
+</div>
+
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
+    
+
+<div class="progress-container">
+  <span class="progress-bar"></span>
+</div>
+
+
+<header class="post-header ">
+  <div class="inner">
+    
+    <span class="post-info">
+      <span class="post-type">Article</span>
+      
+    </span>
+    
+    <h1 class="post-title">linux中的容器与沙箱初探</h1>
+    
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          <a href="/" class="author-avatar">
+            <img class="author-profile-image" src="/css/images/avatar.jpg" alt="lance">
+          </a>
+        </figure>
+      </div>
+      <h4 class="post-meta-author">lance</h4>
+      <time datetime="2024-04-04">04 Apr 2024</time>
+      &bull; 18 min read
+    </div>
+    
+    
+  </div>
+</header>
+
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+      <section class="post-content">
+        <p>1111<br></p>
+<h2 id="Linux-中的沙箱技术"><a href="#Linux-中的沙箱技术" class="headerlink" title="Linux 中的沙箱技术"></a>Linux 中的沙箱技术</h2><h3 id="文件系统隔离"><a href="#文件系统隔离" class="headerlink" title="文件系统隔离"></a>文件系统隔离</h3><h4 id="Chroot-jail"><a href="#Chroot-jail" class="headerlink" title="Chroot jail"></a>Chroot jail</h4><p>通常来说，提到 chroot 一般有两个含义，chroot (1) 是/usr/bin/chroot, chroot (2) 是 glibc 中的一个函数。</p>
+<blockquote>
+<p>Chroot (1)<br>Chroot - run command or interactive shell with special root directory<br>Chroot [OPTION] NEWROOT [COMMAND [ARG]…]</p>
+<p>Chroot (2)<br>Chroot - change root directory<br>Int chroot (const char *path);</p>
+</blockquote>
+<p>Chroot 的主要功能就是改变根目录，如运行 chroot “/home/atum/newroot/” 会启动一个新的 shell，且目录”/home/atum/newroot/”成为该 shell 下的新的根目录”/”。</p>
+<p>chroot 沙箱可以将进程对文件的访问限制在一个指定的目录中，但是由于 chroot 不是一个安全的 feature，所以该沙箱可能会被逃逸出来。关于 chroot 沙箱逃逸的方法<a target="_blank" rel="noopener" href="https://github.com/earthquake/chw00t?ref=192.168.1.240">在这里</a></p>
+<h4 id="Restricted-bash"><a href="#Restricted-bash" class="headerlink" title="Restricted bash"></a>Restricted bash</h4><p>Rbash 的主要作用是限制了部分 bash 命令，其作用之一就是使得 bash 只能执行当前目录下的可执行文件，且不允许改变当前工作目录。</p>
+<blockquote>
+<p>If bash is started with the name rbash, or the -r option is supplied at invocation, the shell becomes restricted. A restricted shell is used to set up an environment more controlled than the standard shell.</p>
+</blockquote>
+<pre><code class="lang-ruby">atum@ubuntu:~$ rbash
+atum@ubuntu:~$ cd PWN
+rbash: cd: restricted
+atum@ubuntu:~$ ./PWN/rp++
+rbash: ./PWN/rp++: restricted: cannot specify `/&#39; in command names
+atum@ubuntu:~$ export PATH=$PATH:/home/atum/PWN
+rbash: PATH: readonly variable
+</code></pre>
+<p>Rbash 的绕过方法也有很多，通常跟 chroot 配合使用</p>
+<h3 id="进程监控"><a href="#进程监控" class="headerlink" title="进程监控"></a>进程监控</h3><h4 id="Ptrace"><a href="#Ptrace" class="headerlink" title="Ptrace"></a>Ptrace</h4><p>Ptrace 是一个系统调用，tracer 进程可以使用 ptrace 监控和修改 tracee 进程的运行状态，如内存、寄存器的值等。</p>
+<blockquote>
+<p>Long ptrace (enum __ptrace_request request, pid_t pid, void <em>addr, void </em>data);</p>
+<p>The ptrace () system call provides a means by which one process (the “tracer”) may observe and control the execution of another process (the “tracee”), and examine and change the tracee’s memory and registers.</p>
+</blockquote>
+<p>使用 ptrace 可以让某一进程处于受控状态，所以可以用作实现沙箱，如我们可以利用 ptrace 来监控 tracee 使用哪些系统调用，并组织 tracee 使用某些危险的系统调用等。</p>
+<h4 id="Seccomp"><a href="#Seccomp" class="headerlink" title="Seccomp"></a>Seccomp</h4><p>Seccomp 是 linux 提供的一种沙箱机制，可以用来限制程序可以使用和不可使用的系统调用</p>
+<blockquote>
+<p>Seccomp (short for secure computing mode) is a computer security facility in the Linux kernel. Seccomp allows a process to make a one-way transition into a “secure” state where it can only make user configured system calls</p>
+</blockquote>
+<p>Seccomp 沙箱主要有两种模式，SECCOMP_SET_MODE_STRICT 只运行调用 4 个系统调用 read (2), write (2), _exit (2), sigreturn (2) 四个系统调用，而 SECCOMP_SET_MODE_FILTER 则允许通过 BPF 指定系统调用的黑名单或者白名单</p>
+<blockquote>
+<p>SECCOMP_SET_MODE_STRICT  </p>
+<p>The only system calls that the calling thread is permitted to make are read (2), write (2), _exit (2) (but not exit_group (2)), and sigreturn (2).</p>
+<p>SECCOMP_SET_MODE_FILTER<br>The system calls allowed are defined by a pointer to a Berkeley Packet Filter (BPF) passed via args.</p>
+</blockquote>
+<p>Seccomp 本身是一种很安全的技术，但是在 SECCOMP_SET_MODE_FILTER 环境下通常会因为 BPF 使用不正确导致沙箱存在被绕过的可能。</p>
+<h2 id="Linux-中的容器技术"><a href="#Linux-中的容器技术" class="headerlink" title="Linux 中的容器技术"></a>Linux 中的容器技术</h2><h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><blockquote>
+<p>Operating-system-level virtualization is a server virtualization method in which the kernel of an operating system allows the existence of multiple isolated user-space instances, instead of just one. Such instances, which are sometimes called containers, software containers</p>
+</blockquote>
+<p>容器的目的是进行<strong>资源隔离</strong>和<strong>控制隔离</strong>。</p>
+<ul>
+<li>资源隔离：隔离计算资源，如 CPU、RAM、DISK 等。</li>
+<li>控制隔离：隔离一些控制结构，如 UID、PID 等</li>
+</ul>
+<h3 id="Cgroup-与-Namespace"><a href="#Cgroup-与-Namespace" class="headerlink" title="Cgroup 与 Namespace"></a><code>Cgroup</code> 与 <code>Namespace</code></h3><p><strong>资源隔离</strong>依赖于 linux 内核的 Cgroup 实现，<strong>控制隔离</strong>依赖于 linux 内核的 namespace</p>
+<blockquote>
+<p>The Linux kernel provides the cgroups functionality that allows limitation and prioritization of resources (CPU, memory, block I/O, network, etc.) without the need for starting any virtual machines, and also namespace isolation functionality that allows complete isolation of an applications’ view of the operating environment, including process trees, networking, user IDs and mounted file systems.</p>
+</blockquote>
+<p>目前比较有名的容器均是基于 Cgroup 和 namespace 实现的：</p>
+<ul>
+<li>LXC:</li>
+</ul>
+<blockquote>
+<p>LXC combines the kernel’s cgroups and support for isolated namespaces to provide an isolated environment for applications</p>
+</blockquote>
+<ul>
+<li>Docker</li>
+</ul>
+<blockquote>
+<p>Docker containers are very similar to LXC containers, and they have similar security features. When you start a container with docker run, behind the scenes Docker creates a set of namespaces and control groups for the container.</p>
+</blockquote>
+<h3 id="使用Namespace"><a href="#使用Namespace" class="headerlink" title="使用Namespace"></a>使用<strong>Namespace</strong></h3><p>Linux 中的 namespace 思想上跟 C++里面的差不多，通俗来说把一些全局的东西分割成很多份局部，而且使得处在局部里面的人以为自己是全局。</p>
+<blockquote>
+<p>A namespace wraps a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource. Changes to theg lobal resource are visible to other processes that are members of the namespace, but are invisible to other processes. One use of namespaces is to implement containers.</p>
+</blockquote>
+<p>目前最新版的 linuxkernel 支持 7 个命名空间</p>
+<pre><code class="lang-objectivec">Linux provides the following namespaces:
+
+Namespace   Constant          Isolates
+Cgroup      CLONE_NEWCGROUP   Cgroup root directory
+IPC         CLONE_NEWIPC      System V IPC, POSIX message queues
+Network     CLONE_NEWNET      Network devices, stacks, ports, etc.
+Mount       CLONE_NEWNS       Mount points
+PID         CLONE_NEWPID      Process IDs
+User        CLONE_NEWUSER     User and group IDs
+UTS         CLONE_NEWUTS      Hostname and NIS domain nam
+</code></pre>
+<h4 id="命名空间相关的-API-以及用法示例："><a href="#命名空间相关的-API-以及用法示例：" class="headerlink" title="命名空间相关的 API 以及用法示例："></a>命名空间相关的 API 以及用法示例：</h4><p><strong>clone</strong>： 创建一个新进程，并且可以根据 flag 创建新的命名空间。新创建的进程是该命名空间的 owner</p>
+<pre><code class="lang-c">int clone(int (*fn)(void *), void *child_stack,int flags, void *arg, ...)
+
+Example:
+
+#define _GNU_SOURCE
+#include &lt;sys/wait.h&gt;
+#include &lt;sched.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+int childFunc(char * str)&#123;
+    printf(&quot;%s: My pid is %d\n&quot;,str,getpid());
+    sleep(1000);
+&#125;
+#define STACK_SIZE (1024 * 1024)
+int main(int argc,char* argv[])&#123;
+    void *stack = malloc(STACK_SIZE);
+    stackTop = stack + STACK_SIZE; 
+    printf(&quot;parent: My pid is %d\n&quot;,getpid());
+    int pid = clone(childFunc, stackTop, CLONE_NEWPID | SIGCHLD, &quot;child&quot;);
+    wait(NULL);
+    printf(&quot;parent: My child pid is %d\n&quot;,pid);
+&#125;
+
+run it, we get:
+parent: My pid is 12424
+child: My pid is 0
+parent: My child pid is 12425
+</code></pre>
+<p><strong>setns</strong> 让当前进程加入一个已存在的命名空间。命名空间由 fd 指定，命名空间类型由 nstype 指定。</p>
+<pre><code class="lang-c"> int setns(int fd, int nstype);
+
+ Example：
+
+ #define _GNU_SOURCE
+ #include &lt;sys/wait.h&gt;
+ #include &lt;sched.h&gt;
+ #include &lt;stdio.h&gt;
+ #include &lt;stdlib.h&gt;
+ #include &lt;unistd.h&gt;
+ int main(int argc, char *argv[])&#123;
+
+    int fd;
+    printf(&quot;before: my pid is %d&quot;,getpid());
+    fd = open(&quot;/proc/12425/ns/pid&quot;, O_RDONLY);  
+    setns(fd, CLONE_NEWPID);
+    printf(&quot;after: my pid is %d&quot;,getpid());
+  &#125;
+
+  run it, we get:
+  before: my pid is 12426
+  after: my pid is 2
+</code></pre>
+<p><strong>unshare</strong> 让当前进程离开当前的命名空间，然后创建并进入一个新的命名空间, 效果跟 clone 差不多，只不过 unshare 不会创建新的进程。</p>
+<pre><code class="lang-cpp">int unshare(int flags);
+
+#define _GNU_SOURCE
+#include &lt;sys/wait.h&gt;
+#include &lt;sched.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+int main(int argc, char *argv[])&#123;
+    printf(&quot;before: my pid is %d&quot;,getpid());
+    unshare(CLONE_NEWPID);
+    printf(&quot;before: my pid is %d&quot;,getpid());
+&#125;
+
+run it we get:
+
+before: my pid is 12427
+after: my pid is 1
+</code></pre>
+<p>以上案例主要是以 PID NAMESPACE 为例，可以看得出 PID NAMESPACE 可以做到 PID 的隔离，其他 NAMESPACE 的用法类似，如 USER NAMESPACE 可以做到 UID 和 GID 的隔离，MOUNT NAMESPACE 可以做到文件系统的隔离等。</p>
+<p>另外，创建除了 USER NAMESPACE 以外的 NAMESPACE 需要 root 权限，所以通常的做法是首先进入 USER NAMESPACE，这样就可以得到一个当前 USER NAMESPACE 下的 root user，再创建其他的 namespace</p>
+<blockquote>
+<p>A process created via fork (2) or clone (2) without the CLONE_NEWUSER flag is a member of the same user namespace as its parent</p>
+<p>A call to clone (2) or unshare (2) with the CLONE_NEWUSER flag makes the new child process (for clone (2)) or the caller (for unshare (2)) a member of the new user namespace created by the call</p>
+</blockquote>
+<h3 id="使用Cgroup"><a href="#使用Cgroup" class="headerlink" title="使用Cgroup"></a>使用<strong>Cgroup</strong></h3><p>Cgroup 用来限制和监控进程对资源的使用</p>
+<blockquote>
+<p>Control cgroups, usually referred to as cgroups, are a Linux kernel feature which allow processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored.</p>
+</blockquote>
+<h4 id="使用-Cgroup-限制资源（以-CPU-为例）"><a href="#使用-Cgroup-限制资源（以-CPU-为例）" class="headerlink" title="使用 Cgroup 限制资源（以 CPU 为例）"></a>使用 Cgroup 限制资源（以 CPU 为例）</h4><pre><code class="lang-bash">挂载指定cgroup
+mount -t cgroup -o cpu,cpuacct none /sys/fs/cgroup/cpu,cpuacct
+或者可以挂载所有cgroup
+mount -t cgroup -o all cgroup /sys/fs/cgroup
+
+
+查看已挂载的cgroup：
+# ls /sys/fs/cgroup
+blkio    cpu,cpuacct  freezer  net_cls           perf_event
+cpu      cpuset       hugetlb  net_cls,net_prio  pids
+cpuacct  devices      memory   net_prio          systemd
+
+创建一个新的cpu cgroup， 并设置该cgroup的进程最多使用50%的CPU
+# mkdir /sys/fs/cgroup/cpu/cg1
+# 
+
+运行一个耗时间的脚本
+#!/bin/sh
+i=0;
+while true;
+do i=$i+1;
+done;
+
+查看CPU的使用
+# top
+   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND    
+  4145 root      20   0   21404   4544   2776 R 100.0  0.1   0:25.62 bash 
+
+将当前4145进程加入cgroup 
+echo 4145 &gt; /sys/fs/cgroup/cpu/cg1/tasks
+
+再次查看CPU的使用
+# top
+   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND    
+  4145 root      20   0   30576   4696   2136 R  49.5  0.1   0:55.41 bash
+</code></pre>
+<p>Cgroup 以进程族 (process group) 为单位进行资源的限制，fork 产生的子进程会继承父进程的 cgroup。</p>
+<blockquote>
+<p>A child process created via fork (2) inherits its parent’s cgroup memberships. A process’s cgroup memberships are preserved across execve (2).</p>
+</blockquote>
+<p>另外，我们也可以使用 setrlimit prlimit 等系统调用来以单个用户或者单个进程为单位进行资源的限制，这两套资源限制的机制是独立生效的</p>
+<h2 id="搬运"><a href="#搬运" class="headerlink" title="搬运"></a>搬运</h2><p><a target="_blank" rel="noopener" href="https://atum.li/2017/04/25/linuxsandbox/?ref=192.168.1.240#linux%E4%B8%AD%E7%9A%84%E6%B2%99%E7%AE%B1%E6%8A%80%E6%9C%AF">linux中的容器与沙箱初探 — Atum</a></p>
+
+      </section>
+
+      
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/share?text=linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2&url=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2Fcc2e966edbe4%2F" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+          </a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2Fcc2e966edbe4%2F" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+          </a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2Fcc2e966edbe4%2F&title=linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+          <a title="Email" aria-label="Email" class="email" href="mailto:?subject=linux%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E4%B8%8E%E6%B2%99%E7%AE%B1%E5%88%9D%E6%8E%A2&body=https%3A%2F%2Fblog.lancelot.top%2F2024%2F04%2Fcc2e966edbe4%2F">
+            <i class="icon icon-mail" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+      </section>
+
+      
+      
+
+      
+      <aside class="post-nav">
+        
+        <a class="post-nav-next" href="/2024/04/50db5668ce6d/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-left" aria-label="Newer Posts"></i>
+            <h2 class="post-nav-title">Hexo主题开发</h2>
+            <p class="post-nav-excerpt">把 Ghost 主题 Attila 魔改成 Hexo：模板用 EJS，样式用 Stylus，并记…</p>
+            <p class="post-nav-meta"><time datetime="2024-04-04">04 Apr 2024</time></p>
+          </section>
+        </a>
+        
+        
+        <a class="post-nav-prev" href="/2024/04/ccb8eae64e2e/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-right" aria-label="Older Posts"></i>
+            <h2 class="post-nav-title">Linux CFS 调度器</h2>
+            <p class="post-nav-excerpt">Linux 默认调度器 CFS 把 CPU 时间按份额分给进程；进程组成进程组之后，先在组之间分…</p>
+            <p class="post-nav-meta"><time datetime="2024-04-03">03 Apr 2024</time></p>
+          </section>
+        </a>
+        
+        <div class="clear"></div>
+      </aside>
+      
+      
+    </div>
+  </article>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.jQuery) return;
+    var $ = window.jQuery;
+    var viewport = $(window);
+    var post = $('.post-content');
+    if (post.length && $.fn.fitVids) post.fitVids();
+
+    function codestyling() {
+      if (!window.hljs) return;
+      $('pre code').each(function(i, e) {
+        var cls = e.className || '';
+        if (cls && !/\blanguage-|\blang-/.test(cls)) {
+          e.className = 'language-' + cls.trim().split(/\s+/)[0];
+        }
+        hljs.highlightElement(e);
+        if (!$(this).hasClass('language-text')) {
+          var code = $(this);
+          var lines = code.html().split(/\n(?!$)/g).length;
+          var numbers = '';
+          for (var n = 1; n <= lines; n++) {
+            numbers += '<span class="line" aria-hidden="true">' + n + '</span>';
+          }
+          code.parent().append('<div class="lines">' + numbers + '</div>');
+        }
+      });
+    }
+    codestyling();
+
+    
+    function readingProgress() {
+      if (!post.length || !post.height()) return;
+      var postBottom = post.offset().top + post.height();
+      var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete') : $('.progress-container').removeClass('complete');
+    }
+    readingProgress();
+    viewport.on({
+      'scroll': readingProgress,
+      'resize': readingProgress,
+      'orientationchange': readingProgress
+    });
+    
+  });
+</script>
+
+
+    <div class="nav-footer">
+  <nav class="nav-wrapper" aria-label="Copyright">
+    <span class="nav-copy">lance &copy; 2026 <a class="nav-rss" title="RSS" href="/atom.xml" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+    <span class="nav-credits">
+      <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme">
+        <span class="theme-icon"></span><span class="theme-text">System theme</span>
+      </a>
+    </span>
+  </nav>
+</div>
+
+  </section>
+  
+
+
+
+<script src="/js/libs/jquery.min.js"></script>
+
+
+<script src="/js/libs/highlight.pack.js"></script>
+
+
+<script src="/js/libs/jquery.fitvids.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+</body>
+</html>

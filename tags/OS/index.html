@@ -127,7 +127,7 @@
       <article class="post">
     <div class="inner">
         <div class="box post-box">
-            <h2 class="post-title"><a href="/2024/04/Linux%20CFS%20%E8%B0%83%E5%BA%A6%E5%99%A8/">Linux CFS 调度器</a></h2>
+            <h2 class="post-title"><a href="/2024/04/ccb8eae64e2e/">Linux CFS 调度器</a></h2>
             <span class="post-meta">
                 By
                 lance
@@ -138,7 +138,8 @@
                 <time datetime="2024-04-03">03 Apr 2024</time>
             </span>
             
-            <p class="post-excerpt"><p>Linux 默认调度器 CFS 相关的一些内容。</p>&hellip;</p>
+            
+            <p class="post-excerpt">Linux 默认调度器 CFS 把 CPU 时间按份额分给进程；进程组成进程组之后，先在组之间分，再在组内公平调度。</p>
             
         </div>
     </div>
@@ -188,20 +189,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

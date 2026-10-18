@@ -337,9 +337,57 @@ th {
   src: url("../font/fira-sans-v8-latin-700.eot");
   src: local("Fira Sans Bold"), local("FiraSans-Bold"), url("../font/fira-sans-v8-latin-700.eot?#iefix") format("embedded-opentype"), url("../font/fira-sans-v8-latin-700.woff2") format("woff2"), url("../font/fira-sans-v8-latin-700.woff") format("woff"), url("../font/fira-sans-v8-latin-700.ttf") format("truetype"), url("../font/fira-sans-v8-latin-700.svg#FiraSans") format("svg");
 }
+@font-face {
+  font-family: "Article Serif";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("../fonts/source-serif-4-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Article Serif";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url("../fonts/source-serif-4-latin-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Article Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Songti SC Regular"), local("STSongti-SC-Regular"), local("Songti TC Regular"), local("STSongti-TC-Regular"), local("SimSun"), local("Noto Serif CJK SC");
+  unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "Article Serif";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Songti SC Regular"), local("STSongti-SC-Regular"), local("Songti TC Regular"), local("STSongti-TC-Regular"), local("SimSun"), local("Noto Serif CJK SC");
+  unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "Article Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Songti SC Regular"), local("STSongti-SC-Regular"), local("Songti TC Regular"), local("STSongti-TC-Regular"), local("SimSun"), local("Noto Serif CJK SC");
+  unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: "Article Serif";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Songti SC Regular"), local("STSongti-SC-Regular"), local("Songti TC Regular"), local("STSongti-TC-Regular"), local("SimSun"), local("Noto Serif CJK SC");
+  unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
 :root {
   --font-primary: 'Fira Sans', sans-serif;
-  --font-secondary: 'Cardo', serif;
+  --font-secondary: "Article Serif", "Songti SC", "Songti TC", STSong, SimSun, "Source Serif 4", Georgia, "Times New Roman", serif;
 }
 html {
   font-size: 62.5%;
@@ -368,6 +416,7 @@ textarea {
   transition: all ease-out 0.2s;
 }
 .post-content {
+  font-family: var(--font-secondary);
   font-size: 1.75em;
   line-height: 2em;
 }

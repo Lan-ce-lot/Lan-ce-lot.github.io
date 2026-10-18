@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    var localTheme = localStorage.getItem('attila_theme');
+    if (localTheme === 'dark') document.documentElement.classList.add('theme-dark');
+    if (localTheme === 'light') document.documentElement.classList.add('theme-light');
+  </script>
+  
+  
+  <title>An Introduction to NGINX for Developers | lan&#39;s spaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="NGINX uses a non-threaded, event-driven architecture, so it can serve static files, reverse-proxy an API, and handle load balancing or HTTP caching. This note walks through installation and the basic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="An Introduction to NGINX for Developers">
+<meta property="og:url" content="https://blog.lancelot.top/2022/04/2bdc611be279/index.html">
+<meta property="og:site_name" content="lan&#39;s spaces">
+<meta property="og:description" content="NGINX uses a non-threaded, event-driven architecture, so it can serve static files, reverse-proxy an API, and handle load balancing or HTTP caching. This note walks through installation and the basic">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-30T12:22:00.000Z">
+<meta property="article:modified_time" content="2026-10-18T08:17:20.439Z">
+<meta property="article:author" content="lance">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="lan's spaces" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="">
+  <div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Home">
+      
+      <ul>
+        
+            <li class="nav-home">
+                <a href="/"><span>Home</span></a>
+            </li>
+        
+            <li class="nav-archives">
+                <a href="/archives"><span>Archives</span></a>
+            </li>
+        
+            <li class="nav-about">
+                <a href="/about"><span>About</span></a>
+            </li>
+        
+            <li class="nav-tags">
+                <a href="/tags"><span>Tags</span></a>
+            </li>
+        
+    </ul>
+      <ul class="nav-meta">
+        
+        <li class="nav-twitter">
+          <a aria-label="Twitter" href="https://twitter.com/lancel_huang" title="Twitter" target="_blank">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+            <span>Twitter</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-github">
+          <a aria-label="GitHub" href="https://github.com/Lan-ce-lot" title="GitHub" target="_blank">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>GitHub</span>
+          </a>
+        </li>
+        
+        
+        <li class="nav-facebook">
+          <a aria-label="Facebook" href="https://www.facebook.com/profile.php?id=100076106084068" title="Facebook" target="_blank">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+            <span>Facebook</span>
+          </a>
+        </li>
+        
+      </ul>
+  </nav>
+
+  <div class="nav-wrapper-control">
+      <div class="inner">
+          <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+      </div>
+  </div>
+</div>
+
+  <div class="nav-close" role="button" aria-label="Close"></div>
+  <section class="page-wrapper">
+    
+
+<div class="progress-container">
+  <span class="progress-bar"></span>
+</div>
+
+
+<header class="post-header ">
+  <div class="inner">
+    
+    <span class="post-info">
+      <span class="post-type">Article</span>
+      
+      <span class="post-count">Nginx</span>
+      
+    </span>
+    
+    <h1 class="post-title">An Introduction to NGINX for Developers</h1>
+    
+    <div class="post-meta">
+      <div class="post-meta-avatars">
+        <figure class="post-meta-avatar avatar">
+          <a href="/" class="author-avatar">
+            <img class="author-profile-image" src="/css/images/avatar.jpg" alt="lance">
+          </a>
+        </figure>
+      </div>
+      <h4 class="post-meta-author">lance</h4>
+      <time datetime="2022-04-30">30 Apr 2022</time>
+      &bull; 18 min read
+    </div>
+    
+    
+  </div>
+</header>
+
+<main class="content" role="main">
+  <article class="post">
+    <div class="inner">
+      <section class="post-content">
+        <p>Picture this - you’ve created a web application and are now searching for the right web server to host it from.</p>
+<p>Your application might consist of multiple static files — HTML, CSS, and JavaScript, a backend API service or even multiple webservices. Using Nginx might be what you are looking for, and there are couple of reasons for that.</p>
+<p>NGINX is a powerful web server and uses a non-threaded, event-driven architecture that enables it to outperform Apache if configured correctly. It can also do other important things, such as load balancing, HTTP caching, or be used as a reverse proxy.</p>
+<p>NGINX Architecture</p>
+<p>In this article, I’ll cover a few basic steps about how to install and configure the most common parts of NGINX.</p>
+<h2 id="Basic-Installation-—-Architecture"><a href="#Basic-Installation-—-Architecture" class="headerlink" title="Basic Installation — Architecture"></a><strong>Basic Installation — Architecture</strong></h2><p>There are two ways to install NGINX, either using a pre-built binary or building it up from source.</p>
+<p>The first method is much easiest and faster, but building it up from source provides the ability to include various third-party modules that make NGINX even more powerful. It allows us to customize it to fit the needs of the application.</p>
+<p>To install a prebuilt Debian package, the only thing you have to do is:</p>
+<pre><code class="lang-bash">sudo apt-get updatesudo apt-get install nginx
+</code></pre>
+<p>After the installation process has finished, you can verify everything is OK by running the command below, which should print the latest version of NGINX.</p>
+<pre><code class="lang-bash">sudo nginx -vnginx version: nginx/1.6.2
+</code></pre>
+<p>Your new webserver will be installed at the location <code>/etc/nginx****/****</code>. If you go inside this folder, you will see several files and folders. The most important ones that will require our attention later are the file <code>nginx.conf</code> and the folder <code>sites-available</code>.</p>
+<h2 id="Configuration-Settings"><a href="#Configuration-Settings" class="headerlink" title="Configuration Settings"></a><strong>Configuration Settings</strong></h2><p>The core settings of NGINX are in the <code>nginx.conf</code> file, which by default looks like this.</p>
+<pre><code class="lang-nginx">user www-data;
+worker_processes 4;
+pid /run/nginx.pid;
+
+events &#123;
+    worker_connections 768;
+    # multi_accept on;
+&#125;
+
+http &#123;
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
+
+    # server_tokens off;
+    # server_names_hash_bucket_size 64;
+    # server_name_in_redirect off;
+
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    gzip on;
+    gzip_disable &quot;msie6&quot;;
+
+    # gzip_vary on;
+    # gzip_proxied any;
+    # gzip_comp_level 6;
+    # gzip_buffers 16 8k;
+    # gzip_http_version 1.1;
+    # gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+&#125;
+</code></pre>
+<p>The file is structured into <strong><strong>Contexts</strong></strong>. The first one is the <strong><strong>events</strong></strong> Context, and the second one is the <strong><strong>http</strong></strong> Context. This structure enables some advanced layering of your configuration as each context can have other nested contexts that inherit everything from their parent but can also override a setting as needed.</p>
+<p>Various things in this file can be tweaked based on your needs, but NGINX is so simple to use that you can go along even with the default settings. Some of the most important pieces of the NGINX config file are:</p>
+<ul>
+<li><strong><strong>worker_processes:</strong></strong> This setting defines the number of worker processes that NGINX will use. Because NGINX is single threaded, this number should usually be equal to the number of CPU cores.</li>
+<li><strong><strong>worker_connections:</strong></strong> This is the maximum number of simultaneous connections for each worker process and tells our worker processes how many people can simultaneously be served by NGINX. The bigger it is, the more simultaneous users the NGINX will be able to serve.</li>
+<li><strong><strong>access_log &amp; error_log:</strong></strong> These are the files that NGINX will use to log any erros and access attempts. These logs are generally reviewed for debugging and troubleshooting.</li>
+<li><strong><strong>gzip:</strong></strong> These are the settings for GZIP compression of NGINX responses. Enabling this one along with the various sub-settings that by default are commented out will result in a quite a big performance upgrade. From the sub-settings of GZIP, care should be taken for the gzip_comp_level, which is the level of compression and ranges from 1 to 10. Generally, this value should not be above 6 — the gain in terms of size reduction is insignificant, as it needs a lot more CPU usage. gzip_types is a list of response types that compression will be applied on.</li>
+</ul>
+<p>Your NGINX install can support far more than a single website, and the files that define your server’s sites live in the /etc/nginx/sites-available directory.</p>
+<p>However, the files in this directory aren’t “live” — you can have as many site definition files in here as you want, but NGINX won’t actually do anything with them unless they’re symlinked into the /etc/nginx/sites-enabled directory (you could also copy them there, but symlinking ensures there’s only one copy of each file to keep track of).</p>
+<p>This gives you a method to quickly put websites online and take them offline without having to actually delete any files — when you’re ready for a site to go online, symlink it into sites-enabled and restart NGINX.</p>
+<p>The <code>sites-available</code> directory includes configurations for virtual hosts. This allows the web server to be configured for multiple sites that have separate configurations. The sites within this directory are not live and are only enabled if we create a symbolic link into the <code>sites-enabled</code> folder.</p>
+<p>Either create a new file for you application or edit the default one. A typical configuration looks like the below one.</p>
+<pre><code class="lang-nginx">upstream remoteApplicationServer &#123;
+    server 10.10.10.10;
+&#125;
+
+upstream remoteAPIServer &#123;
+    server 20.20.20.20;
+    server 20.20.20.21;
+    server 20.20.20.22;
+    server 20.20.20.23;
+&#125;
+
+server &#123;
+    listen 80;
+    server_name www.customapp.com customapp.com;
+    root /var/www/html;
+    index index.html;
+
+    location / &#123;
+        alias /var/www/html/customapp/;
+        try_files $uri $uri/ =404;
+    &#125;
+
+    location /remoteapp &#123;
+        proxy_set_header Host $host:$server_port;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://remoteAPIServer/;
+    &#125;
+
+    location /api/v1/ &#123;
+        proxy_pass https://remoteAPIServer/api/v1/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#39;upgrade&#39;;
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_redirect http:// https://;
+    &#125;
+&#125;
+</code></pre>
+<p>Much like the <code>nginx.conf</code>, this one also uses the concept of nested contexts (and all of these are also nested inside the <strong><strong>HTTP</strong></strong> context of nginx.conf, so they also inherit everything from it).</p>
+<p>The <strong><strong>server</strong></strong> context defines a specific virtual server to handle your clients’ requests. You can have multiple server blocks, and NGINX will choose between them based on the <code>listen</code> and <code>server_name</code> directives.</p>
+<p>Inside a server block, we define multiple <strong><strong>location</strong></strong> contexts that are used to decide how to handle the client requests. Whenever a request comes in, NGINX will try to match its URI to one of those location definitions and handle it accordingly.</p>
+<p>There are many important directives that can be used under the location context, such as:</p>
+<ul>
+<li><strong><strong>try_files</strong></strong> will try to serve a static file found under the folder that points to the root directive.</li>
+<li><strong><strong>proxy_pass</strong></strong> will send the request to a specified proxied server.</li>
+<li><strong><strong>rewrite</strong></strong> will rewrite the incoming URI based on a regular expression so that another location block will be able to handle it.</li>
+</ul>
+<p>The <strong><strong>upstream</strong></strong> context defines a pool of servers that NGINX will proxy the requests to. After we create an upstream block and define a server inside it we can then reference it by name inside our location blocks. Furthermore, an upstream context can have many servers assigned under it so that NGINX will do some load balancing when proxying the requests.</p>
+<h2 id="Start-NGINX"><a href="#Start-NGINX" class="headerlink" title="Start NGINX"></a><strong>Start NGINX</strong></h2><p>After we have finished with the configuration and we have moved our web application over to the appropriate folder, we can start up NGINX using the below command:</p>
+<pre><code class="lang-bash">sudo service nginx start
+</code></pre>
+<p>After that, whenever we change something on our configuration, we only have to reload it (without downtime) using the command below.</p>
+<pre><code class="lang-sh">service nginx reload
+</code></pre>
+<p>Lastly, we can check NGINX’s status using the command below.</p>
+<pre><code class="lang-sh">service nginx status
+</code></pre>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><strong>Conclusion</strong></h2><p>With so many features out of the box, NGINX can be a great way to serve your application or even be used as a HTTP proxy or load balancer for your other web servers. Understanding the way NGINX works and handles requests will give a lot of power to scaling and balancing the load of your applications.</p>
+
+      </section>
+
+      
+      <section class="post-footer">
+        <div class="post-share">
+          <span class="post-info-label">Share</span>
+          <a title="Twitter" aria-label="Twitter" class="twitter" target="_blank" rel="noopener" href="https://twitter.com/share?text=An%20Introduction%20to%20NGINX%20for%20Developers&url=https%3A%2F%2Fblog.lancelot.top%2F2022%2F04%2F2bdc611be279%2F" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <i class="icon icon-twitter" aria-hidden="true"></i>
+          </a>
+          <a title="Facebook" aria-label="Facebook" class="facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.lancelot.top%2F2022%2F04%2F2bdc611be279%2F" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <i class="icon icon-facebook" aria-hidden="true"></i>
+          </a>
+          <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" target="_blank" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.lancelot.top%2F2022%2F04%2F2bdc611be279%2F&title=An%20Introduction%20to%20NGINX%20for%20Developers" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+            <i class="icon icon-linkedin" aria-hidden="true"></i>
+          </a>
+          <a title="Email" aria-label="Email" class="email" href="mailto:?subject=An%20Introduction%20to%20NGINX%20for%20Developers&body=https%3A%2F%2Fblog.lancelot.top%2F2022%2F04%2F2bdc611be279%2F">
+            <i class="icon icon-mail" aria-hidden="true"></i>
+          </a>
+        </div>
+        
+        <aside class="post-tags">
+          <span class="post-info-label">Topic</span>
+          <a class="post-tag-link" href="/tags/Nginx/" rel="tag">Nginx</a>
+        </aside>
+        
+      </section>
+
+      
+      
+
+      
+      <aside class="post-nav">
+        
+        <a class="post-nav-next" href="/2022/05/3ab937079fb6/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-left" aria-label="Newer Posts"></i>
+            <h2 class="post-nav-title">2022打工记录</h2>
+            <p class="post-nav-excerpt">3 月 12 日离开学校到杭州，记一下这两个月的实习、第一次租房，以及合租里踩到的坑。</p>
+            <p class="post-nav-meta"><time datetime="2022-05-16">16 May 2022</time></p>
+          </section>
+        </a>
+        
+        
+        <a class="post-nav-prev" href="/2021/12/342cea46341b/">
+          <section class="post-nav-teaser">
+            <i class="icon icon-arrow-right" aria-label="Older Posts"></i>
+            <h2 class="post-nav-title">保研经历</h2>
+            <p class="post-nav-excerpt">夏令营和预推免的记录。南昌大学计科，最后拿到浙江大学软件学院的录取。</p>
+            <p class="post-nav-meta"><time datetime="2021-12-02">02 Dec 2021</time></p>
+          </section>
+        </a>
+        
+        <div class="clear"></div>
+      </aside>
+      
+      
+    </div>
+  </article>
+</main>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.jQuery) return;
+    var $ = window.jQuery;
+    var viewport = $(window);
+    var post = $('.post-content');
+    if (post.length && $.fn.fitVids) post.fitVids();
+
+    function codestyling() {
+      if (!window.hljs) return;
+      $('pre code').each(function(i, e) {
+        var cls = e.className || '';
+        if (cls && !/\blanguage-|\blang-/.test(cls)) {
+          e.className = 'language-' + cls.trim().split(/\s+/)[0];
+        }
+        hljs.highlightElement(e);
+        if (!$(this).hasClass('language-text')) {
+          var code = $(this);
+          var lines = code.html().split(/\n(?!$)/g).length;
+          var numbers = '';
+          for (var n = 1; n <= lines; n++) {
+            numbers += '<span class="line" aria-hidden="true">' + n + '</span>';
+          }
+          code.parent().append('<div class="lines">' + numbers + '</div>');
+        }
+      });
+    }
+    codestyling();
+
+    
+    function readingProgress() {
+      if (!post.length || !post.height()) return;
+      var postBottom = post.offset().top + post.height();
+      var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete') : $('.progress-container').removeClass('complete');
+    }
+    readingProgress();
+    viewport.on({
+      'scroll': readingProgress,
+      'resize': readingProgress,
+      'orientationchange': readingProgress
+    });
+    
+  });
+</script>
+
+
+    <div class="nav-footer">
+  <nav class="nav-wrapper" aria-label="Copyright">
+    <span class="nav-copy">lance &copy; 2026 <a class="nav-rss" title="RSS" href="/atom.xml" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+    <span class="nav-credits">
+      <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme">
+        <span class="theme-icon"></span><span class="theme-text">System theme</span>
+      </a>
+    </span>
+  </nav>
+</div>
+
+  </section>
+  
+
+
+
+<script src="/js/libs/jquery.min.js"></script>
+
+
+<script src="/js/libs/highlight.pack.js"></script>
+
+
+<script src="/js/libs/jquery.fitvids.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+</body>
+</html>

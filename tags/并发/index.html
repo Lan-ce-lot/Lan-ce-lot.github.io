@@ -127,7 +127,7 @@
       <article class="post">
     <div class="inner">
         <div class="box post-box">
-            <h2 class="post-title"><a href="/2024/03/sync-Map%E5%8E%9F%E7%90%86/">sync.Map原理</a></h2>
+            <h2 class="post-title"><a href="/2024/03/7255748b8c1a/">sync.Map原理</a></h2>
             <span class="post-meta">
                 By
                 lance
@@ -138,10 +138,8 @@
                 <time datetime="2024-03-27">27 Mar 2024</time>
             </span>
             
-            <p class="post-excerpt"><p>普通map的实现不是并发安全，并发读写会painc</p>
-<blockquote>
-<p>思想：读写分离，以空间换时间，动态调整</p>
-</blockquote>&hellip;</p>
+            
+            <p class="post-excerpt">普通 map 并发读写会 panic。sync.Map 用读写分离，以空间换时间，按读写比例动态调整。</p>
             
         </div>
     </div>
@@ -191,20 +189,5 @@
 
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
