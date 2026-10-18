@@ -11,17 +11,17 @@
   
   <title>Kubernetes 资源限额 | lan&#39;s spaces</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="对于一个编排系统来说，**资源管理**至少需要考虑以下几个方面  资源模型的抽象 资源的调度 资源的限额 k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？">
+  <meta name="description" content="对于一个编排系统来说，资源管理至少需要考虑以下几个方面  资源模型的抽象 资源的调度 资源的限额 k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kubernetes 资源限额">
 <meta property="og:url" content="https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/index.html">
 <meta property="og:site_name" content="lan&#39;s spaces">
-<meta property="og:description" content="对于一个编排系统来说，**资源管理**至少需要考虑以下几个方面  资源模型的抽象 资源的调度 资源的限额 k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？">
+<meta property="og:description" content="对于一个编排系统来说，资源管理至少需要考虑以下几个方面  资源模型的抽象 资源的调度 资源的限额 k8s 是目前最流行的容器编排系统，那它是如何解决这些问题的呢？">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/image-20240404162100256.png">
 <meta property="og:image" content="https://blog.lancelot.top/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/image-20240404160559524.png">
 <meta property="article:published_time" content="2024-04-02T12:59:00.000Z">
-<meta property="article:modified_time" content="2026-10-16T16:57:28.492Z">
+<meta property="article:modified_time" content="2026-10-18T06:39:25.875Z">
 <meta property="article:author" content="lance">
 <meta property="article:tag" content="Cgroup">
 <meta name="twitter:card" content="summary">
@@ -147,7 +147,7 @@
   <article class="post">
     <div class="inner">
       <section class="post-content">
-        <p>对于一个编排系统来说，**<mark>资源管理</mark>**至少需要考虑以下几个方面</p>
+        <p>对于一个编排系统来说，<strong><mark>资源管理</mark></strong>至少需要考虑以下几个方面</p>
 <ol>
 <li>资源模型的抽象</li>
 <li>资源的调度</li>
@@ -255,7 +255,7 @@ CPU request 是通过 cgroup 中 CPU 子系统中的 cpu.shares 配置来实现�
 </ul>
 <p><code>memory.limit_in_bytes</code> 限制了控制组中所有进程的用户空间内存使用总量，<code>memory.memsw.limit_in_bytes</code> 同时限制了物理内存和交换空间的总和，而 <code>memory.kmem.limit_in_bytes</code> 专门限制了内核内存的使用</p>
 <h2 id="qos"><a class="markdownIt-Anchor" href="#qos"></a> QoS</h2>
-<p>实际的业务场景需要我们能**<mark>根据优先级高低区分几种 pod</mark>**。例如，</p>
+<p>实际的业务场景需要我们能<strong><mark>根据优先级高低区分几种 pod</mark></strong>。例如，</p>
 <ul>
 <li>高优先级 pod：无论何时，都应该首先保证这种 pod 的资源使用量；</li>
 <li>低优先级 pod：资源充足时允许运行，资源紧张时优先把这种 pod 赶走，释放出的资源分给中高优先级 pod；</li>
@@ -277,14 +277,14 @@ CgroupsPerQOS bool
 <p>Burstable: <strong><mark><code>requests &lt; limits, requests != 0</code></mark></strong>， 即 <code>正常需求 &lt; 最大需求</code>，资源使用量可以有一定弹性空间；</p>
 </li>
 <li>
-<p>BestEffort: <strong><mark><code>request == limits == 0</code></mark></strong>， 创建 pod 时**<mark>不指定 requests/limits</mark>** 就等同于设置为 0，kubelet 对这种 pod 将尽力而为；有好处也有坏处：</p>
+<p>BestEffort: <strong><mark><code>request == limits == 0</code></mark></strong>， 创建 pod 时<strong><mark>不指定 requests/limits</mark></strong> 就等同于设置为 0，kubelet 对这种 pod 将尽力而为；有好处也有坏处：</p>
 <ul>
 <li>好处：node 的资源充足时，这种 pod 能使用的资源量没有限制；</li>
 <li>坏处：这种 pod 的 QoS 优先级最低，当 <strong><mark>node 资源不足时，最先被驱逐</mark></strong>。</li>
 </ul>
 </li>
 </ol>
-<p>每个 QoS 对应一个子 cgroup，设置**<mark>该 QoS 类型的所有 pods 的总资源限额</mark>**， 三个 cgroup 共同构成了 <code>kubepods</code> cgroup。 每个 QoS cgroup 可以认为是一个资源池，每个池子内的 pod 共享资源。</p>
+<p>每个 QoS 对应一个子 cgroup，设置<strong><mark>该 QoS 类型的所有 pods 的总资源限额</mark></strong>， 三个 cgroup 共同构成了 <code>kubepods</code> cgroup。 每个 QoS cgroup 可以认为是一个资源池，每个池子内的 pod 共享资源。</p>
 <p>QoS 级别 cgroup 是使用与 Pod 级别 cgroup 相同的 <code>-cgroups-per-qos</code> 参数同时创建的。并且这三种资源计费方法分别对应不同的QoS级别。</p>
 <p>此时，每个QoS cgroup可以认为是一个资源池，内部的Pod可以共享资源，并根据优先级合理获取资源。</p>
 <p><img src="/2024/04/Kubernetes%20%E8%B5%84%E6%BA%90%E9%99%90%E9%A2%9D/image-20240404160559524.png" alt></p>
