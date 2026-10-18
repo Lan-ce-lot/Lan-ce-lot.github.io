@@ -540,7 +540,20 @@ textarea {
   margin-bottom: 1em;
 }
 .post-content mark {
-  background-color: #ffc336;
+  background-color: rgba(255,195,54,0.38);
+  color: inherit;
+  border-radius: 0.2em;
+  padding: 0.05em 0.2em;
+}
+.post-content mark code,
+.post-content mark tt {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  color: inherit;
 }
 .post-content code,
 .post-content tt {
