@@ -654,6 +654,15 @@ textarea {
   line-height: 1.33334em;
   color: var(--color-content-secondary);
 }
+.post-content > table code,
+.post-content > table tt {
+  display: inline-block;
+  box-sizing: border-box;
+  top: 0;
+  line-height: 1.45;
+  vertical-align: middle;
+  white-space: nowrap;
+}
 .post-content img {
   display: block;
   max-width: 100%;
